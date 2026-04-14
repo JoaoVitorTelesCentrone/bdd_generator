@@ -1,0 +1,22 @@
+TÍTULO:
+Update content policy to reflect current practice on token manipulation
+
+DESCRIÇÃO:
+**Objective**
+
+- The Content Policy states that token manipulation is an immediate ban offense.  However, the current practice is to reject the withdrawals.  We need to **update the content policy** to reflect this internal policy change.
+- Update on the GitLab docs in addition to content-policy page.
+
+![image](/uploads/d98a0112f3d5d2f8a58ffe9dd419afd0/image.png)
+
+** Proposed Solution **
+
+![image](/uploads/8ea4e23390a1bacf7d63f118f80cfdd1/image.png)
+
+STORY POINTS: 0.0
+
+USER STORY ENVIADA AO MODELO:
+Update content policy to reflect current practice on token manipulation. **Objective**
+
+- The Content Policy states that token manipulation is an immediate ban offense.  However, the current practice is to reject the withdrawals.  We need to **update the content policy** to reflect this internal policy change.
+- Update on the GitLab docs in addition to content-policy pag

@@ -1,0 +1,16 @@
+TÍTULO:
+(feat): Convert ES reports data to standard format for api return.
+
+DESCRIÇÃO:
+See https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/Repository.php#L28 for a good example of how to use repositories.
+
+Create a model called Report that we can pass to repositories and managers (copy from https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/VideoChatLease.php)
+
+https://gitlab.com/minds/engine/merge_requests/83
+
+STORY POINTS: 25.0
+
+USER STORY ENVIADA AO MODELO:
+(feat): Convert ES reports data to standard format for api return.. See https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/Repository.php#L28 for a good example of how to use repositories.
+
+Create a model called Report that we can pass to repositories and managers (copy from https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/VideoChatLe

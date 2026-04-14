@@ -1,0 +1,44 @@
+TÍTULO:
+Add metrics to GrowthBook
+
+DESCRIÇÃO:
+A collection of metrics to add to GrowthBook to enable new experiments.
+
+## Growth metrics
+- [x] 2-hour retention
+- [x] 3-day retention
+- [x] Followed channel
+
+## Engagement metrics
+- [x] Made a comment / reply
+- [x] Pageviews
+- [x] 7-day retention
+
+
+----
+
+## Dimensions
+- [x] Device type (computer vs. mobile)
+- [x] Platform (web vs. app)
+- [x] Language
+
+STORY POINTS: 8.0
+
+USER STORY ENVIADA AO MODELO:
+Add metrics to GrowthBook. A collection of metrics to add to GrowthBook to enable new experiments.
+
+## Growth metrics
+- [x] 2-hour retention
+- [x] 3-day retention
+- [x] Followed channel
+
+## Engagement metrics
+- [x] Made a comment / reply
+- [x] Pageviews
+- [x] 7-day retention
+
+
+----
+
+## Dimensions
+- [x] Device type (computer v

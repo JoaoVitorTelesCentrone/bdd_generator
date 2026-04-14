@@ -1,0 +1,40 @@
+TÍTULO:
+Register modal improvements
+
+DESCRIÇÃO:
+We can improve the user experience with the Register modal -- and possibly improve signup conversions -- by addressing these UX issues with the production modal.
+
+[This Figma jam board](https://www.figma.com/file/Tf7tRLoUqUWFADEsoZAaQK/Register-modal?node-id=0%3A1) highlights some of the issues visually.
+
+1. Field validation warnings (e.g. `Must be at least 4 characters long` and `Invalid email`) change the height of the modal when they appear / disappear.
+
+---
+
+2. When inputting a password, the password rules overlay the fields below, including the `Confirm your password` field, making it unclear what the user should do after entering a valid password. (Note: The rules appear to disappear after the rules are successfully met.) On a mobile device, the rules are likely covered by the on screen keyboard.
+
+---
+
+3. On mobile devices, the `Switch to App` prompt overlays the Register modal.
+
+
+### Proposed changes to registration modal
+
+- [ ] Present `Password` and `Confirm Password` always. Currently `Confirm Password` only shows when `password` is not NULL
+- [ ] Always show CAPTCHA. Currently it only shows once passwords have been entered.
+- [ ] Position the captcha image and captcha input side by side as to save space vertically.
+- [ ] Remove / hide the `Switch to App` prompt when modals are displayed.
+- [ ] Reposition validation message to the same row as the form label, saving vertical space.
+- [ ] Remove header image from modal.
+- [ ] Position password rules above the input rather than below.
+- [ ] Check/Update Cypress testing to account for changes.
+
+* Large -> https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=165%3A580
+* Medium -> https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=209%3A508
+* Small -> https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=76%3A859
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Register modal improvements. We can improve the user experience with the Register modal -- and possibly improve signup conversions -- by addressing these UX issues with the production modal.
+
+[This Figma jam board](https://www.figma.com/file/Tf7tRLoUqUWFADEsoZAaQK/Register-modal?node-id=0%3A1) highlights some of the issues visu

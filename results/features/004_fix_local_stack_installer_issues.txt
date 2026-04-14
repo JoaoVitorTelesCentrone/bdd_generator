@@ -1,0 +1,10 @@
+TÍTULO:
+Fix local stack installer issues
+
+DESCRIÇÃO:
+TBD
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Fix local stack installer issues. TBD

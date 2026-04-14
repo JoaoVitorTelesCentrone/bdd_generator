@@ -1,0 +1,10 @@
+TÍTULO:
+Bug Triage and Customer Support
+
+DESCRIÇÃO:
+Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.
+
+STORY POINTS: 0.0
+
+USER STORY ENVIADA AO MODELO:
+Bug Triage and Customer Support. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.

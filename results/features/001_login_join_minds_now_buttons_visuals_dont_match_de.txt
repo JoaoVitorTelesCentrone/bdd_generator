@@ -1,0 +1,26 @@
+TÍTULO:
+Login / Join Minds Now buttons visuals don't match designs
+
+DESCRIÇÃO:
+Login/Register buttons at the top-right should match the designs.
+
+In staging:
+
+![image](/uploads/da38130f16df514bd4ca67a801722ded/image.png)
+
+Design mock:
+
+![image](/uploads/b864fb6d6f3e7f39953c07e8ecce3565/image.png)
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+Login / Join Minds Now buttons visuals don't match designs. Login/Register buttons at the top-right should match the designs.
+
+In staging:
+
+![image](/uploads/da38130f16df514bd4ca67a801722ded/image.png)
+
+Design mock:
+
+![image](/uploads/b864fb6d6f3e7f39953c07e8ecce3565/image.png)

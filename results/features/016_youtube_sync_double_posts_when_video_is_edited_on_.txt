@@ -1,0 +1,55 @@
+TÍTULO:
+YouTube sync double-posts when video is edited on YouTube
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When a video is edited on YouTube, Minds YouTube sync creates a new activity post for the video.
+
+### Steps to reproduce
+
+- Connect a Minds channel to a YouTube channel via YouTube sync
+- Publish a video on YouTube
+- (Minds will make an activity post linking to the YouTube video)
+- Edit the video (description, title, etc.) on YouTube
+
+### Platform information 
+
+n/a
+
+### What is the current *bug* behavior?
+
+- Minds creates a duplicate activity post linking to the YouTube video
+
+### What is the expected *correct* behavior?
+
+- No duplicate activity post is made
+
+### Relevant logs and/or screenshots
+
+n/a
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+YouTube sync double-posts when video is edited on YouTube. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When a video is edited on YouTube, Minds YouTube sync creates a new activity post for 

@@ -1,0 +1,71 @@
+TÍTULO:
+Code-based email verifications in mobile app
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Implement code-based email verifications in the mobile app and make the verification part of the initial onboarding flow, before a user reaches the Newsfeed.
+
+## What needs to be done
+
+- Implement code-based email verification flow to the mobile app new user onboarding.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+- [Figma designs](https://www.figma.com/file/zKXef5Dyr3CiCEhTjALkzl/Mobile-Onboarding-Quirk?node-id=0%3A1)
+
+Screenshot for quick reference, see Figma mocks for latest spec.
+
+![image](/uploads/77900c9a95b7dc0bf9ef2867ce53ce8f/image.png)
+
+## Personas
+
+- New users
+
+## Experiments
+
+Code-based verification should be tested versus existing link-based email verification, measuring for % of signups that result in email verification.
+
+## Acceptance Criteria
+
+- [ ] Given a user is creating a new account in the app, and the user has already filled out the fields on `Join Minds` screen, and all fields are valid, when the user clicks the blue `Join Minds` button, then a code-based verification email is sent to the user's email address, and the user is navigated to the code-based `Verify Account` screen.
+- [ ] When the user is navigated to the code-based `Verify Account` screen, then the user's cursor is automatically positioned in the `Verification code` text field, and the keyboard defaults a numeric layout.
+- [ ] Given the user is on the code-based `Verify Account` screen, and the user inputs an invalid code, when the user taps `Verify` button, then the "Invalid code" error is displayed adjacent to the code field.
+- [ ] Given the user is on the code-based `Verify Account` screen, and the user inputs a VALID code, when the user taps `Verify` button, then the email address is verified and the user is navigated to the Newsfeed.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Code-based email verifications in mobile app. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

@@ -1,0 +1,42 @@
+TÍTULO:
+(bug): Images Library Has Disappeared
+
+DESCRIÇÃO:
+### Summary
+
+The image library that was once available on a channel's left sidebar, under the Bio, has disappeared; making it impossible to browse a channels uploaded images.
+
+### Steps to reproduce
+
+Open a channel page and scroll down to just below the channel's Bio, and on top of the Video library, and you wont see what was once there; the image library.
+
+### Platform information 
+
+Firefox 30.3.0 esr; Debian Stretch 9.6
+
+### What is the current *bug* behavior?
+
+The lack of a channels image libary.
+
+### What is the expected *correct* behavior?
+
+An image library should be available just below the Bio and above the video library on a users channel.
+
+### Relevant logs and/or screenshots
+
+![Selection_526](/uploads/89183b1c158397cf91e626c3745a9848/Selection_526.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+(bug): Images Library Has Disappeared. ### Summary
+
+The image library that was once available on a channel's left sidebar, under the Bio, has disappeared; making it impossible to browse a channels uploaded images.
+
+### Steps to reproduce
+
+Open a channel page and scroll down to just below the channel's Bio, and on top of the Video library

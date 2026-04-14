@@ -1,0 +1,16 @@
+TÍTULO:
+Change contact info for p/contact page
+
+DESCRIÇÃO:
+https://www.minds.com/p/contact
+
+1.  "Help Desk" -> "Support Center"
+2.  info@minds.com -> support@minds.zendesk.com
+
+STORY POINTS: 0.0
+
+USER STORY ENVIADA AO MODELO:
+Change contact info for p/contact page. https://www.minds.com/p/contact
+
+1.  "Help Desk" -> "Support Center"
+2.  info@minds.com -> support@minds.zendesk.com

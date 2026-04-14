@@ -1,0 +1,37 @@
+TÍTULO:
+Include react native image picker library and enable cropping for Channel Avatar
+
+DESCRIÇÃO:
+This image picker for react native supports cropping and a round circle for the avatar
+
+https://github.com/ivpusic/react-native-image-crop-picker
+
+Image picker
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard3
+
+Cropper
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard4
+
+- [ ] When the channel owner clicks on their profile picture (camera button)
+- [ ] Display the image picker Select an Avatar from the camera roll / image gallery
+- [ ] When the user selects and image allow them to crop and position the image
+- [ ] Back button should go back to channel page and not change the image / display the old avatar
+- [ ] Save button should go back to channel page and change the image
+- [ ] Light mode and dark mode
+- [ ] e2e and unit tests
+
+
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard2
+
+STORY POINTS: 4.0
+
+USER STORY ENVIADA AO MODELO:
+Include react native image picker library and enable cropping for Channel Avatar. This image picker for react native supports cropping and a round circle for the avatar
+
+https://github.com/ivpusic/react-native-image-crop-picker
+
+Image picker
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard3
+
+Cropper
+https://design.minds.com/hosted/mobile/michael/mobile%2

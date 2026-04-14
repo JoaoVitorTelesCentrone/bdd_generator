@@ -1,0 +1,67 @@
+TÍTULO:
+Boost inventory: Add boosts to Discovery
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Increase boost inventory.
+
+## What needs to be done
+
+Add in-feed boost placements to the Discovery > Top feed, using the same spacing logic as used on the Newsfeed.
+
+Note: This does NOT include the Boost rotator.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+No new design, the in-feed boosts should appear the same way they would on the Newsfeed.
+
+## Personas
+
+Core users
+
+## Experiments
+
+We should roll this out as an experiment to see if it negatively impacts engagement on the Discovery feed.
+
+## Acceptance Criteria
+
+- [ ] In-feed boosts appear on the Discovery > Top feed with the same frequency as they appear on the Newsfeed
+- [ ] The boost rotator does not appear on Discovery > Top
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Boost inventory: Add boosts to Discovery. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

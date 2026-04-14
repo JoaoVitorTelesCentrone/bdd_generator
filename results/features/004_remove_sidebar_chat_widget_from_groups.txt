@@ -1,0 +1,32 @@
+TÍTULO:
+Remove sidebar chat widget from Groups
+
+DESCRIÇÃO:
+Remove the sidebar chat widget from Groups pages.
+
+- [x] Remove sidebar chat widget
+- [x] Remove collapse/expand function for the right column
+- [x] The right column is still there, but empty
+- [x] Disable on backend too. 403 status.
+- [x] Remove associated Cypress tests.
+- [x] Make mobile card @msantang78 
+
+### Before:
+
+![image](/uploads/4ba4ca0d9d7ce592c04fb693539b2322/image.png)
+
+### After:
+
+![image](/uploads/4fa266fbbf9d32376526493a8ff0d708/image.png)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Remove sidebar chat widget from Groups. Remove the sidebar chat widget from Groups pages.
+
+- [x] Remove sidebar chat widget
+- [x] Remove collapse/expand function for the right column
+- [x] The right column is still there, but empty
+- [x] Disable on backend too. 403 status.
+- [x] Remove associated Cypress tests.
+- [x] Make mobile card @msa

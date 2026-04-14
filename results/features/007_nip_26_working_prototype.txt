@@ -1,0 +1,110 @@
+TÍTULO:
+NIP-26 working prototype
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Have working prototype of NIP-26
+
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+Now that we have achieved general consensus with Nostr devs on [NIP-26](https://github.com/nostr-protocol/nips/pull/28) we can temporarily disregard our former [Whitelist](https://gitlab.com/minds/minds/-/issues/3306) proposal for ingestion and build the initial implementation of NIP-26 (which is required for the MR to be accepted anyway). 
+
+- Add section in Settings, under Account called Nostr
+- Subsections will be Add relay, Delegate key, Generate key
+- For the usecase of users with existing Nostr keypair, this section will have an input field for a token to establish the pairing of their key with the Minds delegated key
+- For the usecase of users without existing Nostr keypair, this section will have an option to generate and download or copy a new Nostr keypair similar to the setup field on branle
+- For the usecase of adding relays to post to, this section will enable users to add more like in other clients
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+For the token input field, something like :
+
+https://www.figma.com/file/NKmR2WGnVeZ42KzHURbFeg/Nostr-Pages?node-id=0%3A1
+
+For the Add relay section, something like:
+
+![Screen_Shot_2022-08-24_at_1.35.58_PM](/uploads/e59e4f5daf01a80f2a448369cc536b31/Screen_Shot_2022-08-24_at_1.35.58_PM.png)
+
+For the new key generation, something like:
+
+![Screen_Shot_2022-08-24_at_1.23.55_PM](/uploads/d9684c20a96b3322223848340466725a/Screen_Shot_2022-08-24_at_1.23.55_PM.png)
+
+![Screen_Shot_2022-08-24_at_1.24.13_PM](/uploads/f6a36f49053fb62bdc18675557eb1d86/Screen_Shot_2022-08-24_at_1.24.13_PM.png)
+
+![Screen_Shot_2022-08-24_at_1.24.49_PM](/uploads/2ec2e3c24cbfc6e171e4f092ff4c8437/Screen_Shot_2022-08-24_at_1.24.49_PM.png)
+
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [x] A settings (GUI) console where users can pair their keys
+- [x] Minds to sign events with the new delegate keypair
+- [ ] Integration tests
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 8.0
+
+USER STORY ENVIADA AO MODELO:
+NIP-26 working prototype. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

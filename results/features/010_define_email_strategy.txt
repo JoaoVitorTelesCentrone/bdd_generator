@@ -1,0 +1,10 @@
+TÍTULO:
+Define email strategy
+
+DESCRIÇÃO:
+...
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Define email strategy. ...

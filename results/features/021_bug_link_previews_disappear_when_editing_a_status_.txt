@@ -1,0 +1,49 @@
+TÍTULO:
+(bug): Link previews disappear when editing a status post
+
+DESCRIÇÃO:
+### Summary
+
+When editing a status post containing a link and a corresponding preview of said link, the preview will disappear upon saving the edit.
+
+### Steps to reproduce
+
+1) Create a status post using some text and a link with a corresponding preview.
+2) Select EDIT from the post pull-down menu.
+3) Edit the text.
+4) Save the edit.
+
+### Platform information 
+
+Chromium: Version 72.0.3626.122 (Developer Build) built on Debian 9.8, running on Debian 9.8 (64-bit)
+
+### What is the current *bug* behavior?
+
+The link preview disappears upon an edit.
+
+### What is the expected *correct* behavior?
+
+The link preview should remain after performing an edit.
+
+### Relevant logs and/or screenshots
+
+![dissappear-link-preview](/uploads/34aa62a6fc892a2ce00bdab6ebfdd5c2/dissappear-link-preview.mp4)
+
+
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+(bug): Link previews disappear when editing a status post. ### Summary
+
+When editing a status post containing a link and a corresponding preview of said link, the preview will disappear upon saving the edit.
+
+### Steps to reproduce
+
+1) Create a status post using some text and a link with a corresponding preview.
+2) Select EDIT from the post pull-down menu.
+

@@ -1,0 +1,42 @@
+TÍTULO:
+Subscribers list not complete, or not showing at all
+
+DESCRIÇÃO:
+### Summary
+
+On some channels, when a user is on her/his channel and clicks on the 'Subscription' link, then the 'Subscribers' tab to view their subscribers list, the list is incomplete or empty, and the 'view more' button does not function.
+
+### Steps to reproduce
+
+From a channel page, click on the 'Subscriptions' link, then the 'Subscribers' tab to view a subscribers list; then click on the 'View More' button. THIS DOES NOT HAPPEN ON EVERY CHANNEL
+
+### Platform information 
+
+Firefox 60.5.0 ESR; Debian Linux 9.7
+
+### What is the current *bug* behavior?
+
+On some channels the subscriber list is either incomplete, or empty, and the 'view more' button does not work as expected.
+
+### What is the expected *correct* behavior?
+
+When clicking on the subscription link from the bio in a channel, then the subscriber tab, the users subscriber list should appear. When clicking on the 'view more' tab on said list, the list should expand until all a users subscribers have been displayed; this is not the case.
+
+### Relevant logs and/or screenshots
+
+![Selection_527](/uploads/a0e8b0a1aaa95255cdbccb99cd725262/Selection_527.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 6.0
+
+USER STORY ENVIADA AO MODELO:
+Subscribers list not complete, or not showing at all. ### Summary
+
+On some channels, when a user is on her/his channel and clicks on the 'Subscription' link, then the 'Subscribers' tab to view their subscribers list, the list is incomplete or empty, and the 'view more' button does not function.
+
+### Steps to reproduce
+
+From a channel page, click on the

@@ -1,0 +1,24 @@
+TÍTULO:
+Discovery: Add "Top" tab (mobile app)
+
+DESCRIÇÃO:
+In order to improve the quality of content on the Discovery page, and to drive engagement to our top content, we want to:
+
+1. Add a new `Top` tab  to the Discovery page.
+2. Use the feed powering the Guest Mode homepage to present posts in this `Top` feed.
+3. Make `Top` the default tab when clicking the `Discovery` button in the Minds navigation.
+
+Quick mock to illustrate:
+
+![image](/uploads/118086a4a53f8f939e334351853c27a9/image.png)
+
+- [ ] Follow experiment https://gitlab.com/minds/minds/-/issues/2869
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Discovery: Add "Top" tab (mobile app). In order to improve the quality of content on the Discovery page, and to drive engagement to our top content, we want to:
+
+1. Add a new `Top` tab  to the Discovery page.
+2. Use the feed powering the Guest Mode homepage to present posts in this `Top` feed.
+3. Make `Top` the default tab when clicking 

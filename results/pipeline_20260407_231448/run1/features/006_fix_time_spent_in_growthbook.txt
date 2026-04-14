@@ -1,0 +1,10 @@
+TÍTULO:
+Fix time spent in growthbook
+
+DESCRIÇÃO:
+(sem descrição)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Fix time spent in growthbook

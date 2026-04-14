@@ -1,0 +1,24 @@
+TÍTULO:
+Autoplay next video triggers even when writing a comment
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+https://www.minds.com/newsfeed/1204885945477804032
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Autoplay next video triggers even when writing a comment. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+https://www.minds.com/newsfeed/1204885945477804032

@@ -1,0 +1,20 @@
+TÍTULO:
+Visual bugs with latest top feed
+
+DESCRIÇÃO:
+- [ ] In Light Mode, the "Top Feed" / "Latest Feed" labels and the feed toggle icon use the wrong colors
+- [ ] The tooltip highlighting the new feed toggle disappears quickly & automatically. It should persist until the user clicks the feed toggle.
+
+## Dev note
+
+Commit was reverted from master.
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Visual bugs with latest top feed. - [ ] In Light Mode, the "Top Feed" / "Latest Feed" labels and the feed toggle icon use the wrong colors
+- [ ] The tooltip highlighting the new feed toggle disappears quickly & automatically. It should persist until the user clicks the feed toggle.
+
+## Dev note
+
+Commit was reverted from master.

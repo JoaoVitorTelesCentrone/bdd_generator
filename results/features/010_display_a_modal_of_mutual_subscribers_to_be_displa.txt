@@ -1,0 +1,93 @@
+TÍTULO:
+Display a modal of mutual subscribers to be displayed when clicking 'other' on `m-channel__mutualSubscriptions`
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Now we have 'also subscribed to' blocks on channels, we want to expand to be able to see more than 2 results. 
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+We already have a modal that displays for subscribes on notifications, this is just a time ordered list. Modify this modal to support mutual 'also subscribed to'. The backend needs a slight tweak to support pagination.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+The modal display when relevant.
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+?
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+Subscribers.
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+M/A
+
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Click on the component will launch a modal (same as what is currently used to display who up-voted a post) and list any mutual subscriptions, or redirect to a channel.
+  * [ ] clicking directly on a channel handle will direct the user to that channel
+  * [ ] clicking on `x others` or any of the avatars will launch a the modal.
+- [ ] Backend to support pagination. ie `LIMIT 12,20` in the SQL statement will offset to 20-32 results.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Display a modal of mutual subscribers to be displayed when clicking 'other' on `m-channel__mutualSubscriptions`. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

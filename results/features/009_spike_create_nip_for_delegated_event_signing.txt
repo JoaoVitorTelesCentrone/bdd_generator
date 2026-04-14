@@ -1,0 +1,90 @@
+TÍTULO:
+Spike: Create NIP for Delegated Event Signing
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Investigate how a Minds custodial Nostr public key can be paired to a user owned keypair. 
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+This task is to investigate what is involved to achieve the goal above.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+N/A
+
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+N/A
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+Nomads
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+N/A
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Further tasks and/or implementation plan
+
+## Definition of Ready Checklist
+
+- [x] Definition Of Done (DoD)
+- [x] Acceptance criteria
+- [x] Weighted
+- [x] QA
+- [x] UX/Design
+- [x] Personas
+- [x] Experiments
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Spike: Create NIP for Delegated Event Signing. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

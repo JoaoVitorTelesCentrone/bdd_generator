@@ -1,0 +1,64 @@
+TÍTULO:
+Boost console: Activity posts do not appear for rejected Boosts
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+The Boost console shows a history of Boosts and their status.
+
+Completed Boosts show the activity post that was boosted.
+
+However, Boosts that are rejected/cancelled do not show the activity post.
+
+### Steps to reproduce
+
+- Make a Boost
+- Get rejected (e.g. due to backlog overflow)
+- View the Boost console
+
+### Platform information 
+
+- Web app
+
+### What is the current *bug* behavior?
+
+- Activity posts do not appear for rejected Boosts
+
+### What is the expected *correct* behavior?
+
+- Activity posts appear for all Boosts, regardless of status
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/0f0812e820a24e5a14e40972f9793813/image.png)
+
+![image](/uploads/ef04796b3b9bf5e8603361abcd2aa357/image.png)
+
+Relevant minds post: https://www.minds.com/newsfeed/1406297118418669571
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Boost console: Activity posts do not appear for rejected Boosts. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+The Boost console shows a history of Boosts and their status.
+
+Completed Boosts show t

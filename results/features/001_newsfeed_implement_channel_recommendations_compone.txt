@@ -1,0 +1,67 @@
+TÍTULO:
+Newsfeed: Implement channel recommendations component - web
+
+DESCRIÇÃO:
+Implement the new channel recommendations component on the Newsfeed. See this design prototype for visual and interaction spec.
+
+
+### Designs
+
+See prototype below
+
+- [Channel recommendations on Newsfeed](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=126%3A2080&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=126%3A2080&show-proto-sidebar=1)
+
+#### Design notes
+* If a user subscribes to a new channel in-feed, the plus icon simply changes to a tick / done icon. See above design. It does not insert a new suggestion as it did before.
+* It has been advised by @markeharding that the context will not be able for the first iteration of recommendations. This will be addressed moving forward.
+* The sidebar channel recommendation widget should be removed from the newsfeed.
+* Clicking 'See more' will bring the user to `/discovery/suggestions/user`
+* When displaying the description, any line breaks should be removed. There should be a character limit of around 120 characters, allows two lines of text to be displayed on desktop.
+* Where there is no channel description or context, the channel name and avatar should align. See the example of a channel with no description in the figma link above.
+
+* Where a user has zero subscriptions, a single channel recommendation component should be displayed -> https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=129%3A2533&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=2%3A981&show-proto-sidebar=1
+
+## Acceptance
+
+### Interaction: Newsfeed has activity posts
+
+- Given the user subscribes to channels with past activity posts,
+- when the user visits the Newsfeed,
+- then the Channel Recommendations component appears after the third activity post in the Newsfeed.
+
+### Interaction: Newsfeed is empty
+
+- Given the user subscribes to NO channels with past activity posts,
+- when the user visits the Newsfeed,
+- then the Channel Recommendations component appears at the top of the Newsfeed, above the Boost Rotator.
+
+### Which channels are recommended (logic)
+
+- Given the user DOES subscribe to other channels...
+  - Include: Channels subscribed to by channels the user subscribes
+  - Filter out: Channels the user already subscribes to
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days
+---
+- Given the user DOES NOT subscribe to other channels...
+  - Include: Channels subscribed to by @minds account
+  - Filter out: None
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days
+
+----
+
+From the original Gitlab issue, but now will be separated into another task for another time:
+
+* ~~The same channel recommendation should only be shown once when viewing the newsfeed. If in 'impression 1', @userA is recommended, @userA will not appear in any future impression within that feed.~~
+* ~~It has yet to be determined how frequently we display these impressions. It makes sense to display quite quickly towards the top of the feed, then at wider intervals moving down the feed. e.g. `5th position`, then every 20 positions thereafter. Too many impressions could be quite noisy, so best not to overload the feed. Discuss.~~
+
+STORY POINTS: 8.0
+
+USER STORY ENVIADA AO MODELO:
+Newsfeed: Implement channel recommendations component - web. Implement the new channel recommendations component on the Newsfeed. See this design prototype for visual and interaction spec.
+
+
+### Designs
+
+See prototype below
+
+- [Channel recommendations on Newsfeed](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=126%3A2

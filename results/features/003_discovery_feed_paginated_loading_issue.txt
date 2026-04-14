@@ -1,0 +1,53 @@
+TÍTULO:
+Discovery feed paginated loading issue
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+- Given a Minds user is viewing a Discovery search feed
+- when the user scrolls to the bottom of the first page of posts
+- then the Minds app attempts to load the next page of posts and appears to get stuck.
+
+Expected result:
+
+- then the Minds app quickly loads the next page of posts.
+
+### Steps to reproduce
+
+Go here on web: https://www.minds.com/discovery/search?f=top&t=all&q=%23thegreatmememigration
+
+Scroll to the bottom of the first page.
+
+Observe the loading behavior
+
+### Platform information 
+
+I'm testing on MacOS + Chrome.
+
+### Relevant logs and/or screenshots
+
+Video attached.
+
+![smScreen_Recording_2021-12-03_at_10.26.54_AM](/uploads/21dfd6eb3732c822ef06a62b97bca74b/smScreen_Recording_2021-12-03_at_10.26.54_AM.mov)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Discovery feed paginated loading issue. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+- Given a Minds user is viewing a Discovery search feed
+- when the user scrolls to the

@@ -1,0 +1,3712 @@
+title,description,storypoints
+(feat): change 'from' email address to 'no-reply@minds.com',Emails should not point to info@minds.com,1.0
+(bug): Link previews disappear when editing a status post,"### Summary
+
+When editing a status post containing a link and a corresponding preview of said link, the preview will disappear upon saving the edit.
+
+### Steps to reproduce
+
+1) Create a status post using some text and a link with a corresponding preview.
+2) Select EDIT from the post pull-down menu.
+3) Edit the text.
+4) Save the edit.
+
+### Platform information 
+
+Chromium: Version 72.0.3626.122 (Developer Build) built on Debian 9.8, running on Debian 9.8 (64-bit)
+
+### What is the current *bug* behavior?
+
+The link preview disappears upon an edit.
+
+### What is the expected *correct* behavior?
+
+The link preview should remain after performing an edit.
+
+### Relevant logs and/or screenshots
+
+![dissappear-link-preview](/uploads/34aa62a6fc892a2ce00bdab6ebfdd5c2/dissappear-link-preview.mp4)
+
+
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+(bug): subscribed blog post duplicates filling feed,,2.0
+(bug): Cant delete a reply to a comment on a blog post,"### Summary
+
+On ones own blog post, while one can delete a comment residing on said post, one can not delete a reply to a comment; although one can do so on ones own status post.
+
+### Steps to reproduce
+
+Go to one of your blog posts. Find a reply to your comment. Click the 3 vertical dots, and the option to delete a reply is not present; as it is in a status post.
+
+### Platform information 
+
+Firefox 60.5.1 ESR; Debian 'Stretch' Linux 6.8
+
+### What is the current *bug* behavior?
+
+The vertical dots opening the options menu on comments/replies on ones blog post do not show the option to delete, as it does on a status post.
+
+### What is the expected *correct* behavior?
+
+The vertical dots opening the options menu on comments/replies on ones blog post SHOULD show the option to delete, as it does on a status post.
+
+### Relevant logs and/or screenshots
+
+![Selection_545](/uploads/86c1b6fd9918fb855e9e18171276696a/Selection_545.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",5.0
+Counter in group convo-feeds counts 2 seconds for every 1 second,"### Summary
+
+When a comment is is left in a group conversation feed, the counter is counting 2 seconds for every 1 second.
+
+### Steps to reproduce
+
+Make a comment in any group conversation feed, and observe the time elapsed on said comment.
+
+### Platform information 
+
+Firefox 60.5.0 ESR; Debian Linux 9.7
+
+### What is the current *bug* behavior?
+
+After leaving a comment in any group conversation feed, the counter marking the elapsed time is counting 2 seconds for every second.
+
+### What is the expected *correct* behavior?
+
+When leaving a comment in any group conversation feed, the counter tracking the elapsed time, since the comment was left, should be precise; a single second counted, for each second that elapses.
+
+### Relevant logs and/or screenshots
+
+![counter](/uploads/7452bba35c0a03989d619142b0f5d907/counter.mp4)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",5.0
+"Subscribers list not complete, or not showing at all","### Summary
+
+On some channels, when a user is on her/his channel and clicks on the 'Subscription' link, then the 'Subscribers' tab to view their subscribers list, the list is incomplete or empty, and the 'view more' button does not function.
+
+### Steps to reproduce
+
+From a channel page, click on the 'Subscriptions' link, then the 'Subscribers' tab to view a subscribers list; then click on the 'View More' button. THIS DOES NOT HAPPEN ON EVERY CHANNEL
+
+### Platform information 
+
+Firefox 60.5.0 ESR; Debian Linux 9.7
+
+### What is the current *bug* behavior?
+
+On some channels the subscriber list is either incomplete, or empty, and the 'view more' button does not work as expected.
+
+### What is the expected *correct* behavior?
+
+When clicking on the subscription link from the bio in a channel, then the subscriber tab, the users subscriber list should appear. When clicking on the 'view more' tab on said list, the list should expand until all a users subscribers have been displayed; this is not the case.
+
+### Relevant logs and/or screenshots
+
+![Selection_527](/uploads/a0e8b0a1aaa95255cdbccb99cd725262/Selection_527.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",6.0
+(feat): admin tools for help desk,Add ability for admins to delete help desk questions,10.0
+(feat): Convert ES reports data to standard format for api return.,"See https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/Repository.php#L28 for a good example of how to use repositories.
+
+Create a model called Report that we can pass to repositories and managers (copy from https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/VideoChatLease.php)
+
+https://gitlab.com/minds/engine/merge_requests/83",25.0
+(feat): Implement configuration based (settings.php) switching mechanism for ES and Cassandra.,A simple configuration update and an update to the reports.php endpoint.,5.0
+(feat): Implement user appeals in ES.,"Dovetailing with our work to move reporting to ElasticSearch, user appeals must be implemented. A small addition must be made to the mapping, initially, and code must be ported from Cassandra to ElasticSearch. Both pieces will run side by side.",15.0
+(feat): Add score to reports ES datastore,"Scores need to be stored on the ES record in some format so admins can query and sort on this data. The purpose of this is to prioritize popular content in the queue.
+
+I propose to add ""Total Views"" to the ES record during creation, and to update it on each report on the same entity. This will give a ""good enough"" way to prioritize popular content, in combination with the user report quantity.",10.0
+(bug): welcome email has link to PlayStore,The Welcome email after creating new account has a dead link to the Play Store.,1.0
+(bug): Blog post titles not visible on Blog page (brave-browser only),"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When browsing to the Blog page accessed from the top nav-bar, the icons of the blog posts are visible, but not their corresponding titles.
+
+This issue was raised in the H&S convo-feed by @moonlit45 (see video below)
+I was unable to reproduce this problem using the Firefox browser, nor the Chromium browser. I was however able to reproduce it on the Brave browser.
+
+
+### Steps to reproduce
+
+Using the Brave browser, click on 'Blogs' from the top nave-bar on the main feed.
+
+
+### Platform information 
+
+Version 0.59.34 Chromium (brave- default settings): 72.0.3626.81 (Official Build) (64-bit); Linux Mint 19.1 Tessa x86_64 - Kernel: 4.15.0-43-generic 
+
+
+### What is the current *bug* behavior?
+
+The blog tiles/icons appear as expected, but their corresponding titles are hidden or otherwise not visible.
+
+
+### What is the expected *correct* behavior?
+
+We should see The blog tiles/icons as well as their corresponding titles.
+
+### Relevant logs and/or screenshots
+
+Here is a screenshot of the problem:
+![Workspace_2_519](/uploads/8aaeba1526c6ae5ab80834fc12d5e1bf/Workspace_2_519.png)
+
+Here is a video of the conversation:
+![moolit45](/uploads/57b6b52ce08fd796f80b20afb2b8d23c/moolit45.mp4)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+(bug): Images Library Has Disappeared,"### Summary
+
+The image library that was once available on a channel's left sidebar, under the Bio, has disappeared; making it impossible to browse a channels uploaded images.
+
+### Steps to reproduce
+
+Open a channel page and scroll down to just below the channel's Bio, and on top of the Video library, and you wont see what was once there; the image library.
+
+### Platform information 
+
+Firefox 30.3.0 esr; Debian Stretch 9.6
+
+### What is the current *bug* behavior?
+
+The lack of a channels image libary.
+
+### What is the expected *correct* behavior?
+
+An image library should be available just below the Bio and above the video library on a users channel.
+
+### Relevant logs and/or screenshots
+
+![Selection_526](/uploads/89183b1c158397cf91e626c3745a9848/Selection_526.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",5.0
+(feat): Add reporting to elasticsearch,"RepositoryES.php is constructed to mirror Repository.php. When the configuration switch is added, Report.php will selectively call Repository.php and RepositroyES.php.
+
+https://gitlab.com/minds/engine/merge_requests/71
+
+Below is the mapping I have settled on.
+```
+{
+  ""mappings"": {
+    ""reported_entity"" : {
+      ""dynamic"": false,
+      ""properties"": {
+        ""@timestamp"": { ""type"": ""date"" },
+        ""entity_guid"": { ""type"": ""long"" },
+        ""owner_guid"": { ""type"": ""long"" },
+        ""entity_type"": { ""type"": ""keyword"" },
+        ""votes_up_12h"": { ""type"": ""integer"" },
+        ""votes_up_7d"": { ""type"": ""integer"" },
+        ""views"": { ""type"": ""integer"" },
+        ""rating"": { ""type"": ""byte""},
+        ""state"": { ""type"": ""keyword"" },
+        ""action"": {
+          ""type"": ""nested"",
+          ""properties"": {
+            ""type"": { ""type"": ""keyword"" },
+            ""details"": { ""type"": ""text"" }
+          }
+        }
+      }
+    },
+    ""user_report"": {
+      ""dynamic"": false,
+      ""_parent"": {
+        ""type"": ""reported_entity""
+      },
+      ""properties"": {
+        ""@timestamp"": { ""type"": ""date"" },
+        ""entity_guid"": { ""type"": ""keyword"" },
+        ""reason_code"": { ""type"": ""byte"" },
+        ""reporter_guid"": { ""type"": ""keyword"" },
+        ""reporter_note"": { ""type"": ""text"" }
+      }
+    }
+  }
+}
+```",10.0
+(feat): [dev roboposter] Implement posting to groups to generate mock data,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,3.0
+"(feat): As moderators, we should be able to simultaneously manage the queue.",Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,10.0
+"(feat): As a platform, we need to scope a set of filters and optimize for them in the data store.","We need to be capable of performing a series of sorts and queries against our datastore. It is probably not in the ideal format, so some time must be spent to investigate and make necessary changes.",10.0
+Documentation on &26 and &30,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,6.0
+"(bug): URL - target=""_blank"" rel=""noopener noreferrer"" Issues","Even though we thought that the target=""_blank"" rel=""noopener noreferrer"" bug was resolved (which displayed the above href syntax when including / editing of URLs in comments, posts and channel / group profiles), I have found new instances of this ongoing bug.
+
+For further information, refer to https://www.minds.com/newsfeed/929436227148750848 (H&S enquiry).",2.0
+"(bug): Unlisted blogs, or blogs in drafts, do not display the banner","<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+- Marking unlisted/ saving a blog draft removes the blog banner
+
+
+
+### Steps to reproduce
+
+Mark the blog unlisted and publish or click ""save draft to remove the blog banner from view.
+
+
+### Platform information 
+I Am on firefox linux
+
+### What is the current *bug* behavior?
+
+This is explained in steps to reproduce.
+
+### What is the expected *correct* behavior?
+
+When hashtaged the blog I expect to see the hashtag near the top next to the title that can be clicked.
+
+I accept the blog to be shown when searching said hashtag in both activity and the blogs option.
+
+I expect images to be saved for when publishing the blog not removed and needed to be re-uploaded if unlisted.
+ 
+### Relevant logs and/or screenshots
+![saved](/uploads/a5b06e5d2d9b02459d2ced5397537f3a/saved.png)
+
+![format](/uploads/80be0dc6ad91f61bf7128300a58b427c/format.png)
+
+
+### Possible fixes
+
+---",2.0
+Register modal improvements,"We can improve the user experience with the Register modal -- and possibly improve signup conversions -- by addressing these UX issues with the production modal.
+
+[This Figma jam board](https://www.figma.com/file/Tf7tRLoUqUWFADEsoZAaQK/Register-modal?node-id=0%3A1) highlights some of the issues visually.
+
+1. Field validation warnings (e.g. `Must be at least 4 characters long` and `Invalid email`) change the height of the modal when they appear / disappear.
+
+---
+
+2. When inputting a password, the password rules overlay the fields below, including the `Confirm your password` field, making it unclear what the user should do after entering a valid password. (Note: The rules appear to disappear after the rules are successfully met.) On a mobile device, the rules are likely covered by the on screen keyboard.
+
+---
+
+3. On mobile devices, the `Switch to App` prompt overlays the Register modal.
+
+
+### Proposed changes to registration modal
+
+- [ ] Present `Password` and `Confirm Password` always. Currently `Confirm Password` only shows when `password` is not NULL
+- [ ] Always show CAPTCHA. Currently it only shows once passwords have been entered.
+- [ ] Position the captcha image and captcha input side by side as to save space vertically.
+- [ ] Remove / hide the `Switch to App` prompt when modals are displayed.
+- [ ] Reposition validation message to the same row as the form label, saving vertical space.
+- [ ] Remove header image from modal.
+- [ ] Position password rules above the input rather than below.
+- [ ] Check/Update Cypress testing to account for changes.
+
+* Large -> https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=165%3A580
+* Medium -> https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=209%3A508
+* Small -> https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=76%3A859",5.0
+Email: Automate bring your friends post for 7 days after registration,"## Summary
+
+Send users an email one week after they sign up asking them to refer their friends.
+
+## Conditions
+- User has signed up for an account
+- User has verified their email
+- User has not already referred anyone
+- 7 days have passed
+
+## Subject
+Friends help friends get off big tech
+
+## Preheader
+@{username}, lead the charge to join Minds.
+
+## Copy
+@{username},
+
+We hope you've enjoyed your first week on Minds!
+
+The best way to grow the community is by referring your friends, family, and fans. 
+
+Not only does each referral grow your network on Minds, it also qualifies you to earn a commission on any tips and membership revenue they earn. Win, win.
+
+[{Call to action button / ""Refer Your Friends""}](https://www.minds.com/settings/other/referrals)
+
+Thank you for being a pioneer of Internet freedom.
+
+The Minds Team",3.0
+Email: Automate welcome post for 1 day after registration,"## Summary
+
+Send users a welcome post the day after they sign up for Minds.
+
+## Conditions
+- User has signed up for an account
+- User has verified their email
+
+## Subject
+Welcome to Minds, @{username}
+
+## Preheader
+You've taken the first step. Here's what's next.
+
+## Copy
+Thanks for joining Minds! Here are a few things you can do next to establish yourself on Minds, to speak freely, earn crypto, and elevate discourse with us.
+
+- **[Discover channels to subscribe to.](https://www.minds.com/discovery/suggestions/user)**
+Minds is better with more connections. Discover interesting people and subscribe to their posts to keep your newsfeed alive.
+
+- **[Follow the conversation.](https://www.minds.com/discovery/tags/trending)**
+Check out trending topics to see what the community is talking about.
+
+- **[Make your first post.](https://www.minds.com/newsfeed/subscriptions/latest)**
+Introduce yourself with a post, and let the community know what brought you to Minds. Use the hashtag #NewFren to meet other newbies and our community welcome party.
+
+- **[Download the app.](https://www.minds.com/mobile)**
+Get notified of replies to your posts, track your crypto rewards, and post on the go with the Minds mobile app, for Android and iOS.
+
+Welcome aboard,
+
+The Minds Team",3.0
+Homepage: Copy / image updates,"Given the Classic homepage is outperforming the newer Discovery homepage in terms of driving user signups, we should update the page to reflect the current product vision & mission statement, and to generally be a bit more modern.
+
+- [Product vision deck](https://docs.google.com/presentation/d/1we5S97reV91AQM5sbGZAaYQ4nwSGQFz9vwWQTq6a-30/edit#slide=id.g10e12479f1a_5_29)
+
+## Homepage Concept Demo
+- https://codepen.io/michaelfbradley/pen/abVQNWa
+
+<details><summary>Homepage structure / responsive nature</summary>
+  ![home-demo](/uploads/d257c1f9f6e01c8b14824d133837d275/home-demo.gif)
+</details>
+
+## Related tasks
+Register modal -> https://gitlab.com/minds/minds/-/issues/2965 
+
+## Designs
+- [Homepage Large](https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=165%3A580)
+- [Homepage Medium](https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=209%3A508)
+- [Homepage Small](https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=76%3A859)
+- [Prototype](https://www.figma.com/proto/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?page-id=0%3A1&node-id=165%3A580&viewport=0%2C48%2C1&scaling=scale-down&starting-point-node-id=165%3A580&show-proto-sidebar=1)
+
+## SEO considerations
+
+| Tag   | Field          | Value                                                                                                                                                  |
+|-------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| h1    |                | Minds                                                                                                                                                  |
+| h2    |                | Elevate the global conversation                                                                                                                        |
+| title |                | Minds: The Alternative Social Network                                                                                                                  |
+| meta  | description    | Elevate the global conversation through Internet freedom. Speak freely, protect your privacy, earn crypto, and take back control of your social media. |
+| meta  | og:title       | Minds: The Alternative Social Network                                                                                                                  |
+| meta  | og:description | Elevate the global conversation through Internet freedom. Speak freely, protect your privacy, earn crypto, and take back control of your social media. |
+
+## Deployment
+We should launch these changes with a Growthbook experiment. As we are currently running another A-B test on the homepage for logged-out users. We will deploy these changes as a separate Growthbook experiment that runs concurrently with the other experiment.
+
+- Classic homepage: 50%
+- Classic homepage + changes above: 50%
+
+## Acceptance
+
+- [ ] Homepage for logged-out users matches the visuals and copy changes in the Figma mocks linked above.
+- [ ] Clicking the `Join Minds` button in the header, or blue `Join Minds Now` buttons on the page displays the user registration modal.
+- [ ] Clicking the `Login` button in the header displays the user login modal.
+- [ ] Clicking the `Download Android App` button navigates the user to minds.com/mobile.
+- [ ] Clicking the `Download iOS App` button navigates the user to the iOS App Store listing for Minds.
+- [ ] The page layout responsively adapts to all common browser widths.
+- [ ] The page DOM satisfies the SEO considerations described above.
+- [ ] The new page is deployed as a Growthbook experiment with the distribution percentages described above.",5.0
+Experiment: Guest Mode with Light Mode,"### Target problem
+
+Our new Guest Mode homepage (Discovery feed) is not increasing new user signups.
+
+### Hypothesis
+
+Defaulting the Guest Mode homepage to Light Mode may improve user signup conversions.
+
+### What is the primary metric that this change is aimed to improve?
+
+`Has signed up` in GrowthBook.
+
+### What is the current state of this metric, and what is the improvement goal?
+
+- Classic homepage: 3.72%
+- Guest Mode (dark mode): 3.39%
+
+We'd like to improve Guest Mode with light mode to perform as good or better than the classic page.
+
+### How does this change affect the desired metric?
+
+Dark mode may not appeal to all users, who start with an assumption of light-background websites.",1.0
+"Clicking ""Complete to earn tokens"" checklist items doesn't work","<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+The ""Select tags,"" ""Setup channel,"" and ""Verify uniqueness"" items in the ""Complete to earn tokens"" checklist don't respond to clicks.
+
+![image](/uploads/046c42799d623204da2935ad9d2b3bc1/image.png)
+
+### Steps to reproduce
+
+- Sign up for a new account
+- From the web Newsfeed, observe the ""Complete to earn tokens"" checklist on the right
+- Click on any of these items:
+  - Select tags
+  - Setup channel
+  - Verify uniqueness
+
+### Platform information 
+
+MacOS + Chrome
+
+### What is the current *bug* behavior?
+
+- Nothing happens; the checklist items do not respond to clicks
+
+### What is the expected *correct* behavior?
+
+- Clicking ""Select tags"" presents the user with a flow to select tags
+- Clicking ""Setup channel"" presents the user with a flow to upload an avatar (and maybe other things? header image?)
+- Clicking ""Verify uniqueness"" presents the user with a flow to verify a phone number",2.0
+Auto-enroll users in Open Boosts,"Automatically opt a subset of users into viewing Open Boosts, based on their responses to the Build Your Algorithm survey.
+
+Include all users whose responses meet ALL of these requirements:
+
+- I prefer: Mature content > 69
+- I prefer: Challenging opinions > 69
+- Misinformation: Should be debated > 69
+
+Based on an export of responses in December, this set of requirements should include about 15% of BYA respondents.
+
+Upon completion of the BYA survey, opt user into Open Boosts if their responses match the conditions above.
+
+For users who've previously completed the BYA survey, do a one-time batch process to opt them into Open Boosts if their responses match the conditions above.
+
+![image](/uploads/62ef4daa887866faf7878ab0a371c951/image.png)
+
+## Acceptance
+
+- Given a user hasn't previously completed the Build Your Algorithm survey,
+- and the user starts the BYA survey,
+- and the user's responses DO meet the criteria listed above,
+- when the user clicks to save their BYA settings,
+- then their Settings > Boosted Content > Open Content setting is automatically set to `Enable`.
+---
+- Given a user hasn't previously completed the Build Your Algorithm survey,
+- and the user starts the BYA survey,
+- and the user's responses DO NOT meet the criteria listed above,
+- when the user clicks to save their BYA settings,
+- then their Settings > Boosted Content > Open Content setting is not changed from its prior setting.
+---
+- Given a user HAS previously completed the Build Your Algorithm survey,
+- and the user's responses meet the criteria listed above,
+- when when Minds runs a one-time batch process described above,
+- then their Settings > Boosted Content > Open Content setting is automatically set to `Enable`.
+---
+- Given a user HAS previously completed the Build Your Algorithm survey,
+- and the user's responses meet the criteria listed above,
+- and the user has been automatically opted into Open Content: `Enable`,
+- and the user navigates to the Settings > Boosted Content settings,
+- when the user manually toggles the Open Content setting to `Disable`,
+- and the user clicks Save Boost Settings,
+- then the user's Open Content setting is kept `Disable`.
+
+----
+
+### Target problem
+
+We have a persistent backlog of Open Boost orders that we're unable to fulfill. Few users opt into viewing Open Boosts, so inventory remains low.
+
+If a Boost order gets slotted into Open and can't fulfill within a certain timeframe, the order gets cancelled and the user refunded their tokens.
+
+### Hypothesis
+
+We can significantly increase the number of users opted into Open Boosts if we use their Build Your Algorithm preference responses to automatically opt them into Open Boosts. By increasing the # of users opted into Open Boosts, we'll increase inventory and reduce the backlog, and in turn reducing the number of rejected Boost orders.
+
+### What is the primary metric that this change is aimed to improve?
+
+Open Boosts inventory
+
+### What is the current state of this metric, and what is the improvement goal?
+
+Unknown
+
+### How does this change affect the desired metric?
+
+See above.
+
+### What counter metric will ensure that an increase in the primary metric is a positive for the product?
+
+""Report post"" events on Boosts
+
+### Size estimate
+
+Unknown",5.0
+Upgrade to Angular 13,Upgrade to the latest version of Angular. Version 13.,13.0
+Channel pages: Implement channel recommendations component,"Implement the new channel recommendations component on Channel pages. See this design prototype for visual and interaction spec.
+
+- [For channels with activity posts](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=72%3A847&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=72%3A847&show-proto-sidebar=1)
+- [For channels with empty activity feeds](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=76%3A1890&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=76%3A1890&show-proto-sidebar=1)
+
+## Acceptance
+
+### Interaction: Channel has activity posts
+
+- Given the user is viewing a Channel page,
+- and the channel page DOES have activity posts in its feed,
+- when the user clicks to subscribe to that channel,
+- then the channel recommendations component appears at the top of the activity post feed,
+- and the heading for the component reads `Consider subscribing to`,
+- and the recommended channels are sourced from the logic described below.
+
+NOTE: This is not a functional requirement where the channel feed is empty, as recommendations will be displayed by default (see below)
+
+- [See prototype here](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=72%3A847&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=72%3A847&show-proto-sidebar=1)
+
+
+### Interaction: Channel does not have activity posts
+
+- Given the user is viewing a Channel page,
+- and the channel page DOES NOT have activity posts in its feed,
+- when the page is loaded,
+- then the channel recommendations component appears at the top of the activity post feed,
+- and the heading for the component reads `Consider subscribing to`,
+- and the recommended channels are sourced from the logic described below.
+
+If the user were to subscribe, the recommendation slide in (described earlier) would not display.
+
+### Which channels are recommended (logic)
+
+- Given the channel DOES have subscriptions to other channels...
+  - Include: Channels subscribed to by the channel the user is currently viewing
+  - Filter out: Channels the user already subscribes to.
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days.
+---
+- Given the channel DOES NOT have subscriptions to other channels...
+  - Include: Channels subscribed to by @Minds account.
+  - Filter out: Channels the user already subscribes to.
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days.",5.0
+Discovery: Implement channel recommendations component - web,"Implement the new channel recommendations component on [Discover / Top page](https://www.minds.com/discovery/top). See this design prototype for visual and interaction spec.
+
+- Channel recommendations on Discovery - https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=152%3A2647&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=152%3A2647&show-proto-sidebar=1 
+
+## Acceptance
+
+- Given the user navigates to the Discovery > Top feed,
+- when the page is loaded,
+- then the Channel Recommendations component appears after the third activity post in the feed.
+
+### Which channels are recommended (logic)
+
+- Include: Channels subscribed to by @minds account
+- Filter out: None
+- Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days",1.0
+Newsfeed: Implement channel recommendations component - web,"Implement the new channel recommendations component on the Newsfeed. See this design prototype for visual and interaction spec.
+
+
+### Designs
+
+See prototype below
+
+- [Channel recommendations on Newsfeed](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=126%3A2080&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=126%3A2080&show-proto-sidebar=1)
+
+#### Design notes
+* If a user subscribes to a new channel in-feed, the plus icon simply changes to a tick / done icon. See above design. It does not insert a new suggestion as it did before.
+* It has been advised by @markeharding that the context will not be able for the first iteration of recommendations. This will be addressed moving forward.
+* The sidebar channel recommendation widget should be removed from the newsfeed.
+* Clicking 'See more' will bring the user to `/discovery/suggestions/user`
+* When displaying the description, any line breaks should be removed. There should be a character limit of around 120 characters, allows two lines of text to be displayed on desktop.
+* Where there is no channel description or context, the channel name and avatar should align. See the example of a channel with no description in the figma link above.
+
+* Where a user has zero subscriptions, a single channel recommendation component should be displayed -> https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=129%3A2533&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=2%3A981&show-proto-sidebar=1
+
+## Acceptance
+
+### Interaction: Newsfeed has activity posts
+
+- Given the user subscribes to channels with past activity posts,
+- when the user visits the Newsfeed,
+- then the Channel Recommendations component appears after the third activity post in the Newsfeed.
+
+### Interaction: Newsfeed is empty
+
+- Given the user subscribes to NO channels with past activity posts,
+- when the user visits the Newsfeed,
+- then the Channel Recommendations component appears at the top of the Newsfeed, above the Boost Rotator.
+
+### Which channels are recommended (logic)
+
+- Given the user DOES subscribe to other channels...
+  - Include: Channels subscribed to by channels the user subscribes
+  - Filter out: Channels the user already subscribes to
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days
+---
+- Given the user DOES NOT subscribe to other channels...
+  - Include: Channels subscribed to by @minds account
+  - Filter out: None
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days
+
+----
+
+From the original Gitlab issue, but now will be separated into another task for another time:
+
+* ~~The same channel recommendation should only be shown once when viewing the newsfeed. If in 'impression 1', @userA is recommended, @userA will not appear in any future impression within that feed.~~
+* ~~It has yet to be determined how frequently we display these impressions. It makes sense to display quite quickly towards the top of the feed, then at wider intervals moving down the feed. e.g. `5th position`, then every 20 positions thereafter. Too many impressions could be quite noisy, so best not to overload the feed. Discuss.~~",8.0
+Update content policy to reflect current practice on token manipulation,"**Objective**
+
+- The Content Policy states that token manipulation is an immediate ban offense.  However, the current practice is to reject the withdrawals.  We need to **update the content policy** to reflect this internal policy change.
+- Update on the GitLab docs in addition to content-policy page.
+
+![image](/uploads/d98a0112f3d5d2f8a58ffe9dd419afd0/image.png)
+
+** Proposed Solution **
+
+![image](/uploads/8ea4e23390a1bacf7d63f118f80cfdd1/image.png)",0.0
+Latest / Top feed: Feed composition spec,"- [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+    - Latest feed (infinite scroll)
+  - Top
+    - Boost rotator
+    - Top feed (infinite scroll)
+- [ ] Default users to ""Latest"" view
+- [ ] If user manually toggles to a one view of the Newsfeed, remember that state and return users to that view on subsequent visits to the Newsfeed.
+
+### Designs
+
+https://www.figma.com/proto/hJWtzurKSdqE1LeznT487N/Newsfeed-%5BWeb%5D?page-id=0%3A1&node-id=3%3A3333&viewport=241%2C48%2C0.5&scaling=min-zoom&starting-point-node-id=3%3A3333
+
+Updated designs above.
+
+Design Notes:
+
+* Boost rotator present for both top and latest feeds. Always number 1 position. This will be addressed in a future issue.
+* A highlights section (top 3 top posts) will appear in feed, just after the third post, or fourth post if you include the boost rotator.
+
+![image](/uploads/5e0ad5dc919b43e61d2dbfc2f2da978b/image.png)
+
+----
+
+Background:
+
+### Target problem
+
+The changes to the Newsfeed are targeted at all users and aimed to improve the relevance of the first posts the user sees when visiting the Newsfeed.
+
+### Hypothesis
+
+By prioritizing ""Top"" posts for all users, we can improve relevance of the first-seen posts on the Newsfeed. However, Minds users greatly value their traditional chronological ""Latest"" feeds. So we want to introduce a new default view of the Newsfeed that combines elements of ""Top"" with the traditional ""Latest"" feed.
+
+We're mindful of potential backlash from a subset of Minds users who don't want the ""Top"" posts summary, so we'll offer them the option to view their old feed. For users who prefer the ""Top"" sorting, we'll give them the option to see a Newsfeed completely organized by ""Top,"" not just the condensed view of the default Newsfeed.
+
+### What is the primary metric that this change is aimed to improve?
+
+- Engagement on the Newsfeed (likes, comments)
+- Duration of sessions on the Newsfeed
+
+### What is the current state of this metric, and what is the improvement goal?
+
+Unknown
+
+### How does this change affect the desired metric?
+
+With the new ""Top"" widget in the default Newsfeed view, we ensure that users see (a) content that they haven't seen before, and (b) content that is most likely to be engaging.
+
+### What counter metric will ensure that an increase in the primary metric is a positive for the product?
+
+We should measure the % of users who set a preference for the ""Latest""-only feed, as a measure of dissatisfaction with the new feature.
+
+### Size estimate
+
+Unknown
+
+### WIP Prototype
+
+https://www.figma.com/proto/hJWtzurKSdqE1LeznT487N/Newsfeed-%5BWeb%5D?page-id=0%3A1&node-id=3%3A3333&viewport=241%2C48%2C0.5&scaling=min-zoom&starting-point-node-id=3%3A3333",5.0
+Visual bugs with latest top feed,"- [ ] In Light Mode, the ""Top Feed"" / ""Latest Feed"" labels and the feed toggle icon use the wrong colors
+- [ ] The tooltip highlighting the new feed toggle disappears quickly & automatically. It should persist until the user clicks the feed toggle.
+
+## Dev note
+
+Commit was reverted from master.",3.0
+Discontinue holding rewards,"As part of the [updated rewards program](https://gitlab.com/groups/minds/-/epics/184), we want to discontinue the ongoing holdings rewards.
+
+Validation:
+- Holding rewards are no longer awarded on a daily basis.
+
+## Dev note:
+- Point to a new epic branch",3.0
+Refactor experiments to use events instead of contexts,"## The Problem
+
+Currently all users are bucketed into experiments on app initialisation and not when they actually see the experiment. This was done so that pageviews could register the experiments as contexts when someone lands on the site. 
+
+Issues arise when experiment reports rely on only including users who have seen the experiment to be included. For example, an experiment that forwards users to discovery instead of the newsfeed after registration should not just only include users that have just signed up, it should also only apply to users that do not have any referral logic (ie. take newly loggedin/registered users back to previous page). 
+
+## Proposed change
+
+- [x] Create a new iglu schema `growthbook_event` which includes the experiment_id that the user is in
+- [x] Remove backend registration and client on init logic
+- [x] Record a `growthbook_event` via snowplow when an experiment is run
+- [x] To avoid unnecessary events, cache a reference to the events so that they only get sent every 24 hours.
+- [x] Now that we support psuedo_id, attach both the anonymous_id and user_id to growthbook events",8.0
+Expose bot accuracy scores on front end for admins,"In order to (a) help with making admin decisions, and (b) QA check the scores so that admins can see what Tasman is spitting out and provide feedback on the effectiveness of the current scoring, we'd like to make Tasman-derived trust scores visible on the front end of Minds website for users with Admin access.
+
+https://www.figma.com/file/0udJVSZSxc2Ng1Knbn20uk/Channel-Trust?node-id=2%3A2
+
+> Designs are in progress
+
+- Given Tasman trust scores for users are available,
+- and UserA is logged into Minds,
+- and UserA's account has Admin access,
+- when any user avatar + name component is displayed,
+- then a number is displayed alongside the avatar + name that exposes the Tasman trust score for that user.
+
+Proposed approach for displaying the correct colour based on a 0-100 value -> https://jsfiddle.net/JeancarloFontalvo/1sco9Lpe/3/
+
+### Notes
+
+* Uniquely an admin feature for the first iteration
+* In the future this will be visible to all users, including an explainer (via a modal) about the score, why scores are valuable and how to improve scores.",3.0
+Posts repeat in Groups feed,"We have a few reports of posts repeating in groups. [This Gitlab issue](https://gitlab.com/minds/front/-/issues/5172) makes reference to the issue in a test Group. Additionally, a user alerted me that [this Group](https://www.minds.com/groups/profile/569272650258460672/feed) exhibits the issue, though notably the posts repeat only after scrolling VERY deep into the timeline (~100+ posts). The pinned comment re-appears in the feed, after which the feed appears to loop.
+
+Note timestamps on the posts in this sequence:
+
+![image](/uploads/8506d9700a1c3946be4513c2542eb9fd/image.png)
+
+![image](/uploads/ea47212d127ef59d3848a0b5f5cf30fb/image.png)
+
+![image](/uploads/4a7b2fd4af32d5038aa0dd314e204527/image.png)
+
+
+### Replication steps
+
+Effect can be seen here:
+
+https://www.minds.com/groups/profile/1325523578161991683/feed
+
+To replicate a base-case:
+
+1. Make a new group
+2. Make a post titled 1, and a post titled 2
+3. Refresh",5.0
+Hide Boosts for new users,"In order to improve the onboarding experience for new users, and to increase short-term retention, we believe we should hide / remove Boosts from feeds for new accounts.
+
+- Given UserA's account is less than 7 days old,
+- when UserA views any feed,
+- then Boosts are not displayed.
+
+- [x] A/B test",2.0
+Show posts from subscribed Groups in Newsfeed,"Users like Groups because they help keep up with specific interests, but report that it's difficult to actually keep up with them because the posts in Groups are not obvious from the Newsfeed.
+
+So we'd like to experiment by including new posts from subscribed Groups in the user's Newsfeed.
+
+- Given UserA is a member of GroupX,
+- and there are new posts made inside GroupX,
+- when UserA views their Newsfeed,
+- those posts from GroupX are included in the chronological Newsfeed sorted along with posts from subscribed channels,
+- and the posts indicate that they are from GroupX.
+
+![image](/uploads/b9a0d72b179fb86b74337554573f10bb/image.png)
+
+(Example post from a group with the `(Meme Supreme)` label indicating its source.)",5.0
+Remove sidebar chat widget from Groups,"Remove the sidebar chat widget from Groups pages.
+
+- [x] Remove sidebar chat widget
+- [x] Remove collapse/expand function for the right column
+- [x] The right column is still there, but empty
+- [x] Disable on backend too. 403 status.
+- [x] Remove associated Cypress tests.
+- [x] Make mobile card @msantang78 
+
+### Before:
+
+![image](/uploads/4ba4ca0d9d7ce592c04fb693539b2322/image.png)
+
+### After:
+
+![image](/uploads/4fa266fbbf9d32376526493a8ff0d708/image.png)",3.0
+Experiment: Newly-registered users land on /discovery/top,"When a user completes a new registration on the web app, the user is landed on the newsfeed.
+
+Hypothesis: 2-hour retention will improve if we instead land users on /discovery/top feed, where new users can explore content on Minds, and continue with engagements they may have attempted on the guest mode home page.
+
+- [ ] Remove a/b test of discovery-homepage
+- [ ] 50% to newsfeed, 50% to  /discovery/top",3.0
+Guest Mode: Add composer to feed,"In order to better communicate what Minds is about, we'd like to add the composer component to the Guest Mode homepage feed.
+
+- Composer appears at the top of the feed, where it would appear for a logged-in user.
+- If the user clicks to type into the composer, the user is prompted to register.",2.0
+"Sprint Planning - Sprint::6 (Dec 15, 2021 – Jan 4, 2022)","**Sprint:** *iteration:""Sprint::6 (Dec 15, 2021 – Jan 4, 2022)""
+
+:exclamation: This will be a 3 week sprint due to holiday schedules. 
+
+## Objectives
+
+### Engagement
+
+- [x] Get social compass live
+- [ ] Top feed toggle
+
+### Growth
+
+- [x] Twitter sync air drop (https://gitlab.com/minds/engine/-/issues/2163)
+- [x] Update tweet text (https://gitlab.com/minds/front/-/issues/5178)
+- [ ] Experiment: New users land on discovery/top (https://gitlab.com/minds/minds/-/issues/2869)
+- [ ] Update widget text (https://gitlab.com/minds/front/-/issues/5170)
+
+### Monetization
+
+- [x] Gather list of all legacy token memberships
+- [x] Issue Minds+ and Pro payouts
+
+### Platform
+
+- [ ] Fix up sandboxes and permissions (https://gitlab.com/minds/infrastructure/minds-terraform/-/issues/29)
+- [x] Health check servers (https://gitlab.com/minds/infrastructure/minds-terraform/-/issues/30)
+- [ ] Submit MR to Ceramic regarding mainnet (https://gitlab.com/minds/minds-ceramic-demo/-/issues/1)
+- [ ] ~~Update Ceramic designs (https://gitlab.com/minds/front/-/issues/5166)~~
+- [ ] ~~Ceramic improvements (https://gitlab.com/groups/minds/-/epics/174)~~
+- [ ] ~~Point minds.org to ceramic demo (https://gitlab.com/minds/front/-/issues/4740)~~
+- [ ] ~~Growthbook updates (https://gitlab.com/minds/minds/-/issues/2858)~~
+
+## Absences
+
+- @markeharding 20th Dec - 3rd Jan
+- @manishoo 20th Dec - 3rd Jan
+- @benhayward.ben 17th Dec - 3rd Jan
+- @msantang78 27th-3rd
+- @fausto.arci 23rd Dec - 3rd Jan (Last working day: 22nd Dec - Back to work: 4th Jan)
+- @omadrid 16th Dec - 3rd Jan
+- @michaelfbradley 27th Dec - 3rd Jan
+
+## Planning Poker
+
+https://scrumly.app/join_game.html?id=61b874948a14b",0.0
+Fix time spent in growthbook,,3.0
+Add metrics to GrowthBook,"A collection of metrics to add to GrowthBook to enable new experiments.
+
+## Growth metrics
+- [x] 2-hour retention
+- [x] 3-day retention
+- [x] Followed channel
+
+## Engagement metrics
+- [x] Made a comment / reply
+- [x] Pageviews
+- [x] 7-day retention
+
+
+----
+
+## Dimensions
+- [x] Device type (computer vs. mobile)
+- [x] Platform (web vs. app)
+- [x] Language",8.0
+"Discovery: Add ""Top"" tab (mobile app)","In order to improve the quality of content on the Discovery page, and to drive engagement to our top content, we want to:
+
+1. Add a new `Top` tab  to the Discovery page.
+2. Use the feed powering the Guest Mode homepage to present posts in this `Top` feed.
+3. Make `Top` the default tab when clicking the `Discovery` button in the Minds navigation.
+
+Quick mock to illustrate:
+
+![image](/uploads/118086a4a53f8f939e334351853c27a9/image.png)
+
+- [ ] Follow experiment https://gitlab.com/minds/minds/-/issues/2869",3.0
+Add label to flag tickets that have been added to the sprint backlog after the sprint has been started,,0.0
+Refine merge request description template and start using it,,0.0
+Make Bugs meeting agenda and outcome more visible to the whole team,,0.0
+Move completed development tickets to QA Review in sprint and attach link to sandbox,,0.0
+Discovery feed paginated loading issue,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+- Given a Minds user is viewing a Discovery search feed
+- when the user scrolls to the bottom of the first page of posts
+- then the Minds app attempts to load the next page of posts and appears to get stuck.
+
+Expected result:
+
+- then the Minds app quickly loads the next page of posts.
+
+### Steps to reproduce
+
+Go here on web: https://www.minds.com/discovery/search?f=top&t=all&q=%23thegreatmememigration
+
+Scroll to the bottom of the first page.
+
+Observe the loading behavior
+
+### Platform information 
+
+I'm testing on MacOS + Chrome.
+
+### Relevant logs and/or screenshots
+
+Video attached.
+
+![smScreen_Recording_2021-12-03_at_10.26.54_AM](/uploads/21dfd6eb3732c822ef06a62b97bca74b/smScreen_Recording_2021-12-03_at_10.26.54_AM.mov)",3.0
+"(bug) Posts showing up in wrong feeds, with out of place timestamps","Steps to replicate:
+1. I went into boost console
+2. I boosted 3 posts (0.5T, 2.5T, 2T)
+3. Clicked minds logo to get back to the timeline
+4. My pinned post was third post on the timeline:
+
+> ![2021-12-03_19-05-49](/uploads/04c914b6d4303c3251a8d4fdfae12a04/2021-12-03_19-05-49.mp4)
+
+
+5. Then i tried going back to boost console (using back arrow)
+6. I went back to the feed, and I saw this:
+
+> ![2021-12-03_19-06-39](/uploads/ce773eb43bff75822133d1c2470fa207/2021-12-03_19-06-39.mp4)",2.0
+Provide QA for front!1680,,0.0
+No Reply button for 2nd-level comments in mobile app,"2nd-level comments on posts don't display a ""Reply"" button in the mobile app.
+
+![image](/uploads/d8da2568777ef4f6cd43ad096b0b71fb/image.png)
+
+Post
+- Has `Reply` button
+
+1st-level comment
+- Has `Reply` button
+
+2nd-level comment
+- Does not have `Reply` button
+
+----
+
+We should add a `Reply` button to 2nd-level comments to improve the mobile app commenting experience.
+
+When clicking this `Reply` button, the comment UI should be displayed with the @username of the replied-to user pre-populated into the text field.",2.0
+"Discovery: Add ""Top"" tab","In order to improve the quality of content on the Discovery page, and to drive engagement to our top content, we want to:
+
+1. Add a new `Top` tab  to the Discovery page.
+2. Use the feed powering the Guest Mode homepage to present posts in this `Top` feed.
+3. Make `Top` the default tab when clicking the `Discovery` button in the Minds navigation.
+
+Quick mock to illustrate:
+
+![image](/uploads/118086a4a53f8f939e334351853c27a9/image.png)",3.0
+Remove 401s / 404s from sitemaps,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Google Search Console is still reporting a high number of URLs that we submit in our sitemaps but report as 404 status codes when Google tries to crawl.
+
+![image](/uploads/fc94d69a4ef76be3673a07fb172928cb/image.png)
+
+Example URLs in sitemaps:
+
+* https://www.minds.com/Briton
+* https://www.minds.com/Matuko
+* https://www.minds.com/M4gnum
+* https://www.minds.com/Lj1119
+* https://www.minds.com/vicked
+* https://www.minds.com/Metall
+* https://www.minds.com/JohnRR
+* https://www.minds.com/3XN721
+* https://www.minds.com/Sam316
+* https://www.minds.com/Liamus
+
+### Steps to reproduce
+
+- Navigate to https://www.minds.com/sitemaps/sitemap3.xml
+- Ctrl + F for `https://www.minds.com/Caswarfox`
+
+### Platform information 
+
+n/a / Search Console
+
+### What is the current *bug* behavior?
+
+- Pages that we return `401` codes for appear in the sitemap
+
+### What is the expected *correct* behavior?
+
+- Pages that return `401` or `404` codes should not appear in sitemaps.
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/24c836613cd4252f9f0eb860a44829e1/image.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",2.0
+Comments: Replies appear in reverse order,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Given I'm viewing a post,
+and the post has at least one comment (level 0),
+when at least one comment has at least two replies (level 1),
+then the level 1 replies appear in descending chronological order (newest to oldest).
+
+![image](/uploads/d3c24bb6b9e61786c6547240f8b93d70/image.png)
+
+### Steps to reproduce
+
+[Here's a sample thread with level 1 replies.](https://www.minds.com/newsfeed/1307043536503312388?focusedCommentUrn=urn:comment:1307043536503312388:1307046543194329089:1307047897052745731:0:1307115456217223169)
+
+### Platform information 
+
+Reproduced in both web (desktop, mobile) as well as iOS app.
+
+### What is the current *bug* behavior?
+
+- level 1 replies appear in descending chronological order (newest to oldest).
+
+### What is the expected *correct* behavior?
+
+- level 1 replies appear in ascending chronological order (oldest to newest)",3.0
+Define email strategy,...,3.0
+Boost recommendation: Test #2,"We previously executed [this A-B test](https://gitlab.com/minds/front/-/issues/3768) with a ""Boost recommendation"" visual cue aimed to increase the rate of new posts : boosts.
+
+We want to try this test again, with a tweak on the execution aimed to improve the result.
+
+![image](/uploads/18645951e4fc1dd66747487a78237c0f/image.png)
+
+Previous test behavior was described as:
+
+* given that I'm posting for the first time, I should see a tooltip that prompts me to boost a post.
+  * the tooltip should be positioned above the boost button
+  * it should be blue
+  * it should stay for 6 seconds
+  * it should not be dismissable
+* given that I've already seen the tooltip once, I should see the boost button on the post shimmer after I submitted the post.
+  * the shimmer should last for 12 seconds or 3 flashes
+
+----
+
+Let's test with this behavior instead:
+
+* given that I'm **posting for the first time in 72 hours**, I should see a tooltip that prompts me to boost a post.
+  * the tooltip should be positioned above the boost button
+  * it should be blue
+  * it should stay for 6 seconds
+  * it should not be dismissable
+* given that **I've already seen the tooltip once in the past 72 hours**, I should see the boost button on the post shimmer after I submitted the post.
+  * the shimmer should last for 12 seconds or 3 flashes",2.0
+Guest Mode side bar,"After feedback rounds from Guest Mode in staging, elements wanted in the side bar of Guest Mode desktop view:
+
+- ""Minds is a neutral platform"" module
+- [Popular Channels](https://gitlab.com/minds/minds/-/issues/2794)
+
+Elements NOT wanted in the side bar:
+
+- ~~Popular Tags / Tags for You~~",0.0
+"""Switch to app"" overlay overlaps Guest Mode banner","Given the user is on a mobile device (here: emulating iOS),
+and the user visits the new Guest Mode homepage,
+when the page is loaded,
+then a ""Switch to the app"" overlay appears at the bottom of the screen.
+
+Desired outcome:
+
+Remove the Guest Mode banner from mobile and display only the ""Switch to app"" overlay
+
+![image](/uploads/67f6f0bbd5488ca4c611263699ebcd5f/image.png)",1.0
+Change copy on Twitter Sync settings page,"In order to better set expectations for Minds users who enable Twitter Sync, we should change the copy on the [Twitter Sync settings page](https://www.minds.com/settings/other/twitter-sync) to communicate that (1) if a tweet is deleted on Twitter, it is not automatically deleted on Minds, and (2) users can edit and/or delete posts on Minds.
+
+Old:
+
+> Using our Twitter Sync tool, you can have your new tweets automatically copied over from Twitter to Minds. Retweets & Replies will not be copied over.
+
+New:
+
+> Using our Twitter Sync tool, Twitter users with over {{followerCountVar}} followers can have their new tweets automatically copied over from Twitter to Minds. Retweets, replies, and tweet deletions are not synced to Minds. You can edit and/or delete posts on Minds through the Minds app or website.",1.0
+Replace contents of Guest Mode homepage with the Minds Top news feed,"We are interested in ensuring that the posts that appear on the Guest Mode homepage show the best new content on the site. In order to achieve this, we want the guest feed to reflect the same contents of the @Minds /top feed.",8.0
+Decide and set A/B percentages for experiment,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+General consensus when discussed seemed to be to start off around a 90/10 split.",0.0
+Clicking to remove a tag from Popular Tags does nothing,"## Issue
+
+- As a logged-out user viewing the Guest Mode home page,
+- when I click to remove an item from the Popular Tags module (aka ""Tags for you""),
+- then nothing happens.
+
+![image](/uploads/3ae884bbdb274da5f63bff0110616987/image.png)
+
+## Expected result
+
+The user is prompted to register / log in.",1.0
+Add Popular Channels module,"Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the guest.
+
+![image](/uploads/627e654929174826ec736bb2194e3af6/image.png)
+
+Accounts to include:
+
+- Include channels that @Minds account follows",5.0
+Login / Join Minds Now buttons visuals don't match designs,"Login/Register buttons at the top-right should match the designs.
+
+In staging:
+
+![image](/uploads/da38130f16df514bd4ca67a801722ded/image.png)
+
+Design mock:
+
+![image](/uploads/b864fb6d6f3e7f39953c07e8ecce3565/image.png)",1.0
+Navigating to a tag page prompts me to log in,"## Issue
+
+- As a logged-out (anon) user,
+- given I'm on the Minds guest mode home page,
+- when I click on [a link in the ""Tags for you"" module](https://www.minds.com/discovery/search?q=%23memes&f=top),
+- then I briefly see the tag page but quickly get redirected to the login page.
+
+## Expected result:
+
+I see the tag page I clicked on without being redirected to login so that I can explore the site and learn about Minds.
+
+![image](/uploads/d158f65c7ba55679ddd5ae8947be2f4c/image.png)",2.0
+Fix guest-mode issues staging,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+* [x] SEO broken on discovery variant
+* [x] Experiment forced to on
+* [x] Channel recommendations broke (probably best we hide this, our current recommendations engine is not equipped to deal with logged out users)",2.0
+Add signup metrics to growthbook,"- [ ] Time on site
+- [x] Signup",5.0
+Update question:responses for Social Compass sliders,Update the social compass sliders to reflect the question:responses defined in this document: https://docs.google.com/spreadsheets/d/11LBPDYHaEyIXIMXUsBL-kGzAVo2RgoqpqEOoXv0fByo/edit#gid=0,1.0
+Add definition for each report reason,"<!---
+Please read this!
+
+The Defintion of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+To add definitions for each report reason so that users report under the correct category.
+
+...
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+We should include a small box to the left of the submit button that provides a brief definition of each report reason. The Minds Report UX is most similar to Reddit, compared to other platforms:
+
+![image](/uploads/8e1b62479082747d22103ccb7c1588ad/image.png)
+
+## Text for Each Reason
+		
+| Category                            | Subcategory             | Description                                                                                               |
+|-------------------------------------|-------------------------|-----------------------------------------------------------------------------------------------------------|
+| Illegal                             | Terrorism               | Advertizing or recruiting for terrorist organizations                                                     |
+|                                     | Sexualization of minors | Implies or promotes child sexual activity or shows genitalia                                              |
+|                                     | Extortion               | Material that aims to achieve a benefit through coercion                                                  |
+|                                     | Fraud                   | Intent to deceive someone for monetary or personal gain                                                   |
+|                                     | Revenge porn            | Distribution of pornographic materials without consent                                                    |
+|                                     | Trafficking              | Illegal sales of sex or paraphernalia (e.g. escort services, drugs)                                       |
+| NSFW                                | Nudity                  | Exposure of genitalia or breasts                                                                          |
+|                                     | Pornography             | Printed or visual material of explicit sexual activity                                                    |
+|                                     | Profanity               | Obscene language or sensational content                                                                   |
+|                                     | Violence and Gore       | Vivid, brutal, and realistic acts of violence                                                             |
+|                                     | Race, Religion, Gender  | Extreme content relating to race, religion, or gender                                                     |
+| Incitement to violence              |                         | Calls to violence that are imminent                                                                       |
+| Harassment                          |                         | Intentionally targeting someone with the intent to torment or terrorize them                              |
+| Personal or confidental information |                         | Sharing or threatening to share private, personal, or confidential information about someone             |
+| Impersonation                       |                         | Assuming a false or fictitious identity, except for parody                                                |
+| Spam                                |                         | Repeated, unwanted, or unsolicited manual or automated actions that negatively affect the Minds community |
+| Intelectual Property Violation      |                         | Content posted to Minds that infringes a copyright you own or control                                     |
+| Malware                             |                         | Code delivered over the network for the purpose of an attack                                              |
+| Inauthentic Engagement              |                         | Activity that seeks to artificially inflate activity on the site to increase interaction metrics          |
+| Security                            | Hacked Account          | If an account has been compromised by an unauthorized person or entity                                    |
+...
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+...
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+![image](/uploads/5d26517f679b50504457d4972ff100c8/image.png)
+
+![image](/uploads/2c33b86201614b74077f8b917f43de6b/image.png)
+
+## Personas
+
+<!---
+Who does this user impact and why
+--->
+
+...
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+...
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Given the user is viewing the report modal, when the user clicks a report category, then a paragraph is inserted onto the modal that explains the selected category.
+- [ ] When the user de-selects a category, then the paragraph explanation is removed from the modal.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",2.0
+Engagement metric dashboard,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+(Summarize the bug encountered concisely)
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",13.0
+A-B test new Minds homepage / guest mode,"Need to hack a solution so we can A-B test the new guest mode homepage among logged-out users and measure impact on:
+
+- New user registration conversion (primary)
+- Pageviews per user",2.0
+Open Graph image for About page,Specify open graph image for minds.com/about. og:image is used when the link is shared on social media sites.,1.0
+Deploy Top/Latest feed options as A-B test,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+(Summarize the bug encountered concisely)
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",1.0
+Add boosts to search results,- [ ] Add in boost blocks to search results,1.0
+SSO / Keycloak rollout,"- [x] Documentation about what keycloak is and how our team can use it
+- [x] Bitwarden
+- [x] Gitlab
+- [x] Sentry
+- [x] GSuite / Google Cloud
+- [ ] Grafana
+- [x] AWS (authentication)
+- [ ] AWS (authorization)
+- [ ] GCP
+- [ ] Superset
+- [ ] Stripe",3.0
+401 / 404 channel pages are crawled by Google / Google reports as errors,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Channel pages that we've intentionally set to return 401 and 404 status codes are appearing in our sitemaps, and are indexable by Google. Google has crawled these pages and reports them as errors in Search Console.
+
+### Steps to reproduce
+
+Google Search Console reports errors for ~7,500 minds.com URLs, reporting these URLs return a 401 error code.
+
+Examples (401'd to avoid spam risk):
+
+- https://www.minds.com/AllThingsStarWars/
+- https://www.minds.com/mOnK-FiSh/
+- More here: https://search.google.com/search-console/index?resource_id=sc-domain:minds.com
+
+Example (404'd because account deleted):
+- https://www.minds.com/MiaPetals/
+
+Cross-reference with our sitemaps to see the URLs appear:
+
+- https://www.minds.com/sitemaps/sitemap2.xml
+- https://www.minds.com/sitemaps/sitemap3.xml
+
+View the page source to observe the `robots` tag is set to `all`.
+
+`<meta name=""robots"" content=""all"">`
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+- We submit these URLs to Google via sitemaps, and robots allows Google to crawl the URLs
+
+### Possible fixes
+
+I assume two possible directions to solve for Search Console reporting the error. 
+
+1. Remove these URLs from our sitemaps
+2. Set `robots` tag to `noindex` on these pages",1.0
+Change contact info for p/contact page,"https://www.minds.com/p/contact
+
+1.  ""Help Desk"" -> ""Support Center""
+2.  info@minds.com -> support@minds.zendesk.com",0.0
+Move Matrix Synapse Master to StatefulSet to avoid drive mounting issues,`ReadWriteOnce` in the deployments causes pods to fail to start. Using a statefulset will ensure each PVC is attached to only a single pod.,2.0
+Point old helpdesk question to Zendesk,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+We need to put this answer into Zendesk and change the link on-site to point to the Zendesk link
+
+* Link:
+https://www.minds.com/help/question/dc52a015-270f-44cf-bf97-acdeadbae0da
+
+* Found at:
+https://gitlab.com/minds/front/blob/385f7a9fa0ae869ef1095ac713df539db0f9d53b/src/app/modules/composer/components/popup/attachment-error/attachment-error.component.html",1.0
+Create SSO for Zendesk,"- [x] Zendesk submodule as a child of Helpdesk module
+- [ ] Spec tests
+- [ ] Redirect report issue page to zendesk form",2.0
+Gather requirements for improving refer flow,"## Goal 
+
+Grow the number of new users by encouraging current users to invite their contacts with competitive incentives. Make the referrals OBVIOUS to users. Currently it is buried in Settings. 
+
+## Current console
+
+https://www.minds.com/settings/other/referrals
+
+![Screen_Shot_2022-09-06_at_5.43.16_PM](/uploads/1fcd0814fbc74872a958ef7ee9d25b58/Screen_Shot_2022-09-06_at_5.43.16_PM.png)
+
+## UX Design
+
+- [Audit and inspo](https://www.figma.com/file/NfZCO1DzPnw4YTzVKOu8O7/Referrals?node-id=0%3A1)
+- [Low-fi Referral Mockups](https://www.figma.com/file/NfZCO1DzPnw4YTzVKOu8O7/Referrals?node-id=95%3A3060)- playing around with ideas for referral flows and referral incentives
+
+
+## Requirements 
+
+- [x] Audit web referral flow/console
+- [x] Audit mobile referral flow/console
+- [x] Audit rewards associated with referrals
+- [x] Introduce ability to invite people via email/twitter directly from referral console
+- [x] Feature referrals in UI",3.0
+Relative date ago flicker,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+(Summarize the bug encountered concisely)
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",1.0
+Autoplay next video triggers even when writing a comment,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+https://www.minds.com/newsfeed/1204885945477804032",2.0
+Get rid of 403 on media upload,Make sure the front-end digests the error message,1.0
+"Duplicated translation efforts (POEditor.com, CrowdIn.com)","### Summary
+
+There are duplicated translation efforts: POEditor.com and CrowdIn.com!
+
+### Steps to reproduce
+
+As it seems there are two places to translate Minds GUI/API and they are independent. In my Language Hungarian, POeditor seems to be in work for years, but far from complete and low quality. In CrowdIn I made it from scratch to 100%, high quality.
+
+This divides efforts and I guess only one of them will be included in Minds source code!
+
+### Platform information 
+
+CrowdIn, POEditor 
+
+### What is the current *bug* behavior?
+
+""developers.minds.com"" sends users to POEditor 
+
+""Settings"" on Minds.com sends users to CrowdIn 
+
+### What is the expected *correct* behavior?
+
+Kill POEditor and remove links from Developers.minds.com. And merge completed languages from CrowdIn please!
+
+### Relevant logs and/or screenshots
+
+![minds_poeditor](/uploads/d143254f1ee3f0cd1ab4e46ff2f2c63c/minds_poeditor.png)
+
+![minds_crowdin](/uploads/8f891c1a1dcaa2f1ffdd347d28a13053/minds_crowdin.png)",1.0
+Videos uploaded from iOS has low resolution,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+(Summarize the bug encountered concisely)
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",2.0
+Add button/link to open edit channel from inside settings,"1. Add ""Profile Settings"" under ""Display Name"" in Settings
+2. Should spawn the same modal as ""Edit Channel"" button on channel",2.0
+Permaweb spec tests,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+(Summarize the bug encountered concisely)
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",1.0
+Modal agreeing to terms to post to Permaweb,"Open warning modal that says:
+
+I have read and agree to the [Terms](url) and confirm that I have all necessary rights with regard to any data, information or other material (“Stored Material”) which I post or upload to Minds and the Arweave network (or Permaweb). I also understand that this content cannot be deleted from the Permaweb.
+
+![image__2_](/uploads/80ea8fe6ea892f177bf175688b4227f6/image__2_.png) 
+
+## Full Terms 
+
+By using the Application for the first time (and each time that you then use it) you acknowledge that:
+
+the Application is a tool enabling data to be uploaded to the Arweave public access network (Permaweb), but your right and ability to make any upload is entirely outside our control and depends (among other factors) on the availability of storage capacity which is provided by other independent Users and not by Arweave, protocols applicable to data storage in the network and the facilitation of each upload by determination of the current community of Users of the network;
+
+we give no assurance whatever that the network will be available for any specific time, or that storage capacity at least equivalent;
+
+the network may be unavailable for various reasons including (i) hardware or software failure, malfunction or outages; (ii) misuse of the Application or the network by other Users; or (iii) an Event Outside Our Control.
+
+STORAGE OF DATA
+
+Each time that you use the Application, it is your responsibility alone to make sure that you have all necessary rights with regard to any data, information or other material (“Stored Material”) which you choose to post or upload to the Arweave network.
+
+WE DO NOT OWN, CONTROL OR ENDORSE ANY STORED MATERIAL THAT IS POSTED, TRANSMITTED, STORED, OR PROCESSED IN THE ARWEAVE NETWORK. WE DO NOT HAVE THE LEGAL RIGHTS OR TECHNICAL ABILITY TO MODIFY OR REMOVE (IN WHOLE OR PART) ANY STORED MATERIAL. 
+
+We do not:
+
+claim any ownership over or other rights in the Stored Material you post or upload to the Arweave network 
+
+monitor postings to the network for compliance with (or infringement of) 3rd party rights; or
+
+monitor postings to the network for compliance with (or breach of) the commitments you agree to about the nature of Stored Material (see next sections).
+
+Each time that you use the Application to post or upload to the Arweave network, you make a commitment to us and to all other Users that you have all necessary rights with regard to the data, information or other material comprised in that Stored Material. Specifically, you are solely responsible to ensure that your Stored Material will not violate any agreements or confidentiality obligations, and will not infringe any intellectual property right or other legal right, including the right of privacy, of any person or entity.
+
+Each time that you use the Application to post or upload to the Arweave network, you make a commitment to us and to all other Users that you will not (and will not knowingly allow others to) create, post, share or store Stored Material that is libellous, defamatory, harassing, threatening, or invasive of privacy rights. 
+
+You acknowledge that:
+
+no other User has any obligation to review, screen, edit or monitor your proposed Stored Material;
+
+the right and ability of any User to post material to the Arweave network is subject to potential prior peer review by all other then Users, and if a majority of those Users who express a response determine for any reason that the proposed material should not become Stored Material, it may not be accepted into the Arweave network; and 
+
+neither we nor any other User has or will have any liability to you (or person working with or through you) for declining to accept materials into the network. 
+
+Minds and Arweave reserve the right to pursue available legal recourse against you or other persons with regard to costs and damages incurred by Arweave or any of our affiliates resulting from malicious breach by you or persons working with or through you of the commitments you agree to about the nature of Stored Material.
+
+LIMITATION OF LIABILITY 
+
+You acknowledge that the Application has not been developed to meet your individual requirements, and that it is therefore your responsibility to ensure that the facilities and functions of the Application meet your requirements.
+
+We shall not in any circumstances whatever be liable to you, whether in contract, tort (including negligence), breach of statutory duty, or otherwise, arising under or in connection with the Licence for loss of profits, sales, business, or revenue; business interruption; loss or corruption of data or information; loss of business opportunity, goodwill or reputation; or any indirect or consequential loss or damage.
+
+Other than the losses set out in Condition 5.2 (for which we are not liable), our maximum aggregate liability under or in connection with this Licence whether in contract, tort (including negligence) or otherwise, shall in all circumstances be limited to GBP 1000.00/US$ 1500.00. This maximum cap does not apply to Condition 5.5.
+
+Nothing in this Licence shall limit or exclude our liability for any liability that cannot be excluded or limited by English law.
+
+COMMUNICATIONS BETWEEN US  
+
+If you wish to contact us in writing, you can send this to us by e-mail at info@minds.com or mail at PO Box 7681, Wilton, CT 06897.
+
+EVENTS OUTSIDE OUR CONTROL  
+
+We will not be liable or responsible for any failure to perform, or delay in performance of, any of our obligations under this Licence or for the reduction, suspension or total cessation of functionality of the Application that is caused by an Event Outside Our Control. An Event Outside Our Control means any act or event beyond our reasonable control, including without limitation failure of public or private telecommunications networks.
+
+If an Event Outside Our Control takes place that affects the performance of, or causes the reduction, suspension or total cessation of functionality of the Application our responsibility (if any) to you and all other Users of the Application will be fully suspended for the duration of the Event Outside Our Control.
+
+YOUR PERSONAL INFORMATION  
+
+We will only use your personal information as set out in our most recent privacy policy.",2.0
+"Since video is unsupported, only posts title, description and reference minds link",,2.0
+Disable editing on permaweb posts for now,,1.0
+"If a post has image and text, move text to metatags",,1.0
+Store media onchain up to 10mb,,4.0
+Switch out arweave remote config for local node,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+(Summarize the bug encountered concisely)
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+(Browser, device, system stats, screen size)
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",2.0
+About Us Page,"
+### Summary
+
+The website doesn't seem to have an ""about us"" page. Currently, the closest thing to an ""about us"" page is the Whitepaper. This content is certainly relevant, but since it's a PDF it will not have the best opportunity to rank, and in this particular case, the search engine isn't even indexing the Mind's Whitepaper. Is there any data on the current engagement for this page on analytics? 
+
+Also, from a user experience standpoint, the content of the Whitepaper is long and most users won't consider reading through it. Creating a concise “about us” landing page that can be crawled and indexed on search engines will drive traffic to Mind's website and also give people a simple way to learn about Minds before they sign up. 
+
+----
+
+As Guest mode will replace the current logged-out Minds.com homepage contents with preview newsfeed, and we want to keep the contents of the current page available, we should relocate the page to minds.com/about URL.
+
+----
+
+minds.com/p/about",1.0
+Do not allow adding an image when editing a post.,"### Summary:
+
+I have an existing post but when I edit it to add a graphic I get a brief indication of the scroll bar and the popup occasionally clears the screen but the image never appears in the post.   I have tried it both as a jpeg and as a png.   The problem is sporadic.   I have uploaded a different image okay on its own but it would also not upload when I tried to add it to a post.
+
+### Steps to reproduce:
+
+Go to my page and try it: https://www.minds.com/Jan_Strepanov/
+
+
+### Browser and OS
+
+Firefox 77.0.1 (64 bit) on Windows 10 reported by: @Jan_Strepanov",1.0
+Two or three posts instead of one,"### Summary:
+
+I share once. But it appear twice or three times
+
+### Steps to reproduce:
+
+I share once. But it appear twice or three times
+
+### Browser and OS
+
+Firefox  reported by: @Polska_chce_wyjsc_z_UE",1.0
+Fix local stack installer issues,TBD,2.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,2.0
+Captcha failures,"### Summary:
+
+Trying to register but capcha will not accept correct input
+
+### Steps to reproduce:
+
+1. typing capcha characters in field
+2. get red capcha failed message instead of WELCOME TO MINDS!
+
+### Browser and OS
+
+Firefox OX 10 reported by: @",2.0
+Introduce the Severity labels and document their usage,"- [ ] See gitlab severity tag definitions
+- [ ] Update the analytics yaml file so we have some graphs
+- [ ] use 'Severity::X' pattern.
+- [ ] Update documentation",1.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,10.0
+Include react native image picker library and enable cropping for Channel Banner,"Use the same libraries as the avatar picker
+
+
+https://github.com/ivpusic/react-native-image-crop-picker
+
+Image picker for banners
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard5 (same as the avatar, but with different text)
+
+Cropper
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard6
+
+- [ ] When the channel owner clicks on their banner (camera button)
+- [ ] Display the image picker Select a banner from the camera roll / image gallery
+- [ ] When the user selects and image allow them to crop and position the image
+- [ ] Back button should go back to channel page and not change the image / display the old banner
+- [ ] Save button should go back to channel page and change the image
+- [ ] Light mode and dark mode
+- [ ] e2e and unit tests
+
+
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard2",4.0
+Include react native image picker library and enable cropping for Channel Avatar,"This image picker for react native supports cropping and a round circle for the avatar
+
+https://github.com/ivpusic/react-native-image-crop-picker
+
+Image picker
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard3
+
+Cropper
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard4
+
+- [ ] When the channel owner clicks on their profile picture (camera button)
+- [ ] Display the image picker Select an Avatar from the camera roll / image gallery
+- [ ] When the user selects and image allow them to crop and position the image
+- [ ] Back button should go back to channel page and not change the image / display the old avatar
+- [ ] Save button should go back to channel page and change the image
+- [ ] Light mode and dark mode
+- [ ] e2e and unit tests
+
+
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/#artboard2",4.0
+Include ReactNative effect for linear gradients,"So we can achieve the parallax gradient (the disappearing text on the channel's description)
+
+We need to implement and test a react native library for linear gradients (@msantang78)'s suggestion
+
+https://design.minds.com/hosted/mobile/michael/mobile%23-channel/",4.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,10.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,10.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,0.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,10.0
+Sidebar chat for groups should be able to turn on/off,"The Help and Support sidebar chat should be removed.
+
+Update these existing MRs and let's get them cleaned up.
+
+Might be easier to cherry-pick their commits and close them off
+https://gitlab.com/minds/front/-/merge_requests/420
+https://gitlab.com/minds/front/-/merge_requests/117
+
+There's a bunch of closed off MRs associated with this issue as well
+https://gitlab.com/minds/front/issues/418",2.0
+Minds installation fails at ElasticSearch 6.x+ step,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Minds local stack installation times out using Windows' WSL 2
+
+### Steps to reproduce
+
+- Join Windows Insider and enable WSL 2
+- Install Docker for Windows with WSL 2 support
+- Try to install the stack with `minds install`
+- ElasticSearch 6.x+ step times out and fails
+
+### Platform information 
+
+Windows 10 Pro with Ubuntu 18 LTS running on WSL 2 mode
+
+### What is the current *bug* behavior?
+
+Local stack installation fail at ElasticSearch provision step due to vm.max_map_count being too low for ES.
+
+### What is the expected *correct* behavior?
+
+Local stack installation to succeed.
+
+### Relevant logs and/or screenshots
+
+```
+Pulling elasticsearch (elasticsearch:6.6.2)...
+Creating minds_elasticsearch_1 ... done
+Operation timed out
+6.6.2: Pulling from library/elasticsearch
+Digest: sha256:59dd45d05fe89cd713dfc20874c6298e1ec7eaf384e58410b677b9dead6986f1
+Status: Downloaded newer image for elasticsearch:6.6.2
+Provisioning elastic search
+Waiting for elastic search to come online...
+    at makeError (D:\Minds\minds\local\node_modules\execa\lib\error.js:58:11)
+    at handlePromise (D:\Minds\minds\local\node_modules\execa\index.js:114:26)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  shortMessage: 'Command failed with exit code 1: docker-compose -f docker-compose.yml -f docker-compose.with-phpspec.yml run elasticsearch-provisioner',
+  command: 'docker-compose -f docker-compose.yml -f docker-compose.with-phpspec.yml run elasticsearch-provisioner',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: '6.6.2: Pulling from library/elasticsearch\r\n' +
+    'Digest: sha256:59dd45d05fe89cd713dfc20874c6298e1ec7eaf384e58410b677b9dead6986f1\r\n' +
+    'Status: Downloaded newer image for elasticsearch:6.6.2\r\n' +
+    'Provisioning elastic search\n' +
+    'Waiting for elastic search to come online...',
+  stderr: 'Pulling elasticsearch (elasticsearch:6.6.2)...\r\n' +
+    'Creating minds_elasticsearch_1 ... \r\r\n' +
+    '\u001b[1A\u001b[2K\rCreating minds_elasticsearch_1 ... \u001b[32mdone\u001b[0m\r\u001b[1BOperation timed out',
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false,
+  context: [Object: null prototype] {}
+}
+```
+
+### Possible fixes
+
+We need to detect if we're on a Linux environment (either standalone or via WSL 2) scenarios and ask the user to set vm. max_map_count=262144 in their sysctl.",3.0
+Email address registration failure,"### Summary:
+
+on your website and on the Apple app, it would not accept my email address hzmd@me.com so I could not register. On the app I also tried hzmd@icloud.com without success
+
+### Steps to reproduce:
+
+I tried it more than once
+
+### Browser and OS
+
+iOs reported by: @",4.0
+Local stack tweaks and enhancements,"- [x] ""[...] include the minimum system requirements (ie. RAM, storage and number of CPU cores) for both MS Windows, MacOS and Linux / BSD kernel based operating systems to the requirements section""
+- [x] Suggestion to restart terminals on all platforms after adding the aliases.
+- [x] ""[...] minor typo in the README.md. You have got ""at leas"" were I suspect that you mean ""at least"" (ie. ""it uses at leas 2 CPUs"").""
+- [x] Expand and update README
+- [x] Add an `eol=lf` entry to `containers/**`
+- [x] Mirror .gitattributes in front, engine and sockets repositories, since it's not cascading down to minds/minds.
+- [x] Find a more unified way to handle front and SSR
+- [x] Init scripts
+- [x] Warnings on wrong line endings and Windows issues
+
+## Merge Requests
+- https://gitlab.com/minds/minds/-/merge_requests/175
+- https://gitlab.com/minds/engine/-/merge_requests/466
+- https://gitlab.com/minds/front/-/merge_requests/781
+- https://gitlab.com/minds/sockets/-/merge_requests/3",6.0
+Bug Triage and Customer Support,Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,9.0
+Make our stack work with SSR and HMR on linux in docker compose,"Fix up the minds docker-compose so the installation runs on linux with ```docker-compose up -d nginx``` and have the front end build with SSR.
+
+- [x] Get the environment working in linux
+- [x] Get the front end building for developers with one command
+- [x] Get the dev stack running with SSR that recompiles the files that change
+- [ ] Have @brianhatchet test and verify the stack on Mac and windows",8.0
+About Us link,"### Summary:
+
+link titled 'Minds IRL' leads to a dead website - 
+
+### Steps to reproduce:
+
+Go to homepage (new homepage)
+Click Minds IRL
+
+### Browser and OS
+
+chrome  reported by: @",2.0
+NIP-26 working prototype,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Have working prototype of NIP-26
+
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+Now that we have achieved general consensus with Nostr devs on [NIP-26](https://github.com/nostr-protocol/nips/pull/28) we can temporarily disregard our former [Whitelist](https://gitlab.com/minds/minds/-/issues/3306) proposal for ingestion and build the initial implementation of NIP-26 (which is required for the MR to be accepted anyway). 
+
+- Add section in Settings, under Account called Nostr
+- Subsections will be Add relay, Delegate key, Generate key
+- For the usecase of users with existing Nostr keypair, this section will have an input field for a token to establish the pairing of their key with the Minds delegated key
+- For the usecase of users without existing Nostr keypair, this section will have an option to generate and download or copy a new Nostr keypair similar to the setup field on branle
+- For the usecase of adding relays to post to, this section will enable users to add more like in other clients
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+For the token input field, something like :
+
+https://www.figma.com/file/NKmR2WGnVeZ42KzHURbFeg/Nostr-Pages?node-id=0%3A1
+
+For the Add relay section, something like:
+
+![Screen_Shot_2022-08-24_at_1.35.58_PM](/uploads/e59e4f5daf01a80f2a448369cc536b31/Screen_Shot_2022-08-24_at_1.35.58_PM.png)
+
+For the new key generation, something like:
+
+![Screen_Shot_2022-08-24_at_1.23.55_PM](/uploads/d9684c20a96b3322223848340466725a/Screen_Shot_2022-08-24_at_1.23.55_PM.png)
+
+![Screen_Shot_2022-08-24_at_1.24.13_PM](/uploads/f6a36f49053fb62bdc18675557eb1d86/Screen_Shot_2022-08-24_at_1.24.13_PM.png)
+
+![Screen_Shot_2022-08-24_at_1.24.49_PM](/uploads/2ec2e3c24cbfc6e171e4f092ff4c8437/Screen_Shot_2022-08-24_at_1.24.49_PM.png)
+
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [x] A settings (GUI) console where users can pair their keys
+- [x] Minds to sign events with the new delegate keypair
+- [ ] Integration tests
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",8.0
+Boost console: Activity posts do not appear for rejected Boosts,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+The Boost console shows a history of Boosts and their status.
+
+Completed Boosts show the activity post that was boosted.
+
+However, Boosts that are rejected/cancelled do not show the activity post.
+
+### Steps to reproduce
+
+- Make a Boost
+- Get rejected (e.g. due to backlog overflow)
+- View the Boost console
+
+### Platform information 
+
+- Web app
+
+### What is the current *bug* behavior?
+
+- Activity posts do not appear for rejected Boosts
+
+### What is the expected *correct* behavior?
+
+- Activity posts appear for all Boosts, regardless of status
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/0f0812e820a24e5a14e40972f9793813/image.png)
+
+![image](/uploads/ef04796b3b9bf5e8603361abcd2aa357/image.png)
+
+Relevant minds post: https://www.minds.com/newsfeed/1406297118418669571
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+Discover Groups button does not work,"### Summary
+
+Clicking Discover Groups button does nothing
+
+![image](/uploads/dfc9c52745388668c0a0155c63966838/image.png)
+
+### Steps to reproduce
+
+1. Use channel that does not belong into any groups (Not a must)
+2. Navigate here: `https://www.minds.com/groups/memberships`
+3. Click Discover Groups button on the top
+4. Notice nothing happens
+5. Hover over Discover Groups button
+6. See that the link produced is: `https://www.minds.com/groups/memberships/'/discovery/suggestions/group`
+7. The link that is part of the text works properly
+
+### Platform information 
+
+Brave & Chrome, Win10
+
+### What is the current *bug* behavior?
+
+Discover Groups button does not work
+
+### What is the expected *correct* behavior?
+
+Discover Groups button should work
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",0.0
+V2 activities: Videos do not autoplay in feeds / single activity view,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+In V2 activities, native Minds videos do not autoplay when the user's settings have autoplay videos enabled.
+
+### Steps to reproduce
+
+- Ensure your Video Autoplay setting is enabled (https://www.minds.com/settings/account/autoplay-videos)
+- Visit a channel page with native Minds videos (https://www.minds.com/timcastirl/)
+- Scroll the videos into frame
+
+### Platform information 
+
+- MacOS + Chrome
+
+### What is the current *bug* behavior?
+
+- The native Minds videos do not autoplay
+- The native Minds videos require the user to click the play button to begin playing
+
+### What is the expected *correct* behavior?
+
+- The native Minds videos should autoplay in a muted state when scrolled into view
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",2.0
+Login crash,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Login crashes, presumably with long usernames 
+
+### Steps to reproduce
+
+Try to login with `bentest123456789012345678901234567890123456789012`
+
+(Any password will do)
+
+### Platform information 
+
+Web
+
+### What is the current *bug* behavior?
+
+Too much recursion error
+
+### What is the expected *correct* behavior?
+
+Should allow login
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/af1503fe1d91229933e7b92b175e3d1a/image.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+YouTube sync double-posts when video is edited on YouTube,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When a video is edited on YouTube, Minds YouTube sync creates a new activity post for the video.
+
+### Steps to reproduce
+
+- Connect a Minds channel to a YouTube channel via YouTube sync
+- Publish a video on YouTube
+- (Minds will make an activity post linking to the YouTube video)
+- Edit the video (description, title, etc.) on YouTube
+
+### Platform information 
+
+n/a
+
+### What is the current *bug* behavior?
+
+- Minds creates a duplicate activity post linking to the YouTube video
+
+### What is the expected *correct* behavior?
+
+- No duplicate activity post is made
+
+### Relevant logs and/or screenshots
+
+n/a
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+Implement new interest tags selector in onboarding,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Improve the UI of onboarding tag selection and synchronize tag selection UI across the app.
+
+## What needs to be done
+
+Implement the new interest tags selector component into the onboarding flow, replacing the old tags selector.
+
+## QA
+
+...
+
+## UX/Design
+
+This is the old selector being replaced:
+
+![image](/uploads/45398ece0f221dc2e8ce02be182f6212/image.png)
+
+This is the new selector interface, in the context of user content settings. For the onboarding context, we don't need / want the Compass tab.
+
+![image](/uploads/d92ee9195ad0c012b3867bcb29df758d/image.png)
+
+## Personas
+
+New users
+
+## Experiments
+
+No experiment
+
+## Acceptance Criteria
+
+- [x] During onboarding, the user is asked to select their interest tags.
+- [x] The old interest tags selection component is not presented.
+- [x] The new interest tags selection component IS presented.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",3.0
+Improve messaging for rejected boosts,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Ambiguous messaging in the Boost Console is creating confusion when boosts get refunded due to high volumes of boost orders.
+
+![image](/uploads/2d126d087816267024331e67a87ae241/image.png)
+
+## What needs to be done
+
+Change the language displayed in the Boost Console, from:
+
+> Your boost was rejected: Onchain payment failed or High Boost backlog
+
+To:
+
+> Due to high boost backlog, your tokens have been auto-refunded.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+n/a
+
+## Personas
+
+Core users who boost
+
+## Experiments
+
+n/a
+
+## Acceptance Criteria
+
+- [ ] Given a boost order is rejected due to high boost backlog, the message above is displayed in the boost console.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",2.0
+Spike: Create NIP for Delegated Event Signing,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Investigate how a Minds custodial Nostr public key can be paired to a user owned keypair. 
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+This task is to investigate what is involved to achieve the goal above.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+N/A
+
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+N/A
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+Nomads
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+N/A
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Further tasks and/or implementation plan
+
+## Definition of Ready Checklist
+
+- [x] Definition Of Done (DoD)
+- [x] Acceptance criteria
+- [x] Weighted
+- [x] QA
+- [x] UX/Design
+- [x] Personas
+- [x] Experiments",3.0
+Implement in-feed notices in app (all),"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Synchronize in-feed notice communication experience between the web and mobile app.
+
+## What needs to be done
+
+Implement in-feed notices in the mobile app using the backend logic endpoint developed for the web app.
+
+1. Setup Channel
+2. Verify Uniqueness
+3. build-your-algorithm
+3. Push Permissions
+4. Update Tags 
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+- [In-feed activity notice mobile](https://www.figma.com/file/EkJej3mKP2lSzmWTLoqlXD/Minds-Design-System?node-id=815%3A9478)
+
+
+## Personas
+
+- New users
+
+## Experiments
+
+No experiment
+
+## Acceptance Criteria
+
+- [ ] In-feed notices appear in the app [when their conditions are met](https://docs.google.com/spreadsheets/d/1FHWiKdYobssgXQt8Cc6l3IyiFwjWnf2_jCc-ObHUsuM/edit?usp=sharing)
+- [ ] Only one in-feed notice appears in the feed at a time
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",5.0
+Email verification in-feed notice,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Clearly communicate to users that they need to verify their email address, and make it easy for them to do so.
+
+## What needs to be done
+
+Implement the `Verify your email address` in-feed notice on the mobile app.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+- [Figma mocks](https://www.figma.com/file/EkJej3mKP2lSzmWTLoqlXD/Minds-Design-System?node-id=815%3A9478)
+
+Screenshot for reference, see Figma mocks for latest spec.
+
+![image](/uploads/52d18a1590b69ad73c0388c6b00338eb/image.png)
+
+## Personas
+
+New users
+
+## Experiments
+
+No experiment for this change specifically, but this change should be rolled out before experimenting with code-based email verifications (https://gitlab.com/minds/minds/-/issues/3296).
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Given a user has not already verified their email address, when they visit the Newsfeed, then the `Verify your email address` in-feed notice appears.
+- [ ] Given the `Verify your email address` in-feed notice appears, when the user clicks the `Re-send email` button, then a new email verification link is sent to the user's email address.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",2.0
+Code-based email verifications in mobile app,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Implement code-based email verifications in the mobile app and make the verification part of the initial onboarding flow, before a user reaches the Newsfeed.
+
+## What needs to be done
+
+- Implement code-based email verification flow to the mobile app new user onboarding.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+- [Figma designs](https://www.figma.com/file/zKXef5Dyr3CiCEhTjALkzl/Mobile-Onboarding-Quirk?node-id=0%3A1)
+
+Screenshot for quick reference, see Figma mocks for latest spec.
+
+![image](/uploads/77900c9a95b7dc0bf9ef2867ce53ce8f/image.png)
+
+## Personas
+
+- New users
+
+## Experiments
+
+Code-based verification should be tested versus existing link-based email verification, measuring for % of signups that result in email verification.
+
+## Acceptance Criteria
+
+- [ ] Given a user is creating a new account in the app, and the user has already filled out the fields on `Join Minds` screen, and all fields are valid, when the user clicks the blue `Join Minds` button, then a code-based verification email is sent to the user's email address, and the user is navigated to the code-based `Verify Account` screen.
+- [ ] When the user is navigated to the code-based `Verify Account` screen, then the user's cursor is automatically positioned in the `Verification code` text field, and the keyboard defaults a numeric layout.
+- [ ] Given the user is on the code-based `Verify Account` screen, and the user inputs an invalid code, when the user taps `Verify` button, then the ""Invalid code"" error is displayed adjacent to the code field.
+- [ ] Given the user is on the code-based `Verify Account` screen, and the user inputs a VALID code, when the user taps `Verify` button, then the email address is verified and the user is navigated to the Newsfeed.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",3.0
+Top post push notification are undescriptive,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Occasionally, top post push notifications read:
+
+> @username posted
+
+These notifications are pretty vague and I think can be improved by always having a bit more context.
+
+### Steps to reproduce
+
+- Enable notifications for `Top Posts`
+- Wait for a daily push top post push notification
+
+### Platform information 
+
+iOS, Mac + Chrome
+
+### What is the current *bug* behavior?
+
+The push notification reads:
+
+> @username posted
+
+### What is the expected *correct* behavior?
+
+Depending on the type of post that's being promoted, more context is expected.
+
+| Post type (sample)               | Sample                                                                                                       | Title                       | Message / Body                                          |
+|----------------------------------|--------------------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------------------|
+| Text post                        | https://www.minds.com/newsfeed/1351609905466839058                                                           | Minds posted                | Who are your favorite channels on Minds?                |
+| Blog post                        | https://www.minds.com/minds/blog/minds-is-now-a-censorship-resistant-progressive-web-app-1363941884392640521 | Minds posted a blog         | Minds Is Now A Censorship-Resistant Progressive Web App |
+| Media post (with title + body)   | https://www.minds.com/newsfeed/1367998512221917203                                                           | Bashynx posted an image     | New survey dropped: About Multi-Image posting!          |
+| Media post (with title, no body) | https://www.minds.com/newsfeed/1371197780126601227                                                           | rogansent posted an image   | A challenge                                             |
+| Media post (no title, with body) | https://www.minds.com/newsfeed/1369805494683701250                                                           | Ryan @ Minds posted a video | Silent Hill on water.                                   |
+| Media post (no title, no body)   | https://www.minds.com/newsfeed/1371198067109269511                                                           | rogansent posted an image   |                                                         |
+
+### Relevant logs and/or screenshots
+
+![IMG_31CA9133E972-1](/uploads/79b51616fc465c6132017519184050e7/IMG_31CA9133E972-1.jpeg)
+
+### Possible fixes
+
+I initially thought this was happening when the top post was a media post without any text. But in the example screenshot above, it's from Babylon Bee and looking at their post history I don't see any posts without text.
+
+They are all posts with links, however -- which may be indicative of the cause.
+
+Let's assume this post was being sent as a top post push notification:
+
+![image](/uploads/402777c20ae03cc284a43583b577f63a/image.png)
+
+| Post type (sample)                         | Sample                                             | Title                         | Message / Body                         | Launch URL / Link                                  |
+|--------------------------------------------|----------------------------------------------------|-------------------------------|----------------------------------------|----------------------------------------------------|
+| Link (no title, no body)                   | https://www.minds.com/newsfeed/1394053308640923658 | The Babylon Bee posted a link | Big Tech Is Censoring Comedy... Again! | https://www.minds.com/newsfeed/1394053308640923658 |
+| Link (no title, no body, no text inported) | https://www.minds.com/newsfeed/1394053308640923658 | The Babylon Bee posted a link |                                        | https://www.minds.com/newsfeed/1394053308640923658 |",2.0
+"""Actions Taken"" stats on content-policy page are not accurate","<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+The `minds.com/content-policy` page has statistics for Actions Taken, Appeals, and Actions Overturned in the past 30 days. Currently, this reads ""0"" for all values.
+
+### Steps to reproduce
+
+Visit https://minds.com/content-policy , scroll to bottom.
+
+### Platform information 
+
+Brave browser on Ubuntu
+
+### What is the current *bug* behavior?
+
+Values show ""0""
+
+### What is the expected *correct* behavior?
+
+Values show actual actions taken, etc.
+
+### Relevant logs and/or screenshots
+
+
+### Possible fixes",1.0
+Fix Cassandra extract instability caused by lazy instantiation of SQLAlchemy `insert` operators,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+SQLAlchemy `insert` operators are lazy instantiated, which means that they may trigger exceptions not at the point of creation, but at the point of use. When placed into a worker queue, these delayed exceptions may kill worker threads.
+
+### Steps to reproduce
+
+Create a SQLAlchemy `insert` operator with incompatible values argument. Place in worker queue. Worker triggers `sqlalchemy.exc.CompileError` exception, and exits.
+
+### Platform information 
+
+Data ETL
+
+### What is the current *bug* behavior?
+
+ETL pipeline fails
+
+### What is the expected *correct* behavior?
+
+ETL pipeline doesn't fail
+
+### Relevant logs and/or screenshots
+
+```
+Unexpected error: CompileError('Unconsumed column names: tokenomics_version, multiplier, user_guid, reward_type, date, payout_tx, token_amount, score')
+Traceback (most recent call last):
+  File ""/usr/local/lib/python3.8/site-packages/prefect/engine/runner.py"", line 48, in inner
+    new_state = method(self, state, *args, **kwargs)
+  File ""/usr/local/lib/python3.8/site-packages/prefect/engine/task_runner.py"", line 865, in get_task_run_state
+    value = prefect.utilities.executors.run_task_with_timeout(
+  File ""/usr/local/lib/python3.8/site-packages/prefect/utilities/executors.py"", line 323, in run_task_with_timeout
+    return task.run(*args, **kwargs)  # type: ignore
+  File ""extract-cassandra-token-flow.py"", line 191, in extract_all_tables
+    logger.warn(queue.get())
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 1463, in warn
+    self.warning(msg, *args, **kwargs)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 1458, in warning
+    self._log(WARNING, msg, args, **kwargs)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 1589, in _log
+    self.handle(record)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 1599, in handle
+    self.callHandlers(record)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 1661, in callHandlers
+    hdlr.handle(record)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 954, in handle
+    self.emit(record)
+  File ""/usr/local/lib/python3.8/site-packages/prefect/utilities/logging.py"", line 151, in emit
+    msg = self.format(record)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 929, in format
+    return fmt.format(record)
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 668, in format
+    record.message = record.getMessage()
+  File ""/usr/local/lib/python3.8/logging/__init__.py"", line 371, in getMessage
+    msg = str(self.msg)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py"", line 562, in __str__
+    return str(self.compile())
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py"", line 494, in compile
+    return self._compiler(dialect, **kw)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py"", line 558, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py"", line 776, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py"", line 451, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py"", line 486, in process
+    return obj._compiler_dispatch(self, **kwargs)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/visitors.py"", line 82, in _compiler_dispatch
+    return meth(self, **kw)
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py"", line 3837, in visit_insert
+    crud_params = crud._get_crud_params(
+  File ""/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/crud.py"", line 168, in _get_crud_params
+    raise exc.CompileError(
+sqlalchemy.exc.CompileError: Unconsumed column names: tokenomics_version, multiplier, user_guid, reward_type, date, payout_tx, token_amount, score
+```
+
+### Possible fixes
+
+Pre-instantiate arguments to `insert` operators before placing in queue.",5.0
+Boost inventory: Add boosts to Discovery,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Increase boost inventory.
+
+## What needs to be done
+
+Add in-feed boost placements to the Discovery > Top feed, using the same spacing logic as used on the Newsfeed.
+
+Note: This does NOT include the Boost rotator.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+No new design, the in-feed boosts should appear the same way they would on the Newsfeed.
+
+## Personas
+
+Core users
+
+## Experiments
+
+We should roll this out as an experiment to see if it negatively impacts engagement on the Discovery feed.
+
+## Acceptance Criteria
+
+- [ ] In-feed boosts appear on the Discovery > Top feed with the same frequency as they appear on the Newsfeed
+- [ ] The boost rotator does not appear on Discovery > Top
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",3.0
+Switch channel recommendations to Vitess,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Change 'friends of friends' ElasticSearch to be on Vitess
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+See above
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+Recommendations display.
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+N/A
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+users
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+Yes
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Refactor elasticsearch 'friends of friends' logic to point to vitess
+- [ ] Add in experiment
+- [ ] Spec tests
+
+## Definition of Ready Checklist
+
+- [x] Definition Of Done (DoD)
+- [x] Acceptance criteria
+- [x] Weighted
+- [x] QA
+- [x] UX/Design
+- [x] Personas
+- [x] Experiments",5.0
+Create page with links to tools to aide development,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Aide development and usage of SKALE tasks such as https://gitlab.com/minds/engine/-/issues/2349
+
+## What needs to be done
+
+Create docs page with info for development
+
+## QA
+
+N/A
+
+## UX/Design
+
+N/A
+
+## Personas
+
+Developers of SKALE MINDS system
+
+## Experiments
+
+N/A
+
+## Acceptance Criteria
+
+- [ ] Docs pages
+- [ ] Blockexplorer
+- [ ] Usage examples
+- [ ] Explanations
+
+## Definition of Ready Checklist
+
+- [X] Definition Of Done (DoD)
+- [X] Acceptance criteria
+- [X] Weighted
+- [X] QA
+- [X] UX/Design
+- [X] Personas
+- [X] Experiments",0.0
+Display a modal of mutual subscribers to be displayed when clicking 'other' on `m-channel__mutualSubscriptions`,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+Now we have 'also subscribed to' blocks on channels, we want to expand to be able to see more than 2 results. 
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+We already have a modal that displays for subscribes on notifications, this is just a time ordered list. Modify this modal to support mutual 'also subscribed to'. The backend needs a slight tweak to support pagination.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+The modal display when relevant.
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+?
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+Subscribers.
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+M/A
+
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Click on the component will launch a modal (same as what is currently used to display who up-voted a post) and list any mutual subscriptions, or redirect to a channel.
+  * [ ] clicking directly on a channel handle will direct the user to that channel
+  * [ ] clicking on `x others` or any of the avatars will launch a the modal.
+- [ ] Backend to support pagination. ie `LIMIT 12,20` in the SQL statement will offset to 20-32 results.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",3.0
+Show toast message before launching modal if email verification is required to complete modal actions,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Reduce UX clumsiness by warning user about email verification requirement before they try to do something that requires email verification.
+
+## What needs to be done
+
+Throw a toast message instead of opening a modal, if the modal action requires email verification.
+
+Examples:
+
+- [Verifying phone number](https://gitlab.com/minds/front/-/issues/5568)
+- [Creating an activity post](https://gitlab.com/minds/engine/-/issues/2209)
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+Message:
+
+> You must confirm your email address
+
+## Personas
+
+- New users
+
+## Experiments
+
+None
+
+## Acceptance Criteria
+
+- Given a user hasn't verified their email address,
+- when the user clicks something that generates a modal,
+- and that modal's action requires email verification,
+- then prevent the modal from displaying,
+- and throw a toast message that indicates that email verification is required.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",3.0
+Notifications feed jumps when closing image overlay,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When on the notifications screen and viewing an image in an overlay view, when closing the image overlay, the notifications feed jumps.
+
+### Steps to reproduce
+
+- Navigate to the notifications feed
+- Scroll the notifications until the app has to load more in
+- Scroll down to a notification that includes an image
+- Double-tap the image to view the image in an overlay
+- Swipe the image to close it
+
+### Platform information 
+
+- iPhone 12 Mini w/ latest Testflight build
+
+### What is the current *bug* behavior?
+
+- The image is dismissed
+- The feed jumps and the user loses their position
+
+### What is the expected *correct* behavior?
+
+- The image is dismissed
+- The feed scroll position is unchanged
+
+### Relevant logs and/or screenshots
+
+![RPReplay_Final1656646300](/uploads/d25565dfba0805c44b49aa4e37861e88/RPReplay_Final1656646300.mov)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+Activities v2: Boost rotator improvements,"## Goal
+
+Address the following UX concerns with respect the Boost Rotator in the context of the new activity post designs.
+
+1. The social interactions at the bottom of the rotator get pushed outside the confines of the boost rotator when posts are lengthy.
+2. The presentation of the post content within the boost rotator is oftentimes poorly presented.
+3. The navigation controls (more left/right) are perceived to be lost/unclear
+
+
+## What needs to be done
+
+- [ ] Address the above three issues as indicated in the UX/Design heading 
+
+### Other bugs that should be research / resolved as part of this issue MAKE NEW TASKS PLEASE
+
+- [ ] The rotator shows horizontal scroll bars for quote posts
+- [ ] Videos don't autoplay within the boost rotator
+- [ ] When just a youtube link is contained within the post, the video embed does not appear. Just the link is displayed.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+1. [New Boost Rotator Header](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=707%3A3838)
+  * Larger clearer boost rotator header with its own BG colour.
+  * Larger nav controls moved to the RHS
+2. [Social Interactions](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=818%3A3769)
+  * Social interaction should remain in a fixed position at the bottom on the boost rotator.
+  * The length height of the boosted post should not impact upon the position of the social interactions.
+  * Where content overruns a slight gradient fadeout appears as indicated in the above design link.
+  * Clicking `See More` will navigate the user to the post page
+3. [Revised content positioning](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=808%3A3662)
+  * Content should be positioned in the middle of the available area between the post header and social interactions.
+  * Where there is text with an embed (URL, Image, Video) the [associated text should sit alongside the embed](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=808%3A3725).
+  * See below numerous design examples which should clarify this.
+    * [Text and image not overflowing](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=707%3A3838)
+    * [Text and image overflowing](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=818%3A3769)
+    * [Short text](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=818%3A3808)
+    * [Text and large URL embed](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=818%3A3846)
+    * [Text and small URL embed](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=818%3A3890)
+    * [Quote Post](https://www.figma.com/file/oYPYya9Z4G5wqgLvdKDbOB/Activity-Post-revised-%5BWeb%5D?node-id=818%3A3934)
+
+
+## Personas
+
+<!---
+Who does this user impact and why (optional)
+--->
+
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+
+## Acceptance Criteria
+
+- [ ] Social interactions should never be positioned out of place
+- [ ] The positioning of the boosted content should conform with the designs indicated above.
+- [ ] Boosted videos should autoplay
+- [ ] Resolve horizontal scroll bar issue for quite posts
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+
+
+<details><summary>Original Issue by @markryansallee </summary>
+
+
+### Summary
+
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Cleaning up a few issues with the v2 Boost rotator to unblock the production experiment of Activities v2.
+
+## What needs to be done
+
+Issues with Boosts blocking the launch of the experiment:
+
+- Visual of the ""Boosted Post"" label + arrow button controls at the top of the rotator
+- The rotator doesn't deal well with boosted posts that are very tall. Some screenshots below as examples.
+- The rotator shows horizontal scroll bars for quote posts
+- Videos don't autoplay
+
+### Steps to reproduce
+
+(How one can reproduce the issue - this is very important)
+
+### Platform information 
+
+- Windows + Chrome
+- MacOS + Chrome
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+<details><summary>Examples of tall posts getting cut off</summary>
+
+![image](/uploads/cf9642d3d23cf792b40c394146295c42/image.png)
+
+- Bottom of the engagement bar is cut off.
+
+![image](/uploads/46d9b9ce1fba7d5c66faafacaf9e483d/image.png)
+
+![image](/uploads/771c788e3e5784779ea4fe4dcbeaa0a0/image.png)
+
+- Media is cut off, no engagement bar appears
+</details>
+
+</details>",5.0
+(bug) Verify your email address emails broken on Hotmail and Outlook,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Emails prompting users to verify their email are broken in outlook and hotmail, like so:
+
+![image](/uploads/45219bfa39d9cbd7c504a509107cb415/image.png)
+
+and it points to `https://` link
+
+### Steps to reproduce
+
+1. Create account or request verify email
+2. Look at the email in outlook or hotmail
+
+### Platform information 
+
+Tested on:
+- Thunderbird 91.10.0 (64-bit)
+- Microsoft® Outlook® for Microsoft 365 MSO (Version 2205 Build 16.0.15225.20278) 64-bit 
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",1.0
+Minds videos don't load when embedded,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Minds videos embedded on Corbett Report website do not load / are not playable.
+
+### Steps to reproduce
+
+- Log out of Minds
+- [Visit this page on Corbett Report website](https://www.corbettreport.com/category/videos/page/4/).
+- Scroll the page to see posts with video embeds.
+- Observe the posts with Minds videos embedded:
+  - Episode 415 - The Global Digital ID Prison
+  - Interview 1708 – New World Next Week with James Evan Pilato
+  - The Future of Censorship (video)
+- Try to play the video
+
+----
+
+- Log into Minds
+- [Visit this page on Corbett Report website](https://www.corbettreport.com/category/videos/page/4/).
+- Scroll the page to see posts with video embeds.
+- Observe the posts with Minds videos embedded:
+  - Episode 415 - The Global Digital ID Prison
+  - Interview 1708 – New World Next Week with James Evan Pilato
+  - The Future of Censorship (video)
+- Try to play the video
+
+### Platform information 
+
+MacOS + Chrome
+
+### What is the current *bug* behavior?
+
+While logged out of Minds:
+
+The video frame is not loaded in completely (it looks mostly blank, aside from the title).
+
+The video is not playable.
+
+---
+
+While logged into Minds:
+
+The video frame loads in the Minds UI (navigation, avatar, alert bar).
+
+### What is the expected *correct* behavior?
+
+Whether logged in or logged out:
+
+The video embed should load entirely, including a thumbnail image and play button.
+
+Video is playable.
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/1fc11d8f4e7e918ae0ffae607cb159a1/image.png)
+
+![image](/uploads/a8011974fff40fd41f11e76ee0ab364c/image.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",3.0
+Add in-feed notices to Discovery feed,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Enable onboarding experiments with the Discovery > Top feed by bringing Newfeed features targeted at new users to the Discovery feed.
+
+## What needs to be done
+
+Enable all in-feed notices to appear on the Discovery > Top feed, by the same logic with which they can currently appear on the Newsfeed.
+
+For reference, [this is the order in which activity posts are expected to appear](https://docs.google.com/spreadsheets/d/1FHWiKdYobssgXQt8Cc6l3IyiFwjWnf2_jCc-ObHUsuM/edit#gid=0) (same as Newsfeed).
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+No Design
+
+## Personas
+
+This change is targeted at new Minds users who are curious about the network and want to connect with people with similar interests.
+
+## Experiments
+
+While this change is related to enabling experiments, it is not an experiment itself -- this can be rolled out to 100% of the audience.
+
+## Acceptance Criteria
+
+- [ ] Given an in-feed notice appears on the Newsfeed, and I have not yet dismissed the notice or otherwise completed the criteria that dismiss it, when I visit the Discovery feed, then the same in-feed notice is presented in the same position.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",3.0
+Land newly-registered users on Discovery,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+We want to test a hypothesis for increasing short-term retention: Landing newly-registered users on Discovery feed will be more effective at (1) connecting users to channels with content they're interested in, and (2) as a result, increasing short-term retention.
+
+## What needs to be done
+
+When a new user completes the registration process, land the user on the Discovery/Top feed instead of the Newsfeed.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+No design.
+
+## Personas
+
+This change is targeted at new Minds users who are curious about the network and want to connect with people with similar interests.
+
+## Experiments
+
+This change should be implemented as an experiment, measuring:
+
+- % of new users who have followed a channel
+- Avg. # of channels followed by new users
+- Content engagement rate on a new user's first session
+- 3 day retention
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Given I've not already signed up for a Minds account, and I've started the signup process, when I complete the signup process by verifying my email address, then I am brought to the Discovery > Top feed, and the interests tag selector modal appears.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments",0.0
+Update interest tag options presented during onboarding,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+(1) Increase the % of new users with interest tags relevant to their interests, (2) connect new users to channels creating content related to their interests, and (3) be able to analyze new user retention by differentiated interest segments.
+
+## What needs to be done
+
+During onboarding, new users are presented a modal of interest tags to select from. That list includes (in order):
+
+- Art
+- Music
+- Myphoto
+- Photography
+- Crypto
+- Nature
+- Outdoors
+- Technology
+- Poetry
+- Travel
+- News
+- Journalism
+- Sports
+- Minds
+- Blockchain
+
+Update the list to include these tags instead (in order):
+
+- Animals
+- Anime
+- Art
+- Comedy
+- Crypto
+- Food
+- Freedom
+- Gaming
+- Literature
+- Memes
+- Movies
+- Music
+- Nature
+- NSFW
+- News
+- Outdoors
+- Photography
+- Politics
+- Religion
+- Sports
+- Technology
+- Travel
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+No design
+
+## Personas
+
+This change is targeted at new Minds users who are curious about the network and want to connect with people with similar interests.
+
+## Experiments
+
+This change should be delivered as an experiment, measuring for impact on:
+
+- Avg. # of interest tags selected by new users
+- Content engagement rate on a new user's first session
+- 3 day retention
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [x] Change the tags
+- [x] Run as experiment
+- [x] Bonus if you can make configurable
+
+## Definition of Ready Checklist
+
+- [x] Definition Of Done (DoD)
+- [x] Acceptance criteria
+- [x] Weighted
+- [x] QA
+- [x] UX/Design
+- [x] Personas
+- [x] Experiments",3.0
+(bug) Emails not arriving,"<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When asking for password reset and verification emails, nothing arrives to the mailbox. 2FA emails work.
+
+### Steps to reproduce
+
+#### Password reset
+1. Go to incognito
+2. ask to reset password on Minds login screen
+3. Wait for email that will not come
+
+#### Verification email
+1. Create a new account
+2. Click re-send verification email
+3. notice message on the bottom:
+
+![image](/uploads/0c8f65065504f9ea3d6548b02ab525d1/image.png)
+
+### Platform information 
+
+Win10, Brave
+
+### What is the current *bug* behavior?
+
+Emails are not arriving, possibly because of rate limit?
+
+### What is the expected *correct* behavior?
+
+Emails arriving in the outlined cases (password reset, verification)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)",1.0
+Investigate Ruby Exchange https://ruby.exchange/,"<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""Type::Feature"" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Improve UX around token bridging
+
+## What needs to be done
+
+
+Establish what would be needed for us to get ourselves on the Ruby IMA bridge 
+
+https://ruby.exchange/
+
+Explore the same for liquidity pool
+
+## QA
+
+Test ruby bridge (actually already done this)
+
+## UX/Design
+
+N/A
+
+## Personas
+
+End users
+
+## Experiments
+
+N/A
+
+## Acceptance Criteria
+
+- [ ] Get a list of steps for listing
+
+## Definition of Ready Checklist
+
+- [x] Definition Of Done (DoD)
+- [x] Acceptance criteria
+- [ ] Weighted
+- [x] QA
+- [x] UX/Design
+- [x] Personas
+- [x] Experiments",0.0

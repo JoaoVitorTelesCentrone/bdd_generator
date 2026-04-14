@@ -1,0 +1,91 @@
+timestamp,attempt,model,user_story,score_final,cobertura,clareza,estrutura,executabilidade,aprovado,input_tokens,output_tokens,total_tokens,duration_s
+2026-04-07T17:23:06.943951,1,gemini-2.5-flash,Bug Triage and Customer Support. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,5.56,1.25,8.71,7.5,5.96,False,4672,741,5413,18.63
+2026-04-07T17:23:26.403411,1,gemini-2.5-flash,"Include react native image picker library and enable cropping for Channel Avatar. This image picker for react native supports cropping and a round circle for the avatar
+
+https://github.com/ivpusic/rea",7.43,10.0,8.63,6.43,3.87,True,4741,1168,5909,19.45
+2026-04-07T17:23:45.490807,1,gemini-2.5-flash,"Implement new interest tags selector in onboarding. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-d",4.31,0.0,9.06,5.21,4.69,False,4731,967,5698,19.08
+2026-04-07T17:24:03.119999,1,gemini-2.5-flash,Fix local stack installer issues. TBD,6.63,7.5,8.88,6.69,2.97,False,4650,883,5533,17.62
+2026-04-07T17:24:21.248300,1,gemini-2.5-flash,Bug Triage and Customer Support. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,4.8,1.25,8.71,5.0,5.91,False,4672,658,5330,18.13
+2026-04-07T17:24:37.894120,1,gemini-2.5-flash,"Latest / Top feed: Feed composition spec. - [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+   ",7.01,7.78,9.18,6.5,4.44,True,4740,993,5733,16.64
+2026-04-07T17:24:54.678545,1,gemini-2.5-flash,"NIP-26 working prototype. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new i",5.13,0.0,9.3,7.29,5.41,False,4731,1052,5783,16.78
+2026-04-07T17:25:13.054188,1,gemini-2.5-flash,Provide QA for front!1680,4.63,0.0,8.76,6.38,4.83,False,4651,396,5047,18.37
+2026-04-07T17:25:25.935334,1,gemini-2.5-flash,(feat): change 'from' email address to 'no-reply@minds.com'. Emails should not point to info@minds.com,7.56,10.0,9.14,5.6,5.28,True,4673,594,5267,12.88
+2026-04-07T17:25:44.929648,1,gemini-2.5-flash,"Display a modal of mutual subscribers to be displayed when clicking 'other' on `m-channel__mutualSubscriptions`. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://develope",5.18,5.0,8.46,4.25,3.57,False,4746,161,4907,18.99
+2026-04-07T17:26:05.866313,1,gemini-2.5-flash,"Fix Cassandra extract instability caused by lazy instantiation of SQLAlchemy `insert` operators. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+fil",3.68,0.0,8.27,5.6,1.73,False,4728,540,5268,20.93
+2026-04-07T17:26:18.782751,1,gemini-2.5-flash,"Email: Automate welcome post for 1 day after registration. ## Summary
+
+Send users a welcome post the day after they sign up for Minds.
+
+## Conditions
+- User has signed up for an account
+- User has ver",7.4,10.0,9.26,5.8,4.05,True,4734,560,5294,12.91
+2026-04-07T17:26:36.578877,1,gemini-2.5-flash,Posts repeat in Groups feed. We have a few reports of posts repeating in groups. [This Gitlab issue](https://gitlab.com/minds/front/-/issues/5172) makes reference to the issue in a test Group. Additio,2.39,0.0,8.96,0.0,3.0,False,4743,162,4905,17.79
+2026-04-07T17:26:56.459473,1,gemini-2.5-flash,(bug): welcome email has link to PlayStore. The Welcome email after creating new account has a dead link to the Play Store.,5.58,6.0,8.96,3.75,4.33,False,4669,161,4830,19.88
+2026-04-07T17:27:09.293482,1,gemini-2.5-flash,"(bug) Emails not arriving. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to subm",4.71,0.0,9.15,6.38,4.83,False,4718,753,5471,12.83
+2026-04-07T17:27:28.540711,1,gemini-2.5-flash,"YouTube sync double-posts when video is edited on YouTube. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verif",3.76,5.0,8.46,0.0,2.83,False,4727,164,4891,19.25
+2026-04-07T17:27:45.202701,1,gemini-2.5-flash,"Engagement metric dashboard. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to su",4.73,0.0,9.52,6.21,4.82,False,4721,1293,6014,16.66
+2026-04-07T17:28:00.898646,1,gemini-2.5-flash,"(bug) Verify your email address emails broken on Hotmail and Outlook. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" labe",4.55,0.0,8.59,6.86,3.86,False,4729,1008,5737,15.69
+2026-04-07T17:28:18.458205,1,gemini-2.5-flash,"Auto-enroll users in Open Boosts. Automatically opt a subset of users into viewing Open Boosts, based on their responses to the Build Your Algorithm survey.
+
+Include all users whose responses meet ALL",5.4,5.0,8.66,5.44,2.66,False,4720,1254,5974,17.56
+2026-04-07T17:28:36.933839,1,gemini-2.5-flash,"Email: Automate bring your friends post for 7 days after registration. ## Summary
+
+Send users an email one week after they sign up asking them to refer their friends.
+
+## Conditions
+- User has signed ",3.15,0.0,8.77,2.33,3.47,False,4726,241,4967,18.47
+2026-04-07T17:28:55.600379,1,gemini-2.5-flash,"(bug): Link previews disappear when editing a status post. ### Summary
+
+When editing a status post containing a link and a corresponding preview of said link, the preview will disappear upon saving th",5.59,10.0,8.96,0.0,4.0,False,4718,164,4882,18.66
+2026-04-07T17:29:14.384689,1,gemini-2.5-flash,"Add metrics to GrowthBook. A collection of metrics to add to GrowthBook to enable new experiments.
+
+## Growth metrics
+- [x] 2-hour retention
+- [x] 3-day retention
+- [x] Followed channel
+
+## Engagement",4.63,1.43,8.96,5.0,4.55,False,4740,214,4954,18.78
+2026-04-07T17:29:34.734788,1,gemini-2.5-flash,Move completed development tickets to QA Review in sprint and attach link to sandbox,6.21,6.67,9.49,5.17,3.81,False,4656,915,5571,20.35
+2026-04-07T17:29:52.505390,1,gemini-2.5-flash,"Code-based email verifications in mobile app. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Be",5.07,0.0,9.43,7.25,5.03,False,4733,1280,6013,17.77
+2026-04-07T17:30:09.272180,1,gemini-2.5-flash,(feat): Convert ES reports data to standard format for api return.. See https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/Repository.php#L28 for a good example of how to use repositori,4.26,0.5,9.18,6.12,2.21,False,4740,896,5636,16.76

@@ -1,0 +1,64 @@
+TÍTULO:
+Create page with links to tools to aide development
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Aide development and usage of SKALE tasks such as https://gitlab.com/minds/engine/-/issues/2349
+
+## What needs to be done
+
+Create docs page with info for development
+
+## QA
+
+N/A
+
+## UX/Design
+
+N/A
+
+## Personas
+
+Developers of SKALE MINDS system
+
+## Experiments
+
+N/A
+
+## Acceptance Criteria
+
+- [ ] Docs pages
+- [ ] Blockexplorer
+- [ ] Usage examples
+- [ ] Explanations
+
+## Definition of Ready Checklist
+
+- [X] Definition Of Done (DoD)
+- [X] Acceptance criteria
+- [X] Weighted
+- [X] QA
+- [X] UX/Design
+- [X] Personas
+- [X] Experiments
+
+STORY POINTS: 0.0
+
+USER STORY ENVIADA AO MODELO:
+Create page with links to tools to aide development. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

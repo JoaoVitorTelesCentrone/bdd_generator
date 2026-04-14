@@ -1,0 +1,82 @@
+TÍTULO:
+Latest / Top feed: Feed composition spec
+
+DESCRIÇÃO:
+- [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+    - Latest feed (infinite scroll)
+  - Top
+    - Boost rotator
+    - Top feed (infinite scroll)
+- [ ] Default users to "Latest" view
+- [ ] If user manually toggles to a one view of the Newsfeed, remember that state and return users to that view on subsequent visits to the Newsfeed.
+
+### Designs
+
+https://www.figma.com/proto/hJWtzurKSdqE1LeznT487N/Newsfeed-%5BWeb%5D?page-id=0%3A1&node-id=3%3A3333&viewport=241%2C48%2C0.5&scaling=min-zoom&starting-point-node-id=3%3A3333
+
+Updated designs above.
+
+Design Notes:
+
+* Boost rotator present for both top and latest feeds. Always number 1 position. This will be addressed in a future issue.
+* A highlights section (top 3 top posts) will appear in feed, just after the third post, or fourth post if you include the boost rotator.
+
+![image](/uploads/5e0ad5dc919b43e61d2dbfc2f2da978b/image.png)
+
+----
+
+Background:
+
+### Target problem
+
+The changes to the Newsfeed are targeted at all users and aimed to improve the relevance of the first posts the user sees when visiting the Newsfeed.
+
+### Hypothesis
+
+By prioritizing "Top" posts for all users, we can improve relevance of the first-seen posts on the Newsfeed. However, Minds users greatly value their traditional chronological "Latest" feeds. So we want to introduce a new default view of the Newsfeed that combines elements of "Top" with the traditional "Latest" feed.
+
+We're mindful of potential backlash from a subset of Minds users who don't want the "Top" posts summary, so we'll offer them the option to view their old feed. For users who prefer the "Top" sorting, we'll give them the option to see a Newsfeed completely organized by "Top," not just the condensed view of the default Newsfeed.
+
+### What is the primary metric that this change is aimed to improve?
+
+- Engagement on the Newsfeed (likes, comments)
+- Duration of sessions on the Newsfeed
+
+### What is the current state of this metric, and what is the improvement goal?
+
+Unknown
+
+### How does this change affect the desired metric?
+
+With the new "Top" widget in the default Newsfeed view, we ensure that users see (a) content that they haven't seen before, and (b) content that is most likely to be engaging.
+
+### What counter metric will ensure that an increase in the primary metric is a positive for the product?
+
+We should measure the % of users who set a preference for the "Latest"-only feed, as a measure of dissatisfaction with the new feature.
+
+### Size estimate
+
+Unknown
+
+### WIP Prototype
+
+https://www.figma.com/proto/hJWtzurKSdqE1LeznT487N/Newsfeed-%5BWeb%5D?page-id=0%3A1&node-id=3%3A3333&viewport=241%2C48%2C0.5&scaling=min-zoom&starting-point-node-id=3%3A3333
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Latest / Top feed: Feed composition spec. - [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+    - Latest feed (infinite scroll)
+  - Top
+    - Boost rotator
+    - Top feed (infinite scroll)
+- [ ] Default users to "Latest" view
+- [ ] If us

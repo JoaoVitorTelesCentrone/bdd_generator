@@ -1,0 +1,22 @@
+TÍTULO:
+Discontinue holding rewards
+
+DESCRIÇÃO:
+As part of the [updated rewards program](https://gitlab.com/groups/minds/-/epics/184), we want to discontinue the ongoing holdings rewards.
+
+Validation:
+- Holding rewards are no longer awarded on a daily basis.
+
+## Dev note:
+- Point to a new epic branch
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Discontinue holding rewards. As part of the [updated rewards program](https://gitlab.com/groups/minds/-/epics/184), we want to discontinue the ongoing holdings rewards.
+
+Validation:
+- Holding rewards are no longer awarded on a daily basis.
+
+## Dev note:
+- Point to a new epic branch

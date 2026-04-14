@@ -1,0 +1,98 @@
+timestamp,attempt,model,user_story,score_final,cobertura,clareza,estrutura,executabilidade,aprovado,input_tokens,output_tokens,total_tokens,duration_s
+2026-04-07T17:32:39.889625,1,gemini-2.5-flash,"Minds videos don't load when embedded. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're a",4.41,0.0,8.8,5.83,4.49,False,4356,1066,5422,15.82
+2026-04-07T17:32:59.095162,1,gemini-2.5-flash,"Permaweb spec tests. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about to submit isn",4.57,0.0,9.37,6.08,4.37,False,4353,861,5214,19.2
+2026-04-07T17:33:14.322007,1,gemini-2.5-flash,"Email: Automate bring your friends post for 7 days after registration. ## Summary
+
+Send users an email one week after they sign up asking them to refer their friends.
+
+## Conditions
+- User has signed ",6.05,5.0,9.4,6.0,4.33,False,4356,700,5056,15.22
+2026-04-07T17:33:32.468691,1,gemini-2.5-flash,"Add definition for each report reason. <!---
+Please read this!
+
+The Defintion of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before ope",7.39,10.0,8.82,5.64,4.65,True,4363,1169,5532,18.14
+2026-04-07T17:33:47.077444,1,gemini-2.5-flash,"Update content policy to reflect current practice on token manipulation. **Objective**
+
+- The Content Policy states that token manipulation is an immediate ban offense.  However, the current practice ",5.36,3.33,8.91,5.67,4.4,False,4344,369,4713,14.61
+2026-04-07T17:34:00.426088,1,gemini-2.5-flash,"Remove 401s / 404s from sitemaps. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're about ",5.15,0.0,9.45,7.08,5.69,False,4361,585,4946,13.35
+2026-04-07T17:34:17.779965,1,gemini-2.5-flash,"(bug): Cant delete a reply to a comment on a blog post. ### Summary
+
+On ones own blog post, while one can delete a comment residing on said post, one can not delete a reply to a comment; although one ",3.48,3.57,8.46,0.0,3.6,False,4359,164,4523,17.35
+2026-04-07T17:34:37.531892,1,gemini-2.5-flash,Documentation on &26 and &30. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,3.45,0.0,8.81,3.5,3.17,False,4305,161,4466,19.75
+2026-04-07T17:34:57.285159,1,gemini-2.5-flash,"Discontinue holding rewards. As part of the [updated rewards program](https://gitlab.com/groups/minds/-/epics/184), we want to discontinue the ongoing holdings rewards.
+
+Validation:
+- Holding rewards ",2.39,0.0,4.7,3.5,2.0,False,4342,217,4559,19.75
+2026-04-07T17:35:16.684497,1,gemini-2.5-flash,"Add metrics to GrowthBook. A collection of metrics to add to GrowthBook to enable new experiments.
+
+## Growth metrics
+- [x] 2-hour retention
+- [x] 3-day retention
+- [x] Followed channel
+
+## Engagement",5.23,1.43,9.32,6.5,4.92,False,4370,998,5368,19.4
+2026-04-07T17:35:33.627388,1,gemini-2.5-flash,"Switch out arweave remote config for local node. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issu",4.47,0.0,9.24,6.58,3.24,False,4357,643,5000,16.94
+2026-04-07T17:35:49.892270,1,gemini-2.5-flash,"Since video is unsupported, only posts title, description and reference minds link",7.32,9.0,8.96,6.22,4.82,True,4286,1300,5586,16.26
+2026-04-07T17:36:09.845062,1,gemini-2.5-flash,"Boost inventory: Add boosts to Discovery. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before",4.5,0.0,9.35,5.67,4.64,False,4361,765,5126,19.95
+2026-04-07T17:36:30.991237,1,gemini-2.5-flash,"(bug) Posts showing up in wrong feeds, with out of place timestamps. Steps to replicate:
+1. I went into boost console
+2. I boosted 3 posts (0.5T, 2.5T, 2T)
+3. Clicked minds logo to get back to the tim",4.47,6.67,8.96,0.0,3.4,False,4436,161,4597,21.14
+2026-04-07T17:36:45.852795,1,gemini-2.5-flash,"Homepage: Copy / image updates. Given the Classic homepage is outperforming the newer Discovery homepage in terms of driving user signups, we should update the page to reflect the current product visi",4.28,0.0,7.83,6.31,4.1,False,4345,681,5026,14.86
+2026-04-07T17:37:05.698055,1,gemini-2.5-flash,"Show posts from subscribed Groups in Newsfeed. Users like Groups because they help keep up with specific interests, but report that it's difficult to actually keep up with them because the posts in Gr",3.84,0.62,8.96,4.25,2.93,False,4346,472,4818,19.84
+2026-04-07T17:37:21.905407,1,gemini-2.5-flash,"Land newly-registered users on Discovery. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before",5.97,5.0,9.03,6.38,3.75,False,4361,478,4839,16.2
+2026-04-07T17:37:41.181161,1,gemini-2.5-flash,"Captcha failures. ### Summary:
+
+Trying to register but capcha will not accept correct input
+
+### Steps to reproduce:
+
+1. typing capcha characters in field
+2. get red capcha failed message instead of W",2.53,0.0,8.46,0.0,4.17,False,4337,164,4501,19.27
+2026-04-07T17:37:49.226220,1,gemini-2.5-flash,"Change contact info for p/contact page. https://www.minds.com/p/contact
+
+1.  ""Help Desk"" -> ""Support Center""
+2.  info@minds.com -> support@minds.zendesk.com",7.02,10.0,8.07,5.62,3.6,True,4326,303,4629,8.04
+2026-04-07T17:38:07.229723,1,gemini-2.5-flash,Open Graph image for About page. Specify open graph image for minds.com/about. og:image is used when the link is shared on social media sites.,6.74,6.43,8.14,7.07,5.31,False,4305,963,5268,18.0
+2026-04-07T17:38:23.617397,1,gemini-2.5-flash,"Add Popular Channels module. Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the ",7.68,10.0,9.05,6.43,4.69,True,4370,756,5126,16.39
+2026-04-07T17:38:42.676359,1,gemini-2.5-flash,(feat): admin tools for help desk. Add ability for admins to delete help desk questions,2.89,1.67,8.46,0.0,3.5,False,4290,163,4453,19.06
+2026-04-07T17:39:01.864183,1,gemini-2.5-flash,"(feat): As moderators, we should be able to simultaneously manage the queue.. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.",4.4,0.94,9.34,4.67,4.25,False,4311,984,5295,19.18
+2026-04-07T17:39:21.108535,1,gemini-2.5-flash,"YouTube sync double-posts when video is edited on YouTube. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verif",4.81,5.0,8.31,3.5,3.0,False,4357,163,4520,19.24
+2026-04-07T17:39:40.372736,1,gemini-2.5-flash,"NIP-26 working prototype. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new i",3.05,0.0,8.64,2.33,3.11,False,4361,340,4701,19.26

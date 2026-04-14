@@ -1,0 +1,11 @@
+story_id,title,model,score_final,cobertura,clareza,estrutura,executabilidade,tentativas,tokens_usados,tokens_research,tempo_segundos,aprovado,convergiu,feature_file
+1,Fix local stack installer issues,flash,7.0,6.89,8.25,7.0,5.91,3,8353,2308,51.43,True,True,results\pipeline_20260407_231448\run2\features\001_fix_local_stack_installer_issues.feature
+2,(bug): subscribed blog post duplicates filling feed,flash,7.36,6.57,7.5,8.5,6.67,1,5160,2165,18.09,True,True,results\pipeline_20260407_231448\run2\features\002_bug_subscribed_blog_post_duplicates_filling_feed.feature
+3,Email: Automate bring your friends post for 7 days after registration,flash,5.99,1.6,9.12,8.5,5.66,3,8831,1891,44.15,False,False,results\pipeline_20260407_231448\run2\features\003_email_automate_bring_your_friends_post_for_7_days_.feature
+4,Add button/link to open edit channel from inside settings,flash,5.7,1.6,9.12,7.0,6.46,3,7188,2065,47.8,False,False,results\pipeline_20260407_231448\run2\features\004_add_buttonlink_to_open_edit_channel_from_inside_se.feature
+5,Spike: Create NIP for Delegated Event Signing,flash,6.27,4.5,6.92,7.6,6.29,3,8269,557,46.56,False,False,results\pipeline_20260407_231448\run2\features\005_spike_create_nip_for_delegated_event_signing.feature
+6,Fix time spent in growthbook,flash,7.13,7.17,8.25,7.3,5.71,2,5247,757,36.35,True,True,results\pipeline_20260407_231448\run2\features\006_fix_time_spent_in_growthbook.feature
+7,Discovery: Implement channel recommendations component - web,flash,7.38,10.0,7.45,7.0,3.97,1,3744,559,19.34,True,True,results\pipeline_20260407_231448\run2\features\007_discovery_implement_channel_recommendations_compon.feature
+8,Add Popular Channels module,flash,5.61,2.57,7.39,7.55,5.49,3,11908,2453,53.57,False,False,results\pipeline_20260407_231448\run2\features\008_add_popular_channels_module.feature
+9,Upgrade to Angular 13,flash,7.26,9.05,7.36,7.14,4.63,1,6087,2096,18.5,True,True,results\pipeline_20260407_231448\run2\features\009_upgrade_to_angular_13.feature
+10,Bug Triage and Customer Support,flash,8.55,9.5,7.38,9.1,7.47,1,4655,916,16.06,True,True,results\pipeline_20260407_231448\run2\features\010_bug_triage_and_customer_support.feature

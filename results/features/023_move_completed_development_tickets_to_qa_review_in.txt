@@ -1,0 +1,10 @@
+TÍTULO:
+Move completed development tickets to QA Review in sprint and attach link to sandbox
+
+DESCRIÇÃO:
+(sem descrição)
+
+STORY POINTS: 0.0
+
+USER STORY ENVIADA AO MODELO:
+Move completed development tickets to QA Review in sprint and attach link to sandbox

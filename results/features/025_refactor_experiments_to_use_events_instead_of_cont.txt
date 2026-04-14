@@ -1,0 +1,26 @@
+TÍTULO:
+Refactor experiments to use events instead of contexts
+
+DESCRIÇÃO:
+## The Problem
+
+Currently all users are bucketed into experiments on app initialisation and not when they actually see the experiment. This was done so that pageviews could register the experiments as contexts when someone lands on the site. 
+
+Issues arise when experiment reports rely on only including users who have seen the experiment to be included. For example, an experiment that forwards users to discovery instead of the newsfeed after registration should not just only include users that have just signed up, it should also only apply to users that do not have any referral logic (ie. take newly loggedin/registered users back to previous page). 
+
+## Proposed change
+
+- [x] Create a new iglu schema `growthbook_event` which includes the experiment_id that the user is in
+- [x] Remove backend registration and client on init logic
+- [x] Record a `growthbook_event` via snowplow when an experiment is run
+- [x] To avoid unnecessary events, cache a reference to the events so that they only get sent every 24 hours.
+- [x] Now that we support psuedo_id, attach both the anonymous_id and user_id to growthbook events
+
+STORY POINTS: 8.0
+
+USER STORY ENVIADA AO MODELO:
+Refactor experiments to use events instead of contexts. ## The Problem
+
+Currently all users are bucketed into experiments on app initialisation and not when they actually see the experiment. This was done so that pageviews could register the experiments as contexts when someone lands on the site. 
+
+Issues arise when experiment reports rely on only includ

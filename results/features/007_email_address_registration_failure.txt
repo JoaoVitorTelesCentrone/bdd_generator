@@ -1,0 +1,30 @@
+TÍTULO:
+Email address registration failure
+
+DESCRIÇÃO:
+### Summary:
+
+on your website and on the Apple app, it would not accept my email address hzmd@me.com so I could not register. On the app I also tried hzmd@icloud.com without success
+
+### Steps to reproduce:
+
+I tried it more than once
+
+### Browser and OS
+
+iOs reported by: @
+
+STORY POINTS: 4.0
+
+USER STORY ENVIADA AO MODELO:
+Email address registration failure. ### Summary:
+
+on your website and on the Apple app, it would not accept my email address hzmd@me.com so I could not register. On the app I also tried hzmd@icloud.com without success
+
+### Steps to reproduce:
+
+I tried it more than once
+
+### Browser and OS
+
+iOs reported by: @

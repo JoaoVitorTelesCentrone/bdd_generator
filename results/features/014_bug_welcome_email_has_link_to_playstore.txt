@@ -1,0 +1,10 @@
+TÍTULO:
+(bug): welcome email has link to PlayStore
+
+DESCRIÇÃO:
+The Welcome email after creating new account has a dead link to the Play Store.
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+(bug): welcome email has link to PlayStore. The Welcome email after creating new account has a dead link to the Play Store.

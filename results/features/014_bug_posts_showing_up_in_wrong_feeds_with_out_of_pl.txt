@@ -1,0 +1,31 @@
+TÍTULO:
+(bug) Posts showing up in wrong feeds, with out of place timestamps
+
+DESCRIÇÃO:
+Steps to replicate:
+1. I went into boost console
+2. I boosted 3 posts (0.5T, 2.5T, 2T)
+3. Clicked minds logo to get back to the timeline
+4. My pinned post was third post on the timeline:
+
+> ![2021-12-03_19-05-49](/uploads/04c914b6d4303c3251a8d4fdfae12a04/2021-12-03_19-05-49.mp4)
+
+
+5. Then i tried going back to boost console (using back arrow)
+6. I went back to the feed, and I saw this:
+
+> ![2021-12-03_19-06-39](/uploads/ce773eb43bff75822133d1c2470fa207/2021-12-03_19-06-39.mp4)
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+(bug) Posts showing up in wrong feeds, with out of place timestamps. Steps to replicate:
+1. I went into boost console
+2. I boosted 3 posts (0.5T, 2.5T, 2T)
+3. Clicked minds logo to get back to the timeline
+4. My pinned post was third post on the timeline:
+
+> ![2021-12-03_19-05-49](/uploads/04c914b6d4303c3251a8d4fdfae12a04/2021-12-03_19-05-49.mp4)
+
+
+5. Then i tried go

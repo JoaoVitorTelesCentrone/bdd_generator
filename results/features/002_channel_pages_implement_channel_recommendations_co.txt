@@ -1,0 +1,54 @@
+TÍTULO:
+Channel pages: Implement channel recommendations component
+
+DESCRIÇÃO:
+Implement the new channel recommendations component on Channel pages. See this design prototype for visual and interaction spec.
+
+- [For channels with activity posts](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=72%3A847&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=72%3A847&show-proto-sidebar=1)
+- [For channels with empty activity feeds](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=76%3A1890&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=76%3A1890&show-proto-sidebar=1)
+
+## Acceptance
+
+### Interaction: Channel has activity posts
+
+- Given the user is viewing a Channel page,
+- and the channel page DOES have activity posts in its feed,
+- when the user clicks to subscribe to that channel,
+- then the channel recommendations component appears at the top of the activity post feed,
+- and the heading for the component reads `Consider subscribing to`,
+- and the recommended channels are sourced from the logic described below.
+
+NOTE: This is not a functional requirement where the channel feed is empty, as recommendations will be displayed by default (see below)
+
+- [See prototype here](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=72%3A847&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=72%3A847&show-proto-sidebar=1)
+
+
+### Interaction: Channel does not have activity posts
+
+- Given the user is viewing a Channel page,
+- and the channel page DOES NOT have activity posts in its feed,
+- when the page is loaded,
+- then the channel recommendations component appears at the top of the activity post feed,
+- and the heading for the component reads `Consider subscribing to`,
+- and the recommended channels are sourced from the logic described below.
+
+If the user were to subscribe, the recommendation slide in (described earlier) would not display.
+
+### Which channels are recommended (logic)
+
+- Given the channel DOES have subscriptions to other channels...
+  - Include: Channels subscribed to by the channel the user is currently viewing
+  - Filter out: Channels the user already subscribes to.
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days.
+---
+- Given the channel DOES NOT have subscriptions to other channels...
+  - Include: Channels subscribed to by @Minds account.
+  - Filter out: Channels the user already subscribes to.
+  - Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days.
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Channel pages: Implement channel recommendations component. Implement the new channel recommendations component on Channel pages. See this design prototype for visual and interaction spec.
+
+- [For channels with activity posts](https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=72%3A847&viewport=241%2C48%2C1&scaling=scale

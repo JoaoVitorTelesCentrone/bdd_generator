@@ -1,0 +1,10 @@
+TÍTULO:
+(feat): change 'from' email address to 'no-reply@minds.com'
+
+DESCRIÇÃO:
+Emails should not point to info@minds.com
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+(feat): change 'from' email address to 'no-reply@minds.com'. Emails should not point to info@minds.com

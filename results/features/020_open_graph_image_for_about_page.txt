@@ -1,0 +1,10 @@
+TÍTULO:
+Open Graph image for About page
+
+DESCRIÇÃO:
+Specify open graph image for minds.com/about. og:image is used when the link is shared on social media sites.
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+Open Graph image for About page. Specify open graph image for minds.com/about. og:image is used when the link is shared on social media sites.

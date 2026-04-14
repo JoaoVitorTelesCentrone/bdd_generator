@@ -1,0 +1,42 @@
+TÍTULO:
+(bug): Cant delete a reply to a comment on a blog post
+
+DESCRIÇÃO:
+### Summary
+
+On ones own blog post, while one can delete a comment residing on said post, one can not delete a reply to a comment; although one can do so on ones own status post.
+
+### Steps to reproduce
+
+Go to one of your blog posts. Find a reply to your comment. Click the 3 vertical dots, and the option to delete a reply is not present; as it is in a status post.
+
+### Platform information 
+
+Firefox 60.5.1 ESR; Debian 'Stretch' Linux 6.8
+
+### What is the current *bug* behavior?
+
+The vertical dots opening the options menu on comments/replies on ones blog post do not show the option to delete, as it does on a status post.
+
+### What is the expected *correct* behavior?
+
+The vertical dots opening the options menu on comments/replies on ones blog post SHOULD show the option to delete, as it does on a status post.
+
+### Relevant logs and/or screenshots
+
+![Selection_545](/uploads/86c1b6fd9918fb855e9e18171276696a/Selection_545.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+(bug): Cant delete a reply to a comment on a blog post. ### Summary
+
+On ones own blog post, while one can delete a comment residing on said post, one can not delete a reply to a comment; although one can do so on ones own status post.
+
+### Steps to reproduce
+
+Go to one of your blog posts. Find a reply to your comment. Click the 3 vertical dots, and the o

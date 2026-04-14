@@ -1,0 +1,90 @@
+TÍTULO:
+Minds installation fails at ElasticSearch 6.x+ step
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Minds local stack installation times out using Windows' WSL 2
+
+### Steps to reproduce
+
+- Join Windows Insider and enable WSL 2
+- Install Docker for Windows with WSL 2 support
+- Try to install the stack with `minds install`
+- ElasticSearch 6.x+ step times out and fails
+
+### Platform information 
+
+Windows 10 Pro with Ubuntu 18 LTS running on WSL 2 mode
+
+### What is the current *bug* behavior?
+
+Local stack installation fail at ElasticSearch provision step due to vm.max_map_count being too low for ES.
+
+### What is the expected *correct* behavior?
+
+Local stack installation to succeed.
+
+### Relevant logs and/or screenshots
+
+```
+Pulling elasticsearch (elasticsearch:6.6.2)...
+Creating minds_elasticsearch_1 ... done
+Operation timed out
+6.6.2: Pulling from library/elasticsearch
+Digest: sha256:59dd45d05fe89cd713dfc20874c6298e1ec7eaf384e58410b677b9dead6986f1
+Status: Downloaded newer image for elasticsearch:6.6.2
+Provisioning elastic search
+Waiting for elastic search to come online...
+    at makeError (D:\Minds\minds\local\node_modules\execa\lib\error.js:58:11)
+    at handlePromise (D:\Minds\minds\local\node_modules\execa\index.js:114:26)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  shortMessage: 'Command failed with exit code 1: docker-compose -f docker-compose.yml -f docker-compose.with-phpspec.yml run elasticsearch-provisioner',
+  command: 'docker-compose -f docker-compose.yml -f docker-compose.with-phpspec.yml run elasticsearch-provisioner',
+  exitCode: 1,
+  signal: undefined,
+  signalDescription: undefined,
+  stdout: '6.6.2: Pulling from library/elasticsearch\r\n' +
+    'Digest: sha256:59dd45d05fe89cd713dfc20874c6298e1ec7eaf384e58410b677b9dead6986f1\r\n' +
+    'Status: Downloaded newer image for elasticsearch:6.6.2\r\n' +
+    'Provisioning elastic search\n' +
+    'Waiting for elastic search to come online...',
+  stderr: 'Pulling elasticsearch (elasticsearch:6.6.2)...\r\n' +
+    'Creating minds_elasticsearch_1 ... \r\r\n' +
+    '\u001b[1A\u001b[2K\rCreating minds_elasticsearch_1 ... \u001b[32mdone\u001b[0m\r\u001b[1BOperation timed out',
+  failed: true,
+  timedOut: false,
+  isCanceled: false,
+  killed: false,
+  context: [Object: null prototype] {}
+}
+```
+
+### Possible fixes
+
+We need to detect if we're on a Linux environment (either standalone or via WSL 2) scenarios and ask the user to set vm. max_map_count=262144 in their sysctl.
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Minds installation fails at ElasticSearch 6.x+ step. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Minds local stack installation times out using Windows' WSL 2
+
+### Steps to reproduce
+

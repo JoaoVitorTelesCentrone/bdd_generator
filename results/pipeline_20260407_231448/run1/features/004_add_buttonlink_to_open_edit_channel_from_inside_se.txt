@@ -1,0 +1,12 @@
+TÍTULO:
+Add button/link to open edit channel from inside settings
+
+DESCRIÇÃO:
+1. Add "Profile Settings" under "Display Name" in Settings
+2. Should spawn the same modal as "Edit Channel" button on channel
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Add button/link to open edit channel from inside settings. 1. Add "Profile Settings" under "Display Name" in Settings
+2. Should spawn the same modal as "Edit Channel" button on channel

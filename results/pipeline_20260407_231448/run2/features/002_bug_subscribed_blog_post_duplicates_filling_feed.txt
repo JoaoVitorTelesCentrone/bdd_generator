@@ -1,0 +1,10 @@
+TÍTULO:
+(bug): subscribed blog post duplicates filling feed
+
+DESCRIÇÃO:
+(sem descrição)
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+(bug): subscribed blog post duplicates filling feed

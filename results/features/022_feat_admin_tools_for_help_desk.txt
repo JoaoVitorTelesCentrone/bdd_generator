@@ -1,0 +1,10 @@
+TÍTULO:
+(feat): admin tools for help desk
+
+DESCRIÇÃO:
+Add ability for admins to delete help desk questions
+
+STORY POINTS: 10.0
+
+USER STORY ENVIADA AO MODELO:
+(feat): admin tools for help desk. Add ability for admins to delete help desk questions

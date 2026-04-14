@@ -1,0 +1,35 @@
+timestamp,attempt,model,user_story,score_final,cobertura,clareza,estrutura,executabilidade,aprovado,input_tokens,output_tokens,total_tokens,duration_s
+2026-04-07T17:44:28.064747,1,gemini-2.5-flash,"Latest / Top feed: Feed composition spec. - [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+   ",6.99,7.78,8.93,6.12,5.16,False,4188,1233,5421,17.54
+2026-04-07T17:44:47.771749,1,gemini-2.5-flash,"Auto-enroll users in Open Boosts. Automatically opt a subset of users into viewing Open Boosts, based on their responses to the Build Your Algorithm survey.
+
+Include all users whose responses meet ALL",6.12,7.5,8.64,4.2,4.42,False,4168,958,5126,19.7
+2026-04-07T17:45:06.350896,1,gemini-2.5-flash,"Discovery feed paginated loading issue. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the ""T - Bug"" label and verify the issue you're ",4.33,0.0,8.62,5.67,4.55,False,4171,911,5082,18.58
+2026-04-07T17:45:20.184898,1,gemini-2.5-flash,"""Switch to app"" overlay overlaps Guest Mode banner. Given the user is on a mobile device (here: emulating iOS),
+and the user visits the new Guest Mode homepage,
+when the page is loaded,
+then a ""Switch",4.46,2.78,8.46,4.25,3.29,False,4172,197,4369,13.83
+2026-04-07T17:45:40.366388,1,gemini-2.5-flash,(feat): Convert ES reports data to standard format for api return.. See https://gitlab.com/minds/engine/blob/master/Core/VideoChat/Leases/Repository.php#L28 for a good example of how to use repositori,3.41,0.5,8.66,3.5,2.4,False,4188,163,4351,20.18
+2026-04-07T17:45:54.363927,1,gemini-2.5-flash,"Show toast message before launching modal if email verification is required to complete modal actions. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.c",4.51,0.0,8.97,6.08,4.48,False,4187,687,4874,14.0
+2026-04-07T17:46:06.913092,1,gemini-2.5-flash,"Email address registration failure. ### Summary:
+
+on your website and on the Apple app, it would not accept my email address hzmd@me.com so I could not register. On the app I also tried hzmd@icloud.co",5.6,3.6,9.24,5.83,4.6,False,4167,743,4910,12.55
+2026-04-07T17:46:26.408119,1,gemini-2.5-flash,"Change copy on Twitter Sync settings page. In order to better set expectations for Minds users who enable Twitter Sync, we should change the copy on the [Twitter Sync settings page](https://www.minds.",7.48,10.0,9.34,5.6,4.64,True,4169,605,4774,19.49
+2026-04-07T17:46:46.841301,1,gemini-2.5-flash,"Spike: Create NIP for Delegated Event Signing. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+B",4.2,0.0,9.04,6.0,2.97,False,4183,851,5034,20.43
+2026-04-07T17:47:05.314209,1,gemini-2.5-flash,Define email strategy. ...,7.54,10.0,9.08,5.81,4.93,True,4095,1521,5616,18.47

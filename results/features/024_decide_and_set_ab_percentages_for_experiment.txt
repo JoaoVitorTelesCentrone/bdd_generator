@@ -1,0 +1,24 @@
+TÍTULO:
+Decide and set A/B percentages for experiment
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+General consensus when discussed seemed to be to start off around a 90/10 split.
+
+STORY POINTS: 0.0
+
+USER STORY ENVIADA AO MODELO:
+Decide and set A/B percentages for experiment. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+General consensus when discussed seemed to be to start off around a 90/10 split.

@@ -1,0 +1,75 @@
+TÍTULO:
+Show toast message before launching modal if email verification is required to complete modal actions
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Reduce UX clumsiness by warning user about email verification requirement before they try to do something that requires email verification.
+
+## What needs to be done
+
+Throw a toast message instead of opening a modal, if the modal action requires email verification.
+
+Examples:
+
+- [Verifying phone number](https://gitlab.com/minds/front/-/issues/5568)
+- [Creating an activity post](https://gitlab.com/minds/engine/-/issues/2209)
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+Message:
+
+> You must confirm your email address
+
+## Personas
+
+- New users
+
+## Experiments
+
+None
+
+## Acceptance Criteria
+
+- Given a user hasn't verified their email address,
+- when the user clicks something that generates a modal,
+- and that modal's action requires email verification,
+- then prevent the modal from displaying,
+- and throw a toast message that indicates that email verification is required.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Show toast message before launching modal if email verification is required to complete modal actions. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

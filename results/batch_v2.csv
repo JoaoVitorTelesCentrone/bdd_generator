@@ -1,0 +1,26 @@
+story_id,title,model,score_final,cobertura,clareza,estrutura,executabilidade,tentativas,tokens_usados,tokens_research,tempo_segundos,aprovado,convergiu,feature_file
+1,Bug Triage and Customer Support,flash,5.56,1.25,8.71,7.5,5.96,1,5413,0,18.63,False,False,results\features\001_bug_triage_and_customer_support.feature
+2,Include react native image picker library and enable cropping for Channel Avatar,flash,7.43,10.0,8.63,6.43,3.87,1,5909,0,19.45,True,True,results\features\002_include_react_native_image_picker_library_and_enab.feature
+3,Implement new interest tags selector in onboarding,flash,4.31,0.0,9.06,5.21,4.69,1,5698,0,19.08,False,False,results\features\003_implement_new_interest_tags_selector_in_onboarding.feature
+4,Fix local stack installer issues,flash,6.63,7.5,8.88,6.69,2.97,1,5533,0,17.62,False,False,results\features\004_fix_local_stack_installer_issues.feature
+5,Bug Triage and Customer Support,flash,4.8,1.25,8.71,5.0,5.91,1,5330,0,18.13,False,False,results\features\005_bug_triage_and_customer_support.feature
+6,Latest / Top feed: Feed composition spec,flash,7.01,7.78,9.18,6.5,4.44,1,5733,0,16.64,True,True,results\features\006_latest_top_feed_feed_composition_spec.feature
+7,NIP-26 working prototype,flash,5.13,0.0,9.3,7.29,5.41,1,5783,0,16.78,False,False,results\features\007_nip_26_working_prototype.feature
+8,Provide QA for front!1680,flash,4.63,0.0,8.76,6.38,4.83,1,5047,0,18.37,False,False,results\features\008_provide_qa_for_front1680.feature
+9,(feat): change 'from' email address to 'no-reply@minds.com',flash,7.56,10.0,9.14,5.6,5.28,1,5267,0,12.88,True,True,results\features\009_feat_change_from_email_address_to_no_replymindscom.feature
+10,Display a modal of mutual subscribers to be displayed when clicking 'other' on `m-channel__mutualSubscriptions`,flash,5.18,5.0,8.46,4.25,3.57,1,4907,0,18.99,False,False,results\features\010_display_a_modal_of_mutual_subscribers_to_be_displa.feature
+11,Fix Cassandra extract instability caused by lazy instantiation of SQLAlchemy `insert` operators,flash,3.68,0.0,8.27,5.6,1.73,1,5268,0,20.93,False,False,results\features\011_fix_cassandra_extract_instability_caused_by_lazy_i.feature
+12,Email: Automate welcome post for 1 day after registration,flash,7.4,10.0,9.26,5.8,4.05,1,5294,0,12.91,True,True,results\features\012_email_automate_welcome_post_for_1_day_after_regist.feature
+13,Posts repeat in Groups feed,flash,2.39,0.0,8.96,0.0,3.0,1,4905,0,17.79,False,False,results\features\013_posts_repeat_in_groups_feed.feature
+14,(bug): welcome email has link to PlayStore,flash,5.58,6.0,8.96,3.75,4.33,1,4830,0,19.88,False,False,results\features\014_bug_welcome_email_has_link_to_playstore.feature
+15,(bug) Emails not arriving,flash,4.71,0.0,9.15,6.38,4.83,1,5471,0,12.83,False,False,results\features\015_bug_emails_not_arriving.feature
+16,YouTube sync double-posts when video is edited on YouTube,flash,3.76,5.0,8.46,0.0,2.83,1,4891,0,19.25,False,False,results\features\016_youtube_sync_double_posts_when_video_is_edited_on_.feature
+17,Engagement metric dashboard,flash,4.73,0.0,9.52,6.21,4.82,1,6014,0,16.66,False,False,results\features\017_engagement_metric_dashboard.feature
+18,(bug) Verify your email address emails broken on Hotmail and Outlook,flash,4.55,0.0,8.59,6.86,3.86,1,5737,0,15.69,False,False,results\features\018_bug_verify_your_email_address_emails_broken_on_hot.feature
+19,Auto-enroll users in Open Boosts,flash,5.4,5.0,8.66,5.44,2.66,1,5974,0,17.56,False,False,results\features\019_auto_enroll_users_in_open_boosts.feature
+20,Email: Automate bring your friends post for 7 days after registration,flash,3.15,0.0,8.77,2.33,3.47,1,4967,0,18.47,False,False,results\features\020_email_automate_bring_your_friends_post_for_7_days_.feature
+21,(bug): Link previews disappear when editing a status post,flash,5.59,10.0,8.96,0.0,4.0,1,4882,0,18.66,False,False,results\features\021_bug_link_previews_disappear_when_editing_a_status_.feature
+22,Add metrics to GrowthBook,flash,4.63,1.43,8.96,5.0,4.55,1,4954,0,18.78,False,False,results\features\022_add_metrics_to_growthbook.feature
+23,Move completed development tickets to QA Review in sprint and attach link to sandbox,flash,6.21,6.67,9.49,5.17,3.81,1,5571,0,20.35,False,False,results\features\023_move_completed_development_tickets_to_qa_review_in.feature
+24,Code-based email verifications in mobile app,flash,5.07,0.0,9.43,7.25,5.03,1,6013,0,17.77,False,False,results\features\024_code_based_email_verifications_in_mobile_app.feature
+25,(feat): Convert ES reports data to standard format for api return.,flash,4.26,0.5,9.18,6.12,2.21,1,5636,0,16.76,False,False,results\features\025_feat_convert_es_reports_data_to_standard_format_fo.feature

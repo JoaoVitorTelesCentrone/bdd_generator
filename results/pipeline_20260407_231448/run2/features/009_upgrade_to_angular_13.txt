@@ -1,0 +1,10 @@
+TÍTULO:
+Upgrade to Angular 13
+
+DESCRIÇÃO:
+Upgrade to the latest version of Angular. Version 13.
+
+STORY POINTS: 13.0
+
+USER STORY ENVIADA AO MODELO:
+Upgrade to Angular 13. Upgrade to the latest version of Angular. Version 13.

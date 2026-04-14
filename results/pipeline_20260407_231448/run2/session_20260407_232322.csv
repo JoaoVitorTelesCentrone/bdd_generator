@@ -1,0 +1,55 @@
+timestamp,attempt,model,user_story,score_final,cobertura,clareza,estrutura,executabilidade,aprovado,input_tokens,output_tokens,total_tokens,duration_s
+2026-04-07T23:24:01.818146,1,gemini-2.5-flash,Fix local stack installer issues. TBD,6.82,6.89,8.25,7.0,5.0,False,5142,162,5304,18.13
+2026-04-07T23:24:17.705529,2,gemini-2.5-flash,Fix local stack installer issues. TBD,6.95,6.89,8.08,7.0,5.82,False,721,693,1414,15.89
+2026-04-07T23:24:35.114655,3,gemini-2.5-flash,Fix local stack installer issues. TBD,7.0,6.89,8.25,7.0,5.91,True,1252,383,1635,17.41
+2026-04-07T23:25:13.981933,1,gemini-2.5-flash,(bug): subscribed blog post duplicates filling feed,7.36,6.57,7.5,8.5,6.67,True,4999,161,5160,18.09
+2026-04-07T23:25:49.945632,1,gemini-2.5-flash,"Email: Automate bring your friends post for 7 days after registration. ## Summary
+
+Send users an email one week after they sign up asking them to refer their friends.
+
+## Conditions
+- User has signed ",5.32,2.4,8.7,5.83,5.56,False,4725,927,5652,17.33
+2026-04-07T23:26:06.814806,2,gemini-2.5-flash,"Email: Automate bring your friends post for 7 days after registration. ## Summary
+
+Send users an email one week after they sign up asking them to refer their friends.
+
+## Conditions
+- User has signed ",5.7,0.8,9.12,8.5,5.43,False,1637,162,1799,16.87
+2026-04-07T23:26:16.767284,3,gemini-2.5-flash,"Email: Automate bring your friends post for 7 days after registration. ## Summary
+
+Send users an email one week after they sign up asking them to refer their friends.
+
+## Conditions
+- User has signed ",5.99,1.6,9.12,8.5,5.66,False,799,581,1380,9.95
+2026-04-07T23:26:50.787053,1,gemini-2.5-flash,"Add button/link to open edit channel from inside settings. 1. Add ""Profile Settings"" under ""Display Name"" in Settings
+2. Should spawn the same modal as ""Edit Channel"" button on channel",4.94,5.4,7.06,3.5,4.29,False,4899,163,5062,16.37
+2026-04-07T23:27:09.597514,2,gemini-2.5-flash,"Add button/link to open edit channel from inside settings. 1. Add ""Profile Settings"" under ""Display Name"" in Settings
+2. Should spawn the same modal as ""Edit Channel"" button on channel",5.12,0.0,9.12,7.0,6.0,False,833,164,997,18.81
+2026-04-07T23:27:22.218678,3,gemini-2.5-flash,"Add button/link to open edit channel from inside settings. 1. Add ""Profile Settings"" under ""Display Name"" in Settings
+2. Should spawn the same modal as ""Edit Channel"" button on channel",5.7,1.6,9.12,7.0,6.46,False,760,369,1129,12.62
+2026-04-07T23:27:56.613493,1,gemini-2.5-flash,"Spike: Create NIP for Delegated Event Signing. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+B",6.18,4.5,7.0,7.38,6.08,False,3391,603,3994,13.01
+2026-04-07T23:28:13.326054,2,gemini-2.5-flash,"Spike: Create NIP for Delegated Event Signing. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+B",6.27,4.5,6.92,7.6,6.29,False,1248,736,1984,16.71
+2026-04-07T23:28:30.166777,3,gemini-2.5-flash,"Spike: Create NIP for Delegated Event Signing. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+B",6.21,4.5,7.0,7.5,6.06,False,1450,841,2291,16.84
+2026-04-07T23:29:08.697253,1,gemini-2.5-flash,Fix time spent in growthbook,6.84,6.67,8.25,7.0,5.47,False,3591,280,3871,18.35
+2026-04-07T23:29:26.700900,2,gemini-2.5-flash,Fix time spent in growthbook,7.13,7.17,8.25,7.3,5.71,True,837,539,1376,18.0
+2026-04-07T23:30:05.848410,1,gemini-2.5-flash,Discovery: Implement channel recommendations component - web. Implement the new channel recommendations component on [Discover / Top page](https://www.minds.com/discovery/top). See this design prototy,7.38,10.0,7.45,7.0,3.97,True,3393,351,3744,19.34
+2026-04-07T23:30:43.615067,1,gemini-2.5-flash,"Add Popular Channels module. Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the ",5.61,2.57,7.39,7.55,5.49,False,5287,1154,6441,17.9
+2026-04-07T23:31:01.919142,2,gemini-2.5-flash,"Add Popular Channels module. Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the ",5.29,2.57,7.04,6.64,5.58,False,1806,661,2467,18.3
+2026-04-07T23:31:19.295922,3,gemini-2.5-flash,"Add Popular Channels module. Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the ",5.56,2.57,7.46,7.42,5.36,False,1806,1194,3000,17.37
+2026-04-07T23:31:57.896296,1,gemini-2.5-flash,Upgrade to Angular 13. Upgrade to the latest version of Angular. Version 13.,7.26,9.05,7.36,7.14,4.63,True,4930,1157,6087,18.5
+2026-04-07T23:32:33.600105,1,gemini-2.5-flash,Bug Triage and Customer Support. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.,8.55,9.5,7.38,9.1,7.47,True,3750,905,4655,16.06

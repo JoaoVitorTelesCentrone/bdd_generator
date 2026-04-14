@@ -1,0 +1,88 @@
+TÍTULO:
+Minds videos don't load when embedded
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Minds videos embedded on Corbett Report website do not load / are not playable.
+
+### Steps to reproduce
+
+- Log out of Minds
+- [Visit this page on Corbett Report website](https://www.corbettreport.com/category/videos/page/4/).
+- Scroll the page to see posts with video embeds.
+- Observe the posts with Minds videos embedded:
+  - Episode 415 - The Global Digital ID Prison
+  - Interview 1708 – New World Next Week with James Evan Pilato
+  - The Future of Censorship (video)
+- Try to play the video
+
+----
+
+- Log into Minds
+- [Visit this page on Corbett Report website](https://www.corbettreport.com/category/videos/page/4/).
+- Scroll the page to see posts with video embeds.
+- Observe the posts with Minds videos embedded:
+  - Episode 415 - The Global Digital ID Prison
+  - Interview 1708 – New World Next Week with James Evan Pilato
+  - The Future of Censorship (video)
+- Try to play the video
+
+### Platform information 
+
+MacOS + Chrome
+
+### What is the current *bug* behavior?
+
+While logged out of Minds:
+
+The video frame is not loaded in completely (it looks mostly blank, aside from the title).
+
+The video is not playable.
+
+---
+
+While logged into Minds:
+
+The video frame loads in the Minds UI (navigation, avatar, alert bar).
+
+### What is the expected *correct* behavior?
+
+Whether logged in or logged out:
+
+The video embed should load entirely, including a thumbnail image and play button.
+
+Video is playable.
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/1fc11d8f4e7e918ae0ffae607cb159a1/image.png)
+
+![image](/uploads/a8011974fff40fd41f11e76ee0ab364c/image.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Minds videos don't load when embedded. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Minds videos embedded on Corbett Report website do not load / are not playable.
+
+### S

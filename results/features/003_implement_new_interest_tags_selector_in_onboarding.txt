@@ -1,0 +1,69 @@
+TÍTULO:
+Implement new interest tags selector in onboarding
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Improve the UI of onboarding tag selection and synchronize tag selection UI across the app.
+
+## What needs to be done
+
+Implement the new interest tags selector component into the onboarding flow, replacing the old tags selector.
+
+## QA
+
+...
+
+## UX/Design
+
+This is the old selector being replaced:
+
+![image](/uploads/45398ece0f221dc2e8ce02be182f6212/image.png)
+
+This is the new selector interface, in the context of user content settings. For the onboarding context, we don't need / want the Compass tab.
+
+![image](/uploads/d92ee9195ad0c012b3867bcb29df758d/image.png)
+
+## Personas
+
+New users
+
+## Experiments
+
+No experiment
+
+## Acceptance Criteria
+
+- [x] During onboarding, the user is asked to select their interest tags.
+- [x] The old interest tags selection component is not presented.
+- [x] The new interest tags selection component IS presented.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Implement new interest tags selector in onboarding. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

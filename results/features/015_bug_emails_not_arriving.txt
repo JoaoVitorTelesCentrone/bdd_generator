@@ -1,0 +1,63 @@
+TÍTULO:
+(bug) Emails not arriving
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When asking for password reset and verification emails, nothing arrives to the mailbox. 2FA emails work.
+
+### Steps to reproduce
+
+#### Password reset
+1. Go to incognito
+2. ask to reset password on Minds login screen
+3. Wait for email that will not come
+
+#### Verification email
+1. Create a new account
+2. Click re-send verification email
+3. notice message on the bottom:
+
+![image](/uploads/0c8f65065504f9ea3d6548b02ab525d1/image.png)
+
+### Platform information 
+
+Win10, Brave
+
+### What is the current *bug* behavior?
+
+Emails are not arriving, possibly because of rate limit?
+
+### What is the expected *correct* behavior?
+
+Emails arriving in the outlined cases (password reset, verification)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+(bug) Emails not arriving. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+When asking for password reset and verification emails, nothing arrives to the mailbox

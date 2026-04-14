@@ -1,0 +1,32 @@
+TÍTULO:
+Captcha failures
+
+DESCRIÇÃO:
+### Summary:
+
+Trying to register but capcha will not accept correct input
+
+### Steps to reproduce:
+
+1. typing capcha characters in field
+2. get red capcha failed message instead of WELCOME TO MINDS!
+
+### Browser and OS
+
+Firefox OX 10 reported by: @
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Captcha failures. ### Summary:
+
+Trying to register but capcha will not accept correct input
+
+### Steps to reproduce:
+
+1. typing capcha characters in field
+2. get red capcha failed message instead of WELCOME TO MINDS!
+
+### Browser and OS
+
+Firefox OX 10 reported by: @

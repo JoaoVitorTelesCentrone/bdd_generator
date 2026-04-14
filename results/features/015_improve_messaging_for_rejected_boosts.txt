@@ -1,0 +1,72 @@
+TÍTULO:
+Improve messaging for rejected boosts
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+Ambiguous messaging in the Boost Console is creating confusion when boosts get refunded due to high volumes of boost orders.
+
+![image](/uploads/2d126d087816267024331e67a87ae241/image.png)
+
+## What needs to be done
+
+Change the language displayed in the Boost Console, from:
+
+> Your boost was rejected: Onchain payment failed or High Boost backlog
+
+To:
+
+> Due to high boost backlog, your tokens have been auto-refunded.
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+
+## UX/Design
+
+n/a
+
+## Personas
+
+Core users who boost
+
+## Experiments
+
+n/a
+
+## Acceptance Criteria
+
+- [ ] Given a boost order is rejected due to high boost backlog, the message above is displayed in the boost console.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Improve messaging for rejected boosts. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about

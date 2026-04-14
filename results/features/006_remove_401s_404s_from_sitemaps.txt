@@ -1,0 +1,68 @@
+TÍTULO:
+Remove 401s / 404s from sitemaps
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Google Search Console is still reporting a high number of URLs that we submit in our sitemaps but report as 404 status codes when Google tries to crawl.
+
+![image](/uploads/fc94d69a4ef76be3673a07fb172928cb/image.png)
+
+Example URLs in sitemaps:
+
+* https://www.minds.com/Briton
+* https://www.minds.com/Matuko
+* https://www.minds.com/M4gnum
+* https://www.minds.com/Lj1119
+* https://www.minds.com/vicked
+* https://www.minds.com/Metall
+* https://www.minds.com/JohnRR
+* https://www.minds.com/3XN721
+* https://www.minds.com/Sam316
+* https://www.minds.com/Liamus
+
+### Steps to reproduce
+
+- Navigate to https://www.minds.com/sitemaps/sitemap3.xml
+- Ctrl + F for `https://www.minds.com/Caswarfox`
+
+### Platform information 
+
+n/a / Search Console
+
+### What is the current *bug* behavior?
+
+- Pages that we return `401` codes for appear in the sitemap
+
+### What is the expected *correct* behavior?
+
+- Pages that return `401` or `404` codes should not appear in sitemaps.
+
+### Relevant logs and/or screenshots
+
+![image](/uploads/24c836613cd4252f9f0eb860a44829e1/image.png)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Remove 401s / 404s from sitemaps. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Google Search Console is still reporting a high number of URLs that we submit in our s

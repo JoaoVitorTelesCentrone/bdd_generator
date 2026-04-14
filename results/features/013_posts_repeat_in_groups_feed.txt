@@ -1,0 +1,31 @@
+TÍTULO:
+Posts repeat in Groups feed
+
+DESCRIÇÃO:
+We have a few reports of posts repeating in groups. [This Gitlab issue](https://gitlab.com/minds/front/-/issues/5172) makes reference to the issue in a test Group. Additionally, a user alerted me that [this Group](https://www.minds.com/groups/profile/569272650258460672/feed) exhibits the issue, though notably the posts repeat only after scrolling VERY deep into the timeline (~100+ posts). The pinned comment re-appears in the feed, after which the feed appears to loop.
+
+Note timestamps on the posts in this sequence:
+
+![image](/uploads/8506d9700a1c3946be4513c2542eb9fd/image.png)
+
+![image](/uploads/ea47212d127ef59d3848a0b5f5cf30fb/image.png)
+
+![image](/uploads/4a7b2fd4af32d5038aa0dd314e204527/image.png)
+
+
+### Replication steps
+
+Effect can be seen here:
+
+https://www.minds.com/groups/profile/1325523578161991683/feed
+
+To replicate a base-case:
+
+1. Make a new group
+2. Make a post titled 1, and a post titled 2
+3. Refresh
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Posts repeat in Groups feed. We have a few reports of posts repeating in groups. [This Gitlab issue](https://gitlab.com/minds/front/-/issues/5172) makes reference to the issue in a test Group. Additionally, a user alerted me that [this Group](https://www.minds.com/groups/profile/569272650258460672/feed) exhibits the issue, thou

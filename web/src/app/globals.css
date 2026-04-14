@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --scrollbar-thumb: #3f3f46;
+    --scrollbar-track: #18181b;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  *::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-zinc-950 text-zinc-100 antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  /* ── BDD Syntax ─────────────────────────────────────────────────────── */
+  .bdd-keyword-feature  { @apply text-violet-400 font-semibold; }
+  .bdd-keyword-scenario { @apply text-indigo-400 font-semibold; }
+  .bdd-keyword-step     { @apply text-sky-400 font-medium; }
+  .bdd-keyword-and      { @apply text-sky-300; }
+  .bdd-string           { @apply text-emerald-400; }
+  .bdd-comment          { @apply text-zinc-500 italic; }
+  .bdd-tag              { @apply text-amber-400; }
+
+  /* ── Cards ──────────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-zinc-900 border border-zinc-800 rounded-xl;
+  }
+
+  .card-glass {
+    @apply bg-zinc-900/80 backdrop-blur border border-zinc-700/50 rounded-xl;
+  }
+
+  /* ── Inputs ─────────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2
+           text-zinc-100 placeholder-zinc-500
+           focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50
+           transition-colors duration-150;
+  }
+
+  .textarea {
+    @apply input resize-none;
+  }
+
+  /* ── Buttons ────────────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700
+           text-white font-medium rounded-lg px-5 py-2.5
+           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-indigo-500/50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2
+           bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900
+           text-zinc-200 font-medium rounded-lg px-4 py-2
+           border border-zinc-700 hover:border-zinc-600
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-zinc-500/30;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5
+           text-zinc-400 hover:text-zinc-200
+           px-2 py-1 rounded-md text-sm
+           transition-colors duration-100;
+  }
+
+  /* ── Labels / Badges ────────────────────────────────────────────────── */
+  .badge-approved  { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25; }
+  .badge-rejected  { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-red-500/15 text-red-400 border border-red-500/25; }
+  .badge-gemini    { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400; }
+  .badge-claude    { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-violet-500/15 text-violet-400; }
+}

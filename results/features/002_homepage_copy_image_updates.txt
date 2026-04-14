@@ -1,0 +1,58 @@
+TÍTULO:
+Homepage: Copy / image updates
+
+DESCRIÇÃO:
+Given the Classic homepage is outperforming the newer Discovery homepage in terms of driving user signups, we should update the page to reflect the current product vision & mission statement, and to generally be a bit more modern.
+
+- [Product vision deck](https://docs.google.com/presentation/d/1we5S97reV91AQM5sbGZAaYQ4nwSGQFz9vwWQTq6a-30/edit#slide=id.g10e12479f1a_5_29)
+
+## Homepage Concept Demo
+- https://codepen.io/michaelfbradley/pen/abVQNWa
+
+<details><summary>Homepage structure / responsive nature</summary>
+  ![home-demo](/uploads/d257c1f9f6e01c8b14824d133837d275/home-demo.gif)
+</details>
+
+## Related tasks
+Register modal -> https://gitlab.com/minds/minds/-/issues/2965 
+
+## Designs
+- [Homepage Large](https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=165%3A580)
+- [Homepage Medium](https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=209%3A508)
+- [Homepage Small](https://www.figma.com/file/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?node-id=76%3A859)
+- [Prototype](https://www.figma.com/proto/ZzhkGGO4ZDjQQfQLGqQEJ5/Marketing-Pages-%5BWeb%5D?page-id=0%3A1&node-id=165%3A580&viewport=0%2C48%2C1&scaling=scale-down&starting-point-node-id=165%3A580&show-proto-sidebar=1)
+
+## SEO considerations
+
+| Tag   | Field          | Value                                                                                                                                                  |
+|-------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| h1    |                | Minds                                                                                                                                                  |
+| h2    |                | Elevate the global conversation                                                                                                                        |
+| title |                | Minds: The Alternative Social Network                                                                                                                  |
+| meta  | description    | Elevate the global conversation through Internet freedom. Speak freely, protect your privacy, earn crypto, and take back control of your social media. |
+| meta  | og:title       | Minds: The Alternative Social Network                                                                                                                  |
+| meta  | og:description | Elevate the global conversation through Internet freedom. Speak freely, protect your privacy, earn crypto, and take back control of your social media. |
+
+## Deployment
+We should launch these changes with a Growthbook experiment. As we are currently running another A-B test on the homepage for logged-out users. We will deploy these changes as a separate Growthbook experiment that runs concurrently with the other experiment.
+
+- Classic homepage: 50%
+- Classic homepage + changes above: 50%
+
+## Acceptance
+
+- [ ] Homepage for logged-out users matches the visuals and copy changes in the Figma mocks linked above.
+- [ ] Clicking the `Join Minds` button in the header, or blue `Join Minds Now` buttons on the page displays the user registration modal.
+- [ ] Clicking the `Login` button in the header displays the user login modal.
+- [ ] Clicking the `Download Android App` button navigates the user to minds.com/mobile.
+- [ ] Clicking the `Download iOS App` button navigates the user to the iOS App Store listing for Minds.
+- [ ] The page layout responsively adapts to all common browser widths.
+- [ ] The page DOM satisfies the SEO considerations described above.
+- [ ] The new page is deployed as a Growthbook experiment with the distribution percentages described above.
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Homepage: Copy / image updates. Given the Classic homepage is outperforming the newer Discovery homepage in terms of driving user signups, we should update the page to reflect the current product vision & mission statement, and to generally be a bit more modern.
+
+- [Product vision deck](https://docs.google.com/presentation/d/1we5S

@@ -1,0 +1,56 @@
+TÍTULO:
+Email: Automate welcome post for 1 day after registration
+
+DESCRIÇÃO:
+## Summary
+
+Send users a welcome post the day after they sign up for Minds.
+
+## Conditions
+- User has signed up for an account
+- User has verified their email
+
+## Subject
+Welcome to Minds, @{username}
+
+## Preheader
+You've taken the first step. Here's what's next.
+
+## Copy
+Thanks for joining Minds! Here are a few things you can do next to establish yourself on Minds, to speak freely, earn crypto, and elevate discourse with us.
+
+- **[Discover channels to subscribe to.](https://www.minds.com/discovery/suggestions/user)**
+Minds is better with more connections. Discover interesting people and subscribe to their posts to keep your newsfeed alive.
+
+- **[Follow the conversation.](https://www.minds.com/discovery/tags/trending)**
+Check out trending topics to see what the community is talking about.
+
+- **[Make your first post.](https://www.minds.com/newsfeed/subscriptions/latest)**
+Introduce yourself with a post, and let the community know what brought you to Minds. Use the hashtag #NewFren to meet other newbies and our community welcome party.
+
+- **[Download the app.](https://www.minds.com/mobile)**
+Get notified of replies to your posts, track your crypto rewards, and post on the go with the Minds mobile app, for Android and iOS.
+
+Welcome aboard,
+
+The Minds Team
+
+STORY POINTS: 3.0
+
+USER STORY ENVIADA AO MODELO:
+Email: Automate welcome post for 1 day after registration. ## Summary
+
+Send users a welcome post the day after they sign up for Minds.
+
+## Conditions
+- User has signed up for an account
+- User has verified their email
+
+## Subject
+Welcome to Minds, @{username}
+
+## Preheader
+You've taken the first step. Here's what's next.
+
+## Copy
+Thanks for joining Minds! H

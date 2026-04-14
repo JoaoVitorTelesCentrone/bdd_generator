@@ -1,0 +1,10 @@
+TÍTULO:
+Since video is unsupported, only posts title, description and reference minds link
+
+DESCRIÇÃO:
+(sem descrição)
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Since video is unsupported, only posts title, description and reference minds link

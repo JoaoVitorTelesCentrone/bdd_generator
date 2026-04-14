@@ -1,0 +1,102 @@
+TÍTULO:
+Fix Cassandra extract instability caused by lazy instantiation of SQLAlchemy `insert` operators
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+SQLAlchemy `insert` operators are lazy instantiated, which means that they may trigger exceptions not at the point of creation, but at the point of use. When placed into a worker queue, these delayed exceptions may kill worker threads.
+
+### Steps to reproduce
+
+Create a SQLAlchemy `insert` operator with incompatible values argument. Place in worker queue. Worker triggers `sqlalchemy.exc.CompileError` exception, and exits.
+
+### Platform information 
+
+Data ETL
+
+### What is the current *bug* behavior?
+
+ETL pipeline fails
+
+### What is the expected *correct* behavior?
+
+ETL pipeline doesn't fail
+
+### Relevant logs and/or screenshots
+
+```
+Unexpected error: CompileError('Unconsumed column names: tokenomics_version, multiplier, user_guid, reward_type, date, payout_tx, token_amount, score')
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/prefect/engine/runner.py", line 48, in inner
+    new_state = method(self, state, *args, **kwargs)
+  File "/usr/local/lib/python3.8/site-packages/prefect/engine/task_runner.py", line 865, in get_task_run_state
+    value = prefect.utilities.executors.run_task_with_timeout(
+  File "/usr/local/lib/python3.8/site-packages/prefect/utilities/executors.py", line 323, in run_task_with_timeout
+    return task.run(*args, **kwargs)  # type: ignore
+  File "extract-cassandra-token-flow.py", line 191, in extract_all_tables
+    logger.warn(queue.get())
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 1463, in warn
+    self.warning(msg, *args, **kwargs)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 1458, in warning
+    self._log(WARNING, msg, args, **kwargs)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 1589, in _log
+    self.handle(record)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 1599, in handle
+    self.callHandlers(record)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 1661, in callHandlers
+    hdlr.handle(record)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 954, in handle
+    self.emit(record)
+  File "/usr/local/lib/python3.8/site-packages/prefect/utilities/logging.py", line 151, in emit
+    msg = self.format(record)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 929, in format
+    return fmt.format(record)
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 668, in format
+    record.message = record.getMessage()
+  File "/usr/local/lib/python3.8/logging/__init__.py", line 371, in getMessage
+    msg = str(self.msg)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 562, in __str__
+    return str(self.compile())
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 494, in compile
+    return self._compiler(dialect, **kw)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 558, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py", line 776, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py", line 451, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py", line 486, in process
+    return obj._compiler_dispatch(self, **kwargs)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/visitors.py", line 82, in _compiler_dispatch
+    return meth(self, **kw)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/compiler.py", line 3837, in visit_insert
+    crud_params = crud._get_crud_params(
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/crud.py", line 168, in _get_crud_params
+    raise exc.CompileError(
+sqlalchemy.exc.CompileError: Unconsumed column names: tokenomics_version, multiplier, user_guid, reward_type, date, payout_tx, token_amount, score
+```
+
+### Possible fixes
+
+Pre-instantiate arguments to `insert` operators before placing in queue.
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Fix Cassandra extract instability caused by lazy instantiation of SQLAlchemy `insert` operators. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+SQLAlchemy `insert` operators are lazy instantiated, which means that they may trigger

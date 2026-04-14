@@ -1,0 +1,26 @@
+TÍTULO:
+Show posts from subscribed Groups in Newsfeed
+
+DESCRIÇÃO:
+Users like Groups because they help keep up with specific interests, but report that it's difficult to actually keep up with them because the posts in Groups are not obvious from the Newsfeed.
+
+So we'd like to experiment by including new posts from subscribed Groups in the user's Newsfeed.
+
+- Given UserA is a member of GroupX,
+- and there are new posts made inside GroupX,
+- when UserA views their Newsfeed,
+- those posts from GroupX are included in the chronological Newsfeed sorted along with posts from subscribed channels,
+- and the posts indicate that they are from GroupX.
+
+![image](/uploads/b9a0d72b179fb86b74337554573f10bb/image.png)
+
+(Example post from a group with the `(Meme Supreme)` label indicating its source.)
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Show posts from subscribed Groups in Newsfeed. Users like Groups because they help keep up with specific interests, but report that it's difficult to actually keep up with them because the posts in Groups are not obvious from the Newsfeed.
+
+So we'd like to experiment by including new posts from subscribed Groups in the user's Newsfeed.
+
+- Given 

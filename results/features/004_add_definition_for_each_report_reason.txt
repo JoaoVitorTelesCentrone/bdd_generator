@@ -1,0 +1,122 @@
+TÍTULO:
+Add definition for each report reason
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+The Defintion of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about to submit isn't a duplicate.
+--->
+
+## Goal
+
+<!---
+Clearly outline the goal of the issue and why we are doing it
+--->
+
+To add definitions for each report reason so that users report under the correct category.
+
+...
+
+## What needs to be done
+
+<!---
+Clearly detail what needs to be done to achieve the goal set out above
+--->
+
+We should include a small box to the left of the submit button that provides a brief definition of each report reason. The Minds Report UX is most similar to Reddit, compared to other platforms:
+
+![image](/uploads/8e1b62479082747d22103ccb7c1588ad/image.png)
+
+## Text for Each Reason
+		
+| Category                            | Subcategory             | Description                                                                                               |
+|-------------------------------------|-------------------------|-----------------------------------------------------------------------------------------------------------|
+| Illegal                             | Terrorism               | Advertizing or recruiting for terrorist organizations                                                     |
+|                                     | Sexualization of minors | Implies or promotes child sexual activity or shows genitalia                                              |
+|                                     | Extortion               | Material that aims to achieve a benefit through coercion                                                  |
+|                                     | Fraud                   | Intent to deceive someone for monetary or personal gain                                                   |
+|                                     | Revenge porn            | Distribution of pornographic materials without consent                                                    |
+|                                     | Trafficking              | Illegal sales of sex or paraphernalia (e.g. escort services, drugs)                                       |
+| NSFW                                | Nudity                  | Exposure of genitalia or breasts                                                                          |
+|                                     | Pornography             | Printed or visual material of explicit sexual activity                                                    |
+|                                     | Profanity               | Obscene language or sensational content                                                                   |
+|                                     | Violence and Gore       | Vivid, brutal, and realistic acts of violence                                                             |
+|                                     | Race, Religion, Gender  | Extreme content relating to race, religion, or gender                                                     |
+| Incitement to violence              |                         | Calls to violence that are imminent                                                                       |
+| Harassment                          |                         | Intentionally targeting someone with the intent to torment or terrorize them                              |
+| Personal or confidental information |                         | Sharing or threatening to share private, personal, or confidential information about someone             |
+| Impersonation                       |                         | Assuming a false or fictitious identity, except for parody                                                |
+| Spam                                |                         | Repeated, unwanted, or unsolicited manual or automated actions that negatively affect the Minds community |
+| Intelectual Property Violation      |                         | Content posted to Minds that infringes a copyright you own or control                                     |
+| Malware                             |                         | Code delivered over the network for the purpose of an attack                                              |
+| Inauthentic Engagement              |                         | Activity that seeks to artificially inflate activity on the site to increase interaction metrics          |
+| Security                            | Hacked Account          | If an account has been compromised by an unauthorized person or entity                                    |
+...
+
+## QA
+
+<!---
+Consideration is given to how the issue will be demoed and tested prior to being deployed
+--->
+
+...
+
+## UX/Design
+
+<!---
+Sufficient wireframes have been presented and understood by the development team. Full mockups are not required and re-usable components are encouraged.
+--->
+
+![image](/uploads/5d26517f679b50504457d4972ff100c8/image.png)
+
+![image](/uploads/2c33b86201614b74077f8b917f43de6b/image.png)
+
+## Personas
+
+<!---
+Who does this user impact and why
+--->
+
+...
+
+## Experiments
+
+<!---
+Experiments are not required, but it should be made clear if one is expected. If experiments are required, the hypothesis should be outlined.
+--->
+
+...
+
+## Acceptance Criteria
+
+<!--
+Everyone should be able to understand what is expected to be delivered
+--->
+
+- [ ] Given the user is viewing the report modal, when the user clicks a report category, then a paragraph is inserted onto the modal that explains the selected category.
+- [ ] When the user de-selects a category, then the paragraph explanation is removed from the modal.
+
+## Definition of Ready Checklist
+
+- [ ] Definition Of Done (DoD)
+- [ ] Acceptance criteria
+- [ ] Weighted
+- [ ] QA
+- [ ] UX/Design
+- [ ] Personas
+- [ ] Experiments
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Add definition for each report reason. <!---
+Please read this!
+
+The Defintion of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "Type::Feature" label and verify the feature you're about 

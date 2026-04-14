@@ -1,0 +1,22 @@
+TÍTULO:
+Add Popular Channels module
+
+DESCRIÇÃO:
+Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the guest.
+
+![image](/uploads/627e654929174826ec736bb2194e3af6/image.png)
+
+Accounts to include:
+
+- Include channels that @Minds account follows
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Add Popular Channels module. Add the Popular Channels module to the right rail on desktop view. It is expected that this is a static list for now, as we aren't able to produce recommendations for the guest.
+
+![image](/uploads/627e654929174826ec736bb2194e3af6/image.png)
+
+Accounts to include:
+
+- Include channels that @Minds accou

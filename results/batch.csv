@@ -1,0 +1,26 @@
+story_id,title,model,score_final,cobertura,clareza,estrutura,executabilidade,tentativas,tokens_usados,tokens_research,tempo_segundos,aprovado,convergiu,feature_file
+1,Minds videos don't load when embedded,flash,4.96,0.0,9.1,7.4,4.61,1,1206,0,17.91,False,False,results\features\001_minds_videos_dont_load_when_embedded.feature
+2,Channel pages: Implement channel recommendations component,flash,3.47,0.0,8.66,3.5,3.43,1,841,0,19.41,False,False,results\features\002_channel_pages_implement_channel_recommendations_co.feature
+3,Boost console: Activity posts do not appear for rejected Boosts,flash,2.01,0.0,7.67,0.0,2.4,1,820,0,19.15,False,False,results\features\003_boost_console_activity_posts_do_not_appear_for_rej.feature
+4,Register modal improvements,flash,5.74,0.0,9.47,8.36,6.67,1,1522,0,14.83,False,False,results\features\004_register_modal_improvements.feature
+5,(bug): Images Library Has Disappeared,flash,5.88,2.31,9.24,8.08,4.59,1,1237,0,14.69,False,False,results\features\005_bug_images_library_has_disappeared.feature
+6,Top post push notification are undescriptive,flash,4.5,0.0,9.28,5.6,4.81,1,1502,0,17.13,False,False,results\features\006_top_post_push_notification_are_undescriptive.feature
+7,Bug Triage and Customer Support,flash,6.05,1.25,9.01,8.57,6.53,1,1972,0,11.86,False,False,results\features\007_bug_triage_and_customer_support.feature
+8,Show toast message before launching modal if email verification is required to complete modal actions,flash,5.34,0.0,9.28,8.0,5.4,1,1237,0,18.61,False,False,results\features\008_show_toast_message_before_launching_modal_if_email.feature
+9,(bug): subscribed blog post duplicates filling feed,flash,6.93,7.5,9.44,6.8,3.76,1,1436,0,13.38,False,False,results\features\009_bug_subscribed_blog_post_duplicates_filling_feed.feature
+10,Permaweb spec tests,flash,4.68,0.0,6.03,8.5,4.62,1,1268,0,11.08,False,False,results\features\010_permaweb_spec_tests.feature
+11,"Discovery: Add ""Top"" tab",flash,6.3,6.67,7.67,6.33,4.34,1,1248,0,16.46,False,False,results\features\011_discovery_add_top_tab.feature
+12,Autoplay next video triggers even when writing a comment,flash,2.63,0.0,8.82,0.0,4.33,1,824,0,20.27,False,False,results\features\012_autoplay_next_video_triggers_even_when_writing_a_c.feature
+13,Minds installation fails at ElasticSearch 6.x+ step,flash,2.44,0.0,5.83,2.83,2.13,1,817,0,20.25,False,False,results\features\013_minds_installation_fails_at_elasticsearch_6x_step.feature
+14,"Since video is unsupported, only posts title, description and reference minds link",flash,5.77,9.0,9.21,0.0,6.14,1,1210,0,18.37,False,False,results\features\014_since_video_is_unsupported_only_posts_title_descri.feature
+15,Improve messaging for rejected boosts,flash,5.1,0.0,7.63,8.33,5.36,1,1526,0,13.16,False,False,results\features\015_improve_messaging_for_rejected_boosts.feature
+16,"Discovery: Add ""Top"" tab (mobile app)",flash,4.85,3.33,6.07,6.17,3.94,1,819,0,18.87,False,False,results\features\016_discovery_add_top_tab_mobile_app.feature
+17,"Subscribers list not complete, or not showing at all",flash,5.12,3.89,8.26,5.0,4.0,1,813,0,18.28,False,False,results\features\017_subscribers_list_not_complete_or_not_showing_at_al.feature
+18,"(bug) Posts showing up in wrong feeds, with out of place timestamps",flash,4.3,5.0,10.0,0.0,4.0,1,894,0,20.31,False,False,results\features\018_bug_posts_showing_up_in_wrong_feeds_with_out_of_pl.feature
+19,(bug): Cant delete a reply to a comment on a blog post,flash,4.67,4.29,8.78,2.83,3.89,1,1021,0,20.0,False,False,results\features\019_bug_cant_delete_a_reply_to_a_comment_on_a_blog_pos.feature
+20,Visual bugs with latest top feed,flash,5.94,5.0,9.28,5.4,4.8,1,1130,0,16.71,False,False,results\features\020_visual_bugs_with_latest_top_feed.feature
+21,Fix Cassandra extract instability caused by lazy instantiation of SQLAlchemy `insert` operators,flash,3.54,0.0,8.68,4.25,2.67,1,1104,0,19.7,False,False,results\features\021_fix_cassandra_extract_instability_caused_by_lazy_i.feature
+22,Update interest tag options presented during onboarding,flash,4.78,0.0,9.09,6.83,4.54,1,1334,0,13.89,False,False,results\features\022_update_interest_tag_options_presented_during_onboa.feature
+23,Bug Triage and Customer Support,flash,5.83,1.25,9.27,7.83,6.25,1,1545,0,12.13,False,False,results\features\023_bug_triage_and_customer_support.feature
+24,Decide and set A/B percentages for experiment,flash,5.88,0.0,9.26,8.75,7.0,1,1610,0,15.68,False,False,results\features\024_decide_and_set_ab_percentages_for_experiment.feature
+25,Refactor experiments to use events instead of contexts,flash,4.35,0.5,7.96,6.0,4.04,1,1448,0,12.93,False,False,results\features\025_refactor_experiments_to_use_events_instead_of_cont.feature

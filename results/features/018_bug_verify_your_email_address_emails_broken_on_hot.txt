@@ -1,0 +1,60 @@
+TÍTULO:
+(bug) Verify your email address emails broken on Hotmail and Outlook
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Emails prompting users to verify their email are broken in outlook and hotmail, like so:
+
+![image](/uploads/45219bfa39d9cbd7c504a509107cb415/image.png)
+
+and it points to `https://` link
+
+### Steps to reproduce
+
+1. Create account or request verify email
+2. Look at the email in outlook or hotmail
+
+### Platform information 
+
+Tested on:
+- Thunderbird 91.10.0 (64-bit)
+- Microsoft® Outlook® for Microsoft 365 MSO (Version 2205 Build 16.0.15225.20278) 64-bit 
+
+### What is the current *bug* behavior?
+
+(What actually happens)
+
+### What is the expected *correct* behavior?
+
+(What you should see instead)
+
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's very hard to read otherwise.)
+
+### Possible fixes
+
+(If you can, link to the line of code that might be responsible for the problem)
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+(bug) Verify your email address emails broken on Hotmail and Outlook. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Emails prompting users to verify their email are broken in outlook and hotmail, like s

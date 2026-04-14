@@ -1,0 +1,83 @@
+TÍTULO:
+Top post push notification are undescriptive
+
+DESCRIÇÃO:
+<!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Occasionally, top post push notifications read:
+
+> @username posted
+
+These notifications are pretty vague and I think can be improved by always having a bit more context.
+
+### Steps to reproduce
+
+- Enable notifications for `Top Posts`
+- Wait for a daily push top post push notification
+
+### Platform information 
+
+iOS, Mac + Chrome
+
+### What is the current *bug* behavior?
+
+The push notification reads:
+
+> @username posted
+
+### What is the expected *correct* behavior?
+
+Depending on the type of post that's being promoted, more context is expected.
+
+| Post type (sample)               | Sample                                                                                                       | Title                       | Message / Body                                          |
+|----------------------------------|--------------------------------------------------------------------------------------------------------------|-----------------------------|---------------------------------------------------------|
+| Text post                        | https://www.minds.com/newsfeed/1351609905466839058                                                           | Minds posted                | Who are your favorite channels on Minds?                |
+| Blog post                        | https://www.minds.com/minds/blog/minds-is-now-a-censorship-resistant-progressive-web-app-1363941884392640521 | Minds posted a blog         | Minds Is Now A Censorship-Resistant Progressive Web App |
+| Media post (with title + body)   | https://www.minds.com/newsfeed/1367998512221917203                                                           | Bashynx posted an image     | New survey dropped: About Multi-Image posting!          |
+| Media post (with title, no body) | https://www.minds.com/newsfeed/1371197780126601227                                                           | rogansent posted an image   | A challenge                                             |
+| Media post (no title, with body) | https://www.minds.com/newsfeed/1369805494683701250                                                           | Ryan @ Minds posted a video | Silent Hill on water.                                   |
+| Media post (no title, no body)   | https://www.minds.com/newsfeed/1371198067109269511                                                           | rogansent posted an image   |                                                         |
+
+### Relevant logs and/or screenshots
+
+![IMG_31CA9133E972-1](/uploads/79b51616fc465c6132017519184050e7/IMG_31CA9133E972-1.jpeg)
+
+### Possible fixes
+
+I initially thought this was happening when the top post was a media post without any text. But in the example screenshot above, it's from Babylon Bee and looking at their post history I don't see any posts without text.
+
+They are all posts with links, however -- which may be indicative of the cause.
+
+Let's assume this post was being sent as a top post push notification:
+
+![image](/uploads/402777c20ae03cc284a43583b577f63a/image.png)
+
+| Post type (sample)                         | Sample                                             | Title                         | Message / Body                         | Launch URL / Link                                  |
+|--------------------------------------------|----------------------------------------------------|-------------------------------|----------------------------------------|----------------------------------------------------|
+| Link (no title, no body)                   | https://www.minds.com/newsfeed/1394053308640923658 | The Babylon Bee posted a link | Big Tech Is Censoring Comedy... Again! | https://www.minds.com/newsfeed/1394053308640923658 |
+| Link (no title, no body, no text inported) | https://www.minds.com/newsfeed/1394053308640923658 | The Babylon Bee posted a link |                                        | https://www.minds.com/newsfeed/1394053308640923658 |
+
+STORY POINTS: 2.0
+
+USER STORY ENVIADA AO MODELO:
+Top post push notification are undescriptive. <!---
+Please read this!
+
+Before opening a new issue, make sure to search for keywords in the issues
+filtered by the "T - Bug" label and verify the issue you're about to submit isn't a duplicate.
+--->
+
+### Summary
+
+Occasionally, top post push notifications read:
+
+> @username posted
+
+These notificatio

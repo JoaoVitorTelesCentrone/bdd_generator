@@ -1,0 +1,43 @@
+timestamp,attempt,model,user_story,score_final,cobertura,clareza,estrutura,executabilidade,aprovado,input_tokens,output_tokens,total_tokens,duration_s
+2026-04-07T14:10:55.997080,1,gemini-2.5-flash,"Newsfeed: Implement channel recommendations component - web. Implement the new channel recommendations component on the Newsfeed. See this design prototype for visual and interaction spec.
+
+
+### Desig",4.3,0.0,9.02,7.0,2.0,False,405,508,913,15.66
+2026-04-07T14:11:14.344159,2,gemini-2.5-flash,"Newsfeed: Implement channel recommendations component - web. Implement the new channel recommendations component on the Newsfeed. See this design prototype for visual and interaction spec.
+
+
+### Desig",3.3,0.0,8.66,3.5,2.57,False,979,164,1143,18.35
+2026-04-07T14:11:33.976473,3,gemini-2.5-flash,"Newsfeed: Implement channel recommendations component - web. Implement the new channel recommendations component on the Newsfeed. See this design prototype for visual and interaction spec.
+
+
+### Desig",4.83,5.0,8.11,3.5,3.29,False,979,163,1142,19.63
+2026-04-07T14:11:45.233254,1,gemini-2.5-flash,"Boost inventory: Add boosts to Discovery. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before",4.81,0.0,9.28,8.5,2.0,False,393,480,873,11.25
+2026-04-07T14:12:05.052549,2,gemini-2.5-flash,"Boost inventory: Add boosts to Discovery. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before",4.74,0.0,9.4,7.0,3.78,False,938,164,1102,19.82
+2026-04-07T14:12:23.890133,3,gemini-2.5-flash,"Boost inventory: Add boosts to Discovery. <!---
+Please read this!
+
+The Definition of Ready (DoR) can be found at https://developers.minds.com/docs/handbook/how-we-work/#definition-of-ready-dor
+
+Before",2.43,0.0,8.96,0.0,3.17,False,938,163,1101,18.84
+2026-04-07T14:12:36.631325,1,gemini-2.5-flash,"Latest / Top feed: Feed composition spec. - [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+   ",5.73,4.44,9.1,7.25,2.0,False,402,522,924,12.74
+2026-04-07T14:12:50.590292,2,gemini-2.5-flash,"Latest / Top feed: Feed composition spec. - [ ] Users can toggle between 2 separate views of their Newsfeed:
+  - Latest
+    - Boost rotator
+    - 3x Latest posts
+    - 3x Top posts + See more link
+   ",7.37,7.78,9.3,7.75,4.27,True,988,763,1751,13.96

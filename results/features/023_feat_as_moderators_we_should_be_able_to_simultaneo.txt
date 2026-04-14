@@ -1,0 +1,10 @@
+TÍTULO:
+(feat): As moderators, we should be able to simultaneously manage the queue.
+
+DESCRIÇÃO:
+Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.
+
+STORY POINTS: 10.0
+
+USER STORY ENVIADA AO MODELO:
+(feat): As moderators, we should be able to simultaneously manage the queue.. Is this a bug? Make sure to use the Bug template above and be as detailed in your report as possible.

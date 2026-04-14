@@ -1,0 +1,89 @@
+TÍTULO:
+Auto-enroll users in Open Boosts
+
+DESCRIÇÃO:
+Automatically opt a subset of users into viewing Open Boosts, based on their responses to the Build Your Algorithm survey.
+
+Include all users whose responses meet ALL of these requirements:
+
+- I prefer: Mature content > 69
+- I prefer: Challenging opinions > 69
+- Misinformation: Should be debated > 69
+
+Based on an export of responses in December, this set of requirements should include about 15% of BYA respondents.
+
+Upon completion of the BYA survey, opt user into Open Boosts if their responses match the conditions above.
+
+For users who've previously completed the BYA survey, do a one-time batch process to opt them into Open Boosts if their responses match the conditions above.
+
+![image](/uploads/62ef4daa887866faf7878ab0a371c951/image.png)
+
+## Acceptance
+
+- Given a user hasn't previously completed the Build Your Algorithm survey,
+- and the user starts the BYA survey,
+- and the user's responses DO meet the criteria listed above,
+- when the user clicks to save their BYA settings,
+- then their Settings > Boosted Content > Open Content setting is automatically set to `Enable`.
+---
+- Given a user hasn't previously completed the Build Your Algorithm survey,
+- and the user starts the BYA survey,
+- and the user's responses DO NOT meet the criteria listed above,
+- when the user clicks to save their BYA settings,
+- then their Settings > Boosted Content > Open Content setting is not changed from its prior setting.
+---
+- Given a user HAS previously completed the Build Your Algorithm survey,
+- and the user's responses meet the criteria listed above,
+- when when Minds runs a one-time batch process described above,
+- then their Settings > Boosted Content > Open Content setting is automatically set to `Enable`.
+---
+- Given a user HAS previously completed the Build Your Algorithm survey,
+- and the user's responses meet the criteria listed above,
+- and the user has been automatically opted into Open Content: `Enable`,
+- and the user navigates to the Settings > Boosted Content settings,
+- when the user manually toggles the Open Content setting to `Disable`,
+- and the user clicks Save Boost Settings,
+- then the user's Open Content setting is kept `Disable`.
+
+----
+
+### Target problem
+
+We have a persistent backlog of Open Boost orders that we're unable to fulfill. Few users opt into viewing Open Boosts, so inventory remains low.
+
+If a Boost order gets slotted into Open and can't fulfill within a certain timeframe, the order gets cancelled and the user refunded their tokens.
+
+### Hypothesis
+
+We can significantly increase the number of users opted into Open Boosts if we use their Build Your Algorithm preference responses to automatically opt them into Open Boosts. By increasing the # of users opted into Open Boosts, we'll increase inventory and reduce the backlog, and in turn reducing the number of rejected Boost orders.
+
+### What is the primary metric that this change is aimed to improve?
+
+Open Boosts inventory
+
+### What is the current state of this metric, and what is the improvement goal?
+
+Unknown
+
+### How does this change affect the desired metric?
+
+See above.
+
+### What counter metric will ensure that an increase in the primary metric is a positive for the product?
+
+"Report post" events on Boosts
+
+### Size estimate
+
+Unknown
+
+STORY POINTS: 5.0
+
+USER STORY ENVIADA AO MODELO:
+Auto-enroll users in Open Boosts. Automatically opt a subset of users into viewing Open Boosts, based on their responses to the Build Your Algorithm survey.
+
+Include all users whose responses meet ALL of these requirements:
+
+- I prefer: Mature content > 69
+- I prefer: Challenging opinions > 69
+- Misinformation: Should be debated > 6

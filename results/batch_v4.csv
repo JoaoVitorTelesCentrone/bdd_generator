@@ -1,0 +1,11 @@
+story_id,title,model,score_final,cobertura,clareza,estrutura,executabilidade,tentativas,tokens_usados,tokens_research,tempo_segundos,aprovado,convergiu,feature_file
+1,Latest / Top feed: Feed composition spec,flash,6.99,7.78,8.93,6.12,5.16,1,5421,0,17.54,False,False,results\features\001_latest_top_feed_feed_composition_spec.feature
+2,Auto-enroll users in Open Boosts,flash,6.12,7.5,8.64,4.2,4.42,1,5126,0,19.7,False,False,results\features\002_auto_enroll_users_in_open_boosts.feature
+3,Discovery feed paginated loading issue,flash,4.33,0.0,8.62,5.67,4.55,1,5082,0,18.58,False,False,results\features\003_discovery_feed_paginated_loading_issue.feature
+4,"""Switch to app"" overlay overlaps Guest Mode banner",flash,4.46,2.78,8.46,4.25,3.29,1,4369,0,13.83,False,False,results\features\004_switch_to_app_overlay_overlaps_guest_mode_banner.feature
+5,(feat): Convert ES reports data to standard format for api return.,flash,3.41,0.5,8.66,3.5,2.4,1,4351,0,20.18,False,False,results\features\005_feat_convert_es_reports_data_to_standard_format_fo.feature
+6,Show toast message before launching modal if email verification is required to complete modal actions,flash,4.51,0.0,8.97,6.08,4.48,1,4874,0,14.0,False,False,results\features\006_show_toast_message_before_launching_modal_if_email.feature
+7,Email address registration failure,flash,5.6,3.6,9.24,5.83,4.6,1,4910,0,12.55,False,False,results\features\007_email_address_registration_failure.feature
+8,Change copy on Twitter Sync settings page,flash,7.48,10.0,9.34,5.6,4.64,1,4774,0,19.49,True,True,results\features\008_change_copy_on_twitter_sync_settings_page.feature
+9,Spike: Create NIP for Delegated Event Signing,flash,4.2,0.0,9.04,6.0,2.97,1,5034,0,20.43,False,False,results\features\009_spike_create_nip_for_delegated_event_signing.feature
+10,Define email strategy,flash,7.54,10.0,9.08,5.81,4.93,1,5616,0,18.47,True,True,results\features\010_define_email_strategy.feature

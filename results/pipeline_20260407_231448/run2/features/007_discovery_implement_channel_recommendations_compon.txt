@@ -1,0 +1,26 @@
+TÍTULO:
+Discovery: Implement channel recommendations component - web
+
+DESCRIÇÃO:
+Implement the new channel recommendations component on [Discover / Top page](https://www.minds.com/discovery/top). See this design prototype for visual and interaction spec.
+
+- Channel recommendations on Discovery - https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&node-id=152%3A2647&viewport=241%2C48%2C1&scaling=scale-down&starting-point-node-id=152%3A2647&show-proto-sidebar=1 
+
+## Acceptance
+
+- Given the user navigates to the Discovery > Top feed,
+- when the page is loaded,
+- then the Channel Recommendations component appears after the third activity post in the feed.
+
+### Which channels are recommended (logic)
+
+- Include: Channels subscribed to by @minds account
+- Filter out: None
+- Order by: Prioritize channels by (1) mutual subscribers, (2) total subscribers, and (3) having activity on Minds within the past 7 days
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+Discovery: Implement channel recommendations component - web. Implement the new channel recommendations component on [Discover / Top page](https://www.minds.com/discovery/top). See this design prototype for visual and interaction spec.
+
+- Channel recommendations on Discovery - https://www.figma.com/proto/c37p1Jz209IT8vRuc1AoFv/Recommendations?page-id=0%3A1&nod

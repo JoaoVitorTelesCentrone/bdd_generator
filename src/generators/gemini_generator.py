@@ -1,0 +1,85 @@
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+from .base import BaseLLMGenerator, GenerationResult
+
+# Carrega .env da raiz do projeto
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
+
+MODEL_IDS = {
+    # Aliases amigáveis → modelo real disponível
+    "flash":        "gemini-2.5-flash",
+    "flash-lite":   "gemini-2.0-flash-lite-001",
+    "pro":          "gemini-2.5-pro",
+    "flash-001":    "gemini-2.0-flash-001",
+    # Full IDs aceitos diretamente
+    "gemini-2.5-flash":         "gemini-2.5-flash",
+    "gemini-2.5-pro":           "gemini-2.5-pro",
+    "gemini-2.0-flash-001":     "gemini-2.0-flash-001",
+    "gemini-2.0-flash-lite-001":"gemini-2.0-flash-lite-001",
+    "gemini-2.0-flash-lite":    "gemini-2.0-flash-lite-001",
+}
+
+SYSTEM_INSTRUCTION = (
+    "Você é um especialista sênior em BDD (Behavior-Driven Development) e QA. "
+    "Gera cenários Gherkin de alta qualidade em português, seguindo estritamente o padrão "
+    "Given-When-Then (Dado-Quando-Então). Seus cenários são claros, específicos, executáveis "
+    "e cobrem todos os critérios de aceitação fornecidos. "
+    "Retorne APENAS os cenários Gherkin, sem explicações adicionais."
+)
+
+
+class GeminiGenerator(BaseLLMGenerator):
+    """BDD generator usando o novo SDK google-genai."""
+
+    def __init__(self, model: str = "flash", max_tokens: int = 4096):
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise EnvironmentError(
+                "GEMINI_API_KEY não encontrada. Adicione ao arquivo .env"
+            )
+
+        self.model_id = MODEL_IDS.get(model, model)
+        self.max_tokens = max_tokens
+        self._client = genai.Client(api_key=api_key)
+
+    def get_model_name(self) -> str:
+        return self.model_id
+
+    def generate(self, prompt: str, system_instruction: str | None = None) -> GenerationResult:
+        try:
+            response = self._client.models.generate_content(
+                model=self.model_id,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction or SYSTEM_INSTRUCTION,
+                    max_output_tokens=self.max_tokens,
+                    temperature=0.7,
+                ),
+            )
+
+            text = response.text.strip() if response.text else ""
+
+            input_tokens  = 0
+            output_tokens = 0
+            if response.usage_metadata:
+                input_tokens  = response.usage_metadata.prompt_token_count or 0
+                output_tokens = response.usage_metadata.candidates_token_count or 0
+
+            return GenerationResult(
+                success=True,
+                bdd_text=text,
+                model=self.model_id,
+                input_tokens=input_tokens,
+                output_tokens=output_tokens,
+            )
+
+        except Exception as e:
+            error_msg = str(e)
+            if "API_KEY" in error_msg or "api key" in error_msg.lower():
+                error_msg = "Gemini API key inválida. Verifique o arquivo .env"
+            elif "quota" in error_msg.lower() or "429" in error_msg:
+                error_msg = "Quota da API Gemini atingida."
+            return GenerationResult(success=False, error=error_msg)

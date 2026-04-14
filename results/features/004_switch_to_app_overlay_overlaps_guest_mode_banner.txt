@@ -1,0 +1,26 @@
+TÍTULO:
+"Switch to app" overlay overlaps Guest Mode banner
+
+DESCRIÇÃO:
+Given the user is on a mobile device (here: emulating iOS),
+and the user visits the new Guest Mode homepage,
+when the page is loaded,
+then a "Switch to the app" overlay appears at the bottom of the screen.
+
+Desired outcome:
+
+Remove the Guest Mode banner from mobile and display only the "Switch to app" overlay
+
+![image](/uploads/67f6f0bbd5488ca4c611263699ebcd5f/image.png)
+
+STORY POINTS: 1.0
+
+USER STORY ENVIADA AO MODELO:
+"Switch to app" overlay overlaps Guest Mode banner. Given the user is on a mobile device (here: emulating iOS),
+and the user visits the new Guest Mode homepage,
+when the page is loaded,
+then a "Switch to the app" overlay appears at the bottom of the screen.
+
+Desired outcome:
+
+Remove the Guest Mode banner from mobile and display only the "Switch to ap

@@ -1,5 +1,6 @@
 import anthropic
 from .base import BaseLLMGenerator, GenerationResult
+from ..auth.config import get_api_key
 
 # Supported model aliases
 MODEL_IDS = {
@@ -26,7 +27,14 @@ class ClaudeGenerator(BaseLLMGenerator):
     def __init__(self, model: str = "sonnet", max_tokens: int = 4096):
         self.model_id = MODEL_IDS.get(model, model)
         self.max_tokens = max_tokens
-        self.client = anthropic.Anthropic()
+        api_key = get_api_key("ANTHROPIC_API_KEY")
+        if not api_key:
+            raise EnvironmentError(
+                "ANTHROPIC_API_KEY não encontrada.\n"
+                "Configure com: bdd config set-key ANTHROPIC_API_KEY <sua-chave>\n"
+                "Obtenha sua chave em: https://console.anthropic.com/settings/keys"
+            )
+        self.client = anthropic.Anthropic(api_key=api_key)
 
     def get_model_name(self) -> str:
         return self.model_id

@@ -4,8 +4,9 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 from .base import BaseLLMGenerator, GenerationResult
+from ..auth.config import get_api_key
 
-# Carrega .env da raiz do projeto
+# Carrega .env da raiz do projeto (suporte a dev local)
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 MODEL_IDS = {
@@ -35,10 +36,12 @@ class GeminiGenerator(BaseLLMGenerator):
     """BDD generator usando o novo SDK google-genai."""
 
     def __init__(self, model: str = "flash", max_tokens: int = 4096):
-        api_key = os.environ.get("GEMINI_API_KEY")
+        api_key = get_api_key("GEMINI_API_KEY")
         if not api_key:
             raise EnvironmentError(
-                "GEMINI_API_KEY não encontrada. Adicione ao arquivo .env"
+                "GEMINI_API_KEY não encontrada.\n"
+                "Configure com: bdd config set-key GEMINI_API_KEY <sua-chave>\n"
+                "Obtenha sua chave em: https://aistudio.google.com/apikey"
             )
 
         self.model_id = MODEL_IDS.get(model, model)

@@ -23,11 +23,7 @@ from .research.auto_researcher import AutoResearcher
 from .study.analyzer import BatchAnalyzer, load_study_context
 from .utils.logger import AttemptLogger
 from .utils.prompts import PromptTemplates
-from .auth.config import (
-    load_config, save_config, clear_auth, is_authenticated,
-    get_plan, Config, AuthState, MANAGED_API_URL,
-)
-from .auth.client import validate_token, get_quota, managed_generate, QuotaExceededError, AuthError
+from .auth.config import get_api_key, set_api_key, show_config
 
 # Gemini model aliases
 _GEMINI_ALIASES = {
@@ -46,7 +42,7 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 app = typer.Typer(
-    name="bdd-generator",
+    name="bdd",
     help="Gerador de cenários BDD com auto-refinamento (Claude ou Gemini)",
     add_completion=False,
 )
@@ -222,7 +218,7 @@ def _run_batch_internal(
 
 @app.command()
 def generate(
-    story: str = typer.Option(..., "--story", "-s", help="User story para gerar BDD"),
+    story: str = typer.Argument(..., help="User story para gerar BDD"),
     model: str = typer.Option("flash", "--model", "-m", help="Gemini: flash | pro | flash-lite  /  Claude: sonnet | opus | haiku"),
     threshold: float = typer.Option(7.0, "--threshold", "-t", help="Score mínimo (0-10)"),
     max_attempts: int = typer.Option(5, "--max-attempts", help="Máximo de tentativas (ignorado com --until-converged)"),
@@ -648,124 +644,40 @@ def pipeline(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Subapp: auth
+# Subapp: config
 # ─────────────────────────────────────────────────────────────────────────────
 
-auth_app = typer.Typer(help="Autenticação com a plataforma BDD Generator (modo managed).")
-app.add_typer(auth_app, name="auth")
+config_app = typer.Typer(help="Gerenciar configuração (API keys).")
+app.add_typer(config_app, name="config")
 
 
-@auth_app.command("login")
-def auth_login(
-    token: str = typer.Option(..., "--token", "-t", help="API token gerado em bdd-generator.com/settings/tokens"),
-    api_url: str = typer.Option(MANAGED_API_URL, "--api-url", hidden=True),
+@config_app.command("set-key")
+def config_set_key(
+    name: str = typer.Argument(..., help="Nome da variável: GEMINI_API_KEY ou ANTHROPIC_API_KEY"),
+    value: str = typer.Argument(..., help="Valor da chave"),
 ):
-    """Autentica o CLI com sua conta BDD Generator (modo managed)."""
-    console.print("[dim]Validando token...[/dim]")
-
-    user_info = validate_token(token, api_url)
-    if not user_info:
-        console.print("[red]Token inválido ou expirado.[/red]")
-        console.print("[dim]Gere um novo em: bdd-generator.com/settings/tokens[/dim]")
+    """Salva uma API key na configuração local (~/.config/bdd-generator/config.json)."""
+    valid = {"GEMINI_API_KEY", "ANTHROPIC_API_KEY"}
+    if name not in valid:
+        console.print(f"[red]Nome inválido.[/red] Use: {' | '.join(valid)}")
         raise typer.Exit(1)
-
-    auth = AuthState(
-        token=token,
-        user_email=user_info.get("email", ""),
-        user_name=user_info.get("name", ""),
-        plan=user_info.get("plan", "free"),
-        api_url=api_url,
-    )
-    save_config(Config(mode="managed", auth=auth))
-
-    plan_label = "[magenta]Pro[/magenta]" if auth.plan == "pro" else "[yellow]Free[/yellow]"
-    console.print(Panel(
-        f"[green]Autenticado com sucesso![/green]\n\n"
-        f"  Usuário: [bold]{auth.user_name}[/bold] ({auth.user_email})\n"
-        f"  Plano:   {plan_label}",
-        title="bdd auth login",
-    ))
+    set_api_key(name, value)
+    console.print(f"[green]{name} salva com sucesso.[/green]")
 
 
-@auth_app.command("logout")
-def auth_logout():
-    """Remove as credenciais salvas e volta para o modo BYOK."""
-    config = load_config()
-    if config.mode == "byok":
-        console.print("[yellow]Você não está autenticado.[/yellow]")
+@config_app.command("show")
+def config_show():
+    """Exibe a configuração atual (chaves são mascaradas)."""
+    data = show_config()
+    if not data:
+        console.print("[yellow]Nenhuma configuração encontrada.[/yellow]")
+        console.print("[dim]Configure com: bdd config set-key GEMINI_API_KEY <sua-chave>[/dim]")
         return
-    clear_auth()
-    console.print("[green]Sessão encerrada. Voltando para modo BYOK.[/green]")
-
-
-@auth_app.command("status")
-def auth_status():
-    """Exibe o modo atual (BYOK ou managed) e informações do usuário."""
-    config = load_config()
-
-    if config.mode == "byok" or not config.auth:
-        console.print(Panel(
-            "[cyan]Modo:[/cyan] [bold]BYOK[/bold] (Bring Your Own Key)\n\n"
-            "Você está usando sua própria API key (GEMINI_API_KEY / ANTHROPIC_API_KEY).\n"
-            "Para usar o modo managed: [bold]bdd auth login --token <TOKEN>[/bold]",
-            title="bdd auth status",
-        ))
-        return
-
-    plan_label = "[magenta]Pro ♾ ilimitado[/magenta]" if config.auth.plan == "pro" else "[yellow]Free[/yellow]"
-    quota = get_quota()
-
-    quota_str = ""
-    if quota:
-        if quota.tokens_limit == -1:
-            quota_str = "\n  Tokens:  [magenta]ilimitado[/magenta]"
-        else:
-            pct = int((quota.tokens_used / quota.tokens_limit) * 100) if quota.tokens_limit > 0 else 0
-            bar = "█" * (pct // 10) + "░" * (10 - pct // 10)
-            quota_str = (
-                f"\n  Tokens:  {quota.tokens_used:,} / {quota.tokens_limit:,} ({pct}%)"
-                f"\n           [{bar}]"
-                f"\n  Gerações: {quota.generations_used}"
-                f"\n  Reset:   {quota.reset_at[:10]}"
-            )
-
-    console.print(Panel(
-        f"[cyan]Modo:[/cyan] [bold]Managed[/bold]\n\n"
-        f"  Usuário: [bold]{config.auth.user_name}[/bold] ({config.auth.user_email})\n"
-        f"  Plano:   {plan_label}"
-        f"{quota_str}",
-        title="bdd auth status",
-    ))
-
-
-@auth_app.command("quota")
-def auth_quota():
-    """Exibe a cota de tokens do mês atual (apenas modo managed)."""
-    if not is_authenticated():
-        console.print("[yellow]Você está em modo BYOK — sem cota.[/yellow]")
-        console.print("[dim]Para usar modo managed: bdd auth login --token <TOKEN>[/dim]")
-        return
-
-    quota = get_quota()
-    if not quota:
-        console.print("[red]Não foi possível obter a cota. Verifique sua conexão.[/red]")
-        raise typer.Exit(1)
-
-    if quota.tokens_limit == -1:
-        console.print("[magenta]Plano Pro — tokens ilimitados.[/magenta]")
-        return
-
-    used_pct = int((quota.tokens_used / quota.tokens_limit) * 100) if quota.tokens_limit > 0 else 0
-    remaining = quota.tokens_remaining
-    color = "green" if used_pct < 70 else "yellow" if used_pct < 90 else "red"
-
-    console.print(Panel(
-        f"  Tokens usados:     [{color}]{quota.tokens_used:,}[/{color}] / {quota.tokens_limit:,}\n"
-        f"  Tokens restantes:  [bold]{remaining:,}[/bold]\n"
-        f"  Gerações este mês: {quota.generations_used}\n"
-        f"  Reset em:          {quota.reset_at[:10]}",
-        title="[bold]Cota Mensal[/bold]",
-    ))
+    lines = []
+    for k, v in data.items():
+        masked = v[:4] + "..." + v[-4:] if len(v) > 8 else "***"
+        lines.append(f"  {k}: {masked}")
+    console.print(Panel("\n".join(lines), title="Configuração atual"))
 
 
 if __name__ == "__main__":

@@ -13,31 +13,32 @@ interface Props {
 
 function ScoreRing({ value }: { value: number }) {
   const size = 80;
-  const stroke = 7;
+  const stroke = 6;
   const r = (size - stroke) / 2;
   const circ = 2 * Math.PI * r;
   const pct = Math.min(1, value / 10);
   const dash = pct * circ;
 
   const color =
-    value >= 8 ? "#10b981" :   // emerald-500
-    value >= 7 ? "#22c55e" :   // green-500
-    value >= 5 ? "#f59e0b" :   // amber-500
-    "#ef4444";                  // red-500
+    value >= 8 ? "#a3fb73" :
+    value >= 7 ? "#7dd151" :
+    value >= 5 ? "#f59e0b" :
+    "#ef4444";
 
   return (
     <svg width={size} height={size} className="-rotate-90">
       <circle
         cx={size / 2} cy={size / 2} r={r}
-        fill="none" stroke="#27272a" strokeWidth={stroke}
+        fill="none" stroke="rgba(163,251,115,0.08)" strokeWidth={stroke}
       />
       <circle
         cx={size / 2} cy={size / 2} r={r}
         fill="none" stroke={color} strokeWidth={stroke}
         strokeDasharray={circ}
         strokeDashoffset={circ - dash}
-        strokeLinecap="round"
+        strokeLinecap="butt"
         className="transition-all duration-700 ease-out"
+        style={{ filter: value >= 7 ? `drop-shadow(0 0 4px ${color}60)` : undefined }}
       />
     </svg>
   );
@@ -60,10 +61,10 @@ export function ScoreDisplay({
         <div className="relative flex-shrink-0">
           <ScoreRing value={score_final} />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-xl font-bold text-zinc-100 leading-none">
+            <span className="text-xl font-mono font-bold text-[#eef9e8] leading-none">
               {score_final.toFixed(1)}
             </span>
-            <span className="text-[10px] text-zinc-500 leading-none mt-0.5">/10</span>
+            <span className="text-[10px] font-mono text-[#5a7a65] leading-none mt-0.5">/10</span>
           </div>
         </div>
         <div className="space-y-1.5">
@@ -78,12 +79,12 @@ export function ScoreDisplay({
               REPROVADO
             </div>
           )}
-          <p className="text-xs text-zinc-500">
-            Threshold: {score.threshold.toFixed(1)}
+          <p className="text-xs font-mono text-[#3d5a44]">
+            threshold: {score.threshold.toFixed(1)}
           </p>
           {converged !== undefined && (
-            <p className={`text-xs ${converged ? "text-emerald-500" : "text-amber-500"}`}>
-              {converged ? "Convergiu" : "Não convergiu"}
+            <p className={`text-xs font-mono ${converged ? "text-[#a3fb73]" : "text-[#f59e0b]"}`}>
+              {converged ? "✓ convergiu" : "~ não convergiu"}
             </p>
           )}
         </div>
@@ -91,15 +92,15 @@ export function ScoreDisplay({
 
       {/* Metrics */}
       <div className="space-y-3">
-        <MetricBar label="Cobertura"       value={score.cobertura}       weight="30%" delay={0}   />
-        <MetricBar label="Estrutura GWT"   value={score.estrutura}       weight="30%" delay={100} />
-        <MetricBar label="Clareza"         value={score.clareza}         weight="20%" delay={200} />
-        <MetricBar label="Executabilidade" value={score.executabilidade} weight="20%" delay={300} />
+        <MetricBar label="cobertura"       value={score.cobertura}       weight="30%" delay={0}   />
+        <MetricBar label="estrutura gwt"   value={score.estrutura}       weight="30%" delay={100} />
+        <MetricBar label="clareza"         value={score.clareza}         weight="20%" delay={200} />
+        <MetricBar label="executabilidade" value={score.executabilidade} weight="20%" delay={300} />
       </div>
 
       {/* Stats row */}
-      {(attempts || totalTokens || durationSeconds) && (
-        <div className="flex flex-wrap gap-3 pt-2 border-t border-zinc-800">
+      {(attempts !== undefined || totalTokens !== undefined || durationSeconds !== undefined) && (
+        <div className="flex flex-wrap gap-3 pt-3 border-t border-[#a3fb73]/8">
           {attempts !== undefined && (
             <StatChip icon={<Zap className="w-3 h-3" />} label={`${attempts} tentativa${attempts !== 1 ? "s" : ""}`} />
           )}
@@ -120,7 +121,7 @@ export function ScoreDisplay({
 
 function StatChip({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <span className="flex items-center gap-1 text-xs text-zinc-500">
+    <span className="flex items-center gap-1 text-xs font-mono text-[#3d5a44]">
       {icon}
       {label}
     </span>

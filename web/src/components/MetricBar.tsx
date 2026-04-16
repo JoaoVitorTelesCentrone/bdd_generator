@@ -5,17 +5,17 @@ interface Props {
   delay?: number;
 }
 
-function scoreColor(v: number) {
-  if (v >= 8)  return "bg-emerald-500";
-  if (v >= 7)  return "bg-green-500";
-  if (v >= 5)  return "bg-amber-500";
+function barColor(v: number) {
+  if (v >= 8) return "bg-[#a3fb73]";
+  if (v >= 7) return "bg-[#7dd151]";
+  if (v >= 5) return "bg-[#f59e0b]";
   return "bg-red-500";
 }
 
-function scoreTextColor(v: number) {
-  if (v >= 8)  return "text-emerald-400";
-  if (v >= 7)  return "text-green-400";
-  if (v >= 5)  return "text-amber-400";
+function textColor(v: number) {
+  if (v >= 8) return "text-[#a3fb73]";
+  if (v >= 7) return "text-[#7dd151]";
+  if (v >= 5) return "text-[#f59e0b]";
   return "text-red-400";
 }
 
@@ -26,20 +26,17 @@ export function MetricBar({ label, value, weight, delay = 0 }: Props) {
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-sm text-zinc-300 font-medium">{label}</span>
-          <span className="text-xs text-zinc-600">{weight}</span>
+          <span className="text-sm font-mono text-[#7a9b87]">{label}</span>
+          <span className="text-[10px] font-mono text-[#3d5a44]">{weight}</span>
         </div>
-        <span className={`text-sm font-semibold tabular-nums ${scoreTextColor(value)}`}>
+        <span className={`text-sm font-mono font-bold tabular-nums ${textColor(value)}`}>
           {value.toFixed(1)}
         </span>
       </div>
-      <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+      <div className="h-1.5 bg-[#243d2c] rounded-full overflow-hidden border border-[#a3fb73]/8">
         <div
-          className={`h-full rounded-full transition-all duration-700 ease-out ${scoreColor(value)}`}
-          style={{
-            width: `${pct}%`,
-            transitionDelay: `${delay}ms`,
-          }}
+          className={`h-full rounded-full transition-all duration-700 ease-out ${barColor(value)}`}
+          style={{ width: `${pct}%`, transitionDelay: `${delay}ms` }}
         />
       </div>
     </div>

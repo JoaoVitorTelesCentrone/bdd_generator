@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
-  Sparkles, ChevronDown, ChevronUp, FlaskConical,
+  Terminal, ChevronDown, ChevronUp, FlaskConical,
   Repeat, Loader2, AlertCircle, Info,
 } from "lucide-react";
-import { generateBDD, fetchModels } from "@/lib/api";
+import { generateBDD } from "@/lib/api";
+import { addEntry } from "@/lib/history";
 import { ScoreDisplay } from "./ScoreDisplay";
 import { BDDViewer } from "./BDDViewer";
 import { saveGeneration } from "@/lib/supabase/generations";
@@ -19,7 +20,7 @@ const EXAMPLE_STORIES = [
 ];
 
 export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
-  const [models, setModels] = useState<Model[]>(initialModels);
+  const [models] = useState<Model[]>(initialModels);
   const [story, setStory] = useState("");
   const [model, setModel] = useState(initialModels.find(m => m.default)?.id ?? "flash");
   const [threshold, setThreshold] = useState(7.0);
@@ -45,10 +46,23 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
       const res = await generateBDD({ story: story.trim(), model, threshold, max_attempts: maxAttempts, research, until_converged: untilConverged });
       setResult(res);
       setSaved(false);
-      // Salva no Supabase se o usuário estiver autenticado
+      // Save to local history
+      addEntry({
+        timestamp: Date.now(),
+        story: story.trim(),
+        model,
+        bdd_text: res.bdd_text,
+        score: res.score,
+        attempts: res.attempts,
+        total_tokens: res.total_tokens,
+        research_tokens: res.research_tokens,
+        converged: res.converged,
+        duration_seconds: res.duration_seconds,
+        options: { research, threshold },
+      });
+      setSaved(true);
       if (user) {
-        saveGeneration(user.id, story.trim(), model, res, { research, threshold })
-          .then(saved => { if (saved) setSaved(true); });
+        saveGeneration(user.id, story.trim(), model, res, { research, threshold });
       }
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
     } catch (e: unknown) {
@@ -66,47 +80,53 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
   const selectedModel = models.find(m => m.id === model);
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[480px_1fr] gap-6 h-full">
+    <div className="grid grid-cols-1 xl:grid-cols-[460px_1fr] gap-5 h-full">
+
       {/* ── Left: Form ──────────────────────────────────────────────────── */}
-      <div className="space-y-4">
+      <div className="space-y-3">
+
         {/* Story Input */}
         <div className="card p-4 space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-zinc-300">User Story</label>
+            <label className="text-sm font-mono text-[#7a9b87]">
+              <span className="text-[#5a7a65] mr-1">//</span> user story
+            </label>
             <button onClick={loadExample} className="btn-ghost text-xs">
-              <Sparkles className="w-3 h-3" />
-              Exemplo
+              <Terminal className="w-3 h-3" />
+              exemplo
             </button>
           </div>
           <textarea
-            className="textarea h-44 leading-relaxed"
+            className="textarea h-44 leading-relaxed text-sm"
             placeholder={"Como [persona], quero [ação] para [benefício].\n\nCritérios de aceitação:\n- ..."}
             value={story}
             onChange={e => setStory(e.target.value)}
           />
-          <p className="text-xs text-zinc-600">{story.length} caracteres</p>
+          <p className="text-[10px] text-[#3d5a44] font-mono">{story.length} chars</p>
         </div>
 
         {/* Model Selector */}
         <div className="card p-4 space-y-3">
-          <label className="text-sm font-medium text-zinc-300">Modelo</label>
+          <label className="text-sm font-mono text-[#7a9b87]">
+            <span className="text-[#5a7a65] mr-1">//</span> model
+          </label>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {models.map(m => (
               <button
                 key={m.id}
                 onClick={() => setModel(m.id)}
                 className={[
-                  "relative flex flex-col items-start px-3 py-2.5 rounded-lg border text-left transition-all duration-150",
+                  "relative flex flex-col items-start px-3 py-2.5 rounded text-left transition-all duration-150 border font-mono",
                   model === m.id
-                    ? "border-indigo-500 bg-indigo-600/10 text-indigo-300"
-                    : "border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:border-zinc-600 hover:text-zinc-300",
+                    ? "border-[#a3fb73]/50 bg-[#a3fb73]/8 text-[#a3fb73]"
+                    : "border-[#a3fb73]/12 bg-[#243d2c]/40 text-[#5a7a65] hover:border-[#a3fb73]/25 hover:text-[#7a9b87]",
                 ].join(" ")}
               >
                 <span className="text-xs font-semibold leading-tight">{m.id}</span>
-                <span className="text-[10px] text-zinc-500 leading-tight mt-0.5 truncate w-full">
+                <span className="text-[10px] leading-tight mt-0.5 truncate w-full opacity-70">
                   {m.name.replace(/^(Gemini |Claude )/, "")}
                 </span>
-                <span className={`absolute top-1.5 right-1.5 text-[9px] font-medium ${m.provider === "gemini" ? "text-blue-500" : "text-violet-500"}`}>
+                <span className={`absolute top-1.5 right-1.5 text-[9px] font-bold ${m.provider === "gemini" ? "text-[#60a5fa]" : "text-[#c4b5fd]"}`}>
                   {m.provider === "gemini" ? "G" : "C"}
                 </span>
               </button>
@@ -117,28 +137,31 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
         {/* Advanced Options */}
         <div className="card">
           <button
-            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-zinc-300 hover:text-zinc-100 transition-colors"
+            className="w-full flex items-center justify-between px-4 py-3 text-sm font-mono text-[#5a7a65] hover:text-[#7a9b87] transition-colors"
             onClick={() => setShowAdvanced(p => !p)}
           >
-            <span>Opções avançadas</span>
-            {showAdvanced ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+            <span>// opções avançadas</span>
+            {showAdvanced
+              ? <ChevronUp className="w-4 h-4" />
+              : <ChevronDown className="w-4 h-4" />
+            }
           </button>
 
           {showAdvanced && (
-            <div className="px-4 pb-4 space-y-4 border-t border-zinc-800 pt-4">
+            <div className="px-4 pb-4 space-y-4 border-t border-[#a3fb73]/10 pt-4">
               {/* Threshold */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs text-zinc-400 flex items-center gap-1">
-                    Score mínimo (threshold)
+                  <label className="text-xs text-[#5a7a65] font-mono flex items-center gap-1">
+                    threshold (score mínimo)
                     <Tooltip text="Score necessário para aprovar o BDD. Valores mais altos exigem mais tentativas de refinamento." />
                   </label>
-                  <span className="text-sm font-semibold text-indigo-400 tabular-nums">{threshold.toFixed(1)}</span>
+                  <span className="text-sm font-mono font-bold text-[#a3fb73] tabular-nums">{threshold.toFixed(1)}</span>
                 </div>
                 <input type="range" min="1" max="10" step="0.5" value={threshold}
                   onChange={e => setThreshold(parseFloat(e.target.value))}
-                  className="w-full accent-indigo-500 cursor-pointer" />
-                <div className="flex justify-between text-[10px] text-zinc-600">
+                  className="w-full accent-[#a3fb73] cursor-pointer" />
+                <div className="flex justify-between text-[10px] text-[#3d5a44] font-mono">
                   <span>1.0 (leniente)</span><span>10.0 (rigoroso)</span>
                 </div>
               </div>
@@ -146,13 +169,13 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
               {/* Max Attempts */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs text-zinc-400">Máximo de tentativas</label>
-                  <span className="text-sm font-semibold text-zinc-300 tabular-nums">{maxAttempts}</span>
+                  <label className="text-xs text-[#5a7a65] font-mono">max tentativas</label>
+                  <span className="text-sm font-mono font-bold text-[#eef9e8] tabular-nums">{maxAttempts}</span>
                 </div>
                 <input type="range" min="1" max="20" step="1" value={maxAttempts}
                   onChange={e => setMaxAttempts(parseInt(e.target.value))}
-                  className="w-full accent-indigo-500 cursor-pointer" />
-                <div className="flex justify-between text-[10px] text-zinc-600">
+                  className="w-full accent-[#a3fb73] cursor-pointer" />
+                <div className="flex justify-between text-[10px] text-[#3d5a44] font-mono">
                   <span>1</span><span>20</span>
                 </div>
               </div>
@@ -164,18 +187,18 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
                   checked={research}
                   onChange={setResearch}
                   icon={<FlaskConical className="w-3.5 h-3.5" />}
-                  label="Auto-Research"
-                  description="Analisa a story antes de gerar para extrair critérios de aceitação implícitos"
-                  color="amber"
+                  label="--auto-research"
+                  description="analisa a story antes de gerar para extrair critérios de aceitação implícitos"
+                  color="lime"
                 />
                 <Toggle
                   id="converged"
                   checked={untilConverged}
                   onChange={setUntilConverged}
                   icon={<Repeat className="w-3.5 h-3.5" />}
-                  label="Until-Converged"
-                  description="Refina até atingir o threshold (máx 50 tentativas), ignorando o limite acima"
-                  color="violet"
+                  label="--until-converged"
+                  description="refina até atingir o threshold (máx 50 tentativas), ignorando o limite acima"
+                  color="pale"
                 />
               </div>
             </div>
@@ -184,49 +207,56 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
 
         {/* Generate Button */}
         <button
-          className="btn-primary w-full text-base py-3 shadow-lg shadow-indigo-500/20"
+          className="btn-primary w-full text-sm py-3 shadow-lg shadow-[#a3fb73]/10"
           disabled={loading || !story.trim()}
           onClick={handleGenerate}
         >
           {loading
-            ? <><Loader2 className="w-4 h-4 animate-spin" /> Gerando cenários BDD...</>
-            : <><Sparkles className="w-4 h-4" /> Gerar Cenários BDD</>
+            ? <><Loader2 className="w-4 h-4 animate-spin" /> gerando cenários bdd...</>
+            : <><Terminal className="w-4 h-4" /> bist generate --run</>
           }
         </button>
 
         {/* Loading progress */}
         {loading && (
           <div className="card p-3 space-y-2">
-            <div className="flex items-center gap-2 text-xs text-zinc-400">
-              <Loader2 className="w-3 h-3 animate-spin text-indigo-400" />
+            <div className="flex items-center gap-2 text-xs font-mono text-[#5a7a65]">
+              <Loader2 className="w-3 h-3 animate-spin text-[#a3fb73]" />
               <span>
-                {research ? "Pesquisando story e gerando cenários..." : "Gerando e refinando cenários..."}
+                {research ? "// pesquisando story e gerando cenários..." : "// gerando e refinando cenários..."}
               </span>
             </div>
-            <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div className="h-full bg-indigo-500 animate-progress rounded-full" />
+            <div className="h-0.5 bg-[#243d2c] rounded-full overflow-hidden">
+              <div className="h-full bg-[#a3fb73] animate-progress rounded-full" />
             </div>
-            <p className="text-xs text-zinc-600">
-              Modelo: <span className="text-zinc-400">{selectedModel?.name}</span>
-              {research && <> &middot; <span className="text-amber-500">Auto-research ativo</span></>}
+            <p className="text-[10px] font-mono text-[#3d5a44]">
+              model: <span className="text-[#7a9b87]">{selectedModel?.name}</span>
+              {research && <> &middot; <span className="text-[#a3fb73]">auto-research on</span></>}
             </p>
           </div>
+        )}
+
+        {/* Saved indicator */}
+        {saved && (
+          <p className="text-[10px] font-mono text-[#a3fb73]/60 text-center">
+            ✓ salvo no histórico
+          </p>
         )}
       </div>
 
       {/* ── Right: Results ───────────────────────────────────────────────── */}
       <div ref={resultRef} className="space-y-4 min-h-[300px]">
-        {!result && !error && !loading && (
-          <EmptyState />
-        )}
+        {!result && !error && !loading && <EmptyState />}
 
         {error && (
-          <div className="card p-4 border-red-500/30 bg-red-500/5 flex items-start gap-3">
+          <div className="card p-4 border border-red-500/20 bg-red-500/5 flex items-start gap-3">
             <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="text-sm font-medium text-red-400">Erro na geração</p>
-              <p className="text-xs text-zinc-400 mt-1">{error}</p>
-              <p className="text-xs text-zinc-600 mt-2">Verifique se o backend está rodando: <code className="text-zinc-400">uvicorn backend.main:app --reload</code></p>
+            <div className="font-mono">
+              <p className="text-sm font-semibold text-red-400">erro na geração</p>
+              <p className="text-xs text-[#7a9b87] mt-1">{error}</p>
+              <p className="text-xs text-[#3d5a44] mt-2">
+                verifique se o backend está rodando: <code className="text-[#7a9b87]">uvicorn backend.main:app --reload</code>
+              </p>
             </div>
           </div>
         )}
@@ -235,8 +265,8 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
           <div className="space-y-4 animate-slide-up">
             {/* Score card */}
             <div className="card p-5">
-              <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide mb-4">
-                Avaliação de Qualidade
+              <h2 className="text-xs font-mono text-[#5a7a65] uppercase tracking-widest mb-4">
+                // quality assessment
               </h2>
               <ScoreDisplay
                 score={result.score}
@@ -250,9 +280,9 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
 
             {/* BDD Output */}
             <div className="card overflow-hidden">
-              <div className="px-4 py-3 border-b border-zinc-800">
-                <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide">
-                  Cenários BDD Gerados
+              <div className="px-4 py-3 border-b border-[#a3fb73]/10">
+                <h2 className="text-xs font-mono text-[#5a7a65] uppercase tracking-widest">
+                  // output.feature
                 </h2>
               </div>
               <div className="p-2">
@@ -277,24 +307,24 @@ function Toggle({
   icon: React.ReactNode;
   label: string;
   description: string;
-  color: "amber" | "violet";
+  color: "lime" | "pale";
 }) {
-  const activeColor = color === "amber" ? "bg-amber-500" : "bg-violet-500";
-  const textActive = color === "amber" ? "text-amber-400" : "text-violet-400";
+  const trackActive  = color === "lime" ? "bg-[#a3fb73]" : "bg-[#7a9b87]";
+  const labelActive  = color === "lime" ? "text-[#a3fb73]" : "text-[#c4e8a8]";
 
   return (
     <label htmlFor={id} className="flex items-start gap-3 cursor-pointer group">
-      <div className="relative mt-0.5">
+      <div className="relative mt-0.5 flex-shrink-0">
         <input id={id} type="checkbox" className="sr-only" checked={checked} onChange={e => onChange(e.target.checked)} />
-        <div className={`w-9 h-5 rounded-full transition-colors duration-200 ${checked ? activeColor : "bg-zinc-700"}`}>
-          <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 ${checked ? "translate-x-4" : "translate-x-0"}`} />
+        <div className={`w-9 h-5 rounded-full transition-colors duration-200 ${checked ? trackActive : "bg-[#243d2c] border border-[#a3fb73]/20"}`}>
+          <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-[#eef9e8] rounded-full shadow transition-transform duration-200 ${checked ? "translate-x-4" : "translate-x-0"}`} />
         </div>
       </div>
       <div>
-        <p className={`text-sm font-medium flex items-center gap-1.5 ${checked ? textActive : "text-zinc-400"}`}>
+        <p className={`text-sm font-mono flex items-center gap-1.5 ${checked ? labelActive : "text-[#5a7a65]"}`}>
           {icon}{label}
         </p>
-        <p className="text-xs text-zinc-600 leading-snug mt-0.5">{description}</p>
+        <p className="text-[10px] font-mono text-[#3d5a44] leading-snug mt-0.5">{description}</p>
       </div>
     </label>
   );
@@ -303,9 +333,10 @@ function Toggle({
 function Tooltip({ text }: { text: string }) {
   return (
     <span className="relative group cursor-help">
-      <Info className="w-3 h-3 text-zinc-600" />
+      <Info className="w-3 h-3 text-[#3d5a44]" />
       <span className="absolute left-full ml-1 top-1/2 -translate-y-1/2 z-10 hidden group-hover:block
-                       bg-zinc-800 border border-zinc-700 text-zinc-300 text-xs rounded-lg px-2 py-1 w-52 shadow-lg">
+                       bg-[#243d2c] border border-[#a3fb73]/20 text-[#7a9b87] text-xs font-mono
+                       rounded p-2 w-52 shadow-xl">
         {text}
       </span>
     </span>
@@ -314,26 +345,45 @@ function Tooltip({ text }: { text: string }) {
 
 function EmptyState() {
   return (
-    <div className="card p-10 flex flex-col items-center justify-center text-center gap-4 border-dashed border-zinc-700 min-h-[400px]">
-      <div className="w-14 h-14 rounded-2xl bg-indigo-600/10 border border-indigo-600/20 flex items-center justify-center">
-        <Sparkles className="w-6 h-6 text-indigo-400" />
+    <div className="card p-10 flex flex-col items-center justify-center text-center gap-5
+                    border-dashed border-[#a3fb73]/12 min-h-[420px]">
+      {/* Terminal window mockup */}
+      <div className="w-full max-w-xs">
+        <div className="card-terminal rounded-t-none border-b-0 p-0">
+          <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#a3fb73]/15 bg-[#243d2c]/50">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]/60" />
+            <div className="w-2.5 h-2.5 rounded-full bg-[#a3fb73]/60" />
+            <span className="text-[10px] font-mono text-[#3d5a44] ml-2">output.feature</span>
+          </div>
+          <div className="p-4 text-left space-y-1 text-xs font-mono">
+            <p className="text-[#a3fb73]">Funcionalidade: <span className="text-[#7a9b87]">aguardando input...</span></p>
+            <p className="text-[#5a7a65] pl-2">Cenário: <span className="opacity-40">___</span></p>
+            <p className="text-[#5a7a65] pl-4">Dado que <span className="opacity-40">___</span></p>
+            <p className="text-[#5a7a65] pl-4">Quando <span className="opacity-40">___</span></p>
+            <p className="text-[#5a7a65] pl-4">Então <span className="opacity-40">___</span></p>
+          </div>
+        </div>
       </div>
+
       <div>
-        <p className="text-zinc-300 font-medium">Pronto para gerar</p>
-        <p className="text-sm text-zinc-600 mt-1 max-w-xs">
-          Insira uma user story à esquerda, escolha o modelo e clique em <strong className="text-zinc-400">Gerar Cenários BDD</strong>
+        <p className="text-[#7a9b87] font-mono text-sm">pronto para gerar</p>
+        <p className="text-xs font-mono text-[#3d5a44] mt-1 max-w-xs">
+          insira uma user story à esquerda e execute <span className="text-[#a3fb73]">bist generate --run</span>
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-2 w-full max-w-xs text-left mt-2">
+
+      {/* Metrics legend */}
+      <div className="grid grid-cols-2 gap-2 w-full max-w-xs text-left">
         {[
-          ["Cobertura", "30% do score"],
-          ["Estrutura GWT", "30% do score"],
-          ["Clareza", "20% do score"],
-          ["Executabilidade", "20% do score"],
+          ["cobertura",       "peso 30%"],
+          ["estrutura gwt",   "peso 30%"],
+          ["clareza",         "peso 20%"],
+          ["executabilidade", "peso 20%"],
         ].map(([k, v]) => (
-          <div key={k} className="bg-zinc-800/50 rounded-lg px-3 py-2">
-            <p className="text-xs font-medium text-zinc-300">{k}</p>
-            <p className="text-[10px] text-zinc-600">{v}</p>
+          <div key={k} className="bg-[#243d2c]/40 border border-[#a3fb73]/8 rounded px-3 py-2">
+            <p className="text-[10px] font-mono font-semibold text-[#a3fb73]">{k}</p>
+            <p className="text-[9px] font-mono text-[#3d5a44] mt-0.5">{v}</p>
           </div>
         ))}
       </div>

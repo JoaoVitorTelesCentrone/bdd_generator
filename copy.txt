@@ -1,0 +1,136 @@
+🚀 BIST — Copy Refinada
+
+═══════════════════════════════════════════════════════════════════
+
+HEADLINE (impacto imediato):
+Seus testes estão mentindo para você.
+
+SUBHEADLINE:
+O BIST transforma ruído de QA em inteligência de negócio. Pare de validar se funciona. Comece a entender *por que* falha — e o que isso revela sobre seu produto.
+
+═══════════════════════════════════════════════════════════════════
+
+BLOCO DE VALOR (o problema real):
+
+A maioria dos times de QA ainda opera no escuro:
+- Executam testes, mas não enxergam padrões
+- Encontram bugs, mas não preveem riscos
+- Coletam dados, mas não geram insights
+
+O BIST muda o jogo.
+
+Cada teste vira contexto. Cada falha vira aprendizado. Cada dado vira decisão.
+
+Não é sobre encontrar mais bugs.
+É sobre entender o comportamento do seu sistema antes que seus usuários paguem o preço.
+
+═══════════════════════════════════════════════════════════════════
+
+DIFERENCIAÇÃO (o soco na mesa):
+
+Ferramentas tradicionais EXECUTAM testes.
+O BIST CONSTRÓI inteligência.
+
+✓ Visualize padrões que nenhum dashboard de CI/CD mostra
+✓ Antecipe riscos antes que virem incidentes
+✓ Conecte qualidade com negócio — cada métrica tem um porquê
+
+Isso não é automação melhorada.
+É QA com propósito estratégico.
+
+═══════════════════════════════════════════════════════════════════
+
+CONEXÃO COM O NOME (ancoragem):
+
+BIST não é sigla por acaso.
+
+Business Intelligence Software Testing
+
+Porque teste sem inteligência é só checklist.
+E checklist não escala. Não prevê. Não protege.
+
+═══════════════════════════════════════════════════════════════════
+
+CTA (direto e aspiracional):
+
+OPÇÃO 1 (desafiador):
+Pare de testar às cegas. Comece a testar com visão.
+
+OPÇÃO 2 (estratégico):
+Transforme QA de custo operacional em vantagem competitiva.
+
+OPÇÃO 3 (provocador):
+Se você ainda mede qualidade por "passou/falhou", já está dois anos atrasado.
+
+═══════════════════════════════════════════════════════════════════
+
+🔥 VERSÃO ULTRA-AGRESSIVA (para viralizar / evangelizar early adopters)
+
+QA hoje é teatro de segurança.
+
+Você roda testes, bate a meta de cobertura, celebra o pipeline verde.
+E mesmo assim... o sistema quebra em produção.
+
+Por quê?
+
+Porque execução não é inteligência.
+Você tem dados. Não tem leitura.
+
+O BIST acaba com essa ilusão.
+
+Aqui, teste não é validação binária.
+É mapeamento comportamental do seu produto.
+
+- Falhou? Por que falhou agora e não antes?
+- Passou? Passou sob quais condições? Isso é replicável?
+- Cobertura alta? Mas cobre os fluxos que IMPORTAM ou só os fáceis de automatizar?
+
+Se o seu QA não responde essas perguntas, você tem automação. Não tem qualidade.
+
+BIST é pra quem quer parar de reagir e começar a antecipar.
+
+═══════════════════════════════════════════════════════════════════
+
+PILARES DE POSICIONAMENTO REFINADO
+
+ANTES                          DEPOIS COM BIST
+─────────────────────────────────────────────────────────────────
+QA reativo                  →  QA preditivo
+Checklist de testes         →  Inteligência comportamental
+"Passou/Falhou"             →  "Por que? Em que contexto?"
+Ferramenta de execução      →  Plataforma de decisão
+Validação técnica           →  Validação de negócio
+
+═══════════════════════════════════════════════════════════════════
+
+MENSAGEM CENTRAL (elevator pitch de 10 segundos):
+
+"BIST transforma dados de teste em inteligência de negócio — pra você parar de descobrir bugs em produção e começar a prever comportamentos antes que custem caro."
+
+═══════════════════════════════════════════════════════════════════
+
+PROPOSTA DE VALOR EM CAMADAS
+
+PARA DESENVOLVEDORES:
+Menos surpresas em produção. Mais confiança em deploys.
+
+PARA QA/TEST ENGINEERS:
+Saia do operacional. Entre no estratégico. Seus testes agora falam a língua do C-level.
+
+PARA PRODUCT/NEGÓCIO:
+Qualidade deixa de ser custo invisível e vira métrica de risco mensurável.
+
+PARA LIDERANÇA TÉCNICA:
+Previsibilidade. Isso é o que separa times que entregam dos que apagam incêndio.
+
+═══════════════════════════════════════════════════════════════════
+
+TAGLINES ALTERNATIVAS (para teste A/B):
+
+1. "Teste é dado. Dado é decisão. Decisão é vantagem."
+2. "O que seus testes escondem vale mais do que mostram."
+3. "QA inteligente não encontra bugs — previne crises."
+4. "De executor de testes a arquiteto de confiabilidade."
+5. "Porque checklist não é estratégia."
+
+═══════════════════════════════════════════════════════════════════

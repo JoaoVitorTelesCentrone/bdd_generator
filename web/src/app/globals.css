@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,17 @@
 
 @layer base {
   :root {
-    --scrollbar-thumb: #3f3f46;
-    --scrollbar-track: #18181b;
+    /* ── BIST Identity System ────────────────────────────────────────── */
+    --bist-primary:   #1a2c21;
+    --bist-secondary: #a3fb73;
+    --bist-accent:    #eef9e8;
+    --bist-muted:     #7a9b87;
+    --bist-surface:   #243d2c;
+    --bist-dim:       #5a7a65;
+    --bist-hover:     #8ee05a;
+
+    --scrollbar-thumb: rgba(163, 251, 115, 0.2);
+    --scrollbar-track: #1a2c21;
   }
 
   * {
@@ -18,74 +27,180 @@
   *::-webkit-scrollbar { width: 6px; height: 6px; }
   *::-webkit-scrollbar-track { background: var(--scrollbar-track); }
   *::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+  *::-webkit-scrollbar-thumb:hover { background: rgba(163, 251, 115, 0.35); }
 
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-zinc-950 text-zinc-100 antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: var(--bist-primary);
+    color: var(--bist-accent);
+    font-family: 'Consolas', 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Subtle grid texture on background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(163, 251, 115, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(163, 251, 115, 0.015) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main, header, footer { position: relative; z-index: 1; }
 }
 
 @layer components {
-  /* ── BDD Syntax ─────────────────────────────────────────────────────── */
-  .bdd-keyword-feature  { @apply text-violet-400 font-semibold; }
-  .bdd-keyword-scenario { @apply text-indigo-400 font-semibold; }
-  .bdd-keyword-step     { @apply text-sky-400 font-medium; }
-  .bdd-keyword-and      { @apply text-sky-300; }
-  .bdd-string           { @apply text-emerald-400; }
-  .bdd-comment          { @apply text-zinc-500 italic; }
-  .bdd-tag              { @apply text-amber-400; }
+  /* ── BDD Syntax (BIST palette) ─────────────────────────────────────── */
+  .bdd-keyword-feature  { color: #a3fb73; font-weight: 600; }
+  .bdd-keyword-scenario { color: #7dd151; font-weight: 600; }
+  .bdd-keyword-step     { color: #c4e8a8; font-weight: 500; }
+  .bdd-keyword-and      { color: #b2e89a; }
+  .bdd-string           { color: #eef9e8; font-style: italic; opacity: 0.85; }
+  .bdd-comment          { color: #5a7a65; font-style: italic; }
+  .bdd-tag              { color: #a3fb73; opacity: 0.65; }
 
-  /* ── Cards ──────────────────────────────────────────────────────────── */
+  /* ── Cards ─────────────────────────────────────────────────────────── */
   .card {
-    @apply bg-zinc-900 border border-zinc-800 rounded-xl;
+    background-color: rgba(36, 61, 44, 0.55);
+    border: 1px solid rgba(163, 251, 115, 0.14);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
   }
 
   .card-glass {
-    @apply bg-zinc-900/80 backdrop-blur border border-zinc-700/50 rounded-xl;
+    background-color: rgba(26, 44, 33, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(163, 251, 115, 0.18);
+    border-radius: 8px;
   }
 
-  /* ── Inputs ─────────────────────────────────────────────────────────── */
+  .card-terminal {
+    background-color: rgba(26, 44, 33, 0.9);
+    border: 1px solid rgba(163, 251, 115, 0.25);
+    border-radius: 4px;
+    font-family: 'Consolas', 'JetBrains Mono', monospace;
+  }
+
+  /* ── Inputs ────────────────────────────────────────────────────────── */
   .input {
-    @apply w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2
-           text-zinc-100 placeholder-zinc-500
-           focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50
-           transition-colors duration-150;
+    @apply w-full;
+    background-color: rgba(26, 44, 33, 0.7);
+    border: 1px solid rgba(163, 251, 115, 0.25);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    color: var(--bist-accent);
+    font-family: inherit;
+    font-size: 0.875rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
   }
 
-  .textarea {
-    @apply input resize-none;
+  .input::placeholder { color: var(--bist-dim); }
+
+  .input:focus {
+    border-color: var(--bist-secondary);
+    box-shadow: 0 0 0 2px rgba(163, 251, 115, 0.12);
   }
 
-  /* ── Buttons ────────────────────────────────────────────────────────── */
+  .textarea { @apply input resize-none; }
+
+  /* ── Buttons ───────────────────────────────────────────────────────── */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2
-           bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700
-           text-white font-medium rounded-lg px-5 py-2.5
-           transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed
-           focus:outline-none focus:ring-2 focus:ring-indigo-500/50;
+    @apply inline-flex items-center justify-center gap-2;
+    background-color: #a3fb73;
+    color: #1a2c21;
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: 4px;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    cursor: pointer;
   }
+
+  .btn-primary:hover { background-color: #8ee05a; }
+  .btn-primary:active { background-color: #7bcc4a; transform: translateY(1px); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(163, 251, 115, 0.35); }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2
-           bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900
-           text-zinc-200 font-medium rounded-lg px-4 py-2
-           border border-zinc-700 hover:border-zinc-600
-           transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-zinc-500/30;
+    @apply inline-flex items-center justify-center gap-2;
+    background-color: transparent;
+    color: #a3fb73;
+    border: 1px solid rgba(163, 251, 115, 0.4);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 0.875rem;
+    transition: all 0.15s;
+    cursor: pointer;
   }
+
+  .btn-secondary:hover {
+    background-color: rgba(163, 251, 115, 0.07);
+    border-color: #a3fb73;
+  }
+
+  .btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(163, 251, 115, 0.3); }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-1.5
-           text-zinc-400 hover:text-zinc-200
-           px-2 py-1 rounded-md text-sm
-           transition-colors duration-100;
+    @apply inline-flex items-center justify-center gap-1.5;
+    color: var(--bist-dim);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-family: inherit;
+    transition: color 0.1s, background-color 0.1s;
+    cursor: pointer;
   }
 
-  /* ── Labels / Badges ────────────────────────────────────────────────── */
-  .badge-approved  { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25; }
-  .badge-rejected  { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-red-500/15 text-red-400 border border-red-500/25; }
-  .badge-gemini    { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400; }
-  .badge-claude    { @apply inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full bg-violet-500/15 text-violet-400; }
+  .btn-ghost:hover {
+    color: var(--bist-secondary);
+    background-color: rgba(163, 251, 115, 0.06);
+  }
+
+  /* ── Labels / Badges ───────────────────────────────────────────────── */
+  .badge-approved {
+    @apply inline-flex items-center gap-1 text-xs font-medium;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    background-color: rgba(163, 251, 115, 0.1);
+    color: #a3fb73;
+    border: 1px solid rgba(163, 251, 115, 0.28);
+    letter-spacing: 0.05em;
+  }
+
+  .badge-rejected {
+    @apply inline-flex items-center gap-1 text-xs font-medium;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.22);
+    letter-spacing: 0.05em;
+  }
+
+  .badge-gemini {
+    @apply inline-flex items-center gap-1 text-xs font-medium;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    background-color: rgba(96, 165, 250, 0.08);
+    color: #60a5fa;
+  }
+
+  .badge-claude {
+    @apply inline-flex items-center gap-1 text-xs font-medium;
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    background-color: rgba(196, 181, 253, 0.08);
+    color: #c4b5fd;
+  }
 }

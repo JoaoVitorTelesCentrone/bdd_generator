@@ -2,55 +2,83 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sparkles, BarChart2, BookOpen } from "lucide-react";
+import { Terminal, BarChart2, History } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
-const links = [
-  { href: "/",         label: "Gerar",   icon: Sparkles  },
-  { href: "/evaluate", label: "Avaliar", icon: BarChart2  },
+const appLinks = [
+  { href: "/generate", label: "generate", icon: Terminal  },
+  { href: "/evaluate", label: "evaluate", icon: BarChart2 },
+  { href: "/history",  label: "history",  icon: History   },
 ];
 
 export function Navbar() {
   const path = usePathname();
+  const isApp = path.startsWith("/generate") || path.startsWith("/evaluate") || path.startsWith("/history");
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#a3fb73]/12 bg-[#1a2c21]/96 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 shrink-0">
-          <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center">
-            <BookOpen className="w-4 h-4 text-white" />
+
+        {/* ── Logo ─────────────────────────────────────────────────────── */}
+        <Link href="/" className="flex items-center gap-3 shrink-0 group">
+          <div className="flex items-center gap-0.5">
+            <span className="font-['Share_Tech_Mono',_'Consolas',_monospace] text-[#a3fb73] text-xl tracking-[0.25em] leading-none">
+              BIST
+            </span>
+            <span className="text-[#a3fb73] text-xl leading-none animate-cursor-blink ml-0.5">
+              ▮
+            </span>
           </div>
-          <span className="font-semibold text-zinc-100 tracking-tight">
-            BDD <span className="text-indigo-400">Generator</span>
-          </span>
+          <div className="hidden sm:flex flex-col justify-center">
+            <span className="text-[10px] text-[#5a7a65] font-mono leading-tight tracking-widest uppercase">
+              bdd generator
+            </span>
+          </div>
         </Link>
 
         <div className="flex items-center gap-3">
-          {/* Nav links */}
-          <nav className="flex items-center gap-1">
-            {links.map(({ href, label, icon: Icon }) => {
-              const active = path === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={[
-                    "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors",
-                    active
-                      ? "bg-indigo-600/20 text-indigo-400"
-                      : "text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800",
-                  ].join(" ")}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                  {label}
-                </Link>
-              );
-            })}
-          </nav>
+          {/* ── App Nav Links (only shown on app pages) ─────────────────── */}
+          {isApp && (
+            <nav className="flex items-center gap-1">
+              {appLinks.map(({ href, label, icon: Icon }) => {
+                const active = path === href || path.startsWith(href + "/");
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={[
+                      "flex items-center gap-1.5 px-3 py-1.5 rounded text-sm font-mono transition-all duration-150",
+                      active
+                        ? "bg-[#a3fb73]/12 text-[#a3fb73] border border-[#a3fb73]/25"
+                        : "text-[#5a7a65] hover:text-[#a3fb73] hover:bg-[#a3fb73]/06 border border-transparent",
+                    ].join(" ")}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">
+                      {active && <span className="text-[#a3fb73]/50 mr-0.5">./</span>}
+                      {label}
+                    </span>
+                  </Link>
+                );
+              })}
+            </nav>
+          )}
 
-          <div className="w-px h-5 bg-zinc-800" />
-          <UserMenu />
+          {/* ── CTA (landing) or separator+UserMenu (app) ───────────────── */}
+          {!isApp ? (
+            <Link
+              href="/generate"
+              className="btn-primary text-xs py-2 px-4 shadow-lg shadow-[#a3fb73]/15"
+            >
+              <Terminal className="w-3.5 h-3.5" />
+              abrir app
+            </Link>
+          ) : (
+            <>
+              <div className="w-px h-5 bg-[#a3fb73]/15" />
+              <UserMenu />
+            </>
+          )}
         </div>
       </div>
     </header>

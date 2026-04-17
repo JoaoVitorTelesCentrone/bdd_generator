@@ -160,6 +160,11 @@ class BISTExecutor:
             val = quoted[0]
             if val.startswith("http"):
                 return val
+            # Treat single page-name tokens like "Login" or "Dashboard" as
+            # lowercase paths: "Login" → /login, "Home" → /home.
+            # Paths that already start with "/" are forwarded as-is.
+            if "/" not in val:
+                val = "/" + val.lower()
             return env_url.rstrip("/") + "/" + val.lstrip("/")
         url_match = re.search(r'https?://\S+', text)
         if url_match:
@@ -244,15 +249,43 @@ class BISTExecutor:
         healed = False
 
         try:
-            if any(k in lower for k in ("navigate to", "go to", "visit", "open", "acesso", "navego")):
+            # ── Navigation ──────────────────────────────────────────────────
+            # EN: navigate to / go to / visit / open
+            # PT 1st person: acesso / navego
+            # PT 1st person: acesso / navego / estou na página
+            # PT 3rd person: acessa / navega / abre / vai para / está na página
+            # Note: "na página de" alone is intentionally omitted — too ambiguous
+            # (matches "permanece na página de" which is an assertion).
+            if any(k in lower for k in (
+                "navigate to", "go to", "visit", "open",
+                "acesso", "navego", "estou na página",
+                "acessa", "navega para", "abre a", "abre o", "vai para",
+                "está na página",
+            )):
                 url = self._extract_url(step.text, env_url)
                 await page.goto(url, wait_until="domcontentloaded", timeout=self.timeout_ms)
 
-            elif any(k in lower for k in ("click", "press", "tap", "clico", "pressiono")):
+            # ── Click ────────────────────────────────────────────────────────
+            # EN: click / press / tap
+            # PT 1st: clico / pressiono
+            # PT 3rd: clica / pressiona / aperta
+            elif any(k in lower for k in (
+                "click", "press", "tap",
+                "clico", "pressiono",
+                "clica", "pressiona", "aperta",
+            )):
                 selector = self._extract_selector(step.text)
                 healed = await self._click_with_healing(page, selector, full_text, scenario_id)
 
-            elif any(k in lower for k in ("fill", "type", "enter", "preencho", "digito")):
+            # ── Fill / type ──────────────────────────────────────────────────
+            # EN: fill / type / enter
+            # PT 1st: preencho / digito
+            # PT 3rd: preenche / digita / insere / entra com
+            elif any(k in lower for k in (
+                "fill", "type", "enter",
+                "preencho", "digito",
+                "preenche", "digita", "insere", "entra com",
+            )):
                 quoted = self._extract_quoted(step.text)
                 if len(quoted) >= 2:
                     selector = self._extract_selector(quoted[0])
@@ -262,31 +295,45 @@ class BISTExecutor:
                     value = quoted[0] if quoted else ""
                 healed = await self._fill_with_healing(page, selector, value, full_text, scenario_id)
 
+            # ── Negative assertions ──────────────────────────────────────────
             elif any(k in lower for k in ("not see", "not visible", "hidden", "não vejo")):
                 text = self._extract_text(step.text)
                 count = await page.locator(f"text={text}").count()
                 if count > 0:
                     raise StepExecutionError(f"Expected '{text}' to not be visible, but it was found")
 
-            elif any(k in lower for k in ("see", "contain", "have text", "show", "display",
-                                           "vejo", "exibe", "should see")):
+            # ── Positive assertions (text visible) ───────────────────────────
+            # EN: see / contain / have text / show / display / should see
+            # PT 1st: vejo
+            # PT 3rd: exibe / exibe a mensagem / redirecionado / permanece / vê / deve ver / visualiza
+            elif any(k in lower for k in (
+                "see", "contain", "have text", "show", "display", "should see",
+                "vejo", "vê",
+                "exibe", "deve ver", "deveria ver", "visualiza",
+                "redirecionado", "permanece",
+            )):
                 text = self._extract_text(step.text)
                 await page.wait_for_selector(f"text={text}", timeout=self.timeout_ms)
 
-            elif any(k in lower for k in ("wait for", "aguardo")):
+            # ── Wait ─────────────────────────────────────────────────────────
+            elif any(k in lower for k in ("wait for", "aguardo", "aguarda")):
                 text = self._extract_text(step.text)
                 await page.wait_for_selector(f"text={text}", timeout=self.timeout_ms)
 
-            elif any(k in lower for k in ("select", "choose", "seleciono", "escolho")):
+            # ── Select / dropdown ────────────────────────────────────────────
+            elif any(k in lower for k in (
+                "select", "choose", "seleciono", "escolho", "seleciona", "escolhe",
+            )):
                 quoted = self._extract_quoted(step.text)
                 if len(quoted) >= 2:
                     selector = self._extract_selector(quoted[0])
                     await page.select_option(selector, label=quoted[1], timeout=self.timeout_ms)
 
-            elif any(k in lower for k in ("check", "marcar", "marco")):
+            # ── Checkbox ─────────────────────────────────────────────────────
+            elif any(k in lower for k in ("check", "marcar", "marco", "marca")):
                 await page.check(self._extract_selector(step.text), timeout=self.timeout_ms)
 
-            elif any(k in lower for k in ("uncheck", "desmarco")):
+            elif any(k in lower for k in ("uncheck", "desmarco", "desmarca")):
                 await page.uncheck(self._extract_selector(step.text), timeout=self.timeout_ms)
 
             else:

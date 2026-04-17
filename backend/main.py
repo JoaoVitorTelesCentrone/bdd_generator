@@ -17,6 +17,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.presentation.routers import health, models, generate, evaluate
 from backend.presentation.routers import bist_router
+from backend.presentation.routers import tenants_router
+from backend.presentation.routers import stories_router
 
 app = FastAPI(
     title="BDD Generator API",
@@ -42,3 +44,5 @@ app.include_router(models.router)
 app.include_router(generate.router)
 app.include_router(evaluate.router)
 app.include_router(bist_router.router)
+app.include_router(tenants_router.router)
+app.include_router(stories_router.router)

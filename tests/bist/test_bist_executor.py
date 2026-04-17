@@ -28,6 +28,13 @@ from bist.bist_executor import BISTExecutor, StepResult, ScenarioResult
 from bist.bist_parser import Step, Feature, Scenario
 from bist.bist_database import BISTDatabase
 
+# Use the same PlaywrightTimeout the executor uses so tests work whether or not
+# playwright is installed.
+try:
+    from playwright.async_api import TimeoutError as PlaywrightTimeout
+except ImportError:
+    PlaywrightTimeout = Exception  # type: ignore[misc,assignment]
+
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
@@ -291,7 +298,7 @@ class TestSelfHealing:
 
     def test_heal_enabled_calls_suggest_selectors(self, healing_executor):
         page = _mock_page()
-        page.click = AsyncMock(side_effect=Exception("timeout"))
+        page.click = AsyncMock(side_effect=PlaywrightTimeout("timeout"))
         step = _step("When", 'I click "Submit"')
 
         with patch.object(healing_executor, "_suggest_selectors", return_value=[]) as mock_suggest:
@@ -305,7 +312,7 @@ class TestSelfHealing:
         async def click_side_effect(sel, **kw):
             call_count["n"] += 1
             if call_count["n"] == 1:
-                raise Exception("timeout on first selector")
+                raise PlaywrightTimeout("timeout on first selector")
             # second call (alternative) succeeds
 
         page.click = AsyncMock(side_effect=click_side_effect)

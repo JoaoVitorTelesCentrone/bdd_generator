@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BIST Report</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f9fafb;color:#111827;padding:24px}
+    .wrap{max-width:960px;margin:0 auto}
+    .header{background:#1e1b4b;color:#fff;border-radius:12px;padding:28px;margin-bottom:24px}
+    .header h1{font-size:22px;margin-bottom:8px}
+    .meta{opacity:.7;font-size:13px;margin-bottom:20px}
+    .stats{display:flex;gap:32px;flex-wrap:wrap}
+    .stat .val{font-size:30px;font-weight:700}
+    .stat .lbl{font-size:12px;opacity:.65;margin-top:2px}
+    .card{border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:12px;background:#fff}
+    .sc-title{font-weight:600;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .sc-meta{color:#6b7280;font-size:12px;margin-bottom:10px}
+    .step{padding:4px 0 4px 12px;font-size:13px;border-left:3px solid #e5e7eb;margin:3px 0}
+    .step.passed{border-color:#22c55e;color:#166534}
+    .step.failed{border-color:#ef4444;color:#991b1b}
+    .step.skipped{border-color:#f59e0b;color:#92400e}
+    .step-err{font-size:11px;color:#dc2626;margin-top:2px;margin-left:12px}
+    .badge{display:inline-block;padding:1px 7px;border-radius:9999px;font-size:11px;font-weight:600}
+    .badge.passed{background:#dcfce7;color:#166534}
+    .badge.failed{background:#fee2e2;color:#991b1b}
+    .badge.skipped{background:#fef9c3;color:#713f12}
+    .healed{background:#fef3c7;color:#78350f;padding:1px 5px;border-radius:3px;font-size:10px;margin-left:6px}
+    a{color:#6366f1;text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>BIST Test Report</h1>
+    <div class="meta">bist_output/features/saucedemo_login.feature &rarr; https://www.saucedemo.com</div>
+    <div class="stats">
+      <div class="stat"><div class="val" style="color:#22c55e">PASSED</div><div class="lbl">Status</div></div>
+      <div class="stat"><div class="val">3</div><div class="lbl">Scenarios</div></div>
+      <div class="stat"><div class="val" style="color:#22c55e">3</div><div class="lbl">Passed</div></div>
+      <div class="stat"><div class="val" style="color:#ef4444">0</div><div class="lbl">Failed</div></div>
+      <div class="stat"><div class="val">100%</div><div class="lbl">Pass Rate</div></div>
+      <div class="stat"><div class="val">6,151ms</div><div class="lbl">Duration</div></div>
+    </div>
+  </div>
+  
+<div class="card">
+  <div class="sc-title">
+    <span class="badge passed">✓ passed</span>
+    Login bem-sucedido com credenciais válidas <a href="bist_output\videos\Login_bem_sucedido_com_credenciais_válid\167bbb2fc09cfb6ad723ffe21dd07881.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">4237ms</div>
+  <div class="step passed">Dado que estou na página de "https://www.saucedemo.com" <span style="opacity:.5;font-size:11px">(3141ms)</span></div><div class="step passed">Quando preenche o campo "#user-name" com "standard_user" <span style="opacity:.5;font-size:11px">(72ms)</span></div><div class="step passed">E preenche o campo "#password" com "secret_sauce" <span style="opacity:.5;font-size:11px">(13ms)</span></div><div class="step passed">E clica no botão "#login-button" <span style="opacity:.5;font-size:11px">(128ms)</span></div><div class="step passed">Então o sistema exibe "Products" <span style="opacity:.5;font-size:11px">(19ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge passed">✓ passed</span>
+    Tentativa de login com senha inválida <a href="bist_output\videos\Tentativa_de_login_com_senha_inválida\62267701d214e74b9f5c64df73700fb7.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">648ms</div>
+  <div class="step passed">Dado que estou na página de "https://www.saucedemo.com" <span style="opacity:.5;font-size:11px">(321ms)</span></div><div class="step passed">Quando preenche o campo "#user-name" com "standard_user" <span style="opacity:.5;font-size:11px">(36ms)</span></div><div class="step passed">E preenche o campo "#password" com "senha_errada" <span style="opacity:.5;font-size:11px">(11ms)</span></div><div class="step passed">E clica no botão "#login-button" <span style="opacity:.5;font-size:11px">(45ms)</span></div><div class="step passed">Então o sistema exibe "Epic sadface" <span style="opacity:.5;font-size:11px">(12ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge passed">✓ passed</span>
+    Tentativa de login com usuário bloqueado <a href="bist_output\videos\Tentativa_de_login_com_usuário_bloqueado\70008429f8af4ef23f010207ec4e74a0.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">632ms</div>
+  <div class="step passed">Dado que estou na página de "https://www.saucedemo.com" <span style="opacity:.5;font-size:11px">(293ms)</span></div><div class="step passed">Quando preenche o campo "#user-name" com "locked_out_user" <span style="opacity:.5;font-size:11px">(38ms)</span></div><div class="step passed">E preenche o campo "#password" com "secret_sauce" <span style="opacity:.5;font-size:11px">(12ms)</span></div><div class="step passed">E clica no botão "#login-button" <span style="opacity:.5;font-size:11px">(44ms)</span></div><div class="step passed">Então o sistema exibe "Sorry, this user has been locked out" <span style="opacity:.5;font-size:11px">(14ms)</span></div>
+</div>
+</div>
+</body>
+</html>

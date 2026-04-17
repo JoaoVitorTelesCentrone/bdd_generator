@@ -1,6 +1,7 @@
 import type {
   GenerateRequest, GenerateResult, EvaluateRequest, ScoreResult, Model,
   BistRunSummary, BistRunDetail, BistStats, BistRunRequest,
+  StoryCreateRequest, StoryCreateResult,
 } from "@/types";
 
 /**
@@ -48,6 +49,13 @@ export async function generateBDD(req: GenerateRequest): Promise<GenerateResult>
 
 export async function evaluateBDD(req: EvaluateRequest): Promise<ScoreResult> {
   return apiFetch<ScoreResult>(`${BASE}/evaluate`, {
+    method: "POST",
+    body: JSON.stringify(req),
+  });
+}
+
+export async function createStory(req: StoryCreateRequest): Promise<StoryCreateResult> {
+  return apiFetch<StoryCreateResult>(`${BASE}/stories/create`, {
     method: "POST",
     body: JSON.stringify(req),
   });

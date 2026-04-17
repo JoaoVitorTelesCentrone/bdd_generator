@@ -355,3 +355,274 @@ open  bist_output/reports/report_*.html    # macOS
 | `bist full --parallel N` | 2 | Pipeline completo com paralelismo |
 | `bist baseline` | 2 | Captura screenshots de referência |
 | `bist visual-diff` | 2 | Compara screenshots com baselines |
+
+---
+
+## Fase 4 — SaaS / Multi-tenancy
+
+### Pré-requisitos adicionais
+
+```bash
+pip install stripe python3-saml httpx
+```
+
+### Variáveis de ambiente (Fase 4)
+
+```bash
+# Proteção das rotas de admin
+export BIST_ADMIN_KEY="minha-chave-secreta"
+
+# Stripe (billing)
+export STRIPE_SECRET_KEY="sk_live_..."
+export STRIPE_WEBHOOK_SECRET="whsec_..."
+export STRIPE_PRICE_PRO="price_XXXX"        # ID do price Pro no Stripe
+export STRIPE_PRICE_BUSINESS="price_YYYY"   # ID do price Business no Stripe
+
+# OAuth2 (padrão Google — substitua para outro IdP)
+export OAUTH2_CLIENT_ID="..."
+export OAUTH2_CLIENT_SECRET="..."
+export OAUTH2_REDIRECT_URI="http://localhost:8000/api/sso/oauth2/callback"
+# Opcional: sobrescreva as URLs para IdPs não-Google
+# export OAUTH2_AUTHORIZE_URL="https://..."
+# export OAUTH2_TOKEN_URL="https://..."
+# export OAUTH2_USERINFO_URL="https://..."
+
+# SAML (enterprise)
+export SAML_ACS_URL_BASE="https://meuapp.com/api/sso/saml"
+```
+
+---
+
+### 4.1 Gerenciamento de Tenants
+
+Todos os endpoints de admin exigem o header `X-Admin-Key: <BIST_ADMIN_KEY>`.
+
+**Criar tenant:**
+
+```bash
+curl -X POST http://localhost:8000/api/tenants \
+  -H "Content-Type: application/json" \
+  -H "X-Admin-Key: minha-chave-secreta" \
+  -d '{"name": "Acme Corp", "tier": "pro"}'
+# → {"id": 1, "name": "Acme Corp", "tier": "pro"}
+```
+
+**Listar tenants:**
+
+```bash
+curl http://localhost:8000/api/tenants \
+  -H "X-Admin-Key: minha-chave-secreta"
+```
+
+**Mudar tier:**
+
+```bash
+curl -X PATCH http://localhost:8000/api/tenants/1/tier \
+  -H "Content-Type: application/json" \
+  -H "X-Admin-Key: minha-chave-secreta" \
+  -d '{"tier": "business"}'
+```
+
+Tiers disponíveis:
+
+| Tier | Runs/mês | Chamadas API/mês |
+|------|----------|-----------------|
+| `free` | 50 | 500 |
+| `pro` | 1 000 | 10 000 |
+| `business` | ilimitado | ilimitado |
+
+---
+
+### 4.2 API Keys
+
+**Criar chave (mostrada apenas uma vez):**
+
+```bash
+curl -X POST http://localhost:8000/api/tenants/1/api-keys \
+  -H "Content-Type: application/json" \
+  -H "X-Admin-Key: minha-chave-secreta" \
+  -d '{"label": "CI pipeline"}'
+# → {"raw_key": "bist_...", "key_prefix": "bist_Xk9p...", "label": "CI pipeline"}
+```
+
+**Listar chaves do tenant:**
+
+```bash
+curl http://localhost:8000/api/tenants/1/api-keys \
+  -H "X-Admin-Key: minha-chave-secreta"
+```
+
+**Revogar chave:**
+
+```bash
+curl -X DELETE http://localhost:8000/api/tenants/1/api-keys/bist_Xk9p \
+  -H "X-Admin-Key: minha-chave-secreta"
+```
+
+**Usar a chave nas chamadas BIST:**
+
+Passe o header `X-Api-Key` em qualquer rota `/api/bist/*`. O backend valida o tenant, verifica o limite do tier e registra o uso automaticamente.
+
+```bash
+# Disparar um run autenticado
+curl -X POST http://localhost:8000/api/bist/run \
+  -H "Content-Type: application/json" \
+  -H "X-Api-Key: bist_..." \
+  -d '{
+    "user_story": "Como usuário quero fazer login",
+    "env_url": "https://staging.meuapp.com"
+  }'
+
+# Listar runs do tenant
+curl http://localhost:8000/api/bist/runs \
+  -H "X-Api-Key: bist_..."
+
+# Stats isolados por tenant
+curl http://localhost:8000/api/bist/stats \
+  -H "X-Api-Key: bist_..."
+```
+
+Se o tenant atingir o limite do tier, a API retorna `402 Payment Required`.
+
+---
+
+### 4.3 Uso e Consumo
+
+```bash
+# Ver consumo dos últimos 30 dias do tenant 1
+curl http://localhost:8000/api/tenants/1/usage
+
+# Período customizado (últimos 7 dias)
+curl "http://localhost:8000/api/tenants/1/usage?days=7"
+```
+
+Resposta:
+
+```json
+{
+  "tenant_id": 1,
+  "period_days": 30,
+  "runs": 23,
+  "api_calls": 0
+}
+```
+
+---
+
+### 4.4 Billing — Stripe Webhook
+
+No Stripe Dashboard, configure o webhook apontando para:
+
+```
+POST https://meuapp.com/api/billing/webhook
+```
+
+Eventos tratados automaticamente:
+- `customer.subscription.created` → atualiza tier do tenant
+- `customer.subscription.updated` → atualiza tier do tenant
+- `customer.subscription.deleted` → downgrade para `free`
+
+O endpoint verifica a assinatura do Stripe via `STRIPE_WEBHOOK_SECRET`. Payloads sem assinatura válida retornam `400`.
+
+Para testar localmente com Stripe CLI:
+
+```bash
+stripe listen --forward-to localhost:8000/api/billing/webhook
+stripe trigger customer.subscription.created
+```
+
+---
+
+### 4.5 SSO — OAuth2 (Google / qualquer IdP)
+
+**Fluxo completo:**
+
+```
+1. Redirecionar o usuário para:
+   GET /api/sso/oauth2/authorize?tenant_id=1
+
+2. O IdP redireciona de volta para o callback com ?code=...&state=...
+   GET /api/sso/oauth2/callback?code=XXXX&state=YYYY
+
+3. Resposta:
+   {
+     "user_info": {"email": "...", "name": "...", "sub": "..."},
+     "tenant_id": 1
+   }
+```
+
+Para usar outro IdP (Okta, Azure AD, etc.), sobrescreva as variáveis `OAUTH2_*`.
+
+---
+
+### 4.6 SSO — SAML (Enterprise)
+
+**1. Configurar IdP do tenant:**
+
+```bash
+curl -X POST http://localhost:8000/api/sso/saml/1/configure \
+  -H "Content-Type: application/json" \
+  -H "X-Admin-Key: minha-chave-secreta" \
+  -d '{
+    "idp_entity_id":   "https://idp.empresa.com/saml",
+    "idp_sso_url":     "https://idp.empresa.com/saml/sso",
+    "idp_cert":        "MIIC...base64cert...==",
+    "sp_entity_id":    "bist_sp_1",
+    "attribute_email": "email",
+    "attribute_name":  "displayName"
+  }'
+```
+
+**2. Redirecionar usuário para login SAML:**
+
+```
+GET /api/sso/saml/1/login
+→ redireciona para idp_sso_url
+```
+
+**3. IdP posta a resposta SAML no ACS:**
+
+```
+POST /api/sso/saml/1/acs
+Body (form): SAMLResponse=<base64>
+→ {"tenant_id": 1, "email": "user@empresa.com", "name": "João", "attributes": {...}}
+```
+
+Para verificação completa de assinatura SAML, instale `python3-saml` e o endpoint usará `OneLogin_Saml2_Auth` automaticamente. Sem o pacote, o parsing básico de atributos ainda funciona (adequado para IdPs confiáveis em ambiente interno).
+
+---
+
+### 4.7 Consulta direta ao banco (SQLite)
+
+```bash
+# Ver todos os tenants
+sqlite3 ~/.bist/bist.db "SELECT * FROM tenants;"
+
+# Ver API keys ativas por tenant
+sqlite3 ~/.bist/bist.db \
+  "SELECT tenant_id, key_prefix, label, datetime(created_at,'unixepoch','localtime') FROM api_keys WHERE active=1;"
+
+# Ver consumo por tenant no mês
+sqlite3 ~/.bist/bist.db \
+  "SELECT tenant_id, event_type, SUM(quantity) FROM usage_events GROUP BY tenant_id, event_type;"
+
+# Ver assinaturas Stripe
+sqlite3 ~/.bist/bist.db "SELECT tenant_id, tier, status FROM stripe_subscriptions;"
+
+# Ver runs por tenant
+sqlite3 ~/.bist/bist.db \
+  "SELECT tenant_id, status, COUNT(*) FROM test_runs GROUP BY tenant_id, status;"
+```
+
+---
+
+### Migração Alembic (PostgreSQL)
+
+Para ambientes PostgreSQL, aplique a migration da Fase 4:
+
+```bash
+cd bist
+alembic upgrade 002
+# ou para subir todas as fases de uma vez:
+alembic upgrade head
+```

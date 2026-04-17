@@ -37,7 +37,8 @@ class BISTDatabase:
                     env_url      TEXT    NOT NULL,
                     status       TEXT    NOT NULL,
                     duration_ms  INTEGER DEFAULT 0,
-                    feature_path TEXT    DEFAULT ''
+                    feature_path TEXT    DEFAULT '',
+                    tenant_id    INTEGER DEFAULT NULL
                 );
                 CREATE TABLE IF NOT EXISTS scenarios (
                     id          INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -73,14 +74,22 @@ class BISTDatabase:
                     timestamp        REAL NOT NULL
                 );
             """)
+            # Migrate existing databases that pre-date the tenant_id column
+            try:
+                conn.execute("ALTER TABLE test_runs ADD COLUMN tenant_id INTEGER DEFAULT NULL")
+            except Exception:
+                pass
 
     # ── Test runs ──────────────────────────────────────────────────────────────
 
-    def create_run(self, env_url: str, feature_path: str = "") -> int:
+    def create_run(
+        self, env_url: str, feature_path: str = "", tenant_id: Optional[int] = None
+    ) -> int:
         with self._connect() as conn:
             cur = conn.execute(
-                "INSERT INTO test_runs (started_at, env_url, status, feature_path) VALUES (?, ?, 'running', ?)",
-                (time.time(), env_url, feature_path),
+                "INSERT INTO test_runs (started_at, env_url, status, feature_path, tenant_id) "
+                "VALUES (?, ?, 'running', ?, ?)",
+                (time.time(), env_url, feature_path, tenant_id),
             )
             return cur.lastrowid
 
@@ -91,16 +100,27 @@ class BISTDatabase:
                 (status, duration_ms, run_id),
             )
 
-    def get_runs(self, limit: int = 20) -> list[dict]:
+    def get_runs(self, limit: int = 20, tenant_id: Optional[int] = None) -> list[dict]:
         with self._connect() as conn:
-            rows = conn.execute(
-                "SELECT * FROM test_runs ORDER BY started_at DESC LIMIT ?", (limit,)
-            ).fetchall()
+            if tenant_id is not None:
+                rows = conn.execute(
+                    "SELECT * FROM test_runs WHERE tenant_id=? ORDER BY started_at DESC LIMIT ?",
+                    (tenant_id, limit),
+                ).fetchall()
+            else:
+                rows = conn.execute(
+                    "SELECT * FROM test_runs ORDER BY started_at DESC LIMIT ?", (limit,)
+                ).fetchall()
             return [dict(r) for r in rows]
 
-    def get_run_detail(self, run_id: int) -> dict:
+    def get_run_detail(self, run_id: int, tenant_id: Optional[int] = None) -> dict:
         with self._connect() as conn:
-            row = conn.execute("SELECT * FROM test_runs WHERE id=?", (run_id,)).fetchone()
+            if tenant_id is not None:
+                row = conn.execute(
+                    "SELECT * FROM test_runs WHERE id=? AND tenant_id=?", (run_id, tenant_id)
+                ).fetchone()
+            else:
+                row = conn.execute("SELECT * FROM test_runs WHERE id=?", (run_id,)).fetchone()
             if not row:
                 return {}
             run = dict(row)
@@ -197,34 +217,56 @@ class BISTDatabase:
 
     # ── Analytics ──────────────────────────────────────────────────────────────
 
-    def get_flaky_scenarios(self, limit: int = 10) -> list[dict]:
+    def get_flaky_scenarios(self, limit: int = 10, tenant_id: Optional[int] = None) -> list[dict]:
         """Scenarios with both passing and failing runs (flaky = unstable)."""
         with self._connect() as conn:
-            rows = conn.execute(
-                """
-                SELECT
-                    name,
-                    COUNT(*) AS total_runs,
-                    SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failures,
-                    ROUND(
-                        CAST(SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS REAL)
-                        / COUNT(*) * 100, 1
-                    ) AS failure_rate
-                FROM scenarios
-                GROUP BY name
-                HAVING SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) > 0
-                   AND COUNT(*) > 1
-                ORDER BY failure_rate DESC
-                LIMIT ?
-                """,
-                (limit,),
-            ).fetchall()
+            if tenant_id is not None:
+                rows = conn.execute(
+                    """
+                    SELECT s.name,
+                        COUNT(*) AS total_runs,
+                        SUM(CASE WHEN s.status = 'failed' THEN 1 ELSE 0 END) AS failures,
+                        ROUND(
+                            CAST(SUM(CASE WHEN s.status = 'failed' THEN 1 ELSE 0 END) AS REAL)
+                            / COUNT(*) * 100, 1
+                        ) AS failure_rate
+                    FROM scenarios s
+                    JOIN test_runs tr ON tr.id = s.run_id
+                    WHERE tr.tenant_id = ?
+                    GROUP BY s.name
+                    HAVING SUM(CASE WHEN s.status = 'failed' THEN 1 ELSE 0 END) > 0
+                       AND COUNT(*) > 1
+                    ORDER BY failure_rate DESC
+                    LIMIT ?
+                    """,
+                    (tenant_id, limit),
+                ).fetchall()
+            else:
+                rows = conn.execute(
+                    """
+                    SELECT
+                        name,
+                        COUNT(*) AS total_runs,
+                        SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failures,
+                        ROUND(
+                            CAST(SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS REAL)
+                            / COUNT(*) * 100, 1
+                        ) AS failure_rate
+                    FROM scenarios
+                    GROUP BY name
+                    HAVING SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) > 0
+                       AND COUNT(*) > 1
+                    ORDER BY failure_rate DESC
+                    LIMIT ?
+                    """,
+                    (limit,),
+                ).fetchall()
             return [dict(r) for r in rows]
 
-    def get_runs_trend(self, days: int = 30) -> list[dict]:
+    def get_runs_trend(self, days: int = 30, tenant_id: Optional[int] = None) -> list[dict]:
         """Daily passed/failed counts for the last N days (portable, Python-side grouping)."""
         cutoff = time.time() - days * 86400
-        runs = self.get_runs(limit=10_000)
+        runs = self.get_runs(limit=10_000, tenant_id=tenant_id)
         groups: dict[str, dict] = defaultdict(lambda: {"date": "", "passed": 0, "failed": 0})
         for r in runs:
             if r["started_at"] < cutoff:

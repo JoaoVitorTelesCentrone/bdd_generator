@@ -1,0 +1,2 @@
+timestamp,attempt,model,user_story,score_final,cobertura,clareza,estrutura,executabilidade,aprovado,input_tokens,output_tokens,total_tokens,duration_s
+2026-04-17T10:36:01.092120,1,gemini-2.5-flash,Como usuário quero fazer login com usuario e senha,7.42,6.67,8.08,8.5,6.27,True,571,564,1135,10.39

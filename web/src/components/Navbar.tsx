@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Terminal, BarChart2, History, Play, TrendingUp } from "lucide-react";
+import { Terminal, BarChart2, History, Play, TrendingUp, Lightbulb } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
 const appLinks = [
+  { href: "/stories",  label: "story",    icon: Lightbulb },
   { href: "/generate", label: "generate", icon: Terminal  },
   { href: "/evaluate", label: "evaluate", icon: BarChart2 },
   { href: "/history",  label: "history",  icon: History   },
@@ -15,9 +16,9 @@ const appLinks = [
 
 export function Navbar() {
   const path = usePathname();
-  const isApp = path.startsWith("/generate") || path.startsWith("/evaluate")
-             || path.startsWith("/history")  || path.startsWith("/runs")
-             || path.startsWith("/stats");
+  const isApp = path.startsWith("/stories")  || path.startsWith("/generate")
+             || path.startsWith("/evaluate") || path.startsWith("/history")
+             || path.startsWith("/runs")     || path.startsWith("/stats");
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#a3fb73]/12 bg-[#1a2c21]/96 backdrop-blur-md">

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BIST Report</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f9fafb;color:#111827;padding:24px}
+    .wrap{max-width:960px;margin:0 auto}
+    .header{background:#1e1b4b;color:#fff;border-radius:12px;padding:28px;margin-bottom:24px}
+    .header h1{font-size:22px;margin-bottom:8px}
+    .meta{opacity:.7;font-size:13px;margin-bottom:20px}
+    .stats{display:flex;gap:32px;flex-wrap:wrap}
+    .stat .val{font-size:30px;font-weight:700}
+    .stat .lbl{font-size:12px;opacity:.65;margin-top:2px}
+    .card{border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:12px;background:#fff}
+    .sc-title{font-weight:600;font-size:15px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .sc-meta{color:#6b7280;font-size:12px;margin-bottom:10px}
+    .step{padding:4px 0 4px 12px;font-size:13px;border-left:3px solid #e5e7eb;margin:3px 0}
+    .step.passed{border-color:#22c55e;color:#166534}
+    .step.failed{border-color:#ef4444;color:#991b1b}
+    .step.skipped{border-color:#f59e0b;color:#92400e}
+    .step-err{font-size:11px;color:#dc2626;margin-top:2px;margin-left:12px}
+    .badge{display:inline-block;padding:1px 7px;border-radius:9999px;font-size:11px;font-weight:600}
+    .badge.passed{background:#dcfce7;color:#166534}
+    .badge.failed{background:#fee2e2;color:#991b1b}
+    .badge.skipped{background:#fef9c3;color:#713f12}
+    .healed{background:#fef3c7;color:#78350f;padding:1px 5px;border-radius:3px;font-size:10px;margin-left:6px}
+    a{color:#6366f1;text-decoration:none}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>BIST Test Report</h1>
+    <div class="meta">bist_output\features\Como_usuário_quero_fazer_login_com_usuar_20260417_104443.feature &rarr; https://www.saucedemo.com</div>
+    <div class="stats">
+      <div class="stat"><div class="val" style="color:#ef4444">FAILED</div><div class="lbl">Status</div></div>
+      <div class="stat"><div class="val">6</div><div class="lbl">Scenarios</div></div>
+      <div class="stat"><div class="val" style="color:#22c55e">0</div><div class="lbl">Passed</div></div>
+      <div class="stat"><div class="val" style="color:#ef4444">6</div><div class="lbl">Failed</div></div>
+      <div class="stat"><div class="val">0%</div><div class="lbl">Pass Rate</div></div>
+      <div class="stat"><div class="val">71,706ms</div><div class="lbl">Duration</div></div>
+    </div>
+  </div>
+  
+<div class="card">
+  <div class="sc-title">
+    <span class="badge failed">✗ failed</span>
+    Login bem-sucedido com credenciais válidas <a href="bist_output\videos\Login_bem_sucedido_com_credenciais_válid\167bbb2fc09cfb6ad723ffe21dd07881.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">11857ms — Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div>
+  <div class="step skipped">Dado que estou na página de login <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step failed">Quando preencho o campo "Usuário" com "usuario@exemplo.com" <span style="opacity:.5;font-size:11px">(10089ms)</span> <a href="bist_output\screenshots\Login_bem_sucedido_com_credenciais_válid_step1_fail.png" target="_blank">[screenshot]</a><div class="step-err">Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div></div><div class="step skipped">E preencho o campo "Senha" com "SenhaSegura123" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E clico no botão "Login" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">Então sou redirecionado para a página "/dashboard" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E vejo a mensagem de boas-vindas "Bem-vindo, usuario@exemplo.com!" <span style="opacity:.5;font-size:11px">(0ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge failed">✗ failed</span>
+    Tentativa de login com usuário inexistente <a href="bist_output\videos\Tentativa_de_login_com_usuário_inexisten\9604b137c99b78969b4cfa23692a895e.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">11732ms — Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div>
+  <div class="step skipped">Dado que estou na página de login <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step failed">Quando preencho o campo "Usuário" com "usuario.inexistente@exemplo.com" <span style="opacity:.5;font-size:11px">(10049ms)</span> <a href="bist_output\screenshots\Tentativa_de_login_com_usuário_inexisten_step1_fail.png" target="_blank">[screenshot]</a><div class="step-err">Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div></div><div class="step skipped">E preencho o campo "Senha" com "SenhaSegura123" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E clico no botão "Login" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">Então vejo a mensagem de erro "Usuário ou senha inválidos." <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E permaneço na página de login "/login" <span style="opacity:.5;font-size:11px">(0ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge failed">✗ failed</span>
+    Tentativa de login com senha incorreta <a href="bist_output\videos\Tentativa_de_login_com_senha_incorreta\b2e133d7c783f02c9db1e5ece9641e88.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">11723ms — Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div>
+  <div class="step skipped">Dado que estou na página de login <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step failed">Quando preencho o campo "Usuário" com "usuario@exemplo.com" <span style="opacity:.5;font-size:11px">(10061ms)</span> <a href="bist_output\screenshots\Tentativa_de_login_com_senha_incorreta_step1_fail.png" target="_blank">[screenshot]</a><div class="step-err">Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div></div><div class="step skipped">E preencho o campo "Senha" com "SenhaInvalida456" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E clico no botão "Login" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">Então vejo a mensagem de erro "Usuário ou senha inválidos." <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E permaneço na página de login "/login" <span style="opacity:.5;font-size:11px">(0ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge failed">✗ failed</span>
+    Tentativa de login com campo de usuário vazio <a href="bist_output\videos\Tentativa_de_login_com_campo_de_usuário_\2a71dafa3fdcbeb343aab3709017a239.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">11727ms — Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("text=Usuário")
+</div>
+  <div class="step skipped">Dado que estou na página de login <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step failed">Quando preencho o campo "Usuário" com "" <span style="opacity:.5;font-size:11px">(10050ms)</span> <a href="bist_output\screenshots\Tentativa_de_login_com_campo_de_usuário__step1_fail.png" target="_blank">[screenshot]</a><div class="step-err">Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("text=Usuário")
+</div></div><div class="step skipped">E preencho o campo "Senha" com "SenhaSegura123" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E clico no botão "Login" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">Então vejo a mensagem de validação "O campo Usuário é obrigatório." <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E permaneço na página de login "/login" <span style="opacity:.5;font-size:11px">(0ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge failed">✗ failed</span>
+    Tentativa de login com campo de senha vazio <a href="bist_output\videos\Tentativa_de_login_com_campo_de_senha_va\6683940144bc53918e67e64943be62ea.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">11794ms — Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div>
+  <div class="step skipped">Dado que estou na página de login <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step failed">Quando preencho o campo "Usuário" com "usuario@exemplo.com" <span style="opacity:.5;font-size:11px">(10042ms)</span> <a href="bist_output\screenshots\Tentativa_de_login_com_campo_de_senha_va_step1_fail.png" target="_blank">[screenshot]</a><div class="step-err">Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("Usuário")
+</div></div><div class="step skipped">E preencho o campo "Senha" com "" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E clico no botão "Login" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">Então vejo a mensagem de validação "O campo Senha é obrigatório." <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E permaneço na página de login "/login" <span style="opacity:.5;font-size:11px">(0ms)</span></div>
+</div>
+<div class="card">
+  <div class="sc-title">
+    <span class="badge failed">✗ failed</span>
+    Tentativa de login com ambos os campos vazios <a href="bist_output\videos\Tentativa_de_login_com_ambos_os_campos_v\f694a996b5fef818761ba517a44e5ffc.webm" target="_blank">[video]</a>
+  </div>
+  <div class="sc-meta">11749ms — Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("text=Usuário")
+</div>
+  <div class="step skipped">Dado que estou na página de login <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step failed">Quando preencho o campo "Usuário" com "" <span style="opacity:.5;font-size:11px">(10051ms)</span> <a href="bist_output\screenshots\Tentativa_de_login_com_ambos_os_campos_v_step1_fail.png" target="_blank">[screenshot]</a><div class="step-err">Page.fill: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("text=Usuário")
+</div></div><div class="step skipped">E preencho o campo "Senha" com "" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E clico no botão "Login" <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">Então vejo a mensagem de validação "O campo Usuário é obrigatório." <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E vejo a mensagem de validação "O campo Senha é obrigatório." <span style="opacity:.5;font-size:11px">(0ms)</span></div><div class="step skipped">E permaneço na página de login "/login" <span style="opacity:.5;font-size:11px">(0ms)</span></div>
+</div>
+</div>
+</body>
+</html>

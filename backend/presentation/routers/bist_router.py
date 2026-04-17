@@ -13,7 +13,7 @@ import threading
 from pathlib import Path
 from typing import Optional
 
-from fastapi import APIRouter, BackgroundTasks, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, BackgroundTasks, Header, HTTPException, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 
 _ROOT = Path(__file__).parent.parent.parent.parent
@@ -21,10 +21,24 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from bist.bist_database import get_database
+from bist.bist_tenants import TenantManager, TierLimitExceeded
+from bist.bist_billing import BillingManager
 
 router = APIRouter(tags=["bist"])
 
-_db = get_database()
+_db      = get_database()
+_tenants = TenantManager()
+_billing = BillingManager()
+
+
+def _resolve_tenant(x_api_key: Optional[str]) -> Optional[dict]:
+    """Validate X-Api-Key header and return tenant info, or None if no key provided."""
+    if not x_api_key:
+        return None
+    info = _tenants.validate_api_key(x_api_key)
+    if info is None:
+        raise HTTPException(status_code=401, detail="Invalid or revoked API key")
+    return info
 
 # In-memory log queues: run_id → [Queue, ...]
 _log_queues: dict[int, list[asyncio.Queue]] = {}
@@ -146,9 +160,25 @@ class StatsOut(BaseModel):
 # ── REST Routes ───────────────────────────────────────────────────────────────
 
 @router.post("/api/bist/run", status_code=202)
-def trigger_run(req: RunRequest, background_tasks: BackgroundTasks):
+def trigger_run(
+    req: RunRequest,
+    background_tasks: BackgroundTasks,
+    x_api_key: Optional[str] = Header(default=None),
+):
     """Trigger the full BDD pipeline (generate + execute) in a background thread."""
-    run_id = _db.create_run(req.env_url)
+    tenant = _resolve_tenant(x_api_key)
+    tenant_id: Optional[int] = tenant["tenant_id"] if tenant else None
+    tier = tenant["tier"] if tenant else "free"
+
+    if tenant_id is not None:
+        monthly_runs = _billing.get_monthly_usage(tenant_id, "run_started")
+        try:
+            _tenants.enforce_run_limit(tenant_id, tier, monthly_runs)
+        except TierLimitExceeded as exc:
+            raise HTTPException(status_code=402, detail=str(exc))
+        _billing.record_usage(tenant_id, "run_started")
+
+    run_id = _db.create_run(req.env_url, tenant_id=tenant_id)
     background_tasks.add_task(_run_pipeline, {
         "run_id":       run_id,
         "user_story":   req.user_story,
@@ -157,28 +187,34 @@ def trigger_run(req: RunRequest, background_tasks: BackgroundTasks):
         "threshold":    req.threshold,
         "max_attempts": req.max_attempts,
     })
-    return {"run_id": run_id, "status": "queued"}
+    return {"run_id": run_id, "status": "queued", "tenant_id": tenant_id}
 
 
 @router.get("/api/bist/runs", response_model=list[RunSummaryOut])
-def list_runs(limit: int = 20):
-    """List recent test runs (most recent first)."""
-    return _db.get_runs(limit=limit)
+def list_runs(limit: int = 20, x_api_key: Optional[str] = Header(default=None)):
+    """List recent test runs (most recent first). Scoped to tenant when key provided."""
+    tenant = _resolve_tenant(x_api_key)
+    tenant_id = tenant["tenant_id"] if tenant else None
+    return _db.get_runs(limit=limit, tenant_id=tenant_id)
 
 
 @router.get("/api/bist/runs/{run_id}", response_model=RunOut)
-def get_run(run_id: int):
+def get_run(run_id: int, x_api_key: Optional[str] = Header(default=None)):
     """Full run detail: scenarios, steps, errors, screenshots."""
-    data = _db.get_run_detail(run_id)
+    tenant = _resolve_tenant(x_api_key)
+    tenant_id = tenant["tenant_id"] if tenant else None
+    data = _db.get_run_detail(run_id, tenant_id=tenant_id)
     if not data:
         raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
     return data
 
 
 @router.get("/api/bist/stats", response_model=StatsOut)
-def get_stats():
+def get_stats(x_api_key: Optional[str] = Header(default=None)):
     """Aggregate stats: pass rate, average duration, flaky scenarios, trend."""
-    runs = _db.get_runs(limit=10_000)
+    tenant = _resolve_tenant(x_api_key)
+    tenant_id = tenant["tenant_id"] if tenant else None
+    runs = _db.get_runs(limit=10_000, tenant_id=tenant_id)
     total = len(runs)
     passed = sum(1 for r in runs if r["status"] == "passed")
     failed = sum(1 for r in runs if r["status"] in ("failed", "error"))
@@ -190,8 +226,8 @@ def get_stats():
         failed_runs=failed,
         pass_rate=round(passed / total * 100, 1) if total else 0.0,
         avg_duration_ms=round(avg_dur, 1),
-        flaky_scenarios=_db.get_flaky_scenarios(limit=10),
-        runs_over_time=_db.get_runs_trend(days=30),
+        flaky_scenarios=_db.get_flaky_scenarios(limit=10, tenant_id=tenant_id),
+        runs_over_time=_db.get_runs_trend(days=30, tenant_id=tenant_id),
     )
 
 

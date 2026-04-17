@@ -102,3 +102,15 @@ export interface BistRunRequest {
   threshold?: number;
   max_attempts?: number;
 }
+
+// ── Story Creator ─────────────────────────────────────────────────────────────
+
+export interface StoryCreateRequest {
+  idea: string;
+  model: string;
+}
+
+export interface StoryCreateResult {
+  user_story: string;
+  acceptance_criteria: string[];
+}

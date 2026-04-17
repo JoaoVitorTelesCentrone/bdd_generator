@@ -29,6 +29,7 @@ test_runs = Table(
     Column("status",       String(20), nullable=False),
     Column("duration_ms",  Integer, default=0),
     Column("feature_path", Text,    default=""),
+    Column("tenant_id",    Integer, nullable=True),
 )
 
 scenarios = Table(
@@ -97,12 +98,15 @@ class BISTDatabasePG:
 
     # ── Test runs ──────────────────────────────────────────────────────────────
 
-    def create_run(self, env_url: str, feature_path: str = "") -> int:
+    def create_run(
+        self, env_url: str, feature_path: str = "", tenant_id: Optional[int] = None
+    ) -> int:
         with self._conn() as conn:
             result = conn.execute(
                 test_runs.insert().values(
                     started_at=time.time(), env_url=env_url,
                     status="running", feature_path=feature_path,
+                    tenant_id=tenant_id,
                 )
             )
             return result.inserted_primary_key[0]
@@ -115,18 +119,20 @@ class BISTDatabasePG:
                 .values(status=status, duration_ms=duration_ms)
             )
 
-    def get_runs(self, limit: int = 20) -> list[dict]:
+    def get_runs(self, limit: int = 20, tenant_id: Optional[int] = None) -> list[dict]:
         with self._conn() as conn:
-            rows = conn.execute(
-                test_runs.select().order_by(test_runs.c.started_at.desc()).limit(limit)
-            ).fetchall()
+            q = test_runs.select().order_by(test_runs.c.started_at.desc()).limit(limit)
+            if tenant_id is not None:
+                q = q.where(test_runs.c.tenant_id == tenant_id)
+            rows = conn.execute(q).fetchall()
             return [_row_to_dict(r) for r in rows]
 
-    def get_run_detail(self, run_id: int) -> dict:
+    def get_run_detail(self, run_id: int, tenant_id: Optional[int] = None) -> dict:
         with self._conn() as conn:
-            row = conn.execute(
-                test_runs.select().where(test_runs.c.id == run_id)
-            ).fetchone()
+            q = test_runs.select().where(test_runs.c.id == run_id)
+            if tenant_id is not None:
+                q = q.where(test_runs.c.tenant_id == tenant_id)
+            row = conn.execute(q).fetchone()
             if not row:
                 return {}
             run = _row_to_dict(row)
@@ -230,29 +236,48 @@ class BISTDatabasePG:
 
     # ── Analytics ──────────────────────────────────────────────────────────────
 
-    def get_flaky_scenarios(self, limit: int = 10) -> list[dict]:
+    def get_flaky_scenarios(self, limit: int = 10, tenant_id: Optional[int] = None) -> list[dict]:
         with self._conn() as conn:
-            rows = conn.execute(text("""
-                SELECT
-                    name,
-                    COUNT(*) AS total_runs,
-                    SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failures,
-                    ROUND(
-                        CAST(SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS REAL)
-                        / COUNT(*) * 100, 1
-                    ) AS failure_rate
-                FROM scenarios
-                GROUP BY name
-                HAVING SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) > 0
-                   AND COUNT(*) > 1
-                ORDER BY failure_rate DESC
-                LIMIT :limit
-            """), {"limit": limit}).fetchall()
+            if tenant_id is not None:
+                rows = conn.execute(text("""
+                    SELECT s.name,
+                        COUNT(*) AS total_runs,
+                        SUM(CASE WHEN s.status = 'failed' THEN 1 ELSE 0 END) AS failures,
+                        ROUND(
+                            CAST(SUM(CASE WHEN s.status = 'failed' THEN 1 ELSE 0 END) AS REAL)
+                            / COUNT(*) * 100, 1
+                        ) AS failure_rate
+                    FROM scenarios s
+                    JOIN test_runs tr ON tr.id = s.run_id
+                    WHERE tr.tenant_id = :tenant_id
+                    GROUP BY s.name
+                    HAVING SUM(CASE WHEN s.status = 'failed' THEN 1 ELSE 0 END) > 0
+                       AND COUNT(*) > 1
+                    ORDER BY failure_rate DESC
+                    LIMIT :limit
+                """), {"tenant_id": tenant_id, "limit": limit}).fetchall()
+            else:
+                rows = conn.execute(text("""
+                    SELECT
+                        name,
+                        COUNT(*) AS total_runs,
+                        SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS failures,
+                        ROUND(
+                            CAST(SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) AS REAL)
+                            / COUNT(*) * 100, 1
+                        ) AS failure_rate
+                    FROM scenarios
+                    GROUP BY name
+                    HAVING SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) > 0
+                       AND COUNT(*) > 1
+                    ORDER BY failure_rate DESC
+                    LIMIT :limit
+                """), {"limit": limit}).fetchall()
             return [_row_to_dict(r) for r in rows]
 
-    def get_runs_trend(self, days: int = 30) -> list[dict]:
+    def get_runs_trend(self, days: int = 30, tenant_id: Optional[int] = None) -> list[dict]:
         cutoff = time.time() - days * 86400
-        runs = self.get_runs(limit=10_000)
+        runs = self.get_runs(limit=10_000, tenant_id=tenant_id)
         groups: dict[str, dict] = defaultdict(lambda: {"date": "", "passed": 0, "failed": 0})
         for r in runs:
             if r["started_at"] < cutoff:

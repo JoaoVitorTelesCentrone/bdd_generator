@@ -5,6 +5,8 @@ import {
   Terminal, ChevronDown, ChevronUp, FlaskConical,
   Repeat, Loader2, AlertCircle, Info,
 } from "lucide-react";
+
+const DEFAULT_MODEL = "flash";
 import { generateBDD } from "@/lib/api";
 import { addEntry } from "@/lib/history";
 import { ScoreDisplay } from "./ScoreDisplay";
@@ -20,9 +22,8 @@ const EXAMPLE_STORIES = [
 ];
 
 export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
-  const [models] = useState<Model[]>(initialModels);
   const [story, setStory] = useState("");
-  const [model, setModel] = useState(initialModels.find(m => m.default)?.id ?? "flash");
+  const model = DEFAULT_MODEL;
   const [threshold, setThreshold] = useState(7.0);
   const [maxAttempts, setMaxAttempts] = useState(5);
   const [research, setResearch] = useState(false);
@@ -77,8 +78,6 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
     setStory(EXAMPLE_STORIES[idx]);
   }
 
-  const selectedModel = models.find(m => m.id === model);
-
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[460px_1fr] gap-5 h-full">
 
@@ -103,35 +102,6 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
             onChange={e => setStory(e.target.value)}
           />
           <p className="text-[10px] text-[#3d5a44] font-mono">{story.length} chars</p>
-        </div>
-
-        {/* Model Selector */}
-        <div className="card p-4 space-y-3">
-          <label className="text-sm font-mono text-[#7a9b87]">
-            <span className="text-[#5a7a65] mr-1">//</span> model
-          </label>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {models.map(m => (
-              <button
-                key={m.id}
-                onClick={() => setModel(m.id)}
-                className={[
-                  "relative flex flex-col items-start px-3 py-2.5 rounded text-left transition-all duration-150 border font-mono",
-                  model === m.id
-                    ? "border-[#a3fb73]/50 bg-[#a3fb73]/8 text-[#a3fb73]"
-                    : "border-[#a3fb73]/12 bg-[#243d2c]/40 text-[#5a7a65] hover:border-[#a3fb73]/25 hover:text-[#7a9b87]",
-                ].join(" ")}
-              >
-                <span className="text-xs font-semibold leading-tight">{m.id}</span>
-                <span className="text-[10px] leading-tight mt-0.5 truncate w-full opacity-70">
-                  {m.name.replace(/^(Gemini |Claude )/, "")}
-                </span>
-                <span className={`absolute top-1.5 right-1.5 text-[9px] font-bold ${m.provider === "gemini" ? "text-[#60a5fa]" : "text-[#c4b5fd]"}`}>
-                  {m.provider === "gemini" ? "G" : "C"}
-                </span>
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Advanced Options */}
@@ -230,7 +200,7 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
               <div className="h-full bg-[#a3fb73] animate-progress rounded-full" />
             </div>
             <p className="text-[10px] font-mono text-[#3d5a44]">
-              model: <span className="text-[#7a9b87]">{selectedModel?.name}</span>
+              model: <span className="text-[#7a9b87]">{DEFAULT_MODEL}</span>
               {research && <> &middot; <span className="text-[#a3fb73]">auto-research on</span></>}
             </p>
           </div>

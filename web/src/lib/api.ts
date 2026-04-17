@@ -1,6 +1,6 @@
 import type {
   GenerateRequest, GenerateResult, EvaluateRequest, ScoreResult, Model,
-  BistRunSummary, BistRunDetail, BistStats, BistRunRequest,
+  BistRunSummary, BistRunDetail, BistStats, BistRunRequest, BistExecuteRequest,
   StoryCreateRequest, StoryCreateResult,
 } from "@/types";
 
@@ -74,6 +74,10 @@ export async function checkHealth(): Promise<boolean> {
 
 export async function bistTriggerRun(req: BistRunRequest): Promise<{ run_id: number; status: string }> {
   return apiFetch(`${BASE}/bist/run`, { method: "POST", body: JSON.stringify(req) });
+}
+
+export async function bistExecuteRun(req: BistExecuteRequest): Promise<{ run_id: number; status: string }> {
+  return apiFetch(`${BASE}/bist/execute`, { method: "POST", body: JSON.stringify(req) });
 }
 
 export async function bistListRuns(limit = 20): Promise<BistRunSummary[]> {

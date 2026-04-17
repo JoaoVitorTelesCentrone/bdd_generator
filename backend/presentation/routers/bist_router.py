@@ -2,6 +2,7 @@
 
 Routes:
   POST  /api/bist/run          Trigger full pipeline (generate + execute) async
+  POST  /api/bist/execute      Execute a pre-generated .feature file async
   GET   /api/bist/runs         List recent test runs
   GET   /api/bist/runs/{id}    Run detail with scenarios + steps
   GET   /api/bist/stats        Aggregate stats: pass rate, flaky, trend
@@ -57,6 +58,26 @@ def _broadcast(run_id: int, payload: dict) -> None:
             pass
 
 
+def _run_execute_only(data: dict) -> None:
+    """Background thread: execute a pre-generated .feature file."""
+    run_id: int = data["run_id"]
+    try:
+        from bist.bist_executor import BISTExecutor
+
+        _broadcast(run_id, {"type": "log", "message": f"Executando feature: {data['feature_path']}"})
+
+        executor = BISTExecutor(db=_db)
+        exec_result = executor.execute(data["feature_path"], data["env_url"])
+
+        status = exec_result.status
+        _db.finish_run(run_id, status, exec_result.duration_ms)
+        _broadcast(run_id, {"type": "done", "status": status})
+
+    except Exception as exc:
+        _db.finish_run(run_id, "error", 0)
+        _broadcast(run_id, {"type": "done", "status": "error", "message": str(exc)})
+
+
 def _run_pipeline(data: dict) -> None:
     """Background thread: generate BDD then execute tests."""
     run_id: int = data["run_id"]
@@ -101,6 +122,11 @@ class RunRequest(BaseModel):
     max_attempts: int = 5
 
 
+class ExecuteRequest(BaseModel):
+    feature_path: str
+    env_url: str
+
+
 class StepOut(BaseModel):
     id: int
     scenario_id: int
@@ -124,6 +150,7 @@ class ScenarioOut(BaseModel):
 class RunOut(BaseModel):
     id: int
     started_at: float
+    finished_at: Optional[float] = None
     env_url: str
     status: str
     duration_ms: int
@@ -134,6 +161,7 @@ class RunOut(BaseModel):
 class RunSummaryOut(BaseModel):
     id: int
     started_at: float
+    finished_at: Optional[float] = None
     env_url: str
     status: str
     duration_ms: int
@@ -186,6 +214,25 @@ def trigger_run(
         "model":        req.model,
         "threshold":    req.threshold,
         "max_attempts": req.max_attempts,
+    })
+    return {"run_id": run_id, "status": "queued", "tenant_id": tenant_id}
+
+
+@router.post("/api/bist/execute", status_code=202)
+def execute_run(
+    req: ExecuteRequest,
+    background_tasks: BackgroundTasks,
+    x_api_key: Optional[str] = Header(default=None),
+):
+    """Execute a pre-generated .feature file in a background thread (no BDD generation)."""
+    tenant = _resolve_tenant(x_api_key)
+    tenant_id: Optional[int] = tenant["tenant_id"] if tenant else None
+
+    run_id = _db.create_run(req.env_url, feature_path=req.feature_path, tenant_id=tenant_id)
+    background_tasks.add_task(_run_execute_only, {
+        "run_id":        run_id,
+        "feature_path":  req.feature_path,
+        "env_url":       req.env_url,
     })
     return {"run_id": run_id, "status": "queued", "tenant_id": tenant_id}
 

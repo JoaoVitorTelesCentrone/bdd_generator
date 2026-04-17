@@ -34,6 +34,7 @@ class BISTDatabase:
                 CREATE TABLE IF NOT EXISTS test_runs (
                     id           INTEGER PRIMARY KEY AUTOINCREMENT,
                     started_at   REAL    NOT NULL,
+                    finished_at  REAL    DEFAULT NULL,
                     env_url      TEXT    NOT NULL,
                     status       TEXT    NOT NULL,
                     duration_ms  INTEGER DEFAULT 0,
@@ -74,11 +75,15 @@ class BISTDatabase:
                     timestamp        REAL NOT NULL
                 );
             """)
-            # Migrate existing databases that pre-date the tenant_id column
-            try:
-                conn.execute("ALTER TABLE test_runs ADD COLUMN tenant_id INTEGER DEFAULT NULL")
-            except Exception:
-                pass
+            # Migrate existing databases that pre-date optional columns
+            for migration in [
+                "ALTER TABLE test_runs ADD COLUMN tenant_id INTEGER DEFAULT NULL",
+                "ALTER TABLE test_runs ADD COLUMN finished_at REAL DEFAULT NULL",
+            ]:
+                try:
+                    conn.execute(migration)
+                except Exception:
+                    pass
 
     # ── Test runs ──────────────────────────────────────────────────────────────
 
@@ -96,8 +101,8 @@ class BISTDatabase:
     def finish_run(self, run_id: int, status: str, duration_ms: int):
         with self._connect() as conn:
             conn.execute(
-                "UPDATE test_runs SET status=?, duration_ms=? WHERE id=?",
-                (status, duration_ms, run_id),
+                "UPDATE test_runs SET status=?, duration_ms=?, finished_at=? WHERE id=?",
+                (status, duration_ms, time.time(), run_id),
             )
 
     def get_runs(self, limit: int = 20, tenant_id: Optional[int] = None) -> list[dict]:

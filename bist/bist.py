@@ -440,6 +440,74 @@ def visual_diff(feature, env, threshold, headless, output_dir):
         console.print("[green]All visual checks passed.[/green]")
 
 
+# ── e2e subgroup ─────────────────────────────────────────────────────────────
+
+@cli.group()
+def e2e():
+    """End-to-end test commands."""
+
+
+@e2e.command("execute")
+@click.option("--feature", "-f", required=True, help="Path to .feature file")
+@click.option("--env", "-e", required=True, help="Target environment URL")
+@click.option("--headless/--headed", default=True)
+@click.option("--no-heal", is_flag=True, help="Disable AI self-healing")
+@click.option("--report", "report_fmt", default="html",
+              type=click.Choice(["html", "json", "github", "all"]))
+@click.option("--output-dir", default="bist_output")
+@click.option("--parallel", "-p", default=1, type=int,
+              help="Max concurrent browser instances (default 1)")
+def e2e_execute(feature, env, headless, no_heal, report_fmt, output_dir, parallel):
+    """Execute a .feature file via the e2e subgroup (alias of `bist execute`)."""
+    from bist.bist_executor import BISTExecutor
+    from bist.bist_reporter import BISTReporter
+    from bist.bist_database import BISTDatabase
+    from bist.bist_notifier import BISTNotifier
+
+    if not Path(feature).exists():
+        console.print(f"[red]Feature file not found:[/red] {feature}")
+        sys.exit(1)
+
+    db = BISTDatabase()
+    executor = BISTExecutor(
+        db=db,
+        screenshots_dir=f"{output_dir}/screenshots",
+        videos_dir=f"{output_dir}/videos",
+        headless=headless,
+        self_heal=not no_heal,
+        parallel=parallel,
+    )
+    reporter = BISTReporter(output_dir=f"{output_dir}/reports")
+
+    console.print(Panel(
+        f"[bold cyan]BIST e2e execute[/bold cyan]  {feature} → {env}"
+        + (f"  parallel={parallel}" if parallel > 1 else "")
+    ))
+
+    with console.status("Running Playwright tests..."):
+        result = executor.execute(feature, env)
+
+    _print_summary(result)
+
+    html_path = ""
+    if report_fmt in ("html", "all"):
+        html_path = reporter.html_report(result)
+        console.print(f"[green]HTML:[/green] {html_path}")
+    if report_fmt in ("json", "all"):
+        console.print(f"[green]JSON:[/green] {reporter.json_report(result)}")
+    if report_fmt in ("github", "all"):
+        annotations = reporter.github_annotations(result)
+        if annotations:
+            click.echo(annotations)
+
+    notifier = BISTNotifier()
+    if notifier.enabled:
+        with console.status("Sending notifications..."):
+            notifier.notify(result, html_path)
+
+    sys.exit(0 if result.status == "passed" else 1)
+
+
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def _print_summary(result) -> None:

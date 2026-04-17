@@ -48,10 +48,16 @@ type float = number;
 export interface BistRunSummary {
   id: number;
   started_at: number;
+  finished_at?: number | null;
   env_url: string;
   status: "running" | "passed" | "failed" | "error";
   duration_ms: number;
   feature_path: string;
+}
+
+export interface BistExecuteRequest {
+  feature_path: string;
+  env_url: string;
 }
 
 export interface BistStep {

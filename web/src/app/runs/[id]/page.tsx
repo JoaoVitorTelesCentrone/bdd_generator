@@ -3,21 +3,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import {
-  ArrowLeft, CheckCircle2, XCircle, Loader2,
-  Globe, Clock, FileCode, RefreshCw, Wifi,
-} from "lucide-react";
+import { ArrowLeft, Globe, Clock, Loader2, RefreshCw, Wifi } from "lucide-react";
 import { bistGetRun, bistWsUrl } from "@/lib/api";
 import { ScenarioDetail } from "@/components/ScenarioDetail";
 import type { BistRunDetail } from "@/types";
 
 function statusBadge(s: string) {
   const cls =
-    s === "passed"  ? "text-[#a3fb73] border-[#a3fb73]/30 bg-[#a3fb73]/8" :
-    s === "running" ? "text-[#f59e0b] border-[#f59e0b]/30 bg-[#f59e0b]/8" :
-                     "text-red-400 border-red-400/30 bg-red-400/8";
+    s === "passed"  ? "text-[#2D6A3F] bg-[#a3fb73]/15 border-[#a3fb73]/30" :
+    s === "running" ? "text-amber-700 bg-amber-50 border-amber-200" :
+                     "text-red-600 bg-red-50 border-red-200";
   return (
-    <span className={`text-xs font-mono px-2 py-0.5 rounded border ${cls}`}>{s}</span>
+    <span className={`text-xs font-code px-2.5 py-0.5 rounded-full border font-medium ${cls}`}>{s}</span>
   );
 }
 
@@ -32,157 +29,136 @@ function fmtDuration(ms: number) {
   return `${Math.floor(ms / 60000)}m ${Math.floor((ms % 60000) / 1000)}s`;
 }
 
-// ── Live log stream ────────────────────────────────────────────────────────────
-
 function LiveLog({ runId, onDone }: { runId: number; onDone: () => void }) {
-  const [logs, setLogs]  = useState<string[]>(["conectando ao pipeline..."]);
-  const [done, setDone]  = useState(false);
+  const [logs, setLogs] = useState<string[]>(["Conectando ao pipeline..."]);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    const url = bistWsUrl(runId);
-    const ws  = new WebSocket(url);
-
+    const ws = new WebSocket(bistWsUrl(runId));
     ws.onmessage = (e) => {
       const msg = JSON.parse(e.data);
       if (msg.type === "log")  setLogs(prev => [...prev, msg.message]);
       if (msg.type === "done") {
-        setLogs(prev => [...prev, `pipeline finalizado: ${msg.status}`]);
-        setDone(true);
-        ws.close();
+        setLogs(prev => [...prev, `Pipeline finalizado: ${msg.status}`]);
+        setDone(true); ws.close();
         setTimeout(onDone, 1200);
       }
     };
-
-    ws.onerror = () => setLogs(prev => [...prev, "erro de conexão WebSocket"]);
-
-    return () => ws.readyState === WebSocket.OPEN && ws.close();
+    ws.onerror = () => setLogs(prev => [...prev, "Erro de conexão WebSocket"]);
+    return () => { if (ws.readyState === WebSocket.OPEN) ws.close(); };
   }, [runId]);
 
   return (
-    <div className="card-terminal p-4 space-y-1 max-h-64 overflow-y-auto font-mono text-xs">
-      <div className="flex items-center gap-2 text-[#5a7a65] border-b border-[#a3fb73]/10 pb-2 mb-2">
-        <Wifi className="w-3 h-3 text-[#a3fb73] animate-pulse" />
-        <span>live log — run #{runId}</span>
+    <div className="card overflow-hidden">
+      <div className="flex items-center gap-2 px-4 py-3 border-b border-bist-border bg-bist-surface2">
+        <Wifi className="w-3.5 h-3.5 text-[#2D6A3F]" />
+        <span className="text-xs font-semibold text-bist-primary">Live log — Run #{runId}</span>
+        {!done && <span className="ml-auto flex items-center gap-1.5 text-xs text-amber-600">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" /> ao vivo
+        </span>}
       </div>
-      {logs.map((l, i) => (
-        <p key={i} className="text-[#7a9b87]">
-          <span className="text-[#3d5a44] mr-2">→</span>{l}
-        </p>
-      ))}
-      {!done && <p className="text-[#5a7a65] animate-pulse">▮</p>}
+      <div className="p-4 space-y-1 max-h-64 overflow-y-auto bg-[#1a2c21]">
+        {logs.map((l, i) => (
+          <p key={i} className="text-xs font-code text-[#7a9b87]">
+            <span className="text-[#3d5a44] mr-2">→</span>{l}
+          </p>
+        ))}
+        {!done && <p className="text-[#5a7a65] font-code text-xs animate-pulse">▮</p>}
+      </div>
     </div>
   );
 }
-
-// ── Main page ─────────────────────────────────────────────────────────────────
 
 export default function RunDetailPage() {
   const { id } = useParams<{ id: string }>();
   const runId  = Number(id);
 
-  const [run, setRun]       = useState<BistRunDetail | null>(null);
+  const [run, setRun]         = useState<BistRunDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError]   = useState("");
+  const [error, setError]     = useState("");
 
   async function load() {
-    setLoading(true);
-    setError("");
-    try {
-      setRun(await bistGetRun(runId));
-    } catch (e: any) {
-      setError(e.message);
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true); setError("");
+    try { setRun(await bistGetRun(runId)); }
+    catch (e: any) { setError(e.message); }
+    finally { setLoading(false); }
   }
 
   useEffect(() => { load(); }, [runId]);
 
   if (loading) return (
     <div className="flex items-center justify-center flex-1 py-20 gap-2">
-      <RefreshCw className="w-5 h-5 text-[#5a7a65] animate-spin" />
-      <span className="text-sm font-mono text-[#5a7a65]">carregando run...</span>
+      <Loader2 className="w-5 h-5 text-bist-muted animate-spin" />
+      <span className="text-sm text-bist-muted">Carregando execução...</span>
     </div>
   );
 
   if (error) return (
     <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-4">
       <Link href="/runs" className="btn-ghost text-xs gap-1.5 inline-flex">
-        <ArrowLeft className="w-3.5 h-3.5" /> voltar
+        <ArrowLeft className="w-3.5 h-3.5" /> Voltar
       </Link>
-      <div className="card p-6 text-center">
-        <p className="text-sm font-mono text-red-400">{error}</p>
-        <button onClick={load} className="btn-ghost text-xs mt-3">tentar novamente</button>
+      <div className="card p-6 text-center border-red-200 bg-red-50">
+        <p className="text-sm text-red-600">{error}</p>
+        <button onClick={load} className="btn-secondary text-xs mt-3">Tentar novamente</button>
       </div>
     </div>
   );
 
   if (!run) return null;
 
-  const passed  = run.scenarios.filter(s => s.status === "passed").length;
-  const isLive  = run.status === "running";
+  const passed = run.scenarios.filter(s => s.status === "passed").length;
+  const isLive = run.status === "running";
 
   return (
     <div className="flex-1 flex flex-col">
-      {/* Header */}
-      <div className="border-b border-[#a3fb73]/10 bg-[#243d2c]/20">
+      <div className="border-b border-bist-border bg-bist-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
-          <div className="flex items-center gap-3 mb-1">
-            <Link href="/runs" className="btn-ghost text-xs gap-1 py-1 px-2">
-              <ArrowLeft className="w-3 h-3" /> runs
+          <div className="flex items-center gap-2 mb-1.5">
+            <Link href="/runs" className="text-xs text-bist-muted hover:text-bist-primary transition-colors flex items-center gap-1">
+              <ArrowLeft className="w-3.5 h-3.5" /> Runs
             </Link>
-            <span className="text-[#3d5a44] font-mono text-xs">/</span>
-            <span className="text-[#a3fb73] font-mono text-sm">#{run.id}</span>
+            <span className="text-bist-dim">/</span>
+            <span className="text-sm font-semibold text-bist-primary">Run #{run.id}</span>
             {statusBadge(run.status)}
           </div>
-          <p className="text-xs text-[#5a7a65] font-mono ml-0.5">{fmtDate(run.started_at)}</p>
+          <p className="text-xs text-bist-dim">{fmtDate(run.started_at)}</p>
         </div>
       </div>
 
-      <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 space-y-6">
+      <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 space-y-5">
 
-        {/* Run meta */}
-        <div className="card-terminal p-5">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#5a7a65] border-b border-[#a3fb73]/10 pb-3 mb-4">
-            <span className="text-[#a3fb73]">$</span>
-            <span>bist inspect</span>
-            <span className="text-[#3d5a44]">--run-id={run.id}</span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm font-mono">
+        <div className="card p-5">
+          <p className="text-xs font-code text-bist-dim uppercase tracking-widest mb-4">Detalhes da execução</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 text-sm">
             {[
-              ["status",    run.status],
-              ["ambiente",  run.env_url],
-              ["duração",   fmtDuration(run.duration_ms)],
-              ["cenários",  `${passed}/${run.scenarios.length} passou`],
-              ["feature",   run.feature_path.split(/[/\\]/).pop() || "—"],
+              ["Status",    run.status],
+              ["Ambiente",  run.env_url],
+              ["Duração",   fmtDuration(run.duration_ms)],
+              ["Cenários",  `${passed}/${run.scenarios.length} passou`],
+              ["Feature",   run.feature_path.split(/[/\\]/).pop() || "—"],
             ].map(([k, v]) => (
               <div key={k} className="flex items-baseline gap-2">
-                <span className="text-[#3d5a44] w-24 shrink-0">{k}:</span>
-                <span className="text-[#c8e8c8] truncate">{v}</span>
+                <span className="text-bist-muted w-24 shrink-0 text-xs">{k}</span>
+                <span className="text-bist-primary font-medium truncate">{v}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Live log (only when running) */}
-        {isLive && (
-          <LiveLog runId={run.id} onDone={load} />
-        )}
+        {isLive && <LiveLog runId={run.id} onDone={load} />}
 
-        {/* Scenarios */}
         {run.scenarios.length > 0 && (
           <div className="space-y-3">
-            <p className="text-xs font-mono text-[#5a7a65] uppercase tracking-widest">
-              // cenários
-            </p>
+            <p className="text-xs font-code text-bist-dim uppercase tracking-widest">Cenários</p>
             <ScenarioDetail scenarios={run.scenarios} />
           </div>
         )}
 
         {run.scenarios.length === 0 && !isLive && (
           <div className="card p-8 text-center">
-            <p className="text-sm font-mono text-[#5a7a65]">
-              nenhum cenário registrado — o run pode ter falhado antes da execução.
+            <p className="text-sm text-bist-muted">
+              Nenhum cenário registrado — o run pode ter falhado antes da execução.
             </p>
           </div>
         )}

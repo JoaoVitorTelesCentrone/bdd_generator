@@ -12,7 +12,6 @@ const FALLBACK_MODELS: Model[] = [
 
 async function getModels(): Promise<Model[]> {
   try {
-    // Server-side: chama o backend diretamente (sem passar pelo proxy cliente)
     const url = process.env.BACKEND_URL
       ? `${process.env.BACKEND_URL}/api/models`
       : "http://127.0.0.1:8000/api/models";
@@ -30,17 +29,11 @@ export default async function GeneratePage() {
 
   return (
     <div className="flex-1 flex flex-col">
-      <div className="border-b border-[#a3fb73]/10 bg-[#243d2c]/20">
+      <div className="border-b border-bist-border bg-bist-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
-          <div className="flex items-baseline gap-3">
-            <span className="text-[#5a7a65] font-mono text-sm select-none">$</span>
-            <h1 className="text-lg font-mono font-semibold text-[#a3fb73] tracking-tight">
-              bist generate
-              <span className="text-[#5a7a65] font-normal"> --bdd --auto-refine</span>
-            </h1>
-          </div>
-          <p className="text-sm text-[#5a7a65] font-mono mt-1.5 ml-5">
-            insira uma user story → obtenha cenários Gherkin avaliados por 4 métricas de qualidade
+          <h1 className="text-lg font-semibold text-bist-primary">Gerar BDD</h1>
+          <p className="text-sm text-bist-muted mt-0.5">
+            Insira uma user story e obtenha cenários Gherkin avaliados por 4 métricas de qualidade
           </p>
         </div>
       </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,17 +6,20 @@
 
 @layer base {
   :root {
-    /* ── BIST Identity System ────────────────────────────────────────── */
+    --bist-bg:        #C8CEC8;
+    --bist-surface:   #D3D9D3;
+    --bist-surface2:  #CBCFCB;
     --bist-primary:   #1a2c21;
     --bist-secondary: #a3fb73;
-    --bist-accent:    #eef9e8;
-    --bist-muted:     #7a9b87;
-    --bist-surface:   #243d2c;
-    --bist-dim:       #5a7a65;
     --bist-hover:     #8ee05a;
+    --bist-mid:       #4D6B57;
+    --bist-muted:     #5E7A6B;
+    --bist-dim:       #7A9487;
+    --bist-border:    #B8C4B8;
+    --bist-border2:   #C2CAC2;
 
-    --scrollbar-thumb: rgba(163, 251, 115, 0.2);
-    --scrollbar-track: #1a2c21;
+    --scrollbar-thumb: rgba(100, 130, 115, 0.35);
+    --scrollbar-track: #C8CEC8;
   }
 
   * {
@@ -24,39 +27,24 @@
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 
-  *::-webkit-scrollbar { width: 6px; height: 6px; }
-  *::-webkit-scrollbar-track { background: var(--scrollbar-track); }
-  *::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
-  *::-webkit-scrollbar-thumb:hover { background: rgba(163, 251, 115, 0.35); }
+  *::-webkit-scrollbar        { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-track  { background: var(--scrollbar-track); }
+  *::-webkit-scrollbar-thumb  { background: var(--scrollbar-thumb); border-radius: 3px; }
+  *::-webkit-scrollbar-thumb:hover { background: rgba(122, 155, 135, 0.5); }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; font-size: 18px; }
 
   body {
-    background-color: var(--bist-primary);
-    color: var(--bist-accent);
-    font-family: 'Consolas', 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+    background-color: var(--bist-bg);
+    color: var(--bist-primary);
+    font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  /* Subtle grid texture on background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(163, 251, 115, 0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(163, 251, 115, 0.015) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  main, header, footer { position: relative; z-index: 1; }
 }
 
 @layer components {
-  /* ── BDD Syntax (BIST palette) ─────────────────────────────────────── */
+  /* ── BDD Syntax ────────────────────────────────────────────────────── */
   .bdd-keyword-feature  { color: #a3fb73; font-weight: 600; }
   .bdd-keyword-scenario { color: #7dd151; font-weight: 600; }
   .bdd-keyword-step     { color: #c4e8a8; font-weight: 500; }
@@ -65,36 +53,34 @@
   .bdd-comment          { color: #5a7a65; font-style: italic; }
   .bdd-tag              { color: #a3fb73; opacity: 0.65; }
 
-  /* ── Cards ─────────────────────────────────────────────────────────── */
+  /* ── Cards ──────────────────────────────────────────────────────────── */
   .card {
-    background-color: rgba(36, 61, 44, 0.55);
-    border: 1px solid rgba(163, 251, 115, 0.14);
+    background-color: var(--bist-surface);
+    border: 1px solid var(--bist-border);
+    border-radius: 10px;
+  }
+
+  .card-subtle {
+    background-color: var(--bist-surface2);
+    border: 1px solid var(--bist-border2);
+    border-radius: 10px;
+  }
+
+  .card-code {
+    background-color: #1a2c21;
+    border: 1px solid rgba(163, 251, 115, 0.15);
     border-radius: 8px;
-    backdrop-filter: blur(4px);
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
   }
 
-  .card-glass {
-    background-color: rgba(26, 44, 33, 0.88);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(163, 251, 115, 0.18);
-    border-radius: 8px;
-  }
-
-  .card-terminal {
-    background-color: rgba(26, 44, 33, 0.9);
-    border: 1px solid rgba(163, 251, 115, 0.25);
-    border-radius: 4px;
-    font-family: 'Consolas', 'JetBrains Mono', monospace;
-  }
-
-  /* ── Inputs ────────────────────────────────────────────────────────── */
+  /* ── Inputs ─────────────────────────────────────────────────────────── */
   .input {
     @apply w-full;
-    background-color: rgba(26, 44, 33, 0.7);
-    border: 1px solid rgba(163, 251, 115, 0.25);
-    border-radius: 4px;
+    background-color: var(--bist-surface);
+    border: 1px solid var(--bist-border);
+    border-radius: 8px;
     padding: 0.5rem 0.75rem;
-    color: var(--bist-accent);
+    color: var(--bist-primary);
     font-family: inherit;
     font-size: 0.875rem;
     transition: border-color 0.15s, box-shadow 0.15s;
@@ -105,37 +91,38 @@
 
   .input:focus {
     border-color: var(--bist-secondary);
-    box-shadow: 0 0 0 2px rgba(163, 251, 115, 0.12);
+    box-shadow: 0 0 0 3px rgba(163, 251, 115, 0.2);
   }
 
   .textarea { @apply input resize-none; }
 
-  /* ── Buttons ───────────────────────────────────────────────────────── */
+  /* ── Buttons ─────────────────────────────────────────────────────────── */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2;
     background-color: #a3fb73;
     color: #1a2c21;
-    font-weight: 700;
+    font-weight: 600;
     font-family: inherit;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
-    letter-spacing: 0.01em;
+    letter-spacing: -0.01em;
     transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
     cursor: pointer;
+    border: none;
   }
 
-  .btn-primary:hover { background-color: #8ee05a; }
-  .btn-primary:active { background-color: #7bcc4a; transform: translateY(1px); }
-  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(163, 251, 115, 0.35); }
+  .btn-primary:hover         { background-color: #8ee05a; }
+  .btn-primary:active        { background-color: #7bcc4a; transform: translateY(1px); }
+  .btn-primary:disabled      { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(163, 251, 115, 0.4); }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2;
     background-color: transparent;
-    color: #a3fb73;
-    border: 1px solid rgba(163, 251, 115, 0.4);
-    border-radius: 4px;
+    color: var(--bist-primary);
+    border: 1px solid var(--bist-border);
+    border-radius: 8px;
     padding: 0.5rem 1rem;
     font-weight: 500;
     font-family: inherit;
@@ -145,62 +132,82 @@
   }
 
   .btn-secondary:hover {
-    background-color: rgba(163, 251, 115, 0.07);
-    border-color: #a3fb73;
+    background-color: var(--bist-surface2);
+    border-color: var(--bist-muted);
   }
 
   .btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(163, 251, 115, 0.3); }
 
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-1.5;
-    color: var(--bist-dim);
+    color: var(--bist-muted);
     padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 0.8rem;
     font-family: inherit;
     transition: color 0.1s, background-color 0.1s;
     cursor: pointer;
+    background: transparent;
+    border: none;
   }
 
   .btn-ghost:hover {
-    color: var(--bist-secondary);
-    background-color: rgba(163, 251, 115, 0.06);
+    color: var(--bist-primary);
+    background-color: var(--bist-surface2);
   }
 
-  /* ── Labels / Badges ───────────────────────────────────────────────── */
+  /* ── Badges ──────────────────────────────────────────────────────────── */
   .badge-approved {
     @apply inline-flex items-center gap-1 text-xs font-medium;
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    background-color: rgba(163, 251, 115, 0.1);
-    color: #a3fb73;
-    border: 1px solid rgba(163, 251, 115, 0.28);
-    letter-spacing: 0.05em;
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    background-color: rgba(163, 251, 115, 0.15);
+    color: #2D6A3F;
+    border: 1px solid rgba(163, 251, 115, 0.35);
+    font-family: inherit;
+    letter-spacing: 0.02em;
   }
 
   .badge-rejected {
     @apply inline-flex items-center gap-1 text-xs font-medium;
-    padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    background-color: rgba(239, 68, 68, 0.1);
-    color: #f87171;
-    border: 1px solid rgba(239, 68, 68, 0.22);
-    letter-spacing: 0.05em;
+    padding: 0.25rem 0.625rem;
+    border-radius: 20px;
+    background-color: rgba(239, 68, 68, 0.08);
+    color: #DC2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    font-family: inherit;
+    letter-spacing: 0.02em;
   }
 
   .badge-gemini {
     @apply inline-flex items-center gap-1 text-xs font-medium;
     padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    background-color: rgba(96, 165, 250, 0.08);
-    color: #60a5fa;
+    border-radius: 20px;
+    background-color: rgba(96, 165, 250, 0.1);
+    color: #2563EB;
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    font-family: inherit;
   }
 
   .badge-claude {
     @apply inline-flex items-center gap-1 text-xs font-medium;
     padding: 0.2rem 0.5rem;
-    border-radius: 2px;
-    background-color: rgba(196, 181, 253, 0.08);
-    color: #c4b5fd;
+    border-radius: 20px;
+    background-color: rgba(196, 181, 253, 0.1);
+    color: #7C3AED;
+    border: 1px solid rgba(196, 181, 253, 0.25);
+    font-family: inherit;
+  }
+
+  /* ── Section label ───────────────────────────────────────────────────── */
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-widest;
+    color: var(--bist-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Mono utility ────────────────────────────────────────────────────── */
+  .font-code {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
   }
 }

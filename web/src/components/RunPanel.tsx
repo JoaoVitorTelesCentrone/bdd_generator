@@ -9,17 +9,15 @@ type Mode = "generate" | "execute";
 
 export function RunPanel() {
   const router = useRouter();
-  const [mode, setMode]           = useState<Mode>("generate");
-  const [userStory, setUserStory] = useState("");
+  const [mode, setMode]             = useState<Mode>("generate");
+  const [userStory, setUserStory]   = useState("");
   const [featurePath, setFeaturePath] = useState("");
-  const [envUrl, setEnvUrl]       = useState("");
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState("");
+  const [envUrl, setEnvUrl]         = useState("");
+  const [loading, setLoading]       = useState(false);
+  const [error, setError]           = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+    e.preventDefault(); setError(""); setLoading(true);
     try {
       let result: { run_id: number };
       if (mode === "generate") {
@@ -36,84 +34,72 @@ export function RunPanel() {
   }
 
   const canSubmit = envUrl.trim() &&
-    (mode === "generate" ? userStory.trim() : featurePath.trim()) &&
-    !loading;
+    (mode === "generate" ? userStory.trim() : featurePath.trim()) && !loading;
 
   return (
-    <form onSubmit={handleSubmit} className="card-terminal p-5 space-y-4">
-      <div className="flex items-center gap-2 text-xs font-mono text-[#5a7a65] border-b border-[#a3fb73]/10 pb-3">
-        <span className="text-[#a3fb73]">$</span>
-        <span>bist {mode === "generate" ? "full" : "execute"}</span>
-      </div>
-
-      {/* Mode toggle */}
-      <div className="flex items-center gap-3">
+    <form onSubmit={handleSubmit} className="card p-5 space-y-4">
+      <div className="flex items-center justify-between pb-3 border-b border-bist-border">
+        <h3 className="text-sm font-semibold text-bist-primary">Executar testes E2E</h3>
         <button
           type="button"
           onClick={() => setMode(mode === "generate" ? "execute" : "generate")}
-          className="flex items-center gap-2 text-xs font-mono text-[#7a9b87] hover:text-[#a3fb73] transition-colors"
+          className="flex items-center gap-2 text-xs text-bist-muted hover:text-bist-primary transition-colors"
         >
           {mode === "generate"
             ? <ToggleLeft className="w-4 h-4" />
-            : <ToggleRight className="w-4 h-4 text-[#a3fb73]" />}
-          {mode === "generate" ? "gerar + executar" : "só executar (.feature)"}
+            : <ToggleRight className="w-4 h-4 text-[#2D6A3F]" />}
+          {mode === "generate" ? "Gerar + executar" : "Só executar (.feature)"}
         </button>
       </div>
 
-      {/* Dynamic input */}
       {mode === "generate" ? (
         <div className="space-y-1.5">
-          <label className="text-xs font-mono text-[#5a7a65]">user story</label>
+          <label className="text-sm font-medium text-bist-primary">User story</label>
           <textarea
             value={userStory}
             onChange={e => setUserStory(e.target.value)}
             rows={4}
             placeholder="Como usuário, quero fazer login..."
-            className="w-full bg-[#0d1f14] border border-[#a3fb73]/15 rounded px-3 py-2 text-sm font-mono text-[#c8e8c8] placeholder:text-[#3d5a44] focus:outline-none focus:border-[#a3fb73]/40 resize-none"
+            className="textarea text-sm"
           />
         </div>
       ) : (
         <div className="space-y-1.5">
-          <label className="text-xs font-mono text-[#5a7a65] flex items-center gap-1.5">
-            <FileCode className="w-3 h-3" /> caminho do .feature
+          <label className="text-sm font-medium text-bist-primary flex items-center gap-1.5">
+            <FileCode className="w-3.5 h-3.5" /> Caminho do .feature
           </label>
           <input
             type="text"
             value={featurePath}
             onChange={e => setFeaturePath(e.target.value)}
             placeholder="tests/login.feature"
-            className="w-full bg-[#0d1f14] border border-[#a3fb73]/15 rounded px-3 py-2 text-sm font-mono text-[#c8e8c8] placeholder:text-[#3d5a44] focus:outline-none focus:border-[#a3fb73]/40"
+            className="input text-sm"
           />
         </div>
       )}
 
-      {/* Env URL */}
       <div className="space-y-1.5">
-        <label className="text-xs font-mono text-[#5a7a65]">ambiente (url)</label>
+        <label className="text-sm font-medium text-bist-primary">URL do ambiente</label>
         <input
           type="url"
           value={envUrl}
           onChange={e => setEnvUrl(e.target.value)}
           placeholder="https://staging.myapp.com"
-          className="w-full bg-[#0d1f14] border border-[#a3fb73]/15 rounded px-3 py-2 text-sm font-mono text-[#c8e8c8] placeholder:text-[#3d5a44] focus:outline-none focus:border-[#a3fb73]/40"
+          className="input text-sm"
         />
       </div>
 
       {error && (
-        <div className="flex items-start gap-2 text-xs font-mono text-red-400 bg-red-400/8 border border-red-400/20 rounded px-3 py-2">
+        <div className="flex items-start gap-2 text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
           <AlertCircle className="w-3.5 h-3.5 mt-0.5 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      <button
-        type="submit"
-        disabled={!canSubmit}
-        className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
-      >
+      <button type="submit" disabled={!canSubmit} className="btn-primary w-full">
         {loading
-          ? <><Loader2 className="w-4 h-4 animate-spin" /> iniciando...</>
-          : <><Play className="w-4 h-4" /> executar</>}
+          ? <><Loader2 className="w-4 h-4 animate-spin" /> Iniciando...</>
+          : <><Play className="w-4 h-4" /> Executar testes</>}
       </button>
     </form>
   );

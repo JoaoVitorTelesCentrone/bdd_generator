@@ -19,8 +19,8 @@ function GoogleIcon() {
 
 function LoginContent() {
   const [loading, setLoading] = useState(false);
-  const searchParams = useSearchParams();
-  const errorParam = searchParams.get("error");
+  const searchParams          = useSearchParams();
+  const errorParam            = searchParams.get("error");
 
   const errorMessages: Record<string, string> = {
     auth_callback_failed: "Falha ao completar autenticação. Tente novamente.",
@@ -40,83 +40,49 @@ function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a2c21] flex items-center justify-center p-4">
-      {/* Background grid is applied via body::before in globals.css */}
-      <div className="w-full max-w-sm space-y-8 relative z-10">
+    <div className="min-h-screen bg-bist-bg flex items-center justify-center p-4">
+      <div className="w-full max-w-sm space-y-8">
 
-        {/* ── Terminal header ───────────────────────────────────────────── */}
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-1">
-            <span className="font-['Share_Tech_Mono',_'Consolas',_monospace] text-[#a3fb73] text-5xl tracking-[0.3em] leading-none">
-              BIST
-            </span>
-            <span className="text-[#a3fb73] text-5xl leading-none animate-cursor-blink">▮</span>
+        <div className="text-center space-y-3">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-bist-primary flex items-center justify-center">
+              <span className="font-code text-[#a3fb73] text-lg font-bold leading-none">B</span>
+            </div>
           </div>
-          <div className="font-mono text-xs text-[#5a7a65] tracking-widest uppercase">
-            bdd generation tool
-          </div>
+          <h1 className="text-2xl font-bold text-bist-primary tracking-tight">Entrar no BIST</h1>
+          <p className="text-sm text-bist-muted">BDD Generation Tool</p>
         </div>
 
-        {/* ── Login card ───────────────────────────────────────────────── */}
-        <div className="card-terminal p-6 space-y-5">
+        <div className="card p-6 space-y-5">
+          <p className="text-xs text-bist-muted text-center">
+            Autenticação necessária para salvar histórico
+          </p>
 
-          {/* Terminal prompt */}
-          <div className="space-y-1.5 font-mono text-sm border-b border-[#a3fb73]/10 pb-4">
-            <div className="flex items-center gap-2">
-              <span className="text-[#5a7a65]">$</span>
-              <span className="text-[#a3fb73]">bist auth</span>
-              <span className="text-[#5a7a65]">--provider=google</span>
-            </div>
-            <div className="flex items-center gap-2 text-[#5a7a65]">
-              <span className="select-none">›</span>
-              <span>autenticação necessária para salvar histórico</span>
-            </div>
-          </div>
-
-          {/* Error */}
           {errorParam && (
-            <div className="flex items-start gap-2 bg-red-500/8 border border-red-500/20 rounded p-3">
-              <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-red-400 font-mono">
-                {errorMessages[errorParam] ?? "erro desconhecido. tente novamente."}
+            <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg p-3">
+              <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-red-600">
+                {errorMessages[errorParam] ?? "Erro desconhecido. Tente novamente."}
               </p>
             </div>
           )}
 
           {/* Google button — temporariamente desabilitado */}
-          {/* <button
-            onClick={handleGoogleLogin}
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-3
-                       bg-[#eef9e8] hover:bg-[#ddf2dc] active:bg-[#c8e8c8]
-                       text-[#1a2c21] font-mono font-semibold text-sm
-                       rounded py-2.5 px-4 tracking-wide
-                       transition-all duration-150
-                       disabled:opacity-50 disabled:cursor-not-allowed
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a3fb73]/40"
-          >
-            {loading
-              ? <Loader2 className="w-4 h-4 animate-spin text-[#1a2c21]" />
-              : <GoogleIcon />
-            }
-            {loading ? "redirecionando..." : "authenticate --google"}
-          </button> */}
           <div className="w-full flex items-center justify-center gap-3
-                          border border-[#a3fb73]/15 bg-[#243d2c]/40
-                          text-[#3d5a44] font-mono text-sm
-                          rounded py-2.5 px-4 cursor-not-allowed select-none">
+                          border border-bist-border bg-bist-surface2
+                          text-bist-muted rounded-lg py-2.5 px-4 cursor-not-allowed select-none text-sm">
             <GoogleIcon />
-            authenticate --google
-            <span className="text-[10px] text-[#3d5a44] ml-auto">// em breve</span>
+            Continuar com Google
+            <span className="text-[10px] text-bist-dim ml-auto">em breve</span>
           </div>
 
-          <p className="text-center text-[10px] text-[#3d5a44] font-mono">
-            // autenticação opcional — gerar e avaliar funciona sem login
+          <p className="text-center text-xs text-bist-dim">
+            Autenticação opcional — Gerar e avaliar BDD funciona sem login
           </p>
         </div>
 
-        <p className="text-center text-[10px] text-[#2f5237] font-mono">
-          BIST v1.0 • Gemini & Claude • auto-refinamento
+        <p className="text-center text-[10px] text-bist-dim">
+          BIST v1.0 · Gemini & Claude · auto-refinamento
         </p>
       </div>
     </div>
@@ -126,8 +92,8 @@ function LoginContent() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#1a2c21] flex items-center justify-center">
-        <Loader2 className="w-6 h-6 animate-spin text-[#a3fb73]" />
+      <div className="min-h-screen bg-bist-bg flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-bist-muted" />
       </div>
     }>
       <LoginContent />

@@ -222,22 +222,22 @@ function TagEdge({ edge, nodes }: { edge: MapEdge; nodes: MapNode[] }) {
 function Tooltip({ node, entries }: { node: MapNode; entries: HistoryEntry[] }) {
   const entry = entries.find(e => e.id === node.entryId);
   return (
-    <div className="card-terminal p-4 space-y-2 min-w-[220px] shadow-xl shadow-black/50 pointer-events-none">
-      <p className="text-xs font-mono font-semibold text-[#a3fb73]">{node.label}</p>
+    <div className="card p-4 space-y-2 min-w-[220px] shadow-xl pointer-events-none">
+      <p className="text-xs font-semibold text-bist-primary">{node.label}</p>
       {entry && (
         <>
-          <div className="space-y-1 text-[10px] font-mono text-[#5a7a65]">
-            <p>score: <span className="text-[#eef9e8]">{node.score?.toFixed(1)}/10</span></p>
-            <p>cenários: <span className="text-[#eef9e8]">{node.scenarioCount}</span></p>
-            <p>modelo: <span className="text-[#eef9e8]">{node.model}</span></p>
-            <p>status: <span className={node.approved ? "text-[#a3fb73]" : "text-red-400"}>
+          <div className="space-y-1 text-[10px] font-code text-bist-muted">
+            <p>score: <span className="text-bist-primary font-medium">{node.score?.toFixed(1)}/10</span></p>
+            <p>cenários: <span className="text-bist-primary font-medium">{node.scenarioCount}</span></p>
+            <p>modelo: <span className="text-bist-primary font-medium">{node.model}</span></p>
+            <p>status: <span className={node.approved ? "text-[#2D6A3F] font-medium" : "text-red-500 font-medium"}>
               {node.approved ? "aprovado" : "reprovado"}
             </span></p>
           </div>
           {(node.tags ?? []).length > 0 && (
-            <div className="flex flex-wrap gap-1 pt-1 border-t border-[#a3fb73]/10">
+            <div className="flex flex-wrap gap-1 pt-1 border-t border-bist-border">
               {(node.tags ?? []).map(t => (
-                <span key={t} className="text-[9px] font-mono text-[#a3fb73]/60 bg-[#a3fb73]/8 px-1.5 py-0.5 rounded">
+                <span key={t} className="text-[9px] font-code text-[#2D6A3F] bg-[#a3fb73]/12 px-1.5 py-0.5 rounded-full border border-[#a3fb73]/25">
                   {t}
                 </span>
               ))}
@@ -343,51 +343,46 @@ export function FlowMapModal({ entries, onClose }: Props) {
   const tagEdges = edges.filter(e => e.type === "tag-link");
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-[#1a2c21]" style={{ fontFamily: "Consolas,'JetBrains Mono',monospace" }}>
+    <div className="fixed inset-0 z-50 flex flex-col bg-bist-primary">
 
       {/* ── Toolbar ── */}
-      <div className="flex items-center justify-between px-4 py-3
-                      border-b border-[#a3fb73]/12 bg-[#1a2c21]/95 backdrop-blur
-                      flex-shrink-0 z-10">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-bist-border bg-bist-surface flex-shrink-0 z-10">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-mono text-[#a3fb73]">bist map</span>
-          <span className="text-[#3d5a44] text-xs font-mono">--flows --interactive</span>
-          <div className="w-px h-4 bg-[#a3fb73]/15" />
-          <span className="text-[10px] font-mono text-[#3d5a44]">
-            {featureNodes.length} features · {tagEdges.length} conexões por tags
+          <span className="text-xs font-semibold text-bist-primary">Mapa de Fluxos</span>
+          <div className="w-px h-4 bg-bist-border" />
+          <span className="text-xs text-bist-muted">
+            {featureNodes.length} features · {tagEdges.length} conexões
           </span>
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Zoom controls */}
-          <div className="flex items-center gap-1 border border-[#a3fb73]/15 rounded px-1">
-            <button onClick={() => setScale(s => Math.max(0.2, s * 0.8))}
-              className="btn-ghost p-1.5"><ZoomOut className="w-3.5 h-3.5" /></button>
-            <span className="text-[10px] font-mono text-[#5a7a65] w-10 text-center tabular-nums">
+          <div className="flex items-center gap-1 border border-bist-border rounded-lg px-1">
+            <button onClick={() => setScale(s => Math.max(0.2, s * 0.8))} className="btn-ghost p-1.5">
+              <ZoomOut className="w-3.5 h-3.5" />
+            </button>
+            <span className="text-xs font-code text-bist-muted w-10 text-center tabular-nums">
               {Math.round(scale * 100)}%
             </span>
-            <button onClick={() => setScale(s => Math.min(3, s * 1.25))}
-              className="btn-ghost p-1.5"><ZoomIn className="w-3.5 h-3.5" /></button>
+            <button onClick={() => setScale(s => Math.min(3, s * 1.25))} className="btn-ghost p-1.5">
+              <ZoomIn className="w-3.5 h-3.5" />
+            </button>
           </div>
 
           <button onClick={resetView} className="btn-ghost text-xs gap-1.5">
-            <Maximize2 className="w-3.5 h-3.5" /> fit
+            <Maximize2 className="w-3.5 h-3.5" /> Fit
           </button>
 
-          <div className="w-px h-4 bg-[#a3fb73]/15" />
+          <div className="w-px h-4 bg-bist-border" />
 
-          {/* Export */}
-          <button onClick={handleExportSvg}
-            className="btn-secondary text-xs py-1.5 px-3 gap-1.5">
+          <button onClick={handleExportSvg} className="btn-secondary text-xs py-1.5 px-3 gap-1.5">
             <Download className="w-3.5 h-3.5" /> SVG
           </button>
-          <button onClick={handleExportPng} disabled={exporting}
-            className="btn-primary text-xs py-1.5 px-3 gap-1.5">
+          <button onClick={handleExportPng} disabled={exporting} className="btn-primary text-xs py-1.5 px-3 gap-1.5">
             <ImageDown className="w-3.5 h-3.5" />
-            {exporting ? "gerando…" : "PNG"}
+            {exporting ? "Gerando…" : "PNG"}
           </button>
 
-          <div className="w-px h-4 bg-[#a3fb73]/15" />
+          <div className="w-px h-4 bg-bist-border" />
 
           <button onClick={onClose} className="btn-ghost p-1.5">
             <X className="w-4 h-4" />

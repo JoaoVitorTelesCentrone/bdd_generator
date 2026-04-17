@@ -42,3 +42,63 @@ export interface EvaluateRequest {
 
 // Fix: TypeScript doesn't have a "float" type — use number
 type float = number;
+
+// ── BIST run types ────────────────────────────────────────────────────────────
+
+export interface BistRunSummary {
+  id: number;
+  started_at: number;
+  env_url: string;
+  status: "running" | "passed" | "failed" | "error";
+  duration_ms: number;
+  feature_path: string;
+}
+
+export interface BistStep {
+  id: number;
+  scenario_id: number;
+  step_text: string;
+  status: "passed" | "failed" | "skipped";
+  duration_ms: number;
+  screenshot_path: string;
+}
+
+export interface BistScenario {
+  id: number;
+  run_id: number;
+  name: string;
+  status: "passed" | "failed" | "skipped";
+  duration_ms: number;
+  error: string;
+  video_path: string;
+  steps: BistStep[];
+}
+
+export interface BistRunDetail extends BistRunSummary {
+  scenarios: BistScenario[];
+}
+
+export interface BistFlakyScenario {
+  name: string;
+  total_runs: number;
+  failures: number;
+  failure_rate: number;
+}
+
+export interface BistStats {
+  total_runs: number;
+  passed_runs: number;
+  failed_runs: number;
+  pass_rate: number;
+  avg_duration_ms: number;
+  flaky_scenarios: BistFlakyScenario[];
+  runs_over_time: Array<{ date: string; passed: number; failed: number }>;
+}
+
+export interface BistRunRequest {
+  user_story: string;
+  env_url: string;
+  model?: string;
+  threshold?: number;
+  max_attempts?: number;
+}

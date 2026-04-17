@@ -1,0 +1,332 @@
+{
+  "feature": "bist_output\\features\\Como_usuário_quero_fazer_login_com_usuar_20260416_215354.feature",
+  "env": "https://www.saucedemo.com",
+  "status": "failed",
+  "run_id": 1,
+  "duration_ms": 71682,
+  "summary": {
+    "total": 6,
+    "passed": 0,
+    "failed": 6
+  },
+  "scenarios": [
+    {
+      "name": "Login bem-sucedido com credenciais válidas",
+      "status": "failed",
+      "duration_ms": 11950,
+      "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+      "video": "bist_output\\videos\\Login_bem_sucedido_com_credenciais_válid\\f05aaf34e075b840df12b7c1e04cdb65.webm",
+      "steps": [
+        {
+          "text": "Dado que o usuário está na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Quando preencho o campo \"Usuário\" com \"usuario@exemplo.com\"",
+          "status": "failed",
+          "duration_ms": 10082,
+          "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+          "screenshot": "bist_output\\screenshots\\Login_bem_sucedido_com_credenciais_válid_step1_fail.png",
+          "healed": false
+        },
+        {
+          "text": "E preencho o campo \"Senha\" com \"SenhaSegura123\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E clico no botão \"Entrar\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Então sou redirecionado para a página \"Dashboard\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E vejo a mensagem de boas-vindas \"Olá, Usuário!\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        }
+      ]
+    },
+    {
+      "name": "Falha no login com usuário inválido",
+      "status": "failed",
+      "duration_ms": 11681,
+      "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+      "video": "bist_output\\videos\\Falha_no_login_com_usuário_inválido\\4411504d85443bffd86cf4a0069a234c.webm",
+      "steps": [
+        {
+          "text": "Dado que o usuário está na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Quando preencho o campo \"Usuário\" com \"usuario.invalido@exemplo.com\"",
+          "status": "failed",
+          "duration_ms": 10052,
+          "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+          "screenshot": "bist_output\\screenshots\\Falha_no_login_com_usuário_inválido_step1_fail.png",
+          "healed": false
+        },
+        {
+          "text": "E preencho o campo \"Senha\" com \"SenhaCorreta123\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E clico no botão \"Entrar\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Então vejo a mensagem de erro \"Usuário ou senha inválidos.\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E permaneço na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        }
+      ]
+    },
+    {
+      "name": "Falha no login com senha inválida",
+      "status": "failed",
+      "duration_ms": 11704,
+      "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+      "video": "bist_output\\videos\\Falha_no_login_com_senha_inválida\\3717e3ea70537cfa6872eee804277374.webm",
+      "steps": [
+        {
+          "text": "Dado que o usuário está na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Quando preencho o campo \"Usuário\" com \"usuario@exemplo.com\"",
+          "status": "failed",
+          "duration_ms": 10045,
+          "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+          "screenshot": "bist_output\\screenshots\\Falha_no_login_com_senha_inválida_step1_fail.png",
+          "healed": false
+        },
+        {
+          "text": "E preencho o campo \"Senha\" com \"SenhaErrada123\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E clico no botão \"Entrar\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Então vejo a mensagem de erro \"Usuário ou senha inválidos.\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E permaneço na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        }
+      ]
+    },
+    {
+      "name": "Falha no login com usuário e senha vazios",
+      "status": "failed",
+      "duration_ms": 11716,
+      "error": "Page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"text=Entrar\")\n",
+      "video": "bist_output\\videos\\Falha_no_login_com_usuário_e_senha_vazio\\50c71343ecc2bf44d8bbc60eaad47bd5.webm",
+      "steps": [
+        {
+          "text": "Dado que o usuário está na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Quando clico no botão \"Entrar\"",
+          "status": "failed",
+          "duration_ms": 10041,
+          "error": "Page.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"text=Entrar\")\n",
+          "screenshot": "bist_output\\screenshots\\Falha_no_login_com_usuário_e_senha_vazio_step1_fail.png",
+          "healed": false
+        },
+        {
+          "text": "Então vejo a mensagem de erro \"O campo Usuário é obrigatório.\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E vejo a mensagem de erro \"O campo Senha é obrigatório.\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E permaneço na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        }
+      ]
+    },
+    {
+      "name": "Falha no login com usuário vazio",
+      "status": "failed",
+      "duration_ms": 11708,
+      "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Senha\")\n",
+      "video": "bist_output\\videos\\Falha_no_login_com_usuário_vazio\\46035730a2cf13ef18520c442d442865.webm",
+      "steps": [
+        {
+          "text": "Dado que o usuário está na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Quando preencho o campo \"Senha\" com \"SenhaValida123\"",
+          "status": "failed",
+          "duration_ms": 10044,
+          "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Senha\")\n",
+          "screenshot": "bist_output\\screenshots\\Falha_no_login_com_usuário_vazio_step1_fail.png",
+          "healed": false
+        },
+        {
+          "text": "E clico no botão \"Entrar\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Então vejo a mensagem de erro \"O campo Usuário é obrigatório.\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E permaneço na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        }
+      ]
+    },
+    {
+      "name": "Falha no login com senha vazia",
+      "status": "failed",
+      "duration_ms": 11824,
+      "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+      "video": "bist_output\\videos\\Falha_no_login_com_senha_vazia\\8102427c3c258daf143ca0288672af6f.webm",
+      "steps": [
+        {
+          "text": "Dado que o usuário está na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Quando preencho o campo \"Usuário\" com \"usuario@exemplo.com\"",
+          "status": "failed",
+          "duration_ms": 10040,
+          "error": "Page.fill: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"Usuário\")\n",
+          "screenshot": "bist_output\\screenshots\\Falha_no_login_com_senha_vazia_step1_fail.png",
+          "healed": false
+        },
+        {
+          "text": "E clico no botão \"Entrar\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "Então vejo a mensagem de erro \"O campo Senha é obrigatório.\"",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        },
+        {
+          "text": "E permaneço na página de login",
+          "status": "skipped",
+          "duration_ms": 0,
+          "error": "",
+          "screenshot": "",
+          "healed": false
+        }
+      ]
+    }
+  ]
+}

@@ -16,11 +16,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.presentation.routers import health, models, generate, evaluate
+from backend.presentation.routers import bist_router
 
 app = FastAPI(
     title="BDD Generator API",
     description="Gerador de cenários BDD com auto-refinamento (Gemini / Claude)",
-    version="2.0.0",
+    version="3.0.0",
 )
 
 # ── CORS ──────────────────────────────────────────────────────────────────────
@@ -40,3 +41,4 @@ app.include_router(health.router)
 app.include_router(models.router)
 app.include_router(generate.router)
 app.include_router(evaluate.router)
+app.include_router(bist_router.router)

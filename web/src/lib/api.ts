@@ -1,4 +1,7 @@
-import type { GenerateRequest, GenerateResult, EvaluateRequest, ScoreResult, Model } from "@/types";
+import type {
+  GenerateRequest, GenerateResult, EvaluateRequest, ScoreResult, Model,
+  BistRunSummary, BistRunDetail, BistStats, BistRunRequest,
+} from "@/types";
 
 /**
  * Em dev: chama o backend diretamente (CORS configurado no FastAPI).
@@ -57,4 +60,27 @@ export async function checkHealth(): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+// ── BIST API ──────────────────────────────────────────────────────────────────
+
+export async function bistTriggerRun(req: BistRunRequest): Promise<{ run_id: number; status: string }> {
+  return apiFetch(`${BASE}/bist/run`, { method: "POST", body: JSON.stringify(req) });
+}
+
+export async function bistListRuns(limit = 20): Promise<BistRunSummary[]> {
+  return apiFetch(`${BASE}/bist/runs?limit=${limit}`);
+}
+
+export async function bistGetRun(id: number): Promise<BistRunDetail> {
+  return apiFetch(`${BASE}/bist/runs/${id}`);
+}
+
+export async function bistGetStats(): Promise<BistStats> {
+  return apiFetch(`${BASE}/bist/stats`);
+}
+
+export function bistWsUrl(runId: number): string {
+  const wsBase = BASE.replace(/^http/, "ws").replace(/\/api$/, "");
+  return `${wsBase}/ws/bist/run/${runId}`;
 }

@@ -67,14 +67,19 @@ function LoginContent() {
             </div>
           )}
 
-          {/* Google button — temporariamente desabilitado */}
-          <div className="w-full flex items-center justify-center gap-3
-                          border border-bist-border bg-bist-surface2
-                          text-bist-muted rounded-lg py-2.5 px-4 cursor-not-allowed select-none text-sm">
-            <GoogleIcon />
+          <button
+            onClick={handleGoogleLogin}
+            disabled={loading}
+            aria-label="Entrar com Google"
+            className="w-full flex items-center justify-center gap-3
+                       border border-bist-border bg-bist-surface2
+                       hover:bg-bist-surface hover:border-bist-muted
+                       text-bist-primary rounded-lg py-2.5 px-4 text-sm font-medium
+                       transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <GoogleIcon />}
             Continuar com Google
-            <span className="text-[10px] text-bist-dim ml-auto">em breve</span>
-          </div>
+          </button>
 
           <p className="text-center text-xs text-bist-dim">
             Autenticação opcional — Gerar e avaliar BDD funciona sem login

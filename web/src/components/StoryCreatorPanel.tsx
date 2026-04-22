@@ -9,6 +9,7 @@ import { createStory, generateBDD } from "@/lib/api";
 import { addEntry } from "@/lib/history";
 import { ScoreDisplay } from "./ScoreDisplay";
 import { BDDViewer } from "./BDDViewer";
+import { RunPanel } from "./RunPanel";
 import type { StoryCreateResult, GenerateResult } from "@/types";
 
 const DEFAULT_MODEL = "flash";
@@ -248,6 +249,8 @@ export function StoryCreatorPanel() {
               <Download className="w-4 h-4" /> Baixar .feature
             </a>
           </div>
+
+          <RunPanel initialStory={buildFullStory()} />
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Globe, Clock, Loader2, RefreshCw, Wifi } from "lucide-react";
@@ -29,23 +29,60 @@ function fmtDuration(ms: number) {
   return `${Math.floor(ms / 60000)}m ${Math.floor((ms % 60000) / 1000)}s`;
 }
 
+const MAX_WS_RECONNECTS = 5;
+
 function LiveLog({ runId, onDone }: { runId: number; onDone: () => void }) {
   const [logs, setLogs] = useState<string[]>(["Conectando ao pipeline..."]);
   const [done, setDone] = useState(false);
+  const doneRef         = useRef(false);
 
   useEffect(() => {
-    const ws = new WebSocket(bistWsUrl(runId));
-    ws.onmessage = (e) => {
-      const msg = JSON.parse(e.data);
-      if (msg.type === "log")  setLogs(prev => [...prev, msg.message]);
-      if (msg.type === "done") {
-        setLogs(prev => [...prev, `Pipeline finalizado: ${msg.status}`]);
-        setDone(true); ws.close();
-        setTimeout(onDone, 1200);
-      }
+    let ws: WebSocket;
+    let reconnectTimer: ReturnType<typeof setTimeout>;
+    let attempt = 0;
+
+    function connect() {
+      ws = new WebSocket(bistWsUrl(runId));
+
+      ws.onmessage = (e) => {
+        try {
+          const msg = JSON.parse(e.data) as { type: string; message?: string; status?: string };
+          if (msg.type === "log" && msg.message)
+            setLogs(prev => [...prev, msg.message!]);
+          if (msg.type === "done") {
+            setLogs(prev => [...prev, `Pipeline finalizado: ${msg.status}`]);
+            doneRef.current = true;
+            setDone(true);
+            ws.close();
+            setTimeout(onDone, 1200);
+          }
+        } catch { /* ignore malformed frames */ }
+      };
+
+      ws.onerror = () =>
+        setLogs(prev => [...prev, "Erro de conexão WebSocket"]);
+
+      ws.onclose = () => {
+        if (!doneRef.current && attempt < MAX_WS_RECONNECTS) {
+          attempt++;
+          const delay = Math.min(1000 * 2 ** attempt, 30_000);
+          setLogs(prev => [
+            ...prev,
+            `Reconectando em ${delay / 1000}s… (tentativa ${attempt}/${MAX_WS_RECONNECTS})`,
+          ]);
+          reconnectTimer = setTimeout(connect, delay);
+        } else if (!doneRef.current) {
+          setLogs(prev => [...prev, "Conexão perdida. Recarregue a página."]);
+        }
+      };
+    }
+
+    connect();
+
+    return () => {
+      clearTimeout(reconnectTimer);
+      if (ws && ws.readyState !== WebSocket.CLOSED) ws.close();
     };
-    ws.onerror = () => setLogs(prev => [...prev, "Erro de conexão WebSocket"]);
-    return () => { if (ws.readyState === WebSocket.OPEN) ws.close(); };
   }, [runId]);
 
   return (

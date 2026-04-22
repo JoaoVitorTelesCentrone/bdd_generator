@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart2, History, Play, TrendingUp, Lightbulb, Sparkles } from "lucide-react";
+import { BarChart2, FlaskConical, History, Play, TrendingUp, Lightbulb, Sparkles, TestTube2 } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
 const appLinks = [
-  { href: "/stories",  label: "Stories",  icon: Lightbulb  },
-  { href: "/generate", label: "Gerar",    icon: Sparkles   },
-  { href: "/evaluate", label: "Avaliar",  icon: BarChart2  },
-  { href: "/history",  label: "Histórico",icon: History    },
-  { href: "/runs",     label: "Runs",     icon: Play       },
-  { href: "/stats",    label: "Stats",    icon: TrendingUp },
+  { href: "/stories",      label: "Stories",  icon: Lightbulb    },
+  { href: "/generate",     label: "Gerar",    icon: Sparkles     },
+  { href: "/evaluate",     label: "Avaliar",  icon: BarChart2    },
+  { href: "/unit-tests",   label: "Testes",   icon: TestTube2    },
+  { href: "/history",      label: "Histórico",icon: History      },
+  { href: "/runs",         label: "Runs",     icon: Play         },
+  { href: "/stats",        label: "Stats",    icon: TrendingUp   },
+  { href: "/autoresearch", label: "Lab",      icon: FlaskConical },
 ];
 
 export function Navbar() {

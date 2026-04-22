@@ -1,0 +1,8 @@
+{
+  "cobertura": 0.3,
+  "clareza": 0.2,
+  "estrutura": 0.3,
+  "executabilidade": 0.2,
+  "threshold": 7.0,
+  "max_attempts": 3
+}

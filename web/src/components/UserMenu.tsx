@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { LogOut, ChevronDown, Loader2 } from "lucide-react";
+import { LogOut, ChevronDown, Loader2, Settings, Zap } from "lucide-react";
+import Link from "next/link";
 import { useUser } from "@/lib/supabase/useUser";
 import Image from "next/image";
 
@@ -54,6 +55,24 @@ export function UserMenu() {
             <p className="text-xs text-bist-muted truncate mt-0.5">{user.email}</p>
           </div>
           <div className="py-1">
+            <Link
+              href="/settings"
+              onClick={() => setOpen(false)}
+              className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-bist-muted
+                         hover:text-bist-primary hover:bg-bist-surface2 transition-colors"
+            >
+              <Settings className="w-3.5 h-3.5" /> Configurações
+            </Link>
+            <Link
+              href="/planos"
+              onClick={() => setOpen(false)}
+              className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-[#2D6A3F]
+                         hover:bg-[#a3fb73]/10 transition-colors"
+            >
+              <Zap className="w-3.5 h-3.5" /> Ver planos
+            </Link>
+          </div>
+          <div className="border-t border-bist-border py-1">
             <form action="/auth/signout" method="POST">
               <button
                 type="submit"

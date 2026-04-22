@@ -34,10 +34,10 @@ class GeneratorFactory:
     """Creates the correct LLM generator for a given model alias."""
 
     @staticmethod
-    def create(model: str) -> BaseLLMGenerator:
+    def create(model: str, max_tokens: int = 4096) -> BaseLLMGenerator:
         if model in _GEMINI_ALIASES or model.startswith("gemini"):
-            return GeminiGenerator(model=model)
-        return ClaudeGenerator(model=model)
+            return GeminiGenerator(model=model, max_tokens=max_tokens)
+        return ClaudeGenerator(model=model, max_tokens=max_tokens)
 
     @staticmethod
     def catalogue() -> list[dict]:

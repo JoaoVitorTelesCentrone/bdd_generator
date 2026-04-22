@@ -82,8 +82,10 @@ class BISTDatabase:
             ]:
                 try:
                     conn.execute(migration)
-                except Exception:
-                    pass
+                except Exception as exc:
+                    if "duplicate column" not in str(exc).lower():
+                        import logging as _logging
+                        _logging.warning("DB migration failed: %s — %s", migration, exc)
 
     # ── Test runs ──────────────────────────────────────────────────────────────
 

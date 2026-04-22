@@ -1,0 +1,4 @@
+experiment,mutation,cobertura,clareza,estrutura,executabilidade,threshold,max_attempts,avg_score,n_approved,total_tokens,accepted,is_best
+0,baseline,0.3,0.2,0.3,0.2,7.0,3,7.116,7,24874,True,True
+1,threshold 7.0->6.5,0.3,0.2,0.3,0.2,6.5,3,7.009,9,17451,False,False
+2,threshold 7.0->7.5,0.3,0.2,0.3,0.2,7.5,3,7.489,5,30683,True,True

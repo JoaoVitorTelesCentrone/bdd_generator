@@ -43,6 +43,27 @@ class GenerateOutputDTO:
     duration_seconds: float
 
 
+# ── Unit Tests ────────────────────────────────────────────────────────────────
+
+@dataclass
+class UnitTestInputDTO:
+    bdd_text: str
+    language: str
+    framework: str
+    model: str = "flash"
+
+
+@dataclass
+class UnitTestOutputDTO:
+    code: str
+    language: str
+    framework: str
+    file_extension: str
+    num_tests: int
+    total_tokens: int
+    duration_seconds: float
+
+
 # ── Evaluate ──────────────────────────────────────────────────────────────────
 
 @dataclass

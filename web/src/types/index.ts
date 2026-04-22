@@ -120,3 +120,97 @@ export interface StoryCreateResult {
   user_story: string;
   acceptance_criteria: string[];
 }
+
+// ── Unit Tests ────────────────────────────────────────────────────────────────
+
+export interface UnitTestRequest {
+  bdd_text: string;
+  language: string;
+  framework: string;
+  model?: string;
+}
+
+export interface UnitTestResult {
+  code: string;
+  language: string;
+  framework: string;
+  file_extension: string;
+  num_tests: number;
+  total_tokens: number;
+  duration_seconds: number;
+}
+
+export interface UnitTestFramework {
+  id: string;
+  label: string;
+  file_extension: string;
+  hint: string;
+}
+
+export interface UnitTestLanguage {
+  id: string;
+  label: string;
+  default_framework: string;
+  frameworks: UnitTestFramework[];
+}
+
+export type UnitTestLanguageCatalog = Record<string, UnitTestLanguage>;
+
+// ── Autoresearch ──────────────────────────────────────────────────────────────
+
+export interface ResearchConfig {
+  cobertura: number;
+  clareza: number;
+  estrutura: number;
+  executabilidade: number;
+  threshold: number;
+  max_attempts: number;
+}
+
+export interface ExperimentRow {
+  experiment: number;
+  mutation: string;
+  cobertura: number;
+  clareza: number;
+  estrutura: number;
+  executabilidade: number;
+  threshold: number;
+  max_attempts: number;
+  avg_score: number;
+  n_approved: number;
+  total_tokens: number;
+  accepted: boolean;
+  is_best: boolean;
+}
+
+export interface AutoresearchRunRequest {
+  stories: string[];
+  model: string;
+  n_experiments: number;
+  sample_size: number;
+  seed?: number | null;
+  resume_config?: ResearchConfig | null;
+}
+
+export interface AutoresearchRunSummary {
+  id: number;
+  started_at: number;
+  finished_at?: number | null;
+  status: "running" | "done" | "error";
+  model: string;
+  n_experiments: number;
+  sample_size: number;
+  seed?: number | null;
+  baseline_score?: number | null;
+  best_score?: number | null;
+  improvement?: number | null;
+  n_accepted?: number | null;
+  total_tokens?: number | null;
+  duration_seconds?: number | null;
+  error?: string | null;
+}
+
+export interface AutoresearchRunDetail extends AutoresearchRunSummary {
+  best_config?: ResearchConfig | null;
+  experiments: ExperimentRow[];
+}

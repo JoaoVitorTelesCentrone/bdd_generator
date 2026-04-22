@@ -7,10 +7,10 @@ import { bistTriggerRun, bistExecuteRun } from "@/lib/api";
 
 type Mode = "generate" | "execute";
 
-export function RunPanel() {
+export function RunPanel({ initialStory }: { initialStory?: string } = {}) {
   const router = useRouter();
   const [mode, setMode]             = useState<Mode>("generate");
-  const [userStory, setUserStory]   = useState("");
+  const [userStory, setUserStory]   = useState(initialStory ?? "");
   const [featurePath, setFeaturePath] = useState("");
   const [envUrl, setEnvUrl]         = useState("");
   const [loading, setLoading]       = useState(false);

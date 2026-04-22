@@ -51,16 +51,29 @@ class GeminiGenerator(BaseLLMGenerator):
     def get_model_name(self) -> str:
         return self.model_id
 
+    # Gemini 2.5 Flash is a "thinking" model — temperature is incompatible with
+    # the default thinking mode. We disable thinking via budget_tokens=0 so we
+    # can use temperature freely (same behaviour as 2.0 Flash).
+    _THINKING_MODELS = frozenset({"gemini-2.5-flash", "gemini-2.5-pro"})
+
+    def _build_config(self, system_instruction: str | None) -> types.GenerateContentConfig:
+        kwargs: dict = dict(
+            system_instruction=system_instruction or SYSTEM_INSTRUCTION,
+            max_output_tokens=self.max_tokens,
+        )
+        if self.model_id in self._THINKING_MODELS:
+            # Disable thinking budget so temperature can be set normally.
+            kwargs["thinking_config"] = types.ThinkingConfig(thinking_budget=0)
+        else:
+            kwargs["temperature"] = 0.7
+        return types.GenerateContentConfig(**kwargs)
+
     def generate(self, prompt: str, system_instruction: str | None = None) -> GenerationResult:
         try:
             response = self._client.models.generate_content(
                 model=self.model_id,
                 contents=prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=system_instruction or SYSTEM_INSTRUCTION,
-                    max_output_tokens=self.max_tokens,
-                    temperature=0.7,
-                ),
+                config=self._build_config(system_instruction),
             )
 
             text = response.text.strip() if response.text else ""
@@ -85,4 +98,10 @@ class GeminiGenerator(BaseLLMGenerator):
                 error_msg = "Gemini API key inválida. Verifique o arquivo .env"
             elif "quota" in error_msg.lower() or "429" in error_msg:
                 error_msg = "Quota da API Gemini atingida."
+            elif "Method Not Allowed" in error_msg or "405" in error_msg:
+                error_msg = (
+                    f"Gemini API rejeitou a requisição (405 Method Not Allowed). "
+                    f"Verifique se o modelo '{self.model_id}' está disponível para sua chave. "
+                    f"Detalhe original: {str(e)}"
+                )
             return GenerationResult(success=False, error=error_msg)

@@ -11,6 +11,8 @@ import { generateBDD } from "@/lib/api";
 import { addEntry } from "@/lib/history";
 import { ScoreDisplay } from "./ScoreDisplay";
 import { BDDViewer } from "./BDDViewer";
+import { RunPanel } from "./RunPanel";
+import { UnitTestPanel } from "./UnitTestPanel";
 import { saveGeneration } from "@/lib/supabase/generations";
 import { useUser } from "@/lib/supabase/useUser";
 import type { GenerateResult, Model } from "@/types";
@@ -217,6 +219,10 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
               </div>
               <BDDViewer bddText={result.bdd_text} />
             </div>
+
+            <UnitTestPanel bddText={result.bdd_text} model={model} />
+
+            <RunPanel initialStory={story} />
           </div>
         )}
       </div>

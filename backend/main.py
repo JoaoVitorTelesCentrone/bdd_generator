@@ -8,17 +8,39 @@ presentation layer (routers). No business logic lives here.
 Run:
     python -m uvicorn backend.main:app --reload --port 8000
 """
-import sys, os
+import sys, os, logging
 # Ensure project root is on the path so src.* imports resolve
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+_logger = logging.getLogger(__name__)
+
+_ENV_CHECKS = {
+    "GEMINI_API_KEY":     "Gemini (flash / pro / flash-lite)",
+    "ANTHROPIC_API_KEY":  "Claude (sonnet / opus / haiku)",
+}
+
+def _validate_env() -> None:
+    missing = [k for k, _ in _ENV_CHECKS.items() if not os.getenv(k)]
+    if missing:
+        for k in missing:
+            _logger.warning("⚠  %s não configurada — modelos %s indisponíveis", k, _ENV_CHECKS[k])
+        _logger.warning(
+            "Configure as chaves com:  python -m src.cli config set-key <NOME> <VALOR>"
+        )
+    else:
+        _logger.info("✓ GEMINI_API_KEY e ANTHROPIC_API_KEY configuradas")
+
 from backend.presentation.routers import health, models, generate, evaluate
 from backend.presentation.routers import bist_router
 from backend.presentation.routers import tenants_router
 from backend.presentation.routers import stories_router
+from backend.presentation.routers import autoresearch_router
+from backend.presentation.routers import unit_tests_router
+
+_validate_env()
 
 app = FastAPI(
     title="BDD Generator API",
@@ -46,3 +68,5 @@ app.include_router(evaluate.router)
 app.include_router(bist_router.router)
 app.include_router(tenants_router.router)
 app.include_router(stories_router.router)
+app.include_router(autoresearch_router.router)
+app.include_router(unit_tests_router.router)

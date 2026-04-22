@@ -24,6 +24,8 @@ from .study.analyzer import BatchAnalyzer, load_study_context
 from .utils.logger import AttemptLogger
 from .utils.prompts import PromptTemplates
 from .auth.config import get_api_key, set_api_key, show_config
+from .autoresearch.config import ResearchConfig
+from .autoresearch.loop import run_autoresearch
 
 # Gemini model aliases
 _GEMINI_ALIASES = {
@@ -641,6 +643,125 @@ def pipeline(
         f"Run 2:    {run2_csv}[/dim]",
         title="[bold cyan]Resultado do Pipeline[/bold cyan]",
     ))
+
+
+@app.command()
+def autoresearch(
+    input: str = typer.Option(..., "--input", "-i", help="CSV com user stories"),
+    model: str = typer.Option("flash", "--model", "-m", help="Modelo a usar nos experimentos"),
+    sample: int = typer.Option(10, "--sample", "-s", help="Número de stories por experimento (orçamento fixo)"),
+    n_experiments: int = typer.Option(30, "--experiments", "-n", help="Número de mutações a testar"),
+    output: Optional[str] = typer.Option(None, "--output", "-o", help="Pasta de saída (padrão: results/autoresearch_<timestamp>/)"),
+    seed: Optional[int] = typer.Option(None, "--seed", help="Semente aleatória para reprodutibilidade"),
+    resume: Optional[str] = typer.Option(None, "--resume", help="Retomar de um best_config.json existente"),
+):
+    """
+    Otimiza automaticamente pesos e parâmetros do scorer via hill-climbing.
+
+    Inspirado no autoresearch do Karpathy: cada experimento propõe uma mutação
+    (pesos, threshold, max_attempts), avalia num sample fixo de stories e aceita
+    a mudança somente se o score médio melhorar. Salva best_config.json e log CSV.
+    """
+    issues = _load_dataset(input)
+    if len(issues) < sample:
+        console.print(f"[yellow]Dataset tem {len(issues)} stories, ajustando --sample para {len(issues)}.[/yellow]")
+        sample = len(issues)
+
+    # Fix the evaluation sample for reproducibility across experiments
+    rng_sample = random.Random(seed)
+    sample_issues = rng_sample.sample(issues, sample)
+    stories = [
+        (iss["title"] + (f". {iss['description'][:300]}" if iss["description"] else ""))
+        for iss in sample_issues
+    ]
+
+    initial_config: Optional[ResearchConfig] = None
+    if resume:
+        resume_path = Path(resume)
+        if not resume_path.exists():
+            console.print(f"[red]Arquivo não encontrado:[/red] {resume}")
+            raise typer.Exit(1)
+        initial_config = ResearchConfig.load(resume_path)
+        console.print(f"[green]Retomando de:[/green] {resume_path}")
+        console.print(f"  Config: {initial_config.label()}")
+
+    run_dir = Path(output) if output else _new_run_dir("autoresearch")
+
+    console.print(Panel(
+        f"[bold cyan]BDD Autoresearch[/bold cyan] | Modelo: {model} | "
+        f"Sample: {sample} stories | Experimentos: {n_experiments}"
+    ))
+    console.print(f"[bold]Dataset:[/bold] {input} ({len(issues)} stories total)\n")
+
+    # Live progress table via Rich
+    from rich.table import Table
+    from rich.live import Live
+
+    table = Table(show_header=True, header_style="bold cyan", expand=False)
+    table.add_column("#", width=4)
+    table.add_column("Mutação", width=36)
+    table.add_column("Score", width=7)
+    table.add_column("Δ", width=6)
+    table.add_column("Status", width=8)
+
+    baseline_score = None
+
+    def on_experiment(i, mutation_desc, config, result, accepted, is_best):
+        nonlocal baseline_score
+        if baseline_score is None:
+            baseline_score = result.avg_score
+
+        delta = result.avg_score - (baseline_score or result.avg_score)
+        delta_str = f"{delta:+.3f}"
+        delta_color = "green" if delta > 0 else ("red" if delta < 0 else "white")
+
+        if is_best:
+            status = "[bold green]BEST[/bold green]"
+        elif accepted:
+            status = "[green]aceito[/green]"
+        else:
+            status = "[dim]rejeitado[/dim]"
+
+        table.add_row(
+            str(i),
+            mutation_desc[:36],
+            f"{result.avg_score:.3f}",
+            f"[{delta_color}]{delta_str}[/{delta_color}]",
+            status,
+        )
+        live.refresh()
+
+    with Live(table, console=console, refresh_per_second=4) as live:
+        ar_result = run_autoresearch(
+            stories=stories,
+            generator=_make_generator(model),
+            initial_config=initial_config,
+            n_experiments=n_experiments,
+            run_dir=run_dir,
+            seed=seed,
+            on_experiment=on_experiment,
+        )
+
+    improvement = ar_result.best_score - ar_result.baseline_score
+    imp_color = "green" if improvement >= 0 else "red"
+    imp_sign = "+" if improvement >= 0 else ""
+
+    console.print(Panel(
+        f"[bold]Baseline:[/bold]      {ar_result.baseline_score:.4f}\n"
+        f"[bold]Melhor score:[/bold]  {ar_result.best_score:.4f}  "
+        f"[{imp_color}]({imp_sign}{improvement:.4f})[/{imp_color}]\n"
+        f"[bold]Aceitos:[/bold]       {ar_result.n_accepted}/{ar_result.n_experiments}\n"
+        f"[bold]Tokens usados:[/bold] {ar_result.total_tokens:,}\n"
+        f"[bold]Tempo:[/bold]         {ar_result.duration_seconds:.1f}s\n\n"
+        f"[bold]Melhor config:[/bold]\n  {ar_result.best_config.label()}",
+        title="[bold cyan]Resultado do Autoresearch[/bold cyan]",
+    ))
+    console.print(f"\n[green]Log:[/green]          {ar_result.log_path}")
+    console.print(f"[green]Melhor config:[/green] {ar_result.best_config_path}")
+    console.print(
+        f"\n[dim]Use a melhor config em batch com:[/dim] "
+        f"[cyan]bdd autoresearch --resume {ar_result.best_config_path}[/cyan]"
+    )
 
 
 # ─────────────────────────────────────────────────────────────────────────────

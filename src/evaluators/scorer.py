@@ -103,8 +103,13 @@ def _weakness_detail(name: str, score: float, gap: float) -> str:
 class BDDScorer:
     """Aggregates all four BDD quality metrics into a final score."""
 
-    def __init__(self, threshold: float = DEFAULT_THRESHOLD):
+    def __init__(
+        self,
+        threshold: float = DEFAULT_THRESHOLD,
+        weights: Optional[dict] = None,
+    ):
         self.threshold = threshold
+        self._weights  = weights or WEIGHTS
         self._coverage      = CoverageEvaluator()
         self._clarity       = ClarityEvaluator()
         self._structure     = StructureEvaluator()
@@ -122,10 +127,10 @@ class BDDScorer:
         executabilidade = self._executability.evaluate(bdd_text)
 
         score_final = round(
-            cobertura       * WEIGHTS["cobertura"]       +
-            clareza         * WEIGHTS["clareza"]         +
-            estrutura       * WEIGHTS["estrutura"]       +
-            executabilidade * WEIGHTS["executabilidade"],
+            cobertura       * self._weights["cobertura"]       +
+            clareza         * self._weights["clareza"]         +
+            estrutura       * self._weights["estrutura"]       +
+            executabilidade * self._weights["executabilidade"],
             2,
         )
 

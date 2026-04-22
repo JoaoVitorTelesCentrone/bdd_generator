@@ -1,0 +1,4 @@
+experiment,mutation,cobertura,clareza,estrutura,executabilidade,threshold,max_attempts,avg_score,n_approved,total_tokens,accepted,is_best
+0,baseline,0.3,0.2,0.3,0.2,7.0,3,6.949,5,30149,True,True
+1,perturb executabilidade 0.20->0.24,0.2857,0.1905,0.2857,0.2381,7.0,3,6.883,5,34970,False,False
+2,swap executabilidade<->clareza (0.20<->0.20),0.3,0.2,0.3,0.2,7.0,3,7.168,4,37372,True,True

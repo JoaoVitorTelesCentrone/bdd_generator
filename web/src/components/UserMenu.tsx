@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { LogOut, ChevronDown, Loader2, Settings, Zap } from "lucide-react";
+import { LogOut, ChevronDown, Loader2, Settings, Zap, UserCircle } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@/lib/supabase/useUser";
 import Image from "next/image";
@@ -55,6 +55,14 @@ export function UserMenu() {
             <p className="text-xs text-bist-muted truncate mt-0.5">{user.email}</p>
           </div>
           <div className="py-1">
+            <Link
+              href="/profile"
+              onClick={() => setOpen(false)}
+              className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-bist-muted
+                         hover:text-bist-primary hover:bg-bist-surface2 transition-colors"
+            >
+              <UserCircle className="w-3.5 h-3.5" /> Meu perfil
+            </Link>
             <Link
               href="/settings"
               onClick={() => setOpen(false)}

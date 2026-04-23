@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Check, Zap, Building2, ArrowRight } from "lucide-react";
+import { PlanCheckoutButton } from "@/components/PlanCheckoutButton";
 
 const plans = [
   {
@@ -131,6 +132,12 @@ export default function PlanosPage() {
                 >
                   <Building2 className="w-3.5 h-3.5" /> {plan.cta}
                 </a>
+              ) : plan.id === "pro" ? (
+                <PlanCheckoutButton
+                  planId="pro"
+                  label={plan.cta}
+                  className={`w-full btn-primary text-sm py-2.5 text-center flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed`}
+                />
               ) : (
                 <Link
                   href={plan.ctaHref}

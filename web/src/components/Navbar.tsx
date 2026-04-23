@@ -2,23 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart2, FlaskConical, History, Play, TrendingUp, Lightbulb, Sparkles, TestTube2 } from "lucide-react";
+import { BarChart2, History, Lightbulb, Sparkles, TestTube2, Layers } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
 const appLinks = [
+  { href: "/fluxo",        label: "Fluxo",    icon: Layers       },
   { href: "/stories",      label: "Stories",  icon: Lightbulb    },
   { href: "/generate",     label: "Gerar",    icon: Sparkles     },
   { href: "/evaluate",     label: "Avaliar",  icon: BarChart2    },
   { href: "/unit-tests",   label: "Testes",   icon: TestTube2    },
   { href: "/history",      label: "Histórico",icon: History      },
-  { href: "/runs",         label: "Runs",     icon: Play         },
-  { href: "/stats",        label: "Stats",    icon: TrendingUp   },
-  { href: "/autoresearch", label: "Lab",      icon: FlaskConical },
+  // { href: "/runs",         label: "Runs",     icon: Play         },
+  // { href: "/stats",        label: "Stats",    icon: TrendingUp   },
+  // { href: "/autoresearch", label: "Lab",      icon: FlaskConical },
 ];
 
 export function Navbar() {
   const path = usePathname();
-  const isApp = appLinks.some(l => path.startsWith(l.href));
+  const appOnlyPaths = ["/profile", "/settings", "/planos"];
+  const isApp = appLinks.some(l => path.startsWith(l.href)) || appOnlyPaths.some(p => path.startsWith(p));
 
   return (
     <header className="sticky top-0 z-50 bg-bist-surface border-b border-bist-border">
@@ -59,16 +61,14 @@ export function Navbar() {
             </nav>
           )}
 
-          {!isApp ? (
+          {!isApp && (
             <Link href="/generate" className="btn-primary text-xs py-2 px-4">
               Abrir app
             </Link>
-          ) : (
-            <>
-              <div className="w-px h-5 bg-bist-border mx-1" />
-              <UserMenu />
-            </>
           )}
+
+          {isApp && <div className="w-px h-5 bg-bist-border mx-1" />}
+          <UserMenu />
         </div>
       </div>
     </header>

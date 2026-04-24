@@ -8,54 +8,112 @@ interface Props {
   filename?: string;
 }
 
+// Strip markdown fences defensively (in case backend didn't)
+function cleanBDD(raw: string): string {
+  let text = raw.trim();
+  if (text.startsWith("```")) {
+    text = text.replace(/^```[a-zA-Z]*\n?/, "").replace(/\n?```$/, "").trim();
+  }
+  return text;
+}
+
+const KW_FEATURE   = /^\s*(Funcionalidade|Feature)\s*:/i;
+const KW_SCENARIO  = /^\s*(Cen[aá]rio(?: Outline)?|Scenario(?: Outline)?|Esquema do Cen[aá]rio|Background|Contexto|Exemplos|Examples)\s*[:|]/i;
+const KW_STEP      = /^\s*(Dado(?:\s+que)?|Quando|Então|Given|When|Then)\b/i;
+const KW_AND       = /^\s*(E\b|Mas\b|And\b|But\b|\*\s)/i;
+const KW_COMMENT   = /^\s*#/;
+const KW_TAG       = /^\s*@/;
+const KW_TABLE     = /^\s*\|/;
+// Narrative lines inside Feature block (Como/Para/Eu quero)
+const KW_NARRATIVE = /^\s*(Como|Para|Eu quero|As a|In order to|I want)\b/i;
+
 function highlight(line: string): React.ReactNode {
-  if (/^\s*#/.test(line)) return <span className="bdd-comment">{line}</span>;
-  if (/^\s*@/.test(line)) return <span className="bdd-tag">{line}</span>;
-  if (/^\s*(Funcionalidade|Feature)\s*:/i.test(line)) {
+  if (KW_COMMENT.test(line))
+    return <span className="bdd-comment">{line}</span>;
+
+  if (KW_TAG.test(line))
+    return <span className="bdd-tag">{line}</span>;
+
+  if (KW_FEATURE.test(line)) {
     const idx = line.indexOf(":");
-    const [kw, rest] = idx >= 0 ? [line.slice(0, idx), line.slice(idx + 1)] : [line, ""];
-    return <><span className="bdd-keyword-feature">{kw}:</span><span style={{ color: "#eef9e8" }}>{rest}</span></>;
+    const kw  = line.slice(0, idx + 1);
+    const rest = line.slice(idx + 1);
+    return <><span className="bdd-keyword-feature">{kw}</span><span style={{ color: "#eef9e8" }}>{rest}</span></>;
   }
-  if (/^\s*(Cen[aá]rio|Scenario|Esquema do Cen[aá]rio|Background|Contexto|Exemplos)\s*[:|]/i.test(line)) {
-    const m = line.match(/^(\s*)(Cen[aá]rio|Scenario|Esquema do Cen[aá]rio|Background|Contexto|Exemplos)(\s*[:|])(.*)/i);
-    if (m) return <><span>{m[1]}</span><span className="bdd-keyword-scenario">{m[2]}{m[3]}</span><span style={{ color: "#eef9e8", fontWeight: 500 }}>{m[4]}</span></>;
+
+  if (KW_SCENARIO.test(line)) {
+    const m = line.match(/^(\s*)(Cen[aá]rio(?: Outline)?|Scenario(?: Outline)?|Esquema do Cen[aá]rio|Background|Contexto|Exemplos|Examples)(\s*[:|])(.*)/i);
+    if (m) return (
+      <>
+        <span>{m[1]}</span>
+        <span className="bdd-keyword-scenario">{m[2]}{m[3]}</span>
+        <span style={{ color: "#eef9e8", fontWeight: 500 }}>{m[4]}</span>
+      </>
+    );
   }
-  if (/^\s*(Dado(?:\s+que)?|Quando|Então)\b/i.test(line)) {
-    const m = line.match(/^(\s*)(Dado(?:\s+que)?|Quando|Então)(\s+)(.*)/i);
-    if (m) return <><span>{m[1]}</span><span className="bdd-keyword-step">{m[2]}</span><span>{m[3]}</span><StepContent text={m[4]} /></>;
+
+  if (KW_STEP.test(line)) {
+    const m = line.match(/^(\s*)(Dado(?:\s+que)?|Quando|Então|Given|When|Then)(\s+|:?\s*)(.*)/i);
+    if (m) return (
+      <>
+        <span>{m[1]}</span>
+        <span className="bdd-keyword-step">{m[2]}</span>
+        <span>{m[3]}</span>
+        <StepContent text={m[4]} />
+      </>
+    );
   }
-  if (/^\s*(E\b|Mas\b|And\b|But\b)/i.test(line)) {
-    const m = line.match(/^(\s*)(E\b|Mas\b|And\b|But\b)(\s+)(.*)/i);
-    if (m) return <><span>{m[1]}</span><span className="bdd-keyword-and">{m[2]}</span><span>{m[3]}</span><StepContent text={m[4]} /></>;
+
+  if (KW_AND.test(line)) {
+    const m = line.match(/^(\s*)(E\b|Mas\b|And\b|But\b|\*)(\s+)(.*)/i);
+    if (m) return (
+      <>
+        <span>{m[1]}</span>
+        <span className="bdd-keyword-and">{m[2]}</span>
+        <span>{m[3]}</span>
+        <StepContent text={m[4]} />
+      </>
+    );
   }
-  if (/^\s*\|/.test(line)) return <span style={{ color: "#7a9b87" }}>{line}</span>;
+
+  if (KW_TABLE.test(line))
+    return <span style={{ color: "#7a9b87" }}>{line}</span>;
+
+  if (KW_NARRATIVE.test(line))
+    return <span style={{ color: "#9ab89a" }}>{line}</span>;
+
   return <span style={{ color: "#c8e8c8" }}>{line}</span>;
 }
 
 function StepContent({ text }: { text: string }) {
   const parts = text.split(/(\"[^\"]*\")/g);
-  return <>{parts.map((p, i) =>
-    p.startsWith('"') && p.endsWith('"')
-      ? <span key={i} className="bdd-string">{p}</span>
-      : <span key={i} style={{ color: "#c8e8c8" }}>{p}</span>
-  )}</>;
+  return (
+    <>
+      {parts.map((p, i) =>
+        p.startsWith('"') && p.endsWith('"')
+          ? <span key={i} className="bdd-string">{p}</span>
+          : <span key={i} style={{ color: "#c8e8c8" }}>{p}</span>
+      )}
+    </>
+  );
 }
 
 export function BDDViewer({ bddText, filename = "output.feature" }: Props) {
   const [copied, setCopied] = useState(false);
 
-  const lines = bddText.split("\n");
+  const cleaned = cleanBDD(bddText);
+  const lines   = cleaned.split("\n");
 
   async function copy() {
-    await navigator.clipboard.writeText(bddText);
+    await navigator.clipboard.writeText(cleaned);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }
 
   function download() {
-    const blob = new Blob([bddText], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const blob = new Blob([cleaned], { type: "text/plain" });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
     a.href = url; a.download = filename; a.click();
     URL.revokeObjectURL(url);
   }
@@ -82,7 +140,7 @@ export function BDDViewer({ bddText, filename = "output.feature" }: Props) {
         </div>
       </div>
 
-      {/* Code block — stays dark (it's a code editor) */}
+      {/* Code block */}
       <div className="overflow-auto bg-[#1a2c21] max-h-[520px]">
         <table className="w-full border-collapse leading-relaxed text-sm">
           <tbody>

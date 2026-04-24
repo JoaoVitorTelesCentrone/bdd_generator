@@ -2,7 +2,11 @@ import { GeneratePanel } from "@/components/GeneratePanel";
 import type { Model } from "@/types";
 
 const FALLBACK_MODELS: Model[] = [
-  { id: "flash",      name: "Gemini 2.5 Flash",     provider: "gemini", default: true },
+  { id: "llama",      name: "Llama 3.3 70B",         provider: "groq",   default: true, free: true },
+  { id: "llama-fast", name: "Llama 3.1 8B",          provider: "groq",   free: true },
+  { id: "deepseek",   name: "DeepSeek R1 70B",       provider: "groq",   free: true },
+  { id: "gemma",      name: "Gemma 2 9B",            provider: "groq",   free: true },
+  { id: "flash",      name: "Gemini 2.5 Flash",      provider: "gemini" },
   { id: "pro",        name: "Gemini 2.5 Pro",        provider: "gemini" },
   { id: "flash-lite", name: "Gemini 2.0 Flash Lite", provider: "gemini" },
   { id: "sonnet",     name: "Claude Sonnet 4.6",     provider: "claude" },

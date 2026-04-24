@@ -3,10 +3,8 @@
 import { useState, useRef } from "react";
 import {
   ChevronDown, ChevronUp, FlaskConical,
-  Repeat, Loader2, AlertCircle, Info, Sparkles, BookOpen,
+  Repeat, Loader2, AlertCircle, Info, Sparkles, BookOpen, Zap,
 } from "lucide-react";
-
-const DEFAULT_MODEL = "flash";
 import { generateBDD } from "@/lib/api";
 import { addEntry } from "@/lib/history";
 import { ScoreDisplay } from "./ScoreDisplay";
@@ -23,18 +21,22 @@ const EXAMPLE_STORIES = [
   "Como gestor, quero aprovar solicitações de férias para controlar ausências.\n\nCritérios:\n- Visualizar lista de solicitações pendentes\n- Aprovar ou rejeitar com justificativa\n- Notificar funcionário",
 ];
 
+const FREE_MODEL = "llama";
+
 export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
-  const [story, setStory] = useState("");
-  const model = DEFAULT_MODEL;
-  const [threshold, setThreshold] = useState(7.0);
-  const [maxAttempts, setMaxAttempts] = useState(5);
-  const [research, setResearch] = useState(false);
+  const model = FREE_MODEL;
+
+  const [story, setStory]               = useState("");
+  const [threshold, setThreshold]       = useState(7.0);
+  const [maxAttempts, setMaxAttempts]   = useState(5);
+  const [research, setResearch]         = useState(false);
   const [untilConverged, setUntilConverged] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<GenerateResult | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [saved, setSaved] = useState(false);
+  const [loading, setLoading]           = useState(false);
+  const [loadingPhase, setLoadingPhase] = useState("");
+  const [result, setResult]             = useState<GenerateResult | null>(null);
+  const [error, setError]               = useState<string | null>(null);
+  const [saved, setSaved]               = useState(false);
 
   const { user } = useUser();
   const resultRef = useRef<HTMLDivElement>(null);
@@ -42,8 +44,13 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
   async function handleGenerate() {
     if (!story.trim()) return;
     setLoading(true); setError(null); setResult(null);
+    setLoadingPhase(research ? "Pesquisando story..." : "Gerando cenários...");
+
     try {
-      const res = await generateBDD({ story: story.trim(), model, threshold, max_attempts: maxAttempts, research, until_converged: untilConverged });
+      const res = await generateBDD({
+        story: story.trim(), model, threshold,
+        max_attempts: maxAttempts, research, until_converged: untilConverged,
+      });
       setResult(res); setSaved(false);
       addEntry({
         timestamp: Date.now(), story: story.trim(), model,
@@ -59,6 +66,7 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
       setError(e instanceof Error ? e.message : "Erro desconhecido");
     } finally {
       setLoading(false);
+      setLoadingPhase("");
     }
   }
 
@@ -69,9 +77,10 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[460px_1fr] gap-6 h-full">
 
-      {/* Form */}
+      {/* ── Form ────────────────────────────────────────────────────────── */}
       <div className="space-y-4">
 
+        {/* Story */}
         <div className="card p-5 space-y-3">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-bist-primary">User Story</label>
@@ -89,6 +98,7 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
           <p className="text-[10px] text-bist-dim font-code">{story.length} caracteres</p>
         </div>
 
+        {/* Advanced */}
         <div className="card">
           <button
             className="w-full flex items-center justify-between px-5 py-3.5 text-sm text-bist-muted hover:text-bist-primary transition-colors"
@@ -162,26 +172,32 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
           <div className="card p-4 space-y-2">
             <div className="flex items-center gap-2 text-sm text-bist-muted">
               <Loader2 className="w-3.5 h-3.5 animate-spin text-[#a3fb73]" />
-              <span>{research ? "Pesquisando story e gerando cenários..." : "Gerando e refinando cenários..."}</span>
+              <span>{loadingPhase || "Processando..."}</span>
             </div>
             <div className="h-1 bg-bist-border rounded-full overflow-hidden">
               <div className="h-full bg-[#a3fb73] animate-progress rounded-full" />
             </div>
-            <p className="text-xs text-bist-dim font-code">
-              modelo: <span className="text-bist-muted">{DEFAULT_MODEL}</span>
-              {research && <> · <span className="text-[#2D6A3F] font-medium">auto-research ativo</span></>}
-            </p>
+            <div className="flex items-center gap-3 text-[10px] font-code text-bist-dim">
+              <span className="flex items-center gap-1">
+                <Zap className="w-3 h-3" />
+                Llama 3.3 70B
+              </span>
+              <span className="text-[#2D6A3F] font-semibold">grátis</span>
+              {research && (
+                <span className="text-[#2D6A3F] font-medium">· auto-research ativo</span>
+              )}
+            </div>
           </div>
         )}
 
-        {saved && (
+        {saved && !loading && (
           <p className="text-xs text-[#2D6A3F] text-center font-medium">
             ✓ Salvo no histórico
           </p>
         )}
       </div>
 
-      {/* Results */}
+      {/* ── Results ─────────────────────────────────────────────────────── */}
       <div ref={resultRef} className="space-y-4 min-h-[300px]">
         {!result && !error && !loading && <EmptyState />}
 

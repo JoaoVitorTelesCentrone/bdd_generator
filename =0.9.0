@@ -1,0 +1,13 @@
+WARNING: Ignoring invalid distribution ~ (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~ip (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~~p (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~ (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~ip (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~~p (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~ (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~ip (C:\Python311\Lib\site-packages)
+WARNING: Ignoring invalid distribution ~~p (C:\Python311\Lib\site-packages)
+
+[notice] A new release of pip is available: 25.2 -> 26.0.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+

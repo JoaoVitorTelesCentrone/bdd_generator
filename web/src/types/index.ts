@@ -1,8 +1,9 @@
 export interface Model {
   id: string;
   name: string;
-  provider: "gemini" | "claude";
+  provider: "groq" | "gemini" | "claude";
   default?: boolean;
+  free?: boolean;
 }
 
 export interface ScoreResult {

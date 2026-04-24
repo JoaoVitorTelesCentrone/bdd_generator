@@ -17,6 +17,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn
 from .generators.base import BaseLLMGenerator
 from .generators.claude_generator import ClaudeGenerator
 from .generators.gemini_generator import GeminiGenerator
+from .generators.groq_generator import GroqGenerator
 from .evaluators.scorer import BDDScorer
 from .refinement.loop import RefinementLoop
 from .research.auto_researcher import AutoResearcher
@@ -27,16 +28,24 @@ from .auth.config import get_api_key, set_api_key, show_config
 from .autoresearch.config import ResearchConfig
 from .autoresearch.loop import run_autoresearch
 
-# Gemini model aliases
+# Model aliases por provider
 _GEMINI_ALIASES = {
     "flash", "flash-lite", "pro", "flash-1.5",
     "gemini-2.0-flash", "gemini-2.0-flash-lite",
     "gemini-1.5-pro", "gemini-1.5-flash",
 }
+_GROQ_ALIASES = {
+    "llama", "llama-fast", "deepseek", "gemma",
+    "llama-3.3-70b-versatile", "llama-3.1-8b-instant",
+    "deepseek-r1-distill-llama-70b", "gemma2-9b-it",
+}
 
 
 def _is_gemini(model: str) -> bool:
     return model in _GEMINI_ALIASES or model.startswith("gemini")
+
+def _is_groq(model: str) -> bool:
+    return model in _GROQ_ALIASES or model.startswith("llama") or model.startswith("deepseek") or model.startswith("gemma")
 
 # Force UTF-8 on Windows
 if sys.platform == "win32":
@@ -82,6 +91,8 @@ def _save_feature(bdd_text: str, output_dir: Path, filename: str) -> Path:
 
 
 def _make_generator(model: str, max_tokens: int = 4096) -> BaseLLMGenerator:
+    if _is_groq(model):
+        return GroqGenerator(model=model, max_tokens=max_tokens)
     if _is_gemini(model):
         return GeminiGenerator(model=model, max_tokens=max_tokens)
     return ClaudeGenerator(model=model, max_tokens=max_tokens)

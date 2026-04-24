@@ -18,20 +18,20 @@ from fastapi.middleware.cors import CORSMiddleware
 _logger = logging.getLogger(__name__)
 
 _ENV_CHECKS = {
+    "GROQ_API_KEY":       "Groq / Llama / DeepSeek (grátis)",
     "GEMINI_API_KEY":     "Gemini (flash / pro / flash-lite)",
     "ANTHROPIC_API_KEY":  "Claude (sonnet / opus / haiku)",
 }
 
 def _validate_env() -> None:
-    missing = [k for k, _ in _ENV_CHECKS.items() if not os.getenv(k)]
-    if missing:
-        for k in missing:
-            _logger.warning("⚠  %s não configurada — modelos %s indisponíveis", k, _ENV_CHECKS[k])
-        _logger.warning(
-            "Configure as chaves com:  python -m src.cli config set-key <NOME> <VALOR>"
-        )
-    else:
-        _logger.info("✓ GEMINI_API_KEY e ANTHROPIC_API_KEY configuradas")
+    missing = [k for k, label in _ENV_CHECKS.items() if not os.getenv(k)]
+    for k in missing:
+        _logger.warning("⚠  %s não configurada — modelos %s indisponíveis", k, _ENV_CHECKS[k])
+    configured = [k for k in _ENV_CHECKS if os.getenv(k)]
+    if configured:
+        _logger.info("✓ Chaves configuradas: %s", ", ".join(configured))
+    if not configured:
+        _logger.warning("Configure as chaves com: python -m src.cli config set-key <NOME> <VALOR>")
 
 from backend.presentation.routers import health, models, generate, evaluate
 from backend.presentation.routers import bist_router

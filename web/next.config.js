@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Em produção o frontend chama NEXT_PUBLIC_API_URL diretamente (sem proxy).
+  // Em dev, redireciona /api/* para o backend local para evitar CORS.
   async rewrites() {
+    if (process.env.NODE_ENV === "production") return [];
     return [
       {
         source: "/api/:path*",

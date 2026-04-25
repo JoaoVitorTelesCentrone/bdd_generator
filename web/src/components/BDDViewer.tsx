@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, Download, FileCode } from "lucide-react";
+import { Copy, Check, Download, FileCode, AlertTriangle, X } from "lucide-react";
 
 interface Props {
   bddText: string;
   filename?: string;
+  approved?: boolean;
 }
 
 // Strip markdown fences defensively (in case backend didn't)
@@ -24,7 +25,6 @@ const KW_AND       = /^\s*(E\b|Mas\b|And\b|But\b|\*\s)/i;
 const KW_COMMENT   = /^\s*#/;
 const KW_TAG       = /^\s*@/;
 const KW_TABLE     = /^\s*\|/;
-// Narrative lines inside Feature block (Como/Para/Eu quero)
 const KW_NARRATIVE = /^\s*(Como|Para|Eu quero|As a|In order to|I want)\b/i;
 
 function highlight(line: string): React.ReactNode {
@@ -98,8 +98,50 @@ function StepContent({ text }: { text: string }) {
   );
 }
 
-export function BDDViewer({ bddText, filename = "output.feature" }: Props) {
-  const [copied, setCopied] = useState(false);
+function DownloadWarningModal({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onCancel} />
+
+      {/* Modal */}
+      <div className="relative bg-bist-surface border border-red-200 rounded-xl shadow-xl w-full max-w-md p-6 space-y-4 animate-slide-up">
+        <button onClick={onCancel} className="absolute top-4 right-4 text-bist-dim hover:text-bist-primary transition-colors">
+          <X className="w-4 h-4" />
+        </button>
+
+        <div className="flex items-start gap-3">
+          <div className="w-10 h-10 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center flex-shrink-0">
+            <AlertTriangle className="w-5 h-5 text-red-500" />
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-bist-primary">BDD reprovado</h3>
+            <p className="text-xs text-bist-muted mt-1 leading-relaxed">
+              Este BDD não atingiu a nota mínima configurada e pode conter cenários incompletos, mal estruturados ou com baixa cobertura.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-red-50 border border-red-100 rounded-lg px-4 py-3 text-xs text-red-600 leading-relaxed">
+          Utilizar um BDD reprovado como base para testes pode comprometer a qualidade do projeto.
+        </div>
+
+        <div className="flex items-center gap-2 pt-1">
+          <button onClick={onCancel} className="btn-secondary text-sm flex-1">
+            Cancelar
+          </button>
+          <button onClick={onConfirm} className="text-sm flex-1 px-4 py-2 rounded-lg border border-red-300 bg-red-50 text-red-600 hover:bg-red-100 transition-colors font-medium">
+            Baixar mesmo assim
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function BDDViewer({ bddText, filename = "output.feature", approved }: Props) {
+  const [copied, setCopied]   = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const cleaned = cleanBDD(bddText);
   const lines   = cleaned.split("\n");
@@ -110,7 +152,7 @@ export function BDDViewer({ bddText, filename = "output.feature" }: Props) {
     setTimeout(() => setCopied(false), 2000);
   }
 
-  function download() {
+  function doDownload() {
     const blob = new Blob([cleaned], { type: "text/plain" });
     const url  = URL.createObjectURL(blob);
     const a    = document.createElement("a");
@@ -118,46 +160,63 @@ export function BDDViewer({ bddText, filename = "output.feature" }: Props) {
     URL.revokeObjectURL(url);
   }
 
-  return (
-    <div className="rounded-lg overflow-hidden border border-bist-border">
-      {/* Toolbar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-bist-surface2 border-b border-bist-border">
-        <div className="flex items-center gap-2">
-          <FileCode className="w-3.5 h-3.5 text-bist-muted" />
-          <span className="text-xs font-code text-bist-muted">{filename}</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <button onClick={download} className="btn-ghost text-xs">
-            <Download className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">.feature</span>
-          </button>
-          <button onClick={copy} className="btn-ghost text-xs">
-            {copied
-              ? <><Check className="w-3.5 h-3.5 text-[#2D6A3F]" /><span className="hidden sm:inline">Copiado</span></>
-              : <><Copy className="w-3.5 h-3.5" /><span className="hidden sm:inline">Copiar</span></>
-            }
-          </button>
-        </div>
-      </div>
+  function handleDownload() {
+    if (approved === false) {
+      setShowModal(true);
+    } else {
+      doDownload();
+    }
+  }
 
-      {/* Code block */}
-      <div className="overflow-auto bg-[#1a2c21] max-h-[520px]">
-        <table className="w-full border-collapse leading-relaxed text-sm">
-          <tbody>
-            {lines.map((line, i) => (
-              <tr key={i} className="hover:bg-[#a3fb73]/3 transition-colors">
-                <td className="select-none text-right pr-4 pl-3 py-0 w-10 text-xs align-top pt-0.5 font-code"
-                    style={{ color: "#2f5237" }}>
-                  {i + 1}
-                </td>
-                <td className="pr-4 py-0 whitespace-pre-wrap break-words font-code text-xs sm:text-sm">
-                  {highlight(line)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  return (
+    <>
+      {showModal && (
+        <DownloadWarningModal
+          onConfirm={() => { setShowModal(false); doDownload(); }}
+          onCancel={() => setShowModal(false)}
+        />
+      )}
+
+      <div className="rounded-lg overflow-hidden border border-bist-border">
+        {/* Toolbar */}
+        <div className="flex items-center justify-between px-4 py-2.5 bg-bist-surface2 border-b border-bist-border">
+          <div className="flex items-center gap-2">
+            <FileCode className="w-3.5 h-3.5 text-bist-muted" />
+            <span className="text-xs font-code text-bist-muted">{filename}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <button onClick={handleDownload} className="btn-ghost text-xs">
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">.feature</span>
+            </button>
+            <button onClick={copy} className="btn-ghost text-xs">
+              {copied
+                ? <><Check className="w-3.5 h-3.5 text-[#2D6A3F]" /><span className="hidden sm:inline">Copiado</span></>
+                : <><Copy className="w-3.5 h-3.5" /><span className="hidden sm:inline">Copiar</span></>
+              }
+            </button>
+          </div>
+        </div>
+
+        {/* Code block */}
+        <div className="overflow-auto bg-[#1a2c21] max-h-[520px]">
+          <table className="w-full border-collapse leading-relaxed text-sm">
+            <tbody>
+              {lines.map((line, i) => (
+                <tr key={i} className="hover:bg-[#a3fb73]/3 transition-colors">
+                  <td className="select-none text-right pr-4 pl-3 py-0 w-10 text-xs align-top pt-0.5 font-code"
+                      style={{ color: "#2f5237" }}>
+                    {i + 1}
+                  </td>
+                  <td className="pr-4 py-0 whitespace-pre-wrap break-words font-code text-xs sm:text-sm">
+                    {highlight(line)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

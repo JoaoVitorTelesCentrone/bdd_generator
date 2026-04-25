@@ -146,7 +146,7 @@ export default function SettingsPage() {
                 <div className="border border-[#a3fb73]/30 bg-[#a3fb73]/5 rounded-lg p-4 space-y-2">
                   <p className="text-sm font-medium text-bist-primary">Desbloqueie o plano Pro</p>
                   <p className="text-xs text-bist-muted leading-relaxed">
-                    Tokens ilimitados, modelos Claude, execução E2E e pipeline completo.
+                    Tokens ilimitados, execução E2E e pipeline completo.
                   </p>
                   <Link href="/planos" className="btn-primary text-xs inline-flex items-center gap-1.5 mt-1">
                     <Zap className="w-3 h-3" /> Ver planos

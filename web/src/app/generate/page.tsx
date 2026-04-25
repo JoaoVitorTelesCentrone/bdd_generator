@@ -1,36 +1,6 @@
 import { GeneratePanel } from "@/components/GeneratePanel";
-import type { Model } from "@/types";
 
-const FALLBACK_MODELS: Model[] = [
-  { id: "llama",      name: "Llama 3.3 70B",         provider: "groq",   default: true, free: true },
-  { id: "llama-fast", name: "Llama 3.1 8B",          provider: "groq",   free: true },
-  { id: "deepseek",   name: "DeepSeek R1 70B",       provider: "groq",   free: true },
-  { id: "gemma",      name: "Gemma 2 9B",            provider: "groq",   free: true },
-  { id: "flash",      name: "Gemini 2.5 Flash",      provider: "gemini" },
-  { id: "pro",        name: "Gemini 2.5 Pro",        provider: "gemini" },
-  { id: "flash-lite", name: "Gemini 2.0 Flash Lite", provider: "gemini" },
-  { id: "sonnet",     name: "Claude Sonnet 4.6",     provider: "claude" },
-  { id: "opus",       name: "Claude Opus 4.6",       provider: "claude" },
-  { id: "haiku",      name: "Claude Haiku 4.5",      provider: "claude" },
-];
-
-async function getModels(): Promise<Model[]> {
-  try {
-    const url = process.env.BACKEND_URL
-      ? `${process.env.BACKEND_URL}/api/models`
-      : "http://127.0.0.1:8000/api/models";
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    return data.models ?? FALLBACK_MODELS;
-  } catch {
-    return FALLBACK_MODELS;
-  }
-}
-
-export default async function GeneratePage() {
-  const models = await getModels();
-
+export default function GeneratePage() {
   return (
     <div className="flex-1 flex flex-col">
       <div className="border-b border-bist-border bg-bist-surface">
@@ -42,7 +12,7 @@ export default async function GeneratePage() {
         </div>
       </div>
       <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6">
-        <GeneratePanel initialModels={models} />
+        <GeneratePanel />
       </div>
     </div>
   );

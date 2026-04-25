@@ -14,13 +14,11 @@ const plans = [
     ctaHref: "/generate",
     features: [
       "50.000 tokens/mês",
-      "Modelo Gemini Flash",
       "Geração de BDD",
       "Avaliação de qualidade",
       "Histórico local (30 dias)",
     ],
     missing: [
-      "Modelos Pro/Claude",
       "Execução E2E (BIST)",
       "Histórico ilimitado",
       "API CLI",
@@ -37,7 +35,6 @@ const plans = [
     ctaHref: "/api/stripe/checkout?plan=pro",
     features: [
       "Tokens ilimitados",
-      "Todos os modelos (Flash, Pro, Claude)",
       "Execução E2E com BIST",
       "Auto-research",
       "Pipeline completo (batch + study)",

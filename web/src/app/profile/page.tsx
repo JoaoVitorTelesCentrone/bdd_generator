@@ -16,12 +16,10 @@ const MOCK_PLAN = {
   label: "Free",
   features: [
     "50.000 tokens / mês",
-    "Modelo Gemini Flash",
     "Geração e avaliação de BDD",
     "Histórico local (30 dias)",
   ],
   missing: [
-    "Modelos Pro / Claude",
     "Execução E2E (BIST)",
     "Histórico ilimitado",
     "API CLI",
@@ -277,7 +275,7 @@ export default function ProfilePage() {
         <div className="pt-1 border-t border-bist-border">
           <div className="flex items-center justify-between">
             <p className="text-xs text-bist-muted leading-relaxed max-w-xs">
-              Desbloqueie modelos Claude, execução E2E e tokens ilimitados.
+              Desbloqueie execução E2E e tokens ilimitados.
             </p>
             <Link href="/planos" className="btn-primary text-xs py-2 px-4 shrink-0 flex items-center gap-1.5">
               <Zap className="w-3 h-3" /> Fazer upgrade

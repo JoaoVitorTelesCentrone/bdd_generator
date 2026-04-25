@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart2, History, Lightbulb, Sparkles, TestTube2, Layers } from "lucide-react";
+import { History, Lightbulb, Sparkles, TestTube2, Layers } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
 const appLinks = [
   { href: "/fluxo",        label: "Fluxo",    icon: Layers       },
-  { href: "/stories",      label: "Stories",  icon: Lightbulb    },
-  { href: "/generate",     label: "Gerar",    icon: Sparkles     },
-  { href: "/evaluate",     label: "Avaliar",  icon: BarChart2    },
+  { href: "/stories",      label: "Negócio",  icon: Lightbulb    },
+  { href: "/generate",     label: "BDD",      icon: Sparkles     },
   { href: "/unit-tests",   label: "Testes",   icon: TestTube2    },
   { href: "/history",      label: "Histórico",icon: History      },
   // { href: "/runs",         label: "Runs",     icon: Play         },

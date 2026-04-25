@@ -59,10 +59,11 @@ export async function generateBDD(req: GenerateRequest): Promise<GenerateResult>
 }
 
 export async function evaluateBDD(req: EvaluateRequest): Promise<ScoreResult> {
-  return apiFetch<ScoreResult>(`${BASE}/evaluate`, {
+  const data = await apiFetch<{ score: ScoreResult }>(`${BASE}/evaluate`, {
     method: "POST",
     body: JSON.stringify(req),
   });
+  return data.score;
 }
 
 export async function createStory(req: StoryCreateRequest): Promise<StoryCreateResult> {

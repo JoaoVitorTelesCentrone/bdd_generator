@@ -184,7 +184,8 @@ function DetailView({ entry, onBack }: { entry: HistoryEntry; onBack: () => void
           {entry.feature_name.toLowerCase().replace(/\s+/g, "_")}.feature
         </p>
         <BDDViewer bddText={entry.bdd_text}
-          filename={`${entry.feature_name.toLowerCase().replace(/\s+/g, "_")}.feature`} />
+          filename={`${entry.feature_name.toLowerCase().replace(/\s+/g, "_")}.feature`}
+          approved={entry.score?.aprovado} />
       </div>
 
       <div className="card p-5">
@@ -493,7 +494,8 @@ export function HistoryPanel() {
             </div>
             <div className="overflow-auto flex-1">
               <BDDViewer bddText={gherkinEntry.bdd_text}
-                filename={`${gherkinEntry.feature_name.toLowerCase().replace(/\s+/g, "_")}.feature`} />
+                filename={`${gherkinEntry.feature_name.toLowerCase().replace(/\s+/g, "_")}.feature`}
+                approved={gherkinEntry.score?.aprovado} />
             </div>
           </div>
         </div>

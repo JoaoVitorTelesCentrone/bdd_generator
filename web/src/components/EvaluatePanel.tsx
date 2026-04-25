@@ -24,9 +24,14 @@ const SAMPLE_BDD = `Funcionalidade: Login no sistema
     Então devo ver a mensagem "Credenciais inválidas"
     E devo permanecer na página "/login"`;
 
-export function EvaluatePanel() {
-  const [story, setStory]       = useState("");
-  const [bddText, setBddText]   = useState("");
+interface EvaluatePanelProps {
+  initialStory?: string;
+  initialBddText?: string;
+}
+
+export function EvaluatePanel({ initialStory = "", initialBddText = "" }: EvaluatePanelProps = {}) {
+  const [story, setStory]       = useState(initialStory);
+  const [bddText, setBddText]   = useState(initialBddText);
   const [threshold, setThreshold] = useState(7.0);
   const [loading, setLoading]   = useState(false);
   const [result, setResult]     = useState<ScoreResult | null>(null);
@@ -45,8 +50,16 @@ export function EvaluatePanel() {
   }
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
+    <div className="card p-5 space-y-4">
 
+      {/* Header */}
+      <div className="flex items-center gap-2 pb-3 border-b border-bist-border">
+        <BarChart2 className="w-4 h-4 text-bist-muted" />
+        <h3 className="text-sm font-semibold text-bist-primary">Avaliar BDD</h3>
+        <span className="text-xs text-bist-dim font-code ml-auto">4 métricas de qualidade</span>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
       <div className="space-y-4">
         <div className="card p-5 space-y-3">
           <label className="text-sm font-medium text-bist-primary">User Story</label>
@@ -136,6 +149,7 @@ export function EvaluatePanel() {
             <ScoreDisplay score={result} />
           </div>
         )}
+      </div>
       </div>
     </div>
   );

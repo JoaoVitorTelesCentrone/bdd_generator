@@ -1,0 +1,15 @@
+.git
+.env
+.env.local
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+node_modules
+web/.next
+web/node_modules
+*.db
+*.sqlite
+.bist/
+~/.config/bdd-generator

@@ -28,6 +28,7 @@ def _call_llm(model: str, prompt: str) -> str:
     # underlying client directly based on provider type.
     from src.generators.gemini_generator import GeminiGenerator
     from src.generators.claude_generator import ClaudeGenerator
+    from src.generators.groq_generator import GroqGenerator
 
     if isinstance(generator, GeminiGenerator):
         from google import genai as _genai
@@ -38,9 +39,20 @@ def _call_llm(model: str, prompt: str) -> str:
         resp = client.models.generate_content(
             model=model_id,
             contents=prompt,
-            config=_types.GenerateContentConfig(max_output_tokens=1024),
+            config=_types.GenerateContentConfig(max_output_tokens=2048),
         )
         return resp.text or ""
+    elif isinstance(generator, GroqGenerator):
+        from groq import Groq
+        api_key = os.getenv("GROQ_API_KEY", "")
+        client = Groq(api_key=api_key)
+        model_id = generator.model_id
+        completion = client.chat.completions.create(
+            model=model_id,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=1024,
+        )
+        return completion.choices[0].message.content or ""
     else:
         import anthropic
         api_key = os.getenv("ANTHROPIC_API_KEY", "")

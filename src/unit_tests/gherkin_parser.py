@@ -7,14 +7,16 @@ from typing import List, Optional
 
 # Keywords that introduce a step. "And" / "But" inherit the previous keyword type.
 _STEP_KEYWORDS = re.compile(
-    r"^\s*(Given|When|Then|And|But)\s+(.+)$", re.IGNORECASE
+    r"^\s*(Given|When|Then|And|But|Dado|Quando|Então|Entao|E|Mas)\s+(.+)$",
+    re.IGNORECASE,
 )
 _SCENARIO_KEYWORDS = re.compile(
-    r"^\s*(Scenario(?:\s+Outline)?)\s*:\s*(.*)$", re.IGNORECASE
+    r"^\s*(Scenario(?:\s+Outline)?|Cenário(?:\s+Esquema)?|Cenario(?:\s+Esquema)?|Esquema do Cenário|Esquema do Cenario)\s*:\s*(.*)$",
+    re.IGNORECASE,
 )
-_FEATURE_KEYWORD = re.compile(r"^\s*Feature\s*:\s*(.*)$", re.IGNORECASE)
-_BACKGROUND_KEYWORD = re.compile(r"^\s*Background\s*:\s*(.*)$", re.IGNORECASE)
-_EXAMPLES_KEYWORD = re.compile(r"^\s*Examples\s*:.*$", re.IGNORECASE)
+_FEATURE_KEYWORD = re.compile(r"^\s*(Feature|Funcionalidade)\s*:\s*(.*)$", re.IGNORECASE)
+_BACKGROUND_KEYWORD = re.compile(r"^\s*(Background|Contexto)\s*:\s*(.*)$", re.IGNORECASE)
+_EXAMPLES_KEYWORD = re.compile(r"^\s*(Examples|Exemplos)\s*:.*$", re.IGNORECASE)
 _TABLE_ROW = re.compile(r"^\s*\|.+\|")
 _TAG_LINE = re.compile(r"^\s*@\S+")
 
@@ -89,7 +91,7 @@ class GherkinParser:
             # Feature
             m = _FEATURE_KEYWORD.match(line)
             if m:
-                feature.name = m.group(1).strip()
+                feature.name = m.group(2).strip()
                 collecting_description = True
                 in_background = False
                 continue
@@ -138,10 +140,17 @@ class GherkinParser:
                 text = m.group(2).strip()
                 in_examples = False
 
-                if keyword in ("And", "But"):
+                _PT_TO_EN = {
+                    "Dado": "Given", "Quando": "When",
+                    "Então": "Then", "Entao": "Then",
+                    "E": None, "Mas": None,  # inherit previous
+                }
+                en_keyword = _PT_TO_EN.get(keyword, keyword)
+
+                if keyword in ("And", "But") or en_keyword is None:
                     canonical = last_canonical
                 else:
-                    canonical = keyword
+                    canonical = en_keyword
                     last_canonical = canonical
 
                 step = GherkinStep(keyword=keyword, canonical=canonical, text=text)

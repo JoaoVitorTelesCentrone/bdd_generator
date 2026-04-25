@@ -5,7 +5,7 @@ import {
   Loader2, CheckCircle2, AlertCircle, Circle,
   Copy, Check, Download, RotateCcw, Sparkles,
   ChevronDown, ChevronUp, ArrowRight, Building2,
-  FlaskConical, TestTube2, Zap,
+  FlaskConical, TestTube2,
 } from "lucide-react";
 import { createStory, generateBDD, generateUnitTests } from "@/lib/api";
 import { BDDViewer } from "@/components/BDDViewer";
@@ -13,7 +13,7 @@ import { MetricBar } from "@/components/MetricBar";
 import type { GenerateResult, StoryCreateResult, UnitTestResult } from "@/types";
 
 // ── Config ─────────────────────────────────────────────────────────────────────
-const MODEL = "llama"; // Groq Llama 3.3 70B — free
+const MODEL = "flash";
 
 const LANGUAGES = [
   { id: "python",     label: "Python",     framework: "pytest"  },
@@ -220,10 +220,6 @@ export default function FluxoPage() {
                 </div>
               </div>
             ))}
-            <div className="ml-auto flex items-center gap-1 text-[10px] font-code text-[#2D6A3F]">
-              <Zap className="w-3 h-3" />
-              Llama 3.3 70B · grátis
-            </div>
           </div>
         </div>
       </div>
@@ -397,7 +393,7 @@ export default function FluxoPage() {
                         </a>
                       </div>
                     </div>
-                    <BDDViewer bddText={bdd.bdd_text} />
+                    <BDDViewer bddText={bdd.bdd_text} approved={bdd.score.aprovado} />
                   </div>
                 </div>
               )}

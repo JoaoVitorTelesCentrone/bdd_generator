@@ -114,18 +114,6 @@ export function GeneratePanel() {
           }
         </button>
 
-        {loading && (
-          <div className="card p-4 space-y-2">
-            <div className="flex items-center gap-2 text-sm text-bist-muted">
-              <Loader2 className="w-3.5 h-3.5 animate-spin text-[#a3fb73]" />
-              <span>{loadingPhase || "Processando..."}</span>
-            </div>
-            <div className="h-1 bg-bist-border rounded-full overflow-hidden">
-              <div className="h-full bg-[#a3fb73] animate-progress rounded-full" />
-            </div>
-          </div>
-        )}
-
         {saved && !loading && (
           <p className="text-xs text-[#2D6A3F] text-center font-medium">
             ✓ Salvo no histórico
@@ -136,6 +124,7 @@ export function GeneratePanel() {
       {/* ── Results ─────────────────────────────────────────────────────── */}
       <div ref={resultRef} className="space-y-4 min-h-[300px]">
         {!result && !error && !loading && <EmptyState />}
+        {loading && <LoadingState phase={loadingPhase} />}
 
         {error && (
           <div className="card p-4 border-red-200 bg-red-50 flex items-start gap-3">
@@ -179,6 +168,46 @@ export function GeneratePanel() {
   );
 }
 
+
+function LoadingState({ phase }: { phase: string }) {
+  return (
+    <div className="space-y-4 animate-pulse">
+      {/* Score skeleton */}
+      <div className="card p-5 space-y-4">
+        <div className="h-3 w-32 bg-bist-border rounded" />
+        <div className="grid grid-cols-2 gap-3">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="card-subtle px-3 py-3 space-y-2">
+              <div className="h-2.5 w-16 bg-bist-border rounded" />
+              <div className="h-4 w-10 bg-bist-border rounded" />
+            </div>
+          ))}
+        </div>
+        <div className="h-2 w-full bg-bist-border rounded-full" />
+      </div>
+
+      {/* BDD output skeleton */}
+      <div className="card p-5 space-y-3">
+        <div className="h-3 w-40 bg-bist-border rounded" />
+        <div className="space-y-2 pt-1">
+          {[80, 60, 90, 55, 70, 65, 85, 50, 75, 60, 88, 52].map((w, i) => (
+            <div
+              key={i}
+              className="h-3 bg-bist-border rounded"
+              style={{ width: `${w}%`, marginLeft: i % 3 !== 0 ? "1.25rem" : 0 }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Phase label */}
+      <div className="flex items-center justify-center gap-2 text-xs text-bist-dim pt-1">
+        <Loader2 className="w-3.5 h-3.5 animate-spin text-[#a3fb73]" />
+        <span>{phase || "Processando..."}</span>
+      </div>
+    </div>
+  );
+}
 
 function EmptyState() {
   return (

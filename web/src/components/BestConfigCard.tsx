@@ -130,14 +130,6 @@ export function BestConfigCard({
         </div>
       )}
 
-      <div className="border-t border-bist-border pt-3">
-        <p className="text-[10px] font-code text-bist-dim leading-relaxed">
-          Use no CLI com:{" "}
-          <code className="bg-bist-surface2 px-1.5 py-0.5 rounded text-bist-muted">
-            python -m src.cli autoresearch --resume best_config_run{runId}.json
-          </code>
-        </p>
-      </div>
     </div>
   );
 }

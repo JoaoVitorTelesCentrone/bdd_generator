@@ -31,7 +31,7 @@ def _validate_env() -> None:
     if configured:
         _logger.info("✓ Chaves configuradas: %s", ", ".join(configured))
     if not configured:
-        _logger.warning("Configure as chaves com: python -m src.cli config set-key <NOME> <VALOR>")
+        _logger.warning("Configure as chaves no arquivo .env na raiz do projeto")
 
 from backend.presentation.routers import health, models, generate, evaluate
 from backend.presentation.routers import bist_router

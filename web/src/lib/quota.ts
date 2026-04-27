@@ -1,13 +1,6 @@
-/**
- * Gerenciamento de cota de tokens por usuário.
- *
- * Limites:
- *   free → 50.000 tokens/mês
- *   pro  → ilimitado (-1)
- */
 import { createAdminClient } from "@/lib/supabase/server";
 
-const FREE_LIMIT = 50_000;  // tokens por mês
+const FREE_LIMIT = 50_000;
 
 export interface QuotaInfo {
   plan:              string;
@@ -31,7 +24,6 @@ function currentMonthStart(): string {
 export async function getQuota(userId: string): Promise<QuotaInfo> {
   const supabase = createAdminClient();
 
-  // Plano do usuário
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: sub } = await (supabase as any)
     .from("subscriptions")
@@ -41,17 +33,17 @@ export async function getQuota(userId: string): Promise<QuotaInfo> {
 
   const plan = (sub?.plan_id as string) ?? "free";
 
-  // Uso do mês atual
+  // Uso do mês atual — lê da tabela generations (a web já salva lá)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: usage } = await (supabase as any)
-    .from("cli_usage")
-    .select("tokens_used")
+  const { data: rows } = await (supabase as any)
+    .from("generations")
+    .select("total_tokens")
     .eq("user_id", userId)
     .gte("created_at", currentMonthStart());
 
-  const tokensUsed      = (usage as { tokens_used: number }[] | null)
-    ?.reduce((sum, r) => sum + r.tokens_used, 0) ?? 0;
-  const generationsUsed = (usage as unknown[] | null)?.length ?? 0;
+  const tokensUsed      = (rows as { total_tokens: number }[] | null)
+    ?.reduce((sum, r) => sum + (r.total_tokens ?? 0), 0) ?? 0;
+  const generationsUsed = (rows as unknown[] | null)?.length ?? 0;
 
   if (plan === "pro") {
     return {
@@ -64,24 +56,14 @@ export async function getQuota(userId: string): Promise<QuotaInfo> {
     };
   }
 
-  const limit     = FREE_LIMIT;
-  const remaining = Math.max(0, limit - tokensUsed);
+  const remaining = Math.max(0, FREE_LIMIT - tokensUsed);
 
   return {
     plan,
     tokens_used:      tokensUsed,
-    tokens_limit:     limit,
+    tokens_limit:     FREE_LIMIT,
     tokens_remaining: remaining,
     generations_used: generationsUsed,
     reset_at:         nextMonthReset(),
   };
-}
-
-export async function trackUsage(userId: string, tokensUsed: number): Promise<void> {
-  if (tokensUsed <= 0) return;
-  const supabase = createAdminClient();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  await (supabase as any)
-    .from("cli_usage")
-    .insert({ user_id: userId, tokens_used: tokensUsed });
 }

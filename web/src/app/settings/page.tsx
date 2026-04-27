@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Settings, Zap, RotateCcw, ExternalLink, Loader2 } from "lucide-react";
 import { useUser } from "@/lib/supabase/useUser";
-import type { QuotaInfo } from "@/lib/cli/quota";
+import type { QuotaInfo } from "@/lib/quota";
 
 function QuotaBar({ used, limit }: { used: number; limit: number }) {
   const pct = limit <= 0 ? 0 : Math.min(100, (used / limit) * 100);

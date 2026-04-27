@@ -82,7 +82,7 @@ function LoginContent() {
           </button>
 
           <p className="text-center text-xs text-bist-dim">
-            Autenticação opcional — Gerar e avaliar BDD funciona sem login
+            Login necessário para acessar a plataforma
           </p>
         </div>
 

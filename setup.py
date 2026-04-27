@@ -14,9 +14,5 @@ setup(
     extras_require={
         "dev": ["pytest>=8.0.0"],
     },
-    entry_points={
-        "console_scripts": [
-            "bdd=src.cli:app",
-        ],
-    },
+    entry_points={},
 )

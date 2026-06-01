@@ -1,6 +1,5 @@
 import type {
   GenerateRequest, GenerateResult, EvaluateRequest, ScoreResult, Model,
-  BistRunSummary, BistRunDetail, BistStats, BistRunRequest,
   StoryCreateRequest, StoryCreateResult,
 } from "@/types";
 
@@ -70,25 +69,3 @@ export async function checkHealth(): Promise<boolean> {
   }
 }
 
-// ── BIST API ──────────────────────────────────────────────────────────────────
-
-export async function bistTriggerRun(req: BistRunRequest): Promise<{ run_id: number; status: string }> {
-  return apiFetch(`${BASE}/bist/run`, { method: "POST", body: JSON.stringify(req) });
-}
-
-export async function bistListRuns(limit = 20): Promise<BistRunSummary[]> {
-  return apiFetch(`${BASE}/bist/runs?limit=${limit}`);
-}
-
-export async function bistGetRun(id: number): Promise<BistRunDetail> {
-  return apiFetch(`${BASE}/bist/runs/${id}`);
-}
-
-export async function bistGetStats(): Promise<BistStats> {
-  return apiFetch(`${BASE}/bist/stats`);
-}
-
-export function bistWsUrl(runId: number): string {
-  const wsBase = BASE.replace(/^http/, "ws").replace(/\/api$/, "");
-  return `${wsBase}/ws/bist/run/${runId}`;
-}

@@ -2,19 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Terminal, BarChart2, Lightbulb } from "lucide-react";
+import { Terminal, BarChart2, Lightbulb, History } from "lucide-react";
 import { UserMenu } from "./UserMenu";
 
 const appLinks = [
   { href: "/stories",  label: "story",    icon: Lightbulb },
   { href: "/generate", label: "generate", icon: Terminal  },
   { href: "/evaluate", label: "evaluate", icon: BarChart2 },
+  { href: "/history",  label: "history",  icon: History   },
 ];
 
 export function Navbar() {
   const path = usePathname();
   const isApp = path.startsWith("/stories")  || path.startsWith("/generate")
-             || path.startsWith("/evaluate");
+             || path.startsWith("/evaluate") || path.startsWith("/history");
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#a3fb73]/12 bg-[#1a2c21]/96 backdrop-blur-md">
@@ -67,13 +68,26 @@ export function Navbar() {
 
           {/* ── CTA (landing) or separator+UserMenu (app) ───────────────── */}
           {!isApp ? (
-            <Link
-              href="/generate"
-              className="btn-primary text-xs py-2 px-4 shadow-lg shadow-[#a3fb73]/15"
-            >
-              <Terminal className="w-3.5 h-3.5" />
-              abrir app
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/pricing"
+                className={[
+                  "text-xs font-mono transition-colors",
+                  path === "/pricing"
+                    ? "text-[#a3fb73]"
+                    : "text-[#5a7a65] hover:text-[#a3fb73]",
+                ].join(" ")}
+              >
+                preços
+              </Link>
+              <Link
+                href="/generate"
+                className="btn-primary text-xs py-2 px-4 shadow-lg shadow-[#a3fb73]/15"
+              >
+                <Terminal className="w-3.5 h-3.5" />
+                abrir app
+              </Link>
+            </div>
           ) : (
             <>
               <div className="w-px h-5 bg-[#a3fb73]/15" />

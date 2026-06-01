@@ -3,17 +3,20 @@
 import { useState, useRef } from "react";
 import {
   Terminal, ChevronDown, ChevronUp, FlaskConical,
-  Repeat, Loader2, AlertCircle, Info,
+  Repeat, Loader2, AlertCircle, Info, Lock, Zap,
 } from "lucide-react";
 
-const DEFAULT_MODEL = "flash";
 import { generateBDD } from "@/lib/api";
 import { addEntry } from "@/lib/history";
 import { ScoreDisplay } from "./ScoreDisplay";
 import { BDDViewer } from "./BDDViewer";
 import { saveGeneration } from "@/lib/supabase/generations";
 import { useUser } from "@/lib/supabase/useUser";
+import { useSubscription, redirectToCheckout } from "@/lib/stripe/useSubscription";
+import { canUseModel, canUseResearch, PLANS } from "@/lib/stripe/config";
 import type { GenerateResult, Model } from "@/types";
+
+const DEFAULT_MODEL = "flash";
 
 const EXAMPLE_STORIES = [
   "Como usuário, quero fazer login com email e senha para acessar minha conta.\n\nCritérios de aceitação:\n- Login com credenciais válidas\n- Mensagem de erro para credenciais inválidas\n- Bloqueio após 3 tentativas",
@@ -23,7 +26,7 @@ const EXAMPLE_STORIES = [
 
 export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
   const [story, setStory] = useState("");
-  const model = DEFAULT_MODEL;
+  const [model, setModel] = useState(DEFAULT_MODEL);
   const [threshold, setThreshold] = useState(7.0);
   const [maxAttempts, setMaxAttempts] = useState(5);
   const [research, setResearch] = useState(false);
@@ -36,6 +39,9 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
   const [saved, setSaved] = useState(false);
 
   const { user } = useUser();
+  const subscription = useSubscription(user);
+  const planId = subscription.planId;
+  const researchAllowed = canUseResearch(planId);
   const resultRef = useRef<HTMLDivElement>(null);
 
   async function handleGenerate() {
@@ -104,6 +110,55 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
           <p className="text-[10px] text-[#3d5a44] font-mono">{story.length} chars</p>
         </div>
 
+        {/* Model Selector */}
+        <div className="card p-4 space-y-3">
+          <p className="text-xs font-mono text-[#5a7a65]">
+            <span className="mr-1">//</span> modelo
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            {initialModels.map(m => {
+              const allowed = canUseModel(planId, m.id);
+              const active = model === m.id;
+              return (
+                <button
+                  key={m.id}
+                  onClick={() => {
+                    if (allowed) setModel(m.id);
+                    else redirectToCheckout(PLANS.pro.priceId as string);
+                  }}
+                  title={allowed ? m.name : "Disponível no plano Pro"}
+                  className={[
+                    "relative flex items-center justify-between gap-2 px-3 py-2 rounded border font-mono text-xs transition-all text-left",
+                    active
+                      ? "border-[#a3fb73] bg-[#a3fb73]/10 text-[#a3fb73]"
+                      : allowed
+                        ? "border-[#3d5a44] text-[#5a7a65] hover:border-[#a3fb73]/40 hover:text-[#7a9b87]"
+                        : "border-[#2f4a38] text-[#3d5a44] cursor-pointer hover:border-[#f59e0b]/30",
+                  ].join(" ")}
+                >
+                  <span className="truncate">{m.name}</span>
+                  {!allowed
+                    ? <Lock className="w-3 h-3 text-[#f59e0b] flex-shrink-0" />
+                    : active && <span className="w-1.5 h-1.5 rounded-full bg-[#a3fb73] flex-shrink-0" />
+                  }
+                </button>
+              );
+            })}
+          </div>
+          {planId === "free" && (
+            <p className="text-[10px] font-mono text-[#3d5a44] flex items-center gap-1">
+              <Lock className="w-3 h-3 text-[#f59e0b]" />
+              modelos com cadeado requerem{" "}
+              <button
+                onClick={() => redirectToCheckout(PLANS.pro.priceId as string)}
+                className="text-[#f59e0b] hover:underline"
+              >
+                plano Pro
+              </button>
+            </p>
+          )}
+        </div>
+
         {/* Advanced Options */}
         <div className="card">
           <button
@@ -152,15 +207,25 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
 
               {/* Toggles */}
               <div className="space-y-2">
-                <Toggle
-                  id="research"
-                  checked={research}
-                  onChange={setResearch}
-                  icon={<FlaskConical className="w-3.5 h-3.5" />}
-                  label="--auto-research"
-                  description="analisa a story antes de gerar para extrair critérios de aceitação implícitos"
-                  color="lime"
-                />
+                <div className="relative">
+                  <Toggle
+                    id="research"
+                    checked={research && researchAllowed}
+                    onChange={v => {
+                      if (!researchAllowed) { redirectToCheckout(PLANS.pro.priceId as string); return; }
+                      setResearch(v);
+                    }}
+                    icon={<FlaskConical className="w-3.5 h-3.5" />}
+                    label="--auto-research"
+                    description="analisa a story antes de gerar para extrair critérios de aceitação implícitos"
+                    color="lime"
+                  />
+                  {!researchAllowed && (
+                    <span className="absolute right-0 top-0 flex items-center gap-1 text-[10px] font-mono text-[#f59e0b]">
+                      <Lock className="w-3 h-3" /> Pro
+                    </span>
+                  )}
+                </div>
                 <Toggle
                   id="converged"
                   checked={untilConverged}
@@ -200,7 +265,7 @@ export function GeneratePanel({ initialModels }: { initialModels: Model[] }) {
               <div className="h-full bg-[#a3fb73] animate-progress rounded-full" />
             </div>
             <p className="text-[10px] font-mono text-[#3d5a44]">
-              model: <span className="text-[#7a9b87]">{DEFAULT_MODEL}</span>
+              model: <span className="text-[#7a9b87]">{model}</span>
               {research && <> &middot; <span className="text-[#a3fb73]">auto-research on</span></>}
             </p>
           </div>

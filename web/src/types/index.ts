@@ -6,13 +6,13 @@ export interface Model {
 }
 
 export interface ScoreResult {
-  cobertura: float;
-  clareza: float;
-  estrutura: float;
-  executabilidade: float;
-  score_final: float;
+  cobertura: number;
+  clareza: number;
+  estrutura: number;
+  executabilidade: number;
+  score_final: number;
   aprovado: boolean;
-  threshold: float;
+  threshold: number;
 }
 
 export interface GenerateResult {
@@ -39,9 +39,6 @@ export interface EvaluateRequest {
   bdd_text: string;
   threshold: number;
 }
-
-// Fix: TypeScript doesn't have a "float" type — use number
-type float = number;
 
 // ── Story Creator ─────────────────────────────────────────────────────────────
 

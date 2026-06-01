@@ -83,8 +83,7 @@ function LoginContent() {
             </div>
           )}
 
-          {/* Google button — temporariamente desabilitado */}
-          {/* <button
+          <button
             onClick={handleGoogleLogin}
             disabled={loading}
             className="w-full flex items-center justify-center gap-3
@@ -100,18 +99,10 @@ function LoginContent() {
               : <GoogleIcon />
             }
             {loading ? "redirecionando..." : "authenticate --google"}
-          </button> */}
-          <div className="w-full flex items-center justify-center gap-3
-                          border border-[#a3fb73]/15 bg-[#243d2c]/40
-                          text-[#3d5a44] font-mono text-sm
-                          rounded py-2.5 px-4 cursor-not-allowed select-none">
-            <GoogleIcon />
-            authenticate --google
-            <span className="text-[10px] text-[#3d5a44] ml-auto">// em breve</span>
-          </div>
+          </button>
 
           <p className="text-center text-[10px] text-[#3d5a44] font-mono">
-            // autenticação opcional — gerar e avaliar funciona sem login
+            // gerar e avaliar também funciona sem login
           </p>
         </div>
 
